@@ -7,7 +7,7 @@
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 import BaseMaskStrategy from './ui.text_editor.mask.strategy.base';
-var DELETE_INPUT_TYPE = 'deleteContentBackward';
+var DELETE_INPUT_TYPES = ['deleteContentBackward', 'deleteSoftLineBackward', 'deleteContent', 'deleteHardLineBackward'];
 var HISTORY_INPUT_TYPES = ['historyUndo', 'historyRedo'];
 class InputEventsMaskStrategy extends BaseMaskStrategy {
   _getStrategyName() {
@@ -17,6 +17,7 @@ class InputEventsMaskStrategy extends BaseMaskStrategy {
     return [...super.getHandleEventNames(), 'beforeInput'];
   }
   _beforeInputHandler() {
+    this._previousText = this.editor.option('text');
     this._prevCaret = this.editorCaret();
   }
   _inputHandler(event) {
@@ -38,9 +39,7 @@ class InputEventsMaskStrategy extends BaseMaskStrategy {
         text: ''
       });
       this.editorCaret(this._prevCaret);
-      event.stopImmediatePropagation();
-      return;
-    } else if (inputType === DELETE_INPUT_TYPE) {
+    } else if (DELETE_INPUT_TYPES.includes(inputType)) {
       var length = this._prevCaret.end - this._prevCaret.start || 1;
       this.editor.setBackwardDirection();
       this._updateEditorMask({
@@ -57,22 +56,33 @@ class InputEventsMaskStrategy extends BaseMaskStrategy {
         this.editor._adjustCaret();
       }
     } else {
-      var _this$_prevCaret;
+      var _this$_prevCaret, _this$_prevCaret2, _this$_prevCaret3;
       if (!currentCaret.end) {
         return;
+      }
+      var _length = ((_this$_prevCaret = this._prevCaret) === null || _this$_prevCaret === void 0 ? void 0 : _this$_prevCaret.end) - ((_this$_prevCaret2 = this._prevCaret) === null || _this$_prevCaret2 === void 0 ? void 0 : _this$_prevCaret2.start) || 1;
+      if (_length > 1) {
+        this.editor.setBackwardDirection();
+        this._updateEditorMask({
+          start: currentCaret.start,
+          length: _length,
+          text: this._getEmptyString(_length)
+        });
       }
       this._autoFillHandler(originalEvent);
       this.editorCaret(currentCaret);
       this.editor.setForwardDirection();
       var hasValidChars = this._updateEditorMask({
-        start: (_this$_prevCaret = this._prevCaret) === null || _this$_prevCaret === void 0 ? void 0 : _this$_prevCaret.start,
+        start: (_this$_prevCaret3 = this._prevCaret) === null || _this$_prevCaret3 === void 0 ? void 0 : _this$_prevCaret3.start,
         length: 1,
         text: data !== null && data !== void 0 ? data : ''
       });
       if (!hasValidChars) {
-        event.stopImmediatePropagation();
         this.editorCaret(this._prevCaret);
       }
+    }
+    if (this.editor.option('text') === this._previousText) {
+      event.stopImmediatePropagation();
     }
   }
   _getEmptyString(length) {

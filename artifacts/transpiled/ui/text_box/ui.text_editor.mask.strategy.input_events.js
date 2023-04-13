@@ -11,7 +11,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-var DELETE_INPUT_TYPE = 'deleteContentBackward';
+var DELETE_INPUT_TYPES = ['deleteContentBackward', 'deleteSoftLineBackward', 'deleteContent', 'deleteHardLineBackward'];
 var HISTORY_INPUT_TYPES = ['historyUndo', 'historyRedo'];
 var InputEventsMaskStrategy = /*#__PURE__*/function (_BaseMaskStrategy) {
   _inheritsLoose(InputEventsMaskStrategy, _BaseMaskStrategy);
@@ -26,6 +26,7 @@ var InputEventsMaskStrategy = /*#__PURE__*/function (_BaseMaskStrategy) {
     return [].concat(_toConsumableArray(_BaseMaskStrategy.prototype.getHandleEventNames.call(this)), ['beforeInput']);
   };
   _proto._beforeInputHandler = function _beforeInputHandler() {
+    this._previousText = this.editor.option('text');
     this._prevCaret = this.editorCaret();
   };
   _proto._inputHandler = function _inputHandler(event) {
@@ -43,9 +44,7 @@ var InputEventsMaskStrategy = /*#__PURE__*/function (_BaseMaskStrategy) {
         text: ''
       });
       this.editorCaret(this._prevCaret);
-      event.stopImmediatePropagation();
-      return;
-    } else if (inputType === DELETE_INPUT_TYPE) {
+    } else if (DELETE_INPUT_TYPES.includes(inputType)) {
       var length = this._prevCaret.end - this._prevCaret.start || 1;
       this.editor.setBackwardDirection();
       this._updateEditorMask({
@@ -62,22 +61,33 @@ var InputEventsMaskStrategy = /*#__PURE__*/function (_BaseMaskStrategy) {
         this.editor._adjustCaret();
       }
     } else {
-      var _this$_prevCaret;
+      var _this$_prevCaret, _this$_prevCaret2, _this$_prevCaret3;
       if (!currentCaret.end) {
         return;
+      }
+      var _length = ((_this$_prevCaret = this._prevCaret) === null || _this$_prevCaret === void 0 ? void 0 : _this$_prevCaret.end) - ((_this$_prevCaret2 = this._prevCaret) === null || _this$_prevCaret2 === void 0 ? void 0 : _this$_prevCaret2.start) || 1;
+      if (_length > 1) {
+        this.editor.setBackwardDirection();
+        this._updateEditorMask({
+          start: currentCaret.start,
+          length: _length,
+          text: this._getEmptyString(_length)
+        });
       }
       this._autoFillHandler(originalEvent);
       this.editorCaret(currentCaret);
       this.editor.setForwardDirection();
       var hasValidChars = this._updateEditorMask({
-        start: (_this$_prevCaret = this._prevCaret) === null || _this$_prevCaret === void 0 ? void 0 : _this$_prevCaret.start,
+        start: (_this$_prevCaret3 = this._prevCaret) === null || _this$_prevCaret3 === void 0 ? void 0 : _this$_prevCaret3.start,
         length: 1,
         text: data !== null && data !== void 0 ? data : ''
       });
       if (!hasValidChars) {
-        event.stopImmediatePropagation();
         this.editorCaret(this._prevCaret);
       }
+    }
+    if (this.editor.option('text') === this._previousText) {
+      event.stopImmediatePropagation();
     }
   };
   _proto._getEmptyString = function _getEmptyString(length) {
