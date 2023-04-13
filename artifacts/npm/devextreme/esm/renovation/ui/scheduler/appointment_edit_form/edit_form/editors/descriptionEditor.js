@@ -1,0 +1,64 @@
+/**
+* DevExtreme (esm/renovation/ui/scheduler/appointment_edit_form/edit_form/editors/descriptionEditor.js)
+* Version: 23.1.1
+* Build date: Thu Apr 13 2023
+*
+* Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
+* Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
+*/
+import _extends from "@babel/runtime/helpers/esm/extends";
+import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
+var _excluded = ["value", "valueChange"];
+import { createComponentVNode } from "inferno";
+import { InfernoEffect, InfernoComponent } from '@devextreme/runtime/inferno';
+import { TextArea } from '../../../../editors/text_area';
+export var viewFunction = _ref => {
+  var {
+    props: {
+      value
+    }
+  } = _ref;
+  return createComponentVNode(2, TextArea, {
+    "value": value
+  });
+};
+export var DescriptionEditorProps = {};
+import { convertRulesToOptions } from '../../../../../../core/options/utils';
+export class DescriptionEditor extends InfernoComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: undefined
+    };
+    this.initDate = this.initDate.bind(this);
+  }
+  createEffects() {
+    return [new InfernoEffect(this.initDate, [])];
+  }
+  initDate() {
+    if (!this.state.value) {
+      this.setState(__state_argument => ({
+        value: this.props.value
+      }));
+    }
+  }
+  get restAttributes() {
+    var _this$props = this.props,
+      restProps = _objectWithoutPropertiesLoose(_this$props, _excluded);
+    return restProps;
+  }
+  render() {
+    var props = this.props;
+    return viewFunction({
+      props: _extends({}, props),
+      value: this.state.value,
+      restAttributes: this.restAttributes
+    });
+  }
+}
+DescriptionEditor.defaultProps = DescriptionEditorProps;
+var __defaultOptionRules = [];
+export function defaultOptions(rule) {
+  __defaultOptionRules.push(rule);
+  DescriptionEditor.defaultProps = Object.create(Object.prototype, _extends(Object.getOwnPropertyDescriptors(DescriptionEditor.defaultProps), Object.getOwnPropertyDescriptors(convertRulesToOptions(__defaultOptionRules))));
+}

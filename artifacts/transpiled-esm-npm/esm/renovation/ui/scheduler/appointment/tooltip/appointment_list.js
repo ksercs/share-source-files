@@ -1,0 +1,30 @@
+import _extends from "@babel/runtime/helpers/esm/extends";
+import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
+var _excluded = ["appointments"];
+import { createVNode, createComponentVNode } from "inferno";
+import { BaseInfernoComponent } from '@devextreme/runtime/inferno';
+import { TooltipItemLayout } from './item_layout';
+export var viewFunction = viewModel => createVNode(1, "div", null, viewModel.props.appointments.map((item, index) => createComponentVNode(2, TooltipItemLayout, {
+  "item": item,
+  "index": index
+}, item.key)), 0);
+export var AppointmentListProps = {};
+export class AppointmentList extends BaseInfernoComponent {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  get restAttributes() {
+    var _this$props = this.props,
+      restProps = _objectWithoutPropertiesLoose(_this$props, _excluded);
+    return restProps;
+  }
+  render() {
+    var props = this.props;
+    return viewFunction({
+      props: _extends({}, props),
+      restAttributes: this.restAttributes
+    });
+  }
+}
+AppointmentList.defaultProps = AppointmentListProps;

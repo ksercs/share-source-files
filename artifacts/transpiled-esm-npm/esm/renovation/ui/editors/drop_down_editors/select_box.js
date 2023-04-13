@@ -1,0 +1,122 @@
+import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
+import _extends from "@babel/runtime/helpers/esm/extends";
+var _excluded = ["accessKey", "activeStateEnabled", "className", "dataSource", "defaultValue", "disabled", "displayExpr", "focusStateEnabled", "height", "hint", "hoverStateEnabled", "isValid", "label", "labelMode", "name", "onClick", "onFocusIn", "onKeyDown", "placeholder", "readOnly", "rtlEnabled", "searchEnabled", "tabIndex", "validationError", "validationErrors", "validationMessageMode", "validationMessagePosition", "validationStatus", "value", "valueChange", "valueExpr", "visible", "width"];
+import { createComponentVNode, normalizeProps } from "inferno";
+import { BaseInfernoComponent } from '@devextreme/runtime/inferno';
+import LegacySelectBox from '../../../../ui/select_box';
+import { DomComponentWrapper } from '../../common/dom_component_wrapper';
+import { EditorProps } from '../common/editor';
+import { EditorStateProps } from '../common/editor_state_props';
+import { EditorLabelProps } from '../common/editor_label_props';
+export var viewFunction = _ref => {
+  var {
+    componentProps,
+    restAttributes
+  } = _ref;
+  return normalizeProps(createComponentVNode(2, DomComponentWrapper, _extends({
+    "componentType": LegacySelectBox,
+    "componentProps": componentProps,
+    "templateNames": ['dropDownButtonTemplate', 'groupTemplate', 'itemTemplate']
+  }, restAttributes)));
+};
+export var SelectBoxProps = Object.create(Object.prototype, _extends(Object.getOwnPropertyDescriptors(EditorProps), Object.getOwnPropertyDescriptors({
+  placeholder: '',
+  hoverStateEnabled: true,
+  searchEnabled: false,
+  defaultValue: null,
+  isReactComponentWrapper: true
+})));
+export var SelectBoxPropsType = {
+  get placeholder() {
+    return SelectBoxProps.placeholder;
+  },
+  get hoverStateEnabled() {
+    return EditorStateProps.hoverStateEnabled;
+  },
+  get searchEnabled() {
+    return SelectBoxProps.searchEnabled;
+  },
+  get defaultValue() {
+    return SelectBoxProps.defaultValue;
+  },
+  get readOnly() {
+    return SelectBoxProps.readOnly;
+  },
+  get name() {
+    return SelectBoxProps.name;
+  },
+  get validationError() {
+    return SelectBoxProps.validationError;
+  },
+  get validationErrors() {
+    return SelectBoxProps.validationErrors;
+  },
+  get validationMessageMode() {
+    return SelectBoxProps.validationMessageMode;
+  },
+  get validationMessagePosition() {
+    return SelectBoxProps.validationMessagePosition;
+  },
+  get validationStatus() {
+    return SelectBoxProps.validationStatus;
+  },
+  get isValid() {
+    return SelectBoxProps.isValid;
+  },
+  get className() {
+    return SelectBoxProps.className;
+  },
+  get activeStateEnabled() {
+    return EditorStateProps.activeStateEnabled;
+  },
+  get disabled() {
+    return SelectBoxProps.disabled;
+  },
+  get focusStateEnabled() {
+    return EditorStateProps.focusStateEnabled;
+  },
+  get tabIndex() {
+    return SelectBoxProps.tabIndex;
+  },
+  get visible() {
+    return SelectBoxProps.visible;
+  },
+  get label() {
+    return EditorLabelProps.label;
+  },
+  get labelMode() {
+    return EditorLabelProps.labelMode;
+  },
+  isReactComponentWrapper: true
+};
+export class SelectBox extends BaseInfernoComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: this.props.value !== undefined ? this.props.value : this.props.defaultValue
+    };
+  }
+  get componentProps() {
+    return _extends({}, this.props, {
+      value: this.props.value !== undefined ? this.props.value : this.state.value
+    });
+  }
+  get restAttributes() {
+    var _this$props$value = _extends({}, this.props, {
+        value: this.props.value !== undefined ? this.props.value : this.state.value
+      }),
+      restProps = _objectWithoutPropertiesLoose(_this$props$value, _excluded);
+    return restProps;
+  }
+  render() {
+    var props = this.props;
+    return viewFunction({
+      props: _extends({}, props, {
+        value: this.props.value !== undefined ? this.props.value : this.state.value
+      }),
+      componentProps: this.componentProps,
+      restAttributes: this.restAttributes
+    });
+  }
+}
+SelectBox.defaultProps = SelectBoxPropsType;
