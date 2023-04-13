@@ -1,0 +1,2350 @@
+@startuml DevExtreme
+
+object ArrayStore {
+  Array data
+}
+Store <|-up- ArrayStore
+
+object BaseChart {
+  Object adaptiveLayout
+  Object|Boolean animation
+  function(pointInfo) customizeLabel
+  function(pointInfo) customizePoint
+  Store|DataSource|DataSourceOptions|String|Array|null dataSource
+  Object legend
+  function(e) onDone
+  function(e) onPointClick
+  function(e) onPointHoverChanged
+  function(e) onPointSelectionChanged
+  function(e) onTooltipHidden
+  function(e) onTooltipShown
+  Array|Enums.Palette palette
+  Enums.PaletteExtensionMode paletteExtensionMode
+  Enums.SingleOrMultiple pointSelectionMode
+  any|Array series
+  Object tooltip
+}
+BaseWidget <|-up- BaseChart
+DataHelperMixin <|-up- BaseChart
+
+object BaseGauge {
+  Object animation
+  String containerBackgroundColor
+  Object loadingIndicator
+  function(e) onTooltipHidden
+  function(e) onTooltipShown
+  Object rangeContainer
+  Object scale
+  Array subvalues
+  Object tooltip
+  Number value
+}
+BaseWidget <|-up- BaseGauge
+
+object BaseSparkline {
+  Object export
+  Object loadingIndicator
+  function(e) onTooltipHidden
+  function(e) onTooltipShown
+  Boolean redrawOnResize
+  Object title
+  Object tooltip
+}
+BaseWidget <|-up- BaseSparkline
+
+object BaseWidget {
+  Boolean disabled
+  Object export
+  Number|String|function() height
+  Object loadingIndicator
+  Object margin
+  function(e) onDrawn
+  function(e) onExported
+  function(e) onExporting
+  function(e) onFileSaving
+  function(e) onIncidentOccurred
+  Boolean pathModified
+  Boolean redrawOnResize
+  Boolean rtlEnabled
+  Object size
+  Enums.Theme theme
+  Object|String title
+  Object tooltip
+  Number|String|function() width
+}
+DOMComponent <|-up- BaseWidget
+
+object CollectionWidget {
+  Store|DataSource|DataSourceOptions|String|Array|null dataSource
+  DxElement focusedElement
+  Number itemHoldTimeout
+  Array items
+  template|function(itemData, itemIndex, itemElement) itemTemplate
+  String|function() keyExpr
+  Boolean loopItemFocus
+  String noDataText
+  function(e) onItemClick
+  function(e) onItemContextMenu
+  function(e) onItemDeleted
+  function(e) onItemDeleting
+  function(e) onItemHold
+  function(e) onItemRendered
+  function(e) onItemReordered
+  function(e) onSelectionChanged
+  Number selectedIndex
+  any selectedItem
+  Array selectedItemKeys
+  Array selectedItems
+  String selectionMode
+  Boolean selectionRequired
+  Boolean selectOnFocus
+}
+Widget <|-up- CollectionWidget
+DataHelperMixin <|-up- CollectionWidget
+
+object Component {
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
+}
+
+object CustomFileSystemProvider {
+  function(file, uploadInfo, destinationDirectory) abortFileUpload
+  function(item, destinationDirectory) copyItem
+  function(parentDirectory, name) createDirectory
+  function(item) deleteItem
+  function(items) downloadItems
+  function(parentDirectory) getItems
+  function(items) getItemsContent
+  String|function() hasSubDirectoriesExpr
+  function(item, destinationDirectory) moveItem
+  function(item, newName) renameItem
+  function(file, uploadInfo, destinationDirectory) uploadFileChunk
+}
+FileSystemProviderBase <|-up- CustomFileSystemProvider
+
+object CustomStore {
+  function(key) byKey
+  Boolean cacheRawData
+  function(values) insert
+  function(options) load
+  String loadMode
+  function(key) remove
+  function(loadOptions) totalCount
+  function(key, values) update
+  Boolean useDefaultSearch
+}
+Store <|-up- CustomStore
+
+object DataExpressionMixin {
+  Store|DataSource|DataSourceOptions|String|Array|null dataSource
+  String|function(item) displayExpr
+  Array items
+  template|function(itemData, itemIndex, itemElement) itemTemplate
+  any value
+  String|function(item) valueExpr
+}
+DataHelperMixin <|-up- DataExpressionMixin
+
+object DataSource {
+  any customQueryParams
+  Array|String expand
+  Filter expression filter
+  Group expression group
+  function(dataItem) map
+  function(e) onChanged
+  function(error) onLoadError
+  function(isLoading) onLoadingChanged
+  Number pageSize
+  Boolean paginate
+  function(data) postProcess
+  Number pushAggregationTimeout
+  Boolean requireTotalCount
+  Boolean reshapeOnPush
+  getter|Array searchExpr
+  Enums.SearchOperation searchOperation
+  any searchValue
+  Select expression select
+  Sort expression sort
+  Store|StoreOptions|Array store
+}
+
+object DOMComponent {
+  Object bindingOptions
+  Object elementAttr
+  Number|String|function() height
+  function(e) onDisposing
+  function(e) onOptionChanged
+  Boolean rtlEnabled
+  Number|String|function() width
+}
+Component <|-up- DOMComponent
+
+object DraggableBase {
+  Boolean autoScroll
+  String|UserDefinedElement boundary
+  String|UserDefinedElement container
+  template|function() contentTemplate
+  String|Object cursorOffset
+  any data
+  Enums.DragDirection dragDirection
+  String group
+  String handle
+  Number scrollSensitivity
+  Number scrollSpeed
+}
+DOMComponent <|-up- DraggableBase
+
+object dxAccordion {
+  Number animationDuration
+  Boolean collapsible
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  Boolean deferRendering
+  Boolean focusStateEnabled
+  Number|String|function() height
+  Boolean hoverStateEnabled
+  Array items
+  template|function(itemData, itemIndex, itemElement) itemTemplate
+  template|function(itemData, itemIndex, itemElement) itemTitleTemplate
+  Boolean multiple
+  function(e) onItemTitleClick
+  Boolean repaintChangesOnly
+  Number selectedIndex
+}
+CollectionWidget <|-up- dxAccordion
+
+object dxActionSheet {
+  NO_TYPE accessKey
+  NO_TYPE activeStateEnabled
+  String cancelText
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  Boolean focusStateEnabled
+  Array items
+  NO_TYPE keyExpr
+  NO_TYPE noDataText
+  function(e) onCancelClick
+  NO_TYPE onSelectionChanged
+  NO_TYPE selectedIndex
+  NO_TYPE selectedItem
+  NO_TYPE selectedItemKeys
+  NO_TYPE selectedItems
+  Boolean showCancelButton
+  Boolean showTitle
+  NO_TYPE tabIndex
+  String|UserDefinedElement target
+  String title
+  Boolean usePopover
+  Boolean visible
+}
+CollectionWidget <|-up- dxActionSheet
+
+object dxAutocomplete {
+  NO_TYPE acceptCustomValue
+  NO_TYPE displayExpr
+  dxPopupOptions dropDownOptions
+  Number maxItemCount
+  Number minSearchLength
+  String noDataText
+  NO_TYPE searchEnabled
+  NO_TYPE showDataBeforeSearch
+  Boolean showDropDownButton
+  String value
+}
+dxDropDownList <|-up- dxAutocomplete
+
+object dxBarGauge {
+  any animation
+  String backgroundColor
+  Number barSpacing
+  Number baseValue
+  template centerTemplate
+  Number endValue
+  Object geometry
+  Object label
+  Object legend
+  Object loadingIndicator
+  function(e) onTooltipHidden
+  function(e) onTooltipShown
+  Array|Enums.Palette palette
+  Enums.PaletteExtensionMode paletteExtensionMode
+  Number relativeInnerRadius
+  Enums.ShiftLabelOverlap resolveLabelOverlapping
+  Number startValue
+  Object tooltip
+  Array values
+}
+BaseWidget <|-up- dxBarGauge
+
+object dxBox {
+  NO_TYPE accessKey
+  NO_TYPE activeStateEnabled
+  Enums.Distribution align
+  Enums.CrosswiseDistribution crossAlign
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  Enums.BoxDirection direction
+  NO_TYPE focusStateEnabled
+  NO_TYPE hint
+  Array items
+  NO_TYPE keyExpr
+  NO_TYPE noDataText
+  NO_TYPE onSelectionChanged
+  NO_TYPE selectedIndex
+  NO_TYPE selectedItem
+  NO_TYPE selectedItemKeys
+  NO_TYPE selectedItems
+  NO_TYPE tabIndex
+}
+CollectionWidget <|-up- dxBox
+
+object dxBullet {
+  String color
+  Number endScaleValue
+  Boolean showTarget
+  Boolean showZeroLevel
+  Number startScaleValue
+  Number target
+  String targetColor
+  Number targetWidth
+  Number value
+}
+BaseSparkline <|-up- dxBullet
+
+object dxButton {
+  Boolean activeStateEnabled
+  Boolean focusStateEnabled
+  Boolean hoverStateEnabled
+  String icon
+  function(e) onClick
+  Enums.ButtonStyle stylingMode
+  template|function(buttonData, contentElement) template
+  String text
+  Enums.ButtonType type
+  Boolean useSubmitBehavior
+  String validationGroup
+}
+Widget <|-up- dxButton
+
+object dxButtonGroup {
+  template|function(buttonData, buttonContent) buttonTemplate
+  Boolean focusStateEnabled
+  Boolean hoverStateEnabled
+  Array items
+  String|function() keyExpr
+  function(e) onItemClick
+  function(e) onSelectionChanged
+  Array selectedItemKeys
+  Array selectedItems
+  Enums.SingleMultipleOrNone selectionMode
+  Enums.ButtonStyle stylingMode
+}
+Widget <|-up- dxButtonGroup
+
+object dxCalendar {
+  Boolean activeStateEnabled
+  template|function(itemData, itemIndex, itemElement) cellTemplate
+  Date currentDate
+  String dateSerializationFormat
+  Array|function(data) disabledDates
+  Enums.FirstDayOfWeek firstDayOfWeek
+  Boolean focusStateEnabled
+  Boolean hoverStateEnabled
+  Date|Number|String max
+  Enums.CalendarZoomLevel maxZoomLevel
+  Date|Number|String min
+  Enums.CalendarZoomLevel minZoomLevel
+  String name
+  NO_TYPE onContentReady
+  Boolean showTodayButton
+  Boolean showWeekNumbers
+  Date|Number|String value
+  Enums.WeekNumberRule weekNumberRule
+  Enums.CalendarZoomLevel zoomLevel
+}
+Editor <|-up- dxCalendar
+
+object dxChart {
+  Boolean adjustOnZoom
+  Array annotations
+  Object argumentAxis
+  Boolean autoHidePointMarkers
+  Number barGroupPadding
+  Number barGroupWidth
+  dxChartCommonAnnotationConfig commonAnnotationSettings
+  Object commonAxisSettings
+  Object commonPaneSettings
+  Object commonSeriesSettings
+  String containerBackgroundColor
+  Object crosshair
+  function(annotation) customizeAnnotation
+  Object dataPrepareSettings
+  String defaultPane
+  Object legend
+  Number maxBubbleSize
+  Number minBubbleSize
+  Boolean negativesAsZeroes
+  function(e) onArgumentAxisClick
+  function(e) onLegendClick
+  function(e) onSeriesClick
+  function(e) onSeriesHoverChanged
+  function(e) onSeriesSelectionChanged
+  function(e) onZoomEnd
+  function(e) onZoomStart
+  Object|Array panes
+  Boolean resizePanesOnZoom
+  Enums.ChartsLabelOverlap resolveLabelOverlapping
+  Boolean rotated
+  Object scrollBar
+  ChartSeries|Array series
+  Enums.SingleOrMultiple seriesSelectionMode
+  Object seriesTemplate
+  Boolean stickyHovering
+  Boolean synchronizeMultiAxes
+  Object tooltip
+  Object|Array valueAxis
+  Object zoomAndPan
+}
+BaseChart <|-up- dxChart
+
+object dxCheckBox {
+  Boolean activeStateEnabled
+  Boolean enableThreeStateBehavior
+  Boolean focusStateEnabled
+  Boolean hoverStateEnabled
+  Number|String iconSize
+  String name
+  String text
+  Boolean|null|undefined value
+}
+Editor <|-up- dxCheckBox
+
+object dxCircularGauge {
+  template centerTemplate
+  Object geometry
+  Object rangeContainer
+  Object scale
+  GaugeIndicator subvalueIndicator
+  GaugeIndicator valueIndicator
+}
+BaseGauge <|-up- dxCircularGauge
+
+object dxColorBox {
+  String applyButtonText
+  Enums.ApplyValueMode applyValueMode
+  String cancelButtonText
+  dxPopupOptions dropDownOptions
+  Boolean editAlphaChannel
+  template|function(value, fieldElement) fieldTemplate
+  Number keyStep
+  NO_TYPE maxLength
+  NO_TYPE onContentReady
+  NO_TYPE spellcheck
+  String value
+  NO_TYPE valueChangeEvent
+}
+dxDropDownEditor <|-up- dxColorBox
+
+object dxContextMenu {
+  Boolean|function(event) closeOnOutsideClick
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  Boolean|function(event) hideOnOutsideClick
+  NO_TYPE itemHoldAction
+  Array items
+  function(e) onHidden
+  function(e) onHiding
+  NO_TYPE onItemReordered
+  function(e) onPositioning
+  function(e) onShowing
+  function(e) onShown
+  PositionConfig position
+  NO_TYPE selectedItems
+  Object|String showEvent
+  Enums.ContextSubmenuDirection submenuDirection
+  String|UserDefinedElement target
+  Boolean visible
+}
+dxMenuBase <|-up- dxContextMenu
+
+object dxDataGrid {
+  Array columns
+  function(columns) customizeColumns
+  template|function(rowElement, rowInfo) dataRowTemplate
+  Object editing
+  Object export
+  Object grouping
+  Object groupPanel
+  String|Array keyExpr
+  Object masterDetail
+  function(e) onCellClick
+  function(e) onCellDblClick
+  function(e) onCellHoverChanged
+  function(e) onCellPrepared
+  function(e) onContextMenuPreparing
+  function(e) onEditingStart
+  function(options) onEditorPrepared
+  function(e) onEditorPreparing
+  function(e) onExporting
+  function(e) onFocusedCellChanged
+  function(e) onFocusedCellChanging
+  function(e) onFocusedRowChanged
+  function(e) onFocusedRowChanging
+  function(e) onRowClick
+  function(e) onRowDblClick
+  function(e) onRowPrepared
+  Boolean regenerateColumnsByVisibleItems
+  Boolean|Object|Enums.Mode remoteOperations
+  template|function(rowElement, rowInfo) rowTemplate
+  Object scrolling
+  Object selection
+  Filter expression selectionFilter
+  Array sortByGroupSummaryInfo
+  Object summary
+  dxDataGridToolbar toolbar
+}
+GridBase <|-up- dxDataGrid
+
+object dxDateBox {
+  Boolean adaptivityEnabled
+  String applyButtonText
+  dxCalendarOptions calendarOptions
+  String cancelButtonText
+  String dateOutOfRangeMessage
+  String dateSerializationFormat
+  Array|function(data) disabledDates
+  Format displayFormat
+  dxPopupOptions dropDownOptions
+  Number interval
+  String invalidDateMessage
+  Date|Number|String max
+  Date|Number|String min
+  Enums.DatePickerType pickerType
+  String placeholder
+  Boolean showAnalogClock
+  String todayButtonText
+  Enums.DateType type
+  Boolean useMaskBehavior
+  Date|Number|String value
+}
+dxDropDownEditor <|-up- dxDateBox
+
+object dxDeferRendering {
+  AnimationConfig animation
+  function(e) onRendered
+  function(e) onShown
+  DxPromise|Boolean renderWhen
+  Boolean showLoadIndicator
+  String staggerItemSelector
+}
+Widget <|-up- dxDeferRendering
+
+object dxDiagram {
+  NO_TYPE accessKey
+  NO_TYPE activeStateEnabled
+  Enums.DiagramAutoZoomMode autoZoomMode
+  Object contextMenu
+  Object contextToolbox
+  Array customShapes
+  template|function(container, data) customShapeTemplate
+  template|function(container, data) customShapeToolboxTemplate
+  Object defaultItemProperties
+  Object edges
+  Object editing
+  Object export
+  NO_TYPE focusStateEnabled
+  Boolean fullScreen
+  Number|Object gridSize
+  Boolean hasChanges
+  NO_TYPE hint
+  Object historyToolbar
+  NO_TYPE hoverStateEnabled
+  Object mainToolbar
+  Object nodes
+  function(e) onCustomCommand
+  function(e) onItemClick
+  function(e) onItemDblClick
+  function(e) onRequestEditOperation
+  function(e) onRequestLayoutUpdate
+  function(e) onSelectionChanged
+  String pageColor
+  Enums.PageOrientation pageOrientation
+  Object pageSize
+  Object propertiesPanel
+  Boolean readOnly
+  Boolean showGrid
+  Boolean simpleView
+  Boolean snapToGrid
+  NO_TYPE tabIndex
+  Object toolbox
+  Enums.DiagramUnits units
+  Boolean useNativeScrolling
+  Object viewToolbar
+  Enums.DiagramUnits viewUnits
+  Number|Object zoomLevel
+}
+Widget <|-up- dxDiagram
+
+object dxDraggable {
+  Boolean clone
+  template|function(dragInfo, containerElement) dragTemplate
+  String filter
+  function(e) onDragEnd
+  function(e) onDragMove
+  function(e) onDragStart
+  function(e) onDrop
+}
+DraggableBase <|-up- dxDraggable
+
+object dxDrawer {
+  NO_TYPE accessKey
+  Number animationDuration
+  Boolean animationEnabled
+  Boolean|function(event) closeOnOutsideClick
+  template|function(contentElement) contentTemplate
+  NO_TYPE focusStateEnabled
+  Number maxSize
+  Number minSize
+  NO_TYPE onContentReady
+  Boolean opened
+  Enums.OpenedStateMode openedStateMode
+  Enums.PanelLocation position
+  Enums.RevealMode revealMode
+  Boolean shading
+  NO_TYPE tabIndex
+  template|function(Element) template
+}
+Widget <|-up- dxDrawer
+
+object dxDropDownBox {
+  Boolean acceptCustomValue
+  String applyValueMode
+  NO_TYPE attr
+  template|function(templateData, contentElement) contentTemplate
+  Store|DataSource|DataSourceOptions|String|Array|null dataSource
+  function(value) displayValueFormatter
+  dxPopupOptions dropDownOptions
+  template|function(value, fieldElement) fieldTemplate
+  Array items
+  template itemTemplate
+  NO_TYPE onContentReady
+  Boolean openOnFieldClick
+  Boolean spellcheck
+  String valueChangeEvent
+}
+DataExpressionMixin <|-up- dxDropDownBox
+dxDropDownEditor <|-up- dxDropDownBox
+
+object dxDropDownButton {
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  Boolean deferRendering
+  String|function(itemData) displayExpr
+  template|function(data, contentElement) dropDownContentTemplate
+  dxPopupOptions dropDownOptions
+  Boolean focusStateEnabled
+  Boolean hoverStateEnabled
+  String icon
+  Array items
+  template|function(itemData, itemIndex, itemElement) itemTemplate
+  String keyExpr
+  String noDataText
+  function(e) onButtonClick
+  function(e) onItemClick
+  function(e) onSelectionChanged
+  Boolean opened
+  String|Number|any selectedItem
+  String|Number selectedItemKey
+  Boolean showArrowIcon
+  Boolean splitButton
+  Enums.ButtonStyle stylingMode
+  String text
+  Boolean useItemTextAsTitle
+  Boolean useSelectMode
+  Boolean wrapItemText
+}
+Widget <|-up- dxDropDownButton
+DataHelperMixin <|-up- dxDropDownButton
+
+object dxDropDownEditor {
+  Boolean acceptCustomValue
+  Boolean activeStateEnabled
+  Enums.ApplyValueMode applyValueMode
+  Array buttons
+  Boolean deferRendering
+  template|function(buttonData, contentElement) dropDownButtonTemplate
+  dxPopupOptions|dxPopoverOptions dropDownOptions
+  NO_TYPE mask
+  NO_TYPE maskChar
+  NO_TYPE maskInvalidMessage
+  NO_TYPE maskRules
+  NO_TYPE mode
+  function(e) onClosed
+  function(e) onOpened
+  Boolean opened
+  Boolean openOnFieldClick
+  Boolean showDropDownButton
+  NO_TYPE showMaskMode
+  NO_TYPE useMaskedValue
+  Enums.Position|Enums.Mode validationMessagePosition
+  any value
+}
+dxTextBox <|-up- dxDropDownEditor
+
+object dxDropDownList {
+  NO_TYPE applyValueMode
+  NO_TYPE contentRender
+  String displayValue
+  NO_TYPE fieldRender
+  NO_TYPE fieldTemplate
+  Boolean grouped
+  template|function(itemData, itemIndex, itemElement) groupTemplate
+  Number minSearchLength
+  String noDataText
+  function(e) onItemClick
+  function(e) onSelectionChanged
+  function(e) onValueChanged
+  Boolean searchEnabled
+  getter|Array searchExpr
+  Enums.SimplifiedSearchMode searchMode
+  Number searchTimeout
+  any selectedItem
+  Boolean showDataBeforeSearch
+  Boolean useItemTextAsTitle
+  any value
+  String valueChangeEvent
+  Boolean wrapItemText
+}
+DataExpressionMixin <|-up- dxDropDownList
+dxDropDownEditor <|-up- dxDropDownList
+
+object dxFileManager {
+  Array allowedFileExtensions
+  dxFileManagerContextMenu contextMenu
+  String currentPath
+  Array currentPathKeys
+  function(columns) customizeDetailColumns
+  function(fileSystemItem) customizeThumbnail
+  any fileSystemProvider
+  String focusedItemKey
+  Object itemView
+  Object notifications
+  function(e) onContextMenuItemClick
+  function(e) onContextMenuShowing
+  function(e) onCurrentDirectoryChanged
+  function(e) onDirectoryCreated
+  function(e) onDirectoryCreating
+  function(e) onErrorOccurred
+  function(e) onFileUploaded
+  function(e) onFileUploading
+  function(e) onFocusedItemChanged
+  function(e) onItemCopied
+  function(e) onItemCopying
+  function(e) onItemDeleted
+  function(e) onItemDeleting
+  function(e) onItemDownloading
+  function(e) onItemMoved
+  function(e) onItemMoving
+  function(e) onItemRenamed
+  function(e) onItemRenaming
+  function(e) onSelectedFileOpened
+  function(e) onSelectionChanged
+  function(e) onToolbarItemClick
+  Object permissions
+  String rootFolderName
+  Array selectedItemKeys
+  Enums.SingleOrMultiple selectionMode
+  dxFileManagerToolbar toolbar
+  Object upload
+}
+Widget <|-up- dxFileManager
+
+object dxFileUploader {
+  function(file, uploadInfo?) abortUpload
+  String accept
+  Boolean allowCanceling
+  Array allowedFileExtensions
+  Number chunkSize
+  String|UserDefinedElement dialogTrigger
+  String|UserDefinedElement dropZone
+  Boolean extendSelection
+  Boolean focusStateEnabled
+  Boolean hoverStateEnabled
+  any inputAttr
+  String invalidFileExtensionMessage
+  String invalidMaxFileSizeMessage
+  String invalidMinFileSizeMessage
+  String labelText
+  Number maxFileSize
+  Number minFileSize
+  Boolean multiple
+  String name
+  function(e) onBeforeSend
+  function(e) onDropZoneEnter
+  function(e) onDropZoneLeave
+  function(e) onFilesUploaded
+  function(e) onProgress
+  function(e) onUploadAborted
+  function(e) onUploaded
+  function(e) onUploadError
+  function(e) onUploadStarted
+  function(e) onValueChanged
+  Number progress
+  String readyToUploadMessage
+  String selectButtonText
+  Boolean showFileList
+  String uploadAbortedMessage
+  String uploadButtonText
+  function(file, uploadInfo) uploadChunk
+  any uploadCustomData
+  String uploadedMessage
+  String uploadFailedMessage
+  function(file, progressCallback) uploadFile
+  any uploadHeaders
+  Enums.UploadHttpMethod uploadMethod
+  Enums.FileUploadMode uploadMode
+  String uploadUrl
+  NO_TYPE validationMessageMode
+  NO_TYPE validationMessagePosition
+  Array value
+}
+Editor <|-up- dxFileUploader
+
+object dxFilterBuilder {
+  Boolean allowHierarchicalFields
+  Array customOperations
+  Array fields
+  Object filterOperationDescriptions
+  Object groupOperationDescriptions
+  Array groupOperations
+  Number maxGroupLevel
+  function(e) onEditorPrepared
+  function(e) onEditorPreparing
+  function(e) onValueChanged
+  Filter expression value
+}
+Widget <|-up- dxFilterBuilder
+
+object dxForm {
+  Boolean alignItemLabels
+  Boolean alignItemLabelsInAllGroups
+  Number|Enums.Mode colCount
+  Object colCountByScreen
+  function(item) customizeItem
+  any formData
+  Array items
+  Enums.LabelLocation labelLocation
+  Enums.FormLabelMode labelMode
+  Number minColWidth
+  function(e) onEditorEnterKey
+  function(e) onFieldDataChanged
+  String optionalMark
+  Boolean readOnly
+  String requiredMark
+  String requiredMessage
+  function() screenByWidth
+  Boolean scrollingEnabled
+  Boolean showColonAfterLabel
+  Boolean showOptionalMark
+  Boolean showRequiredMark
+  Boolean showValidationSummary
+  String validationGroup
+}
+Widget <|-up- dxForm
+
+object dxFunnel {
+  Object adaptiveLayout
+  Enums.FunnelAlgorithm algorithm
+  String argumentField
+  String colorField
+  Store|DataSource|DataSourceOptions|String|Array|null dataSource
+  Boolean hoverEnabled
+  Boolean inverted
+  Object item
+  Object label
+  Object legend
+  Number neckHeight
+  Number neckWidth
+  function(e) onHoverChanged
+  function(e) onItemClick
+  function(e) onLegendClick
+  function(e) onSelectionChanged
+  Array|Enums.Palette palette
+  Enums.PaletteExtensionMode paletteExtensionMode
+  Enums.ShiftLabelOverlap resolveLabelOverlapping
+  Enums.SingleMultipleOrNone selectionMode
+  Boolean sortData
+  Object tooltip
+  String valueField
+}
+BaseWidget <|-up- dxFunnel
+DataHelperMixin <|-up- dxFunnel
+
+object dxGallery {
+  Boolean activeStateEnabled
+  Number animationDuration
+  Boolean animationEnabled
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  Boolean focusStateEnabled
+  Boolean indicatorEnabled
+  Number initialItemWidth
+  Array items
+  NO_TYPE keyExpr
+  Boolean loop
+  String noDataText
+  Number selectedIndex
+  NO_TYPE selectedItemKeys
+  NO_TYPE selectedItems
+  Boolean showIndicator
+  Boolean showNavButtons
+  Number slideshowDelay
+  Boolean stretchImages
+  Boolean swipeEnabled
+  Boolean wrapAround
+}
+CollectionWidget <|-up- dxGallery
+
+object dxGantt {
+  Boolean allowSelection
+  Array columns
+  dxGanttContextMenu contextMenu
+  Object dependencies
+  Object editing
+  Date endDateRange
+  dxGanttFilterRow filterRow
+  Enums.FirstDayOfWeek firstDayOfWeek
+  dxGanttHeaderFilter headerFilter
+  function(e) onContextMenuPreparing
+  function(e) onCustomCommand
+  function(e) onDependencyDeleted
+  function(e) onDependencyDeleting
+  function(e) onDependencyInserted
+  function(e) onDependencyInserting
+  function(e) onResourceAssigned
+  function(e) onResourceAssigning
+  function(e) onResourceDeleted
+  function(e) onResourceDeleting
+  function(e) onResourceInserted
+  function(e) onResourceInserting
+  function(e) onResourceManagerDialogShowing
+  function(e) onResourceUnassigned
+  function(e) onResourceUnassigning
+  function(e) onScaleCellPrepared
+  function(e) onSelectionChanged
+  function(e) onTaskClick
+  function(e) onTaskDblClick
+  function(e) onTaskDeleted
+  function(e) onTaskDeleting
+  function(e) onTaskEditDialogShowing
+  function(e) onTaskInserted
+  function(e) onTaskInserting
+  function(e) onTaskMoving
+  function(e) onTaskUpdated
+  function(e) onTaskUpdating
+  Object resourceAssignments
+  Object resources
+  any rootValue
+  NO_TYPE rtlEnabled
+  Enums.GanttScaleType scaleType
+  Object scaleTypeRange
+  any selectedRowKey
+  Boolean showDependencies
+  Boolean showResources
+  Boolean showRowLines
+  dxGanttSorting sorting
+  Date startDateRange
+  Array stripLines
+  template|function(container, item) taskContentTemplate
+  Number taskListWidth
+  template|function(container, item) taskProgressTooltipContentTemplate
+  Object tasks
+  template|function(container, item) taskTimeTooltipContentTemplate
+  Enums.GanttTaskTitlePosition taskTitlePosition
+  template|function(container, task) taskTooltipContentTemplate
+  dxGanttToolbar toolbar
+  Object validation
+}
+Widget <|-up- dxGantt
+
+object dxHtmlEditor {
+  Boolean allowSoftLineBreak
+  function(config) customizeModules
+  Boolean focusStateEnabled
+  dxHtmlEditorImageUpload imageUpload
+  dxHtmlEditorMediaResizing mediaResizing
+  Array mentions
+  String name
+  function(e) onFocusIn
+  function(e) onFocusOut
+  String placeholder
+  Enums.EditorStyle stylingMode
+  dxHtmlEditorTableContextMenu tableContextMenu
+  dxHtmlEditorTableResizing tableResizing
+  dxHtmlEditorToolbar toolbar
+  Enums.MarkupType valueType
+  dxHtmlEditorVariables variables
+}
+Editor <|-up- dxHtmlEditor
+
+object dxLinearGauge {
+  Object geometry
+  Object rangeContainer
+  Object scale
+  GaugeIndicator subvalueIndicator
+  GaugeIndicator valueIndicator
+}
+BaseGauge <|-up- dxLinearGauge
+
+object dxList {
+  Boolean activeStateEnabled
+  Boolean allowItemDeleting
+  Boolean bounceEnabled
+  Boolean collapsibleGroups
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  String|function(item) displayExpr
+  Boolean focusStateEnabled
+  Boolean grouped
+  template|function(groupData, groupIndex, groupElement) groupTemplate
+  Boolean hoverStateEnabled
+  Boolean indicateLoading
+  Enums.ItemDeleteMode itemDeleteMode
+  dxSortableOptions itemDragging
+  Array items
+  Array menuItems
+  Enums.ListMenuMode menuMode
+  String nextButtonText
+  function(e) onGroupRendered
+  function(e) onItemClick
+  function(e) onItemContextMenu
+  function(e) onItemDeleted
+  function(e) onItemDeleting
+  function(e) onItemHold
+  function(e) onItemReordered
+  function(e) onItemSwipe
+  function(e) onPageLoading
+  function(e) onPullRefresh
+  function(e) onScroll
+  function(e) onSelectAllValueChanged
+  String pageLoadingText
+  Enums.PageLoadMode pageLoadMode
+  String pulledDownText
+  String pullingDownText
+  Boolean pullRefreshEnabled
+  String refreshingText
+  Boolean repaintChangesOnly
+  Boolean scrollByContent
+  Boolean scrollByThumb
+  Boolean scrollingEnabled
+  Enums.SelectAllMode selectAllMode
+  String selectAllText
+  Boolean selectByClick
+  Number selectedIndex
+  NO_TYPE selectedItem
+  Enums.SingleMultipleAllOrNone selectionMode
+  Enums.ScrollbarMode showScrollbar
+  Boolean showSelectionControls
+  Boolean useNativeScrolling
+}
+CollectionWidget <|-up- dxList
+SearchBoxMixin <|-up- dxList
+
+object dxLoadIndicator {
+  NO_TYPE accessKey
+  NO_TYPE activeStateEnabled
+  NO_TYPE disabled
+  NO_TYPE focusStateEnabled
+  NO_TYPE hoverStateEnabled
+  String indicatorSrc
+  NO_TYPE tabIndex
+}
+Widget <|-up- dxLoadIndicator
+
+object dxLoadPanel {
+  NO_TYPE accessKey
+  Object animation
+  String|UserDefinedElement container
+  template contentTemplate
+  Number delay
+  NO_TYPE disabled
+  Boolean focusStateEnabled
+  Number|String|function() height
+  String indicatorSrc
+  Number|String|function() maxHeight
+  Number|String|function() maxWidth
+  String message
+  Enums.PositionAlignment|PositionConfig|function() position
+  String shadingColor
+  Boolean showIndicator
+  Boolean showPane
+  NO_TYPE tabIndex
+  Number|String|function() width
+}
+dxOverlay <|-up- dxLoadPanel
+
+object dxLookup {
+  NO_TYPE acceptCustomValue
+  String applyButtonText
+  Enums.ApplyValueMode applyValueMode
+  NO_TYPE buttons
+  String cancelButtonText
+  Boolean cleanSearchOnOpening
+  String clearButtonText
+  template dropDownButtonTemplate
+  Boolean dropDownCentered
+  dxPopoverOptions dropDownOptions
+  template|function(selectedItem, fieldElement) fieldTemplate
+  Boolean focusStateEnabled
+  Boolean fullScreen
+  Boolean grouped
+  template|function(itemData, itemIndex, itemElement) groupTemplate
+  NO_TYPE maxLength
+  String nextButtonText
+  NO_TYPE onChange
+  NO_TYPE onCopy
+  NO_TYPE onCut
+  NO_TYPE onEnterKey
+  NO_TYPE onFocusIn
+  NO_TYPE onFocusOut
+  NO_TYPE onInput
+  NO_TYPE onKeyDown
+  NO_TYPE onKeyUp
+  function(e) onPageLoading
+  NO_TYPE onPaste
+  function(e) onPullRefresh
+  function(e) onScroll
+  function(e) onValueChanged
+  NO_TYPE openOnFieldClick
+  String pageLoadingText
+  Enums.PageLoadMode pageLoadMode
+  String placeholder
+  String pulledDownText
+  String pullingDownText
+  Boolean pullRefreshEnabled
+  NO_TYPE readOnly
+  String refreshingText
+  Boolean searchEnabled
+  String searchPlaceholder
+  String searchStartEvent
+  Boolean showCancelButton
+  Boolean showClearButton
+  NO_TYPE showDropDownButton
+  NO_TYPE spellcheck
+  Boolean useNativeScrolling
+  Boolean usePopover
+  String valueChangeEvent
+}
+dxDropDownList <|-up- dxLookup
+
+object dxMap {
+  String|Object apiKey
+  Boolean autoAdjust
+  Object bounds
+  Object|String|Array center
+  Boolean controls
+  Boolean focusStateEnabled
+  Number|String|function() height
+  String markerIconSrc
+  Array markers
+  function(e) onClick
+  NO_TYPE onContentReady
+  function(e) onMarkerAdded
+  function(e) onMarkerRemoved
+  function(e) onReady
+  function(e) onRouteAdded
+  function(e) onRouteRemoved
+  Enums.MapProvider provider
+  Array routes
+  Enums.MapType type
+  Number|String|function() width
+  Number zoom
+}
+Widget <|-up- dxMap
+
+object dxMenu {
+  Boolean adaptivityEnabled
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  Boolean hideSubmenuOnMouseLeave
+  Array items
+  NO_TYPE onItemReordered
+  NO_TYPE onSelectionChange
+  function(e) onSubmenuHidden
+  function(e) onSubmenuHiding
+  function(e) onSubmenuShowing
+  function(e) onSubmenuShown
+  Enums.Orientation orientation
+  NO_TYPE selectedItems
+  Object|Enums.SubmenuShowMode showFirstSubmenuMode
+  Enums.SubmenuDirection submenuDirection
+}
+dxMenuBase <|-up- dxMenu
+
+object dxMenuBase {
+  Boolean activeStateEnabled
+  Object animation
+  String cssClass
+  Store|DataSource|DataSourceOptions|String|Array|null dataSource
+  NO_TYPE expandedExpr
+  NO_TYPE itemHoldTimeout
+  Array items
+  NO_TYPE keyExpr
+  NO_TYPE noDataText
+  NO_TYPE onItemHold
+  NO_TYPE parentIdExpr
+  Boolean selectByClick
+  NO_TYPE selectedIndex
+  NO_TYPE selectedItemKeys
+  Enums.SingleOrNone selectionMode
+  Object|Enums.SubmenuShowMode showSubmenuMode
+}
+HierarchicalCollectionWidget <|-up- dxMenuBase
+
+object dxMultiView {
+  Boolean animationEnabled
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  Boolean deferRendering
+  Boolean focusStateEnabled
+  Array items
+  NO_TYPE keyExpr
+  Boolean loop
+  Number selectedIndex
+  NO_TYPE selectedItemKeys
+  NO_TYPE selectedItems
+  Boolean swipeEnabled
+}
+CollectionWidget <|-up- dxMultiView
+
+object dxNumberBox {
+  Array buttons
+  Format format
+  String invalidValueMessage
+  NO_TYPE mask
+  NO_TYPE maskChar
+  NO_TYPE maskInvalidMessage
+  NO_TYPE maskRules
+  Number max
+  Number min
+  Enums.NumberBoxType mode
+  NO_TYPE showMaskMode
+  Boolean showSpinButtons
+  NO_TYPE spellcheck
+  Number step
+  Boolean useLargeSpinButtons
+  NO_TYPE useMaskedValue
+  Number value
+}
+dxTextEditor <|-up- dxNumberBox
+
+object dxOverlay {
+  NO_TYPE activeStateEnabled
+  Object animation
+  Boolean|function(event) closeOnOutsideClick
+  template|function(contentElement) contentTemplate
+  Boolean copyRootClassesToWrapper
+  Boolean deferRendering
+  any elementAttr
+  Number|String|function() height
+  Boolean|function(event) hideOnOutsideClick
+  Boolean hideOnParentScroll
+  Number|String|function() maxHeight
+  Number|String|function() maxWidth
+  Number|String|function() minHeight
+  Number|String|function() minWidth
+  function(e) onHidden
+  function(e) onHiding
+  function(e) onShowing
+  function(e) onShown
+  any position
+  Boolean shading
+  String shadingColor
+  Boolean visible
+  Number|String|function() width
+  any wrapperAttr
+}
+Widget <|-up- dxOverlay
+
+object dxPieChart {
+  Object adaptiveLayout
+  Array annotations
+  template centerTemplate
+  dxPieChartCommonAnnotationConfig commonAnnotationSettings
+  any commonSeriesSettings
+  function(annotation) customizeAnnotation
+  Number diameter
+  Number innerRadius
+  Object legend
+  Number minDiameter
+  function(e) onLegendClick
+  Array|Enums.Palette palette
+  Enums.ShiftLabelOverlap resolveLabelOverlapping
+  Enums.PieChartSegmentDirection segmentsDirection
+  PieChartSeries|Array series
+  Object seriesTemplate
+  String sizeGroup
+  Number startAngle
+  Enums.PieChartType type
+}
+BaseChart <|-up- dxPieChart
+
+object dxPivotGrid {
+  NO_TYPE accessKey
+  NO_TYPE activeStateEnabled
+  Boolean allowExpandAll
+  Boolean allowFiltering
+  Boolean allowSorting
+  Boolean allowSortingBySummary
+  Enums.PivotGridDataFieldArea dataFieldArea
+  Array|PivotGridDataSource|PivotGridDataSourceOptions|null dataSource
+  Boolean encodeHtml
+  Object export
+  Object fieldChooser
+  Object fieldPanel
+  NO_TYPE focusStateEnabled
+  Object headerFilter
+  Boolean hideEmptySummaryCells
+  NO_TYPE hoverStateEnabled
+  Object loadPanel
+  function(e) onCellClick
+  function(e) onCellPrepared
+  function(e) onContextMenuPreparing
+  function(e) onExporting
+  Enums.PivotGridRowHeaderLayout rowHeaderLayout
+  Object scrolling
+  Boolean showBorders
+  Boolean showColumnGrandTotals
+  Boolean showColumnTotals
+  Boolean showRowGrandTotals
+  Boolean showRowTotals
+  Enums.PivotGridTotalDisplayMode showTotalsPrior
+  Object stateStoring
+  Object texts
+  Boolean wordWrapEnabled
+}
+Widget <|-up- dxPivotGrid
+
+object dxPivotGridFieldChooser {
+  Boolean allowSearch
+  Enums.ApplyChangesMode applyChangesMode
+  PivotGridDataSource|null dataSource
+  Boolean encodeHtml
+  Object headerFilter
+  Number|String|function() height
+  Enums.FieldChooserLayout layout
+  function(e) onContextMenuPreparing
+  Number searchTimeout
+  any state
+  Object texts
+}
+Widget <|-up- dxPivotGridFieldChooser
+
+object dxPolarChart {
+  Object adaptiveLayout
+  Array annotations
+  Object argumentAxis
+  Number barGroupPadding
+  Number barGroupWidth
+  dxPolarChartCommonAnnotationConfig commonAnnotationSettings
+  Object commonAxisSettings
+  Object commonSeriesSettings
+  String containerBackgroundColor
+  function(annotation) customizeAnnotation
+  Object dataPrepareSettings
+  Object legend
+  Boolean negativesAsZeroes
+  function(e) onArgumentAxisClick
+  function(e) onLegendClick
+  function(e) onSeriesClick
+  function(e) onSeriesHoverChanged
+  function(e) onSeriesSelectionChanged
+  function(e) onZoomEnd
+  function(e) onZoomStart
+  Enums.LabelOverlap resolveLabelOverlapping
+  PolarChartSeries|Array series
+  Enums.SingleOrMultiple seriesSelectionMode
+  Object seriesTemplate
+  Object tooltip
+  Boolean useSpiderWeb
+  Object valueAxis
+}
+BaseChart <|-up- dxPolarChart
+
+object dxPopover {
+  NO_TYPE accessKey
+  Object animation
+  Boolean|function(event) closeOnOutsideClick
+  NO_TYPE dragAndResizeArea
+  NO_TYPE dragEnabled
+  NO_TYPE dragOutsideBoundary
+  NO_TYPE focusStateEnabled
+  NO_TYPE fullScreen
+  Number|String|function() height
+  Object|String hideEvent
+  Boolean|function(event) hideOnOutsideClick
+  Boolean hideOnParentScroll
+  function(e) onResize
+  function(e) onResizeEnd
+  function(e) onResizeStart
+  Enums.Position|PositionConfig position
+  NO_TYPE resizeEnabled
+  NO_TYPE restorePosition
+  Boolean shading
+  Object|String showEvent
+  Boolean showTitle
+  NO_TYPE tabIndex
+  String|UserDefinedElement target
+  Number|String|function() width
+}
+dxPopup <|-up- dxPopover
+
+object dxPopup {
+  Object animation
+  String|UserDefinedElement container
+  String|UserDefinedElement dragAndResizeArea
+  Boolean dragEnabled
+  Boolean dragOutsideBoundary
+  Boolean enableBodyScroll
+  Boolean focusStateEnabled
+  Boolean fullScreen
+  Number|String|function() height
+  function(e) onResize
+  function(e) onResizeEnd
+  function(e) onResizeStart
+  function(e) onTitleRendered
+  Enums.PositionAlignment|PositionConfig|function() position
+  Boolean resizeEnabled
+  Boolean restorePosition
+  Boolean showCloseButton
+  Boolean showTitle
+  String title
+  template|function(titleElement) titleTemplate
+  Array toolbarItems
+  Number|String|function() width
+}
+dxOverlay <|-up- dxPopup
+
+object dxProgressBar {
+  NO_TYPE accessKey
+  NO_TYPE activeStateEnabled
+  NO_TYPE focusStateEnabled
+  function(e) onComplete
+  Boolean showStatus
+  String|function(ratio, value) statusFormat
+  NO_TYPE tabIndex
+  Number|false value
+}
+dxTrackBar <|-up- dxProgressBar
+
+object dxRadioGroup {
+  Boolean activeStateEnabled
+  Boolean focusStateEnabled
+  Boolean hoverStateEnabled
+  Enums.Orientation layout
+  String name
+  any value
+}
+Editor <|-up- dxRadioGroup
+DataExpressionMixin <|-up- dxRadioGroup
+
+object dxRangeSelector {
+  Object background
+  Object behavior
+  Object chart
+  String containerBackgroundColor
+  Store|DataSource|DataSourceOptions|String|Array|null dataSource
+  String dataSourceField
+  Object indent
+  function(e) onValueChanged
+  Object scale
+  String selectedRangeColor
+  Enums.VisualRangeUpdateMode selectedRangeUpdateMode
+  Object shutter
+  Object sliderHandle
+  Object sliderMarker
+  Object tooltip
+  Array|VisualRange value
+}
+BaseWidget <|-up- dxRangeSelector
+DataHelperMixin <|-up- dxRangeSelector
+
+object dxRangeSlider {
+  Number end
+  String endName
+  NO_TYPE name
+  function(e) onValueChanged
+  Number start
+  String startName
+  Array value
+}
+dxSliderBase <|-up- dxRangeSlider
+
+object dxRecurrenceEditor {
+  Enums.FirstDayOfWeek firstDayOfWeek
+  Date startDate
+  String value
+}
+Editor <|-up- dxRecurrenceEditor
+
+object dxResizable {
+  String|UserDefinedElement area
+  Enums.ResizeHandle|String handles
+  Number|String|function() height
+  Boolean keepAspectRatio
+  Number maxHeight
+  Number maxWidth
+  Number minHeight
+  Number minWidth
+  function(e) onResize
+  function(e) onResizeEnd
+  function(e) onResizeStart
+  String stepPrecision
+  Number|String|function() width
+}
+DOMComponent <|-up- dxResizable
+
+object dxResponsiveBox {
+  NO_TYPE accessKey
+  NO_TYPE activeStateEnabled
+  Array cols
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  NO_TYPE focusStateEnabled
+  Number|String|function() height
+  NO_TYPE hint
+  Array items
+  NO_TYPE keyExpr
+  NO_TYPE noDataText
+  NO_TYPE onSelectionChanged
+  Array rows
+  function() screenByWidth
+  NO_TYPE selectedIndex
+  NO_TYPE selectedItem
+  NO_TYPE selectedItemKeys
+  NO_TYPE selectedItems
+  String singleColumnScreen
+  NO_TYPE tabIndex
+  Number|String|function() width
+}
+CollectionWidget <|-up- dxResponsiveBox
+
+object dxSankey {
+  Object adaptiveLayout
+  Enums.VerticalAlignment|Array alignment
+  Store|DataSource|DataSourceOptions|String|Array|null dataSource
+  Boolean hoverEnabled
+  Object label
+  Object link
+  Object node
+  function(e) onLinkClick
+  function(e) onLinkHoverChanged
+  function(e) onNodeClick
+  function(e) onNodeHoverChanged
+  Array|Enums.Palette palette
+  Enums.PaletteExtensionMode paletteExtensionMode
+  any sortData
+  String sourceField
+  String targetField
+  Object tooltip
+  String weightField
+}
+BaseWidget <|-up- dxSankey
+DataHelperMixin <|-up- dxSankey
+
+object dxScheduler {
+  NO_TYPE activeStateEnabled
+  Boolean adaptivityEnabled
+  String allDayExpr
+  Enums.AllDayPanelMode allDayPanelMode
+  template|function(data, collectorElement) appointmentCollectorTemplate
+  Object appointmentDragging
+  template|function(appointmentData, contentElement) appointmentPopupTemplate
+  template|function(model, itemIndex, contentElement) appointmentTemplate
+  template|function(model, itemIndex, contentElement) appointmentTooltipTemplate
+  Number cellDuration
+  Boolean crossScrollingEnabled
+  Date|Number|String currentDate
+  Enums.ViewType currentView
+  function(info) customizeDateNavigatorText
+  template|function(itemData, itemIndex, itemElement) dataCellTemplate
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  template|function(itemData, itemIndex, itemElement) dateCellTemplate
+  String dateSerializationFormat
+  String descriptionExpr
+  template|function(itemData, itemIndex, contentElement) dropDownAppointmentTemplate
+  Boolean|Object editing
+  String endDateExpr
+  String endDateTimeZoneExpr
+  Number endDayHour
+  Enums.FirstDayOfWeek firstDayOfWeek
+  Boolean focusStateEnabled
+  Boolean groupByDate
+  Array groups
+  NO_TYPE hoverStateEnabled
+  Date indicatorTime
+  Number indicatorUpdateInterval
+  Date|Number|String max
+  Number|Enums.CellAppointmentsLimit maxAppointmentsPerCell
+  Date|Number|String min
+  String noDataText
+  function(e) onAppointmentAdded
+  function(e) onAppointmentAdding
+  function(e) onAppointmentClick
+  function(e) onAppointmentContextMenu
+  function(e) onAppointmentDblClick
+  function(e) onAppointmentDeleted
+  function(e) onAppointmentDeleting
+  function(e) onAppointmentFormOpening
+  function(e) onAppointmentRendered
+  function(e) onAppointmentTooltipShowing
+  function(e) onAppointmentUpdated
+  function(e) onAppointmentUpdating
+  function(e) onCellClick
+  function(e) onCellContextMenu
+  Enums.RecurrenceEditMode recurrenceEditMode
+  String recurrenceExceptionExpr
+  String recurrenceRuleExpr
+  Boolean remoteFiltering
+  template|function(itemData, itemIndex, itemElement) resourceCellTemplate
+  Array resources
+  dxSchedulerScrolling scrolling
+  Array selectedCellData
+  Boolean shadeUntilCurrentTime
+  Boolean showAllDayPanel
+  Boolean showCurrentTimeIndicator
+  String startDateExpr
+  String startDateTimeZoneExpr
+  Number startDayHour
+  String textExpr
+  template|function(itemData, itemIndex, itemElement) timeCellTemplate
+  String timeZone
+  Boolean useDropDownViewSwitcher
+  Array views
+}
+Widget <|-up- dxScheduler
+DataHelperMixin <|-up- dxScheduler
+
+object dxScrollable {
+  Boolean bounceEnabled
+  Enums.ScrollDirection direction
+  Boolean disabled
+  function(e) onScroll
+  function(e) onUpdated
+  Boolean scrollByContent
+  Boolean scrollByThumb
+  String showScrollbar
+  Boolean useNative
+}
+DOMComponent <|-up- dxScrollable
+
+object dxScrollView {
+  function(e) onPullDown
+  function(e) onReachBottom
+  String pulledDownText
+  String pullingDownText
+  String reachBottomText
+  String refreshingText
+}
+dxScrollable <|-up- dxScrollView
+
+object dxSelectBox {
+  Boolean acceptCustomValue
+  Boolean allowClearing
+  String customItemCreateEvent
+  dxPopupOptions dropDownOptions
+  template|function(selectedItem, fieldElement) fieldTemplate
+  function(e) onCustomItemCreating
+  Boolean openOnFieldClick
+  String placeholder
+  Boolean showDropDownButton
+  Boolean showSelectionControls
+  String valueChangeEvent
+}
+dxDropDownList <|-up- dxSelectBox
+
+object dxSlider {
+  Number value
+}
+dxSliderBase <|-up- dxSlider
+
+object dxSliderBase {
+  Boolean activeStateEnabled
+  Boolean focusStateEnabled
+  Boolean hoverStateEnabled
+  Number keyStep
+  Object label
+  String name
+  Boolean showRange
+  Number step
+  Object tooltip
+  Enums.SliderValueChangeMode valueChangeMode
+}
+dxTrackBar <|-up- dxSliderBase
+
+object dxSortable {
+  Boolean allowDropInsideItem
+  Boolean allowReordering
+  template|function(dragInfo, containerElement) dragTemplate
+  Enums.DragHighlight dropFeedbackMode
+  String filter
+  Enums.Orientation itemOrientation
+  Boolean moveItemOnDrop
+  function(e) onAdd
+  function(e) onDragChange
+  function(e) onDragEnd
+  function(e) onDragMove
+  function(e) onDragStart
+  function(e) onPlaceholderPrepared
+  function(e) onRemove
+  function(e) onReorder
+}
+DraggableBase <|-up- dxSortable
+
+object dxSparkline {
+  String argumentField
+  String barNegativeColor
+  String barPositiveColor
+  Store|DataSource|DataSourceOptions|String|Array|null dataSource
+  String firstLastColor
+  Boolean ignoreEmptyPoints
+  String lineColor
+  Number lineWidth
+  String lossColor
+  String maxColor
+  Number maxValue
+  String minColor
+  Number minValue
+  String pointColor
+  Number pointSize
+  Enums.PointSymbol pointSymbol
+  Boolean showFirstLast
+  Boolean showMinMax
+  Enums.SparklineType type
+  String valueField
+  String winColor
+  Number winlossThreshold
+}
+BaseSparkline <|-up- dxSparkline
+DataHelperMixin <|-up- dxSparkline
+
+object dxSpeedDialAction {
+  NO_TYPE disabled
+  NO_TYPE height
+  String icon
+  Number index
+  String label
+  function(e) onClick
+  function(e) onContentReady
+  Boolean visible
+  NO_TYPE width
+}
+Widget <|-up- dxSpeedDialAction
+
+object dxSwitch {
+  Boolean activeStateEnabled
+  Boolean focusStateEnabled
+  Boolean hoverStateEnabled
+  String name
+  String switchedOffText
+  String switchedOnText
+  Boolean value
+}
+Editor <|-up- dxSwitch
+
+object dxTabPanel {
+  Boolean animationEnabled
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  Boolean hoverStateEnabled
+  Array items
+  template|function(itemData, itemIndex, itemElement) itemTitleTemplate
+  function(e) onTitleClick
+  function(e) onTitleHold
+  function(e) onTitleRendered
+  Boolean repaintChangesOnly
+  Boolean scrollByContent
+  Boolean scrollingEnabled
+  Boolean showNavButtons
+  Boolean swipeEnabled
+}
+dxMultiView <|-up- dxTabPanel
+
+object dxTabs {
+  NO_TYPE activeStateEnabled
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  Boolean focusStateEnabled
+  Boolean hoverStateEnabled
+  Array items
+  Boolean repaintChangesOnly
+  Boolean scrollByContent
+  Boolean scrollingEnabled
+  Enums.SingleOrMultiple selectionMode
+  Boolean showNavButtons
+}
+CollectionWidget <|-up- dxTabs
+
+object dxTagBox {
+  Enums.ApplyValueMode applyValueMode
+  NO_TYPE closeAction
+  NO_TYPE displayValue
+  NO_TYPE hiddenAction
+  Boolean hideSelectedItems
+  NO_TYPE itemRender
+  Number maxDisplayedTags
+  Number maxFilterQueryLength
+  Boolean multiline
+  NO_TYPE onCopy
+  NO_TYPE onCut
+  function(e) onMultiTagPreparing
+  NO_TYPE onPaste
+  function(e) onSelectAllValueChanged
+  function(e) onSelectionChanged
+  NO_TYPE openAction
+  Enums.SelectAllMode selectAllMode
+  String selectAllText
+  NO_TYPE selectedItem
+  Array selectedItems
+  Boolean showDropDownButton
+  Boolean showMultiTagOnly
+  NO_TYPE shownAction
+  NO_TYPE spellcheck
+  template|function(itemData, itemElement) tagTemplate
+  Boolean useSubmitBehavior
+  Array value
+}
+dxSelectBox <|-up- dxTagBox
+
+object dxTemplate {
+  String name
+}
+
+object dxTextArea {
+  Boolean autoResizeEnabled
+  NO_TYPE buttons
+  NO_TYPE mask
+  NO_TYPE maskChar
+  NO_TYPE maskInvalidMessage
+  NO_TYPE maskRules
+  Number|String maxHeight
+  Number|String minHeight
+  NO_TYPE mode
+  NO_TYPE showClearButton
+  NO_TYPE showMaskMode
+  Boolean spellcheck
+  NO_TYPE useMaskedValue
+}
+dxTextBox <|-up- dxTextArea
+
+object dxTextBox {
+  String|Number maxLength
+  Enums.TextBoxType mode
+  String value
+}
+dxTextEditor <|-up- dxTextBox
+
+object dxTextEditor {
+  Array buttons
+  Boolean focusStateEnabled
+  Boolean hoverStateEnabled
+  any inputAttr
+  String label
+  Enums.LabelMode labelMode
+  String mask
+  String maskChar
+  String maskInvalidMessage
+  any maskRules
+  String name
+  function(e) onChange
+  function(e) onCopy
+  function(e) onCut
+  function(e) onEnterKey
+  function(e) onFocusIn
+  function(e) onFocusOut
+  function(e) onInput
+  function(e) onKeyDown
+  function(e) onKeyUp
+  function(e) onPaste
+  String placeholder
+  Boolean showClearButton
+  Enums.MaskMode showMaskMode
+  Boolean spellcheck
+  Enums.EditorStyle stylingMode
+  String text
+  Boolean useMaskedValue
+  any value
+  String valueChangeEvent
+}
+Editor <|-up- dxTextEditor
+
+object dxTileView {
+  Boolean activeStateEnabled
+  Number baseItemHeight
+  Number baseItemWidth
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  Enums.Orientation direction
+  Boolean focusStateEnabled
+  Number|String|function() height
+  Boolean hoverStateEnabled
+  Number itemMargin
+  Array items
+  NO_TYPE keyExpr
+  NO_TYPE onSelectionChanged
+  NO_TYPE selectedIndex
+  NO_TYPE selectedItem
+  NO_TYPE selectedItemKeys
+  NO_TYPE selectedItems
+  Enums.ScrollbarMode showScrollbar
+}
+CollectionWidget <|-up- dxTileView
+
+object dxToast {
+  Object animation
+  Boolean closeOnClick
+  Boolean|function(event) closeOnOutsideClick
+  Boolean closeOnSwipe
+  NO_TYPE disabled
+  Number displayTime
+  Number|String|function() height
+  Boolean|function(event) hideOnOutsideClick
+  Number|String|function() maxWidth
+  String message
+  Number|String|function() minWidth
+  PositionConfig|String position
+  Boolean shading
+  Enums.ToastType type
+  Number|String|function() width
+}
+dxOverlay <|-up- dxToast
+
+object dxToolbar {
+  NO_TYPE accessKey
+  NO_TYPE activeStateEnabled
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  NO_TYPE focusStateEnabled
+  NO_TYPE height
+  Array items
+  NO_TYPE keyExpr
+  template|function(itemData, itemIndex, itemElement) menuItemTemplate
+  Boolean multiline
+  NO_TYPE onSelectionChanged
+  Number selectedIndex
+  NO_TYPE selectedItem
+  NO_TYPE selectedItemKeys
+  NO_TYPE selectedItems
+  NO_TYPE tabIndex
+}
+CollectionWidget <|-up- dxToolbar
+
+object dxTooltip {
+  NO_TYPE enableBodyScroll
+  NO_TYPE onTitleRendered
+  NO_TYPE showCloseButton
+  NO_TYPE showTitle
+  NO_TYPE title
+  NO_TYPE titleTemplate
+  NO_TYPE toolbarItems
+}
+dxPopover <|-up- dxTooltip
+
+object dxTrackBar {
+  Number max
+  Number min
+}
+Editor <|-up- dxTrackBar
+
+object dxTreeList {
+  Boolean autoExpandAll
+  Array columns
+  function(columns) customizeColumns
+  Enums.DataStructure dataStructure
+  Object editing
+  Array expandedRowKeys
+  Boolean expandNodesOnFiltering
+  Enums.TreeListFilterMode filterMode
+  String|function() hasItemsExpr
+  String|function() itemsExpr
+  String|function() keyExpr
+  function(e) onCellClick
+  function(e) onCellDblClick
+  function(e) onCellHoverChanged
+  function(e) onCellPrepared
+  function(e) onContextMenuPreparing
+  function(e) onEditingStart
+  function(options) onEditorPrepared
+  function(e) onEditorPreparing
+  function(e) onFocusedCellChanged
+  function(e) onFocusedCellChanging
+  function(e) onFocusedRowChanged
+  function(e) onFocusedRowChanging
+  function(e) onNodesInitialized
+  function(e) onRowClick
+  function(e) onRowDblClick
+  function(e) onRowPrepared
+  Object paging
+  String|function() parentIdExpr
+  Object|Enums.Mode remoteOperations
+  any rootValue
+  Object scrolling
+  Object selection
+  dxTreeListToolbar toolbar
+}
+GridBase <|-up- dxTreeList
+
+object dxTreeMap {
+  String childrenField
+  String colorField
+  Object colorizer
+  Store|DataSource|DataSourceOptions|String|Array|null dataSource
+  Object group
+  Boolean hoverEnabled
+  String idField
+  Boolean interactWithGroup
+  String labelField
+  Enums.TreeMapLayoutAlgorithm|function(e) layoutAlgorithm
+  Enums.TreeMapLayoutDirection layoutDirection
+  Object margin
+  Number maxDepth
+  function(e) onClick
+  function(e) onDrill
+  function(e) onHoverChanged
+  function(e) onNodesInitialized
+  function(e) onNodesRendering
+  function(e) onSelectionChanged
+  String parentField
+  Enums.SingleMultipleOrNone selectionMode
+  Object tile
+  Object tooltip
+  String valueField
+}
+BaseWidget <|-up- dxTreeMap
+DataHelperMixin <|-up- dxTreeMap
+
+object dxTreeView {
+  Boolean animationEnabled
+  String|null collapseIcon
+  function(parentNode) createChildren
+  String|Array|Store|DataSource|DataSourceOptions|null dataSource
+  Enums.DataStructure dataStructure
+  Boolean expandAllEnabled
+  String|function() expandedExpr
+  Enums.TreeViewExpandEvent expandEvent
+  String|null expandIcon
+  Boolean expandNodesRecursive
+  String|function() hasItemsExpr
+  Array items
+  function(e) onItemClick
+  function(e) onItemCollapsed
+  function(e) onItemContextMenu
+  function(e) onItemExpanded
+  function(e) onItemHold
+  function(e) onItemRendered
+  function(e) onItemSelectionChanged
+  function(e) onSelectAllValueChanged
+  function(e) onSelectionChanged
+  String|function() parentIdExpr
+  any rootValue
+  Enums.ScrollDirection scrollDirection
+  String selectAllText
+  Boolean selectByClick
+  NO_TYPE selectedIndex
+  NO_TYPE selectedItem
+  NO_TYPE selectedItemKeys
+  NO_TYPE selectedItems
+  Enums.SingleOrMultiple selectionMode
+  Boolean selectNodesRecursive
+  Enums.TreeViewCheckBoxMode showCheckBoxesMode
+  Boolean useNativeScrolling
+  Boolean virtualModeEnabled
+}
+HierarchicalCollectionWidget <|-up- dxTreeView
+SearchBoxMixin <|-up- dxTreeView
+
+object dxValidationGroup {
+  NO_TYPE rtlEnabled
+}
+DOMComponent <|-up- dxValidationGroup
+
+object dxValidationSummary {
+  NO_TYPE accessKey
+  NO_TYPE activeStateEnabled
+  NO_TYPE dataSource
+  NO_TYPE disabled
+  NO_TYPE focusStateEnabled
+  NO_TYPE height
+  NO_TYPE hint
+  NO_TYPE itemHoldTimeout
+  NO_TYPE itemRender
+  NO_TYPE keyExpr
+  NO_TYPE noDataText
+  NO_TYPE onItemContextMenu
+  NO_TYPE onItemHold
+  NO_TYPE onItemRendered
+  NO_TYPE onItemSelect
+  NO_TYPE onSelectionChanged
+  NO_TYPE rtlEnabled
+  NO_TYPE selectedIndex
+  NO_TYPE selectedItem
+  NO_TYPE selectedItemKeys
+  NO_TYPE selectedItems
+  NO_TYPE tabIndex
+  String validationGroup
+  NO_TYPE visible
+  NO_TYPE width
+}
+CollectionWidget <|-up- dxValidationSummary
+
+object dxValidator {
+  Object adapter
+  String name
+  function(validatedInfo) onValidated
+  NO_TYPE rtlEnabled
+  String validationGroup
+  Array validationRules
+}
+DOMComponent <|-up- dxValidator
+
+object dxVectorMap {
+  Array annotations
+  Object background
+  Array bounds
+  Array center
+  dxVectorMapCommonAnnotationConfig commonAnnotationSettings
+  Object controlBar
+  function(annotation) customizeAnnotation
+  Array|Object layers
+  Array legends
+  Object margin
+  Number maxZoomFactor
+  function(e) onCenterChanged
+  function(e) onClick
+  function(e) onSelectionChanged
+  function(e) onTooltipHidden
+  function(e) onTooltipShown
+  function(e) onZoomFactorChanged
+  Boolean panningEnabled
+  Enums.VectorMapProjection|VectorMapProjectionConfig|String|Object projection
+  Object tooltip
+  Boolean touchEnabled
+  Boolean wheelEnabled
+  Number zoomFactor
+  Boolean zoomingEnabled
+}
+BaseWidget <|-up- dxVectorMap
+
+object Editor {
+  Boolean isValid
+  String name
+  function(e) onValueChanged
+  Boolean readOnly
+  Enums.EditorStyle stylingMode
+  any validationError
+  Array validationErrors
+  Enums.ValidationMessageMode validationMessageMode
+  Enums.Position validationMessagePosition
+  Enums.ValidationStatus validationStatus
+  any value
+}
+Widget <|-up- Editor
+
+object FileSystemProviderBase {
+  String|function() dateModifiedExpr
+  String|function() isDirectoryExpr
+  String|function() keyExpr
+  String|function() nameExpr
+  String|function() sizeExpr
+  String|function() thumbnailExpr
+}
+
+object GridBase {
+  Boolean allowColumnReordering
+  Boolean allowColumnResizing
+  Boolean autoNavigateToFocusedRow
+  Boolean cacheEnabled
+  Boolean cellHintEnabled
+  Boolean columnAutoWidth
+  Object columnChooser
+  Object columnFixing
+  Boolean columnHidingEnabled
+  Number columnMinWidth
+  Enums.ColumnResizeMode columnResizingMode
+  Array columns
+  Number|Enums.Mode columnWidth
+  Store|DataSource|DataSourceOptions|String|Array|null dataSource
+  String dateSerializationFormat
+  Object editing
+  Boolean errorRowEnabled
+  dxFilterBuilderOptions filterBuilder
+  dxPopupOptions filterBuilderPopup
+  Object filterPanel
+  Object filterRow
+  Boolean|Enums.Mode filterSyncEnabled
+  Filter expression filterValue
+  Number focusedColumnIndex
+  Boolean focusedRowEnabled
+  Number focusedRowIndex
+  any focusedRowKey
+  any focusStateEnabled
+  Object headerFilter
+  Boolean highlightChanges
+  Object keyboardNavigation
+  Object loadPanel
+  String noDataText
+  function(e) onAdaptiveDetailRowPreparing
+  function(e) onDataErrorOccurred
+  function(e) onEditCanceled
+  function(e) onEditCanceling
+  function(e) onInitNewRow
+  function(e) onKeyDown
+  function(e) onRowCollapsed
+  function(e) onRowCollapsing
+  function(e) onRowExpanded
+  function(e) onRowExpanding
+  function(e) onRowInserted
+  function(e) onRowInserting
+  function(e) onRowRemoved
+  function(e) onRowRemoving
+  function(e) onRowUpdated
+  function(e) onRowUpdating
+  function(e) onRowValidating
+  function(e) onSaved
+  function(e) onSaving
+  function(e) onSelectionChanged
+  function(e) onToolbarPreparing
+  Object pager
+  Object paging
+  Boolean renderAsync
+  Boolean repaintChangesOnly
+  Boolean rowAlternationEnabled
+  Object rowDragging
+  Object scrolling
+  Object searchPanel
+  Array selectedRowKeys
+  Object selection
+  Boolean showBorders
+  Boolean showColumnHeaders
+  Boolean showColumnLines
+  Boolean showRowLines
+  Object sorting
+  Object stateStoring
+  Boolean syncLookupFilterValues
+  Boolean twoWayBindingEnabled
+  Boolean wordWrapEnabled
+}
+Widget <|-up- GridBase
+DataHelperMixin <|-up- GridBase
+
+object HierarchicalCollectionWidget {
+  String|function() disabledExpr
+  String|function(item) displayExpr
+  Boolean focusStateEnabled
+  Boolean hoverStateEnabled
+  String|function() itemsExpr
+  String|function() keyExpr
+  String|function() selectedExpr
+}
+CollectionWidget <|-up- HierarchicalCollectionWidget
+
+object LocalStore {
+  Number flushInterval
+  Boolean immediate
+  String name
+}
+ArrayStore <|-up- LocalStore
+
+object ObjectFileSystemProvider {
+  String|function() contentExpr
+  Array data
+  String|function() itemsExpr
+}
+FileSystemProviderBase <|-up- ObjectFileSystemProvider
+
+object ODataContext {
+  function(options) beforeSend
+  Boolean deserializeDates
+  any entities
+  function(e) errorHandler
+  Boolean filterToLower
+  Boolean jsonp
+  String url
+  Number version
+  Boolean withCredentials
+}
+
+object ODataStore {
+  function(options) beforeSend
+  Boolean deserializeDates
+  function(e) errorHandler
+  any fieldTypes
+  Boolean filterToLower
+  Boolean jsonp
+  String|Object keyType
+  function(loadOptions) onLoading
+  String url
+  Number version
+  Boolean withCredentials
+}
+Store <|-up- ODataStore
+
+object PivotGridDataSource {
+  Array fields
+  Filter expression filter
+  function() onChanged
+  function(fields) onFieldsPrepared
+  function(error) onLoadError
+  function(isLoading) onLoadingChanged
+  Boolean paginate
+  Boolean remoteOperations
+  Boolean retrieveFields
+  Store|StoreOptions|XmlaStore|XmlaStoreOptions|Object|Array|Object store
+}
+
+object RemoteFileSystemProvider {
+  function(options) beforeAjaxSend
+  function(options) beforeSubmit
+  String endpointUrl
+  String|function() hasSubDirectoriesExpr
+  any requestHeaders
+}
+FileSystemProviderBase <|-up- RemoteFileSystemProvider
+
+object SearchBoxMixin {
+  dxTextBoxOptions searchEditorOptions
+  Boolean searchEnabled
+  getter|Array searchExpr
+  Enums.SearchMode searchMode
+  Number searchTimeout
+  String searchValue
+}
+
+object Store {
+  function() errorHandler
+  String|Array key
+  function(values, key) onInserted
+  function(values) onInserting
+  function(result, loadOptions) onLoaded
+  function(loadOptions) onLoading
+  function() onModified
+  function() onModifying
+  function(changes) onPush
+  function(key) onRemoved
+  function(key) onRemoving
+  function(key, values) onUpdated
+  function(key, values) onUpdating
+}
+
+object Widget {
+  String accessKey
+  Boolean activeStateEnabled
+  Boolean disabled
+  Boolean focusStateEnabled
+  String hint
+  Boolean hoverStateEnabled
+  function(e) onContentReady
+  function(e) onFocusIn
+  function(e) onFocusOut
+  Number tabIndex
+  Boolean visible
+}
+DOMComponent <|-up- Widget
+
+object XmlaStore {
+  function(options) beforeSend
+  String catalog
+  String cube
+  String url
+}
+
+
+
+@enduml
