@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../testing/tests/DevExpress.core/namespace.tests.js"],"names":["testGlobalExports","require","version","DevExpress"],"mappings":";;;;;;;AAAA,UAAMA,oBAAoBC,WAAQ,sCAAR,CAA1B;AACA,UAAM,EAAEC,OAAF,KAAcD,WAAQ,cAAR,CAApB;;AAEAA,eAAQ,sBAAR;;AAEAD,sBAAkB;AACd,sBAAcG;AADA,KAAlB,EAEG;AACC,mBAAWD;AADZ,KAFH","file":"namespace.tests.js"}

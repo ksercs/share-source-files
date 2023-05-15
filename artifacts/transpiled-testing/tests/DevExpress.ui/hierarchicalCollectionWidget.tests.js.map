@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../testing/tests/DevExpress.ui/hierarchicalCollectionWidget.tests.js"],"names":["$","require","QUnit","testStart","html"],"mappings":";;;;;;;AAAA,UAAMA,IAAIC,WAAQ,QAAR,CAAV;;AAEAC,UAAMC,SAAN,CAAgB,YAAW;AACvBH,UAAE,gBAAF,EAAoBI,IAApB,CAAyB,sBAAzB;AACH,KAFD;;AAIAH,eAAQ,gEAAR;AACAA,eAAQ,qEAAR","file":"hierarchicalCollectionWidget.tests.js"}

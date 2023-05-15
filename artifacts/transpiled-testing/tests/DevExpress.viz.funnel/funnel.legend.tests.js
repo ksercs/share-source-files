@@ -1,0 +1,191 @@
+!function(e){function r(e,r,o){return 4===arguments.length?t.apply(this,arguments):void n(e,{declarative:!0,deps:r,declare:o})}function t(e,r,t,o){n(e,{declarative:!1,deps:r,executingRequire:t,execute:o})}function n(e,r){r.name=e,e in v||(v[e]=r),r.normalizedDeps=r.deps}function o(e,r){if(r[e.groupIndex]=r[e.groupIndex]||[],-1==g.call(r[e.groupIndex],e)){r[e.groupIndex].push(e);for(var t=0,n=e.normalizedDeps.length;n>t;t++){var a=e.normalizedDeps[t],u=v[a];if(u&&!u.evaluated){var d=e.groupIndex+(u.declarative!=e.declarative);if(void 0===u.groupIndex||u.groupIndex<d){if(void 0!==u.groupIndex&&(r[u.groupIndex].splice(g.call(r[u.groupIndex],u),1),0==r[u.groupIndex].length))throw new TypeError("Mixed dependency cycle detected");u.groupIndex=d}o(u,r)}}}}function a(e){var r=v[e];r.groupIndex=0;var t=[];o(r,t);for(var n=!!r.declarative==t.length%2,a=t.length-1;a>=0;a--){for(var u=t[a],i=0;i<u.length;i++){var s=u[i];n?d(s):l(s)}n=!n}}function u(e){return y[e]||(y[e]={name:e,dependencies:[],exports:{},importers:[]})}function d(r){if(!r.module){var t=r.module=u(r.name),n=r.module.exports,o=r.declare.call(e,function(e,r){if(t.locked=!0,"object"==typeof e)for(var o in e)n[o]=e[o];else n[e]=r;for(var a=0,u=t.importers.length;u>a;a++){var d=t.importers[a];if(!d.locked)for(var i=0;i<d.dependencies.length;++i)d.dependencies[i]===t&&d.setters[i](n)}return t.locked=!1,r},{id:r.name});t.setters=o.setters,t.execute=o.execute;for(var a=0,i=r.normalizedDeps.length;i>a;a++){var l,s=r.normalizedDeps[a],c=v[s],f=y[s];f?l=f.exports:c&&!c.declarative?l=c.esModule:c?(d(c),f=c.module,l=f.exports):l=p(s),f&&f.importers?(f.importers.push(t),t.dependencies.push(f)):t.dependencies.push(null),t.setters[a]&&t.setters[a](l)}}}function i(e){var r,t=v[e];if(t)t.declarative?f(e,[]):t.evaluated||l(t),r=t.module.exports;else if(r=p(e),!r)throw new Error("Unable to load dependency "+e+".");return(!t||t.declarative)&&r&&r.__useDefault?r["default"]:r}function l(r){if(!r.module){var t={},n=r.module={exports:t,id:r.name};if(!r.executingRequire)for(var o=0,a=r.normalizedDeps.length;a>o;o++){var u=r.normalizedDeps[o],d=v[u];d&&l(d)}r.evaluated=!0;var c=r.execute.call(e,function(e){for(var t=0,n=r.deps.length;n>t;t++)if(r.deps[t]==e)return i(r.normalizedDeps[t]);throw new TypeError("Module "+e+" not declared as a dependency.")},t,n);void 0!==c&&(n.exports=c),t=n.exports,t&&t.__esModule?r.esModule=t:r.esModule=s(t)}}function s(r){var t={};if(("object"==typeof r||"function"==typeof r)&&r!==e)if(m)for(var n in r)"default"!==n&&c(t,r,n);else{var o=r&&r.hasOwnProperty;for(var n in r)"default"===n||o&&!r.hasOwnProperty(n)||(t[n]=r[n])}return t["default"]=r,x(t,"__useDefault",{value:!0}),t}function c(e,r,t){try{var n;(n=Object.getOwnPropertyDescriptor(r,t))&&x(e,t,n)}catch(o){return e[t]=r[t],!1}}function f(r,t){var n=v[r];if(n&&!n.evaluated&&n.declarative){t.push(r);for(var o=0,a=n.normalizedDeps.length;a>o;o++){var u=n.normalizedDeps[o];-1==g.call(t,u)&&(v[u]?f(u,t):p(u))}n.evaluated||(n.evaluated=!0,n.module.execute.call(e))}}function p(e){if(I[e])return I[e];if("@node/"==e.substr(0,6))return I[e]=s(D(e.substr(6)));var r=v[e];if(!r)throw"Module "+e+" not present.";return a(e),f(e,[]),v[e]=void 0,r.declarative&&x(r.module.exports,"__esModule",{value:!0}),I[e]=r.declarative?r.module.exports:r.esModule}var v={},g=Array.prototype.indexOf||function(e){for(var r=0,t=this.length;t>r;r++)if(this[r]===e)return r;return-1},m=!0;try{Object.getOwnPropertyDescriptor({a:0},"a")}catch(h){m=!1}var x;!function(){try{Object.defineProperty({},"a",{})&&(x=Object.defineProperty)}catch(e){x=function(e,r,t){try{e[r]=t.value||t.get.call(e)}catch(n){}}}}();var y={},D="undefined"!=typeof System&&System._nodeRequire||"undefined"!=typeof require&&"undefined"!=typeof require.resolve&&"undefined"!=typeof process&&process.platform&&require,I={"@empty":{}};return function(e,n,o,a){return function(u){u(function(u){for(var d={_nodeRequire:D,register:r,registerDynamic:t,get:p,set:function(e,r){I[e]=r},newModule:function(e){return e}},i=0;i<n.length;i++)(function(e,r){r&&r.__esModule?I[e]=r:I[e]=s(r)})(n[i],arguments[i]);a(d);var l=p(e[0]);if(e.length>1)for(var i=1;i<e.length;i++)p(e[i]);return o?l["default"]:l})}}}("undefined"!=typeof self?self:global)
+
+(["testing/tests/DevExpress.viz.funnel/funnel.legend.tests.js"], ["jquery","./commonParts/common.js","viz/components/legend","../../helpers/vizMocks.js","viz/funnel/funnel"], true, function($__System) {
+var require = this.require, exports = this.exports, module = this.module;
+$__System.registerDynamic('testing/tests/DevExpress.viz.funnel/funnel.legend.tests.js', ['jquery', './commonParts/common.js', 'viz/components/legend', '../../helpers/vizMocks.js', 'viz/funnel/funnel'], true, function ($__require, exports, module) {
+    var global = this || self,
+        GLOBAL = global;
+    const $ = $__require('jquery');
+    const common = $__require('./commonParts/common.js');
+    const createFunnel = common.createFunnel;
+    const environment = common.environment;
+    const stubAlgorithm = common.stubAlgorithm;
+    const legendModule = $__require('viz/components/legend');
+    const Legend = legendModule.Legend;
+    const stubLegend = $__require('../../helpers/vizMocks.js').stubClass(Legend);
+
+    const dxFunnel = $__require('viz/funnel/funnel');
+    dxFunnel.addPlugin(legendModule.plugin);
+
+    QUnit.module('Legend', $.extend({}, environment, {
+        beforeEach: function () {
+            environment.beforeEach.call(this);
+            this.itemGroupNumber = 1;
+            legendModule._setLegend(sinon.spy(function () {
+                const stub = new stubLegend();
+                stub.stub('coordsIn').returns(true);
+                stub.stub('getItemByCoord').withArgs(2, 3).returns({ id: 4 });
+                stub.stub('measure').returns([100, 100]);
+                stub.stub('getTemplatesGroups').returns([]);
+                stub.stub('getTemplatesDef').returns([]);
+                stub.stub('layoutOptions').returns({
+                    horizontalAlignment: 'right',
+                    verticalAlignment: 'top',
+                    side: 'horizontal'
+                });
+                return stub;
+            }));
+        },
+        afterEach: function () {
+            environment.afterEach.call(this);
+            legendModule._setLegend(Legend);
+        }
+    }));
+
+    QUnit.test('Creation', function (assert) {
+        const funnel = createFunnel({
+            dataSource: [{ value: 5, argument: 'One', color: 'orange' }],
+            legend: { visible: true }
+        });
+        const legendCtorArgs = legendModule.Legend.lastCall.args[0];
+        const legendData = funnel._getLegendData()[0];
+        const formatObject = legendCtorArgs.getFormatObject(legendData);
+        const legendGroup = this.renderer.g.getCall(0).returnValue;
+
+        assert.equal(legendGroup.attr.lastCall.args[0].class, 'dxf-legend');
+        assert.equal(legendCtorArgs.renderer, this.renderer);
+        assert.equal(legendCtorArgs.group, legendGroup);
+        assert.equal(legendCtorArgs.textField, 'text');
+        assert.equal(formatObject.item.data.argument, 'One');
+        assert.equal(formatObject.item.data.value, 5);
+        assert.equal(formatObject.item.id, 0);
+        assert.equal(formatObject.item.color, 'orange');
+        assert.equal(formatObject.item.percent, 1);
+    });
+
+    QUnit.test('Update', function (assert) {
+        const funnel = createFunnel({
+            dataSource: [{ value: 5, argument: 'One' }, { value: 10, argument: 'Two' }],
+            legend: { visible: true }
+        });
+        const items = funnel.getAllItems();
+        const lastCallUpdate = legendModule.Legend.getCall(0).returnValue.update.lastCall.args[0];
+
+        for (let i = 0; i < items.length; i++) {
+            assert.equal(lastCallUpdate[i].text, items[i].data.argument);
+            assert.equal(lastCallUpdate[i].item.data.argument, items[i].data.argument);
+            assert.deepEqual(lastCallUpdate[i].states, {
+                normal: {
+                    fill: items[i].states.normal.fill,
+                    hatching: undefined
+                },
+                hover: {
+                    fill: items[i].states.hover.fill,
+                    hatching: items[i].states.hover.hatching
+                },
+                selection: {
+                    fill: items[i].states.selection.fill,
+                    hatching: items[i].states.selection.hatching
+                }
+            });
+            assert.equal(lastCallUpdate[i].id, items[i].id);
+            assert.equal(lastCallUpdate[i].visible, true);
+        }
+    });
+
+    QUnit.test('Legend options', function (assert) {
+        createFunnel({
+            dataSource: [{ value: 5, argument: 'One' }, { value: 10, argument: 'Two' }],
+            legend: { visible: true, horizontalAlignment: 'center', verticalAlignment: 'bottom' }
+        });
+        const legend = legendModule.Legend.getCall(0).returnValue;
+
+        assert.equal(legend.update.lastCall.args[1].horizontalAlignment, 'center');
+        assert.equal(legend.update.lastCall.args[1].verticalAlignment, 'bottom');
+    });
+
+    QUnit.test('Hover legend', function (assert) {
+        const funnel = createFunnel({
+            dataSource: [{ value: 5, argument: 'One' }, { value: 10, argument: 'Two' }],
+            legend: { visible: true }
+        });
+        const items = funnel.getAllItems();
+        const legend = legendModule.Legend.getCall(0).returnValue;
+
+        items[1].hover(true);
+
+        assert.equal(legend.applyHover.lastCall.args[0], 1);
+    });
+
+    QUnit.test('Selection legend', function (assert) {
+        const funnel = createFunnel({
+            dataSource: [{ value: 5, argument: 'One' }, { value: 10, argument: 'Two' }],
+            legend: { visible: true }
+        });
+        const items = funnel.getAllItems();
+        const legend = legendModule.Legend.getCall(0).returnValue;
+
+        items[1].select(true);
+
+        assert.equal(legend.applySelected.lastCall.args[0], 1);
+    });
+
+    QUnit.test('Hover and unhover legend', function (assert) {
+        const funnel = createFunnel({
+            dataSource: [{ value: 5, argument: 'One' }, { value: 10, argument: 'Two' }],
+            legend: { visible: true }
+        });
+        const items = funnel.getAllItems();
+        const legend = legendModule.Legend.getCall(0).returnValue;
+
+        items[1].hover(true);
+        items[1].hover(false);
+
+        assert.equal(legend.resetItem.lastCall.args[0], 1);
+    });
+
+    QUnit.test('Update items', function (assert) {
+        const funnel = createFunnel({
+            dataSource: [{ value: 5, argument: 'One' }, { value: 10, argument: 'Two' }],
+            legend: { visible: true }
+        });
+
+        funnel.option({ dataSource: [{ value: 1, argument: 'One' }, { value: 4, argument: 'Two' }] });
+
+        const items = funnel.getAllItems();
+        const lastCallUpdate = legendModule.Legend.getCall(0).returnValue.update.lastCall.args[0];
+
+        for (let i = 0; i < items.length; i++) {
+            assert.deepEqual(lastCallUpdate[i].item.data.value, items[i].data.value);
+        }
+    });
+
+    QUnit.test('Reserve space for legend', function (assert) {
+        $('#test-container').css({
+            width: 800,
+            height: 600
+        });
+
+        stubAlgorithm.getFigures.returns([[0, 0, 1, 1]]);
+
+        createFunnel({
+            algorithm: 'stub',
+            dataSource: [{ value: 1 }],
+            legend: {
+                visible: true
+            }
+        });
+
+        assert.deepEqual(this.items()[0].attr.firstCall.args[0].points, [0, 0, 700, 600]);
+    });
+});
+})
+(function(factory) {
+  if (typeof define == 'function' && define.amd)
+    define(["jquery","./commonParts/common.js","viz/components/legend","../../helpers/vizMocks.js","viz/funnel/funnel"], factory);
+  else if (typeof module == 'object' && module.exports && typeof require == 'function')
+    module.exports = factory(require("jquery"), require("./commonParts/common.js"), require("viz/components/legend"), require("../../helpers/vizMocks.js"), require("viz/funnel/funnel"));
+  else
+    throw new Error("Module must be loaded as AMD or CommonJS");
+});
+//# sourceMappingURL=funnel.legend.tests.js.map

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../transpiled/ui/scheduler/utils/isSchedulerComponent.js"],"names":["exports","isSchedulerComponent","schedulerComponentName","component","NAME"],"mappings":";;;;;AAAA;;;;AAEAA,UAAQC,oBAAR,GAA+BA,oBAA/B;AACA,MAAIC,yBAAyB,aAA7B;AACA,WAASD,oBAAT,CAA8BE,SAA9B,EAAyC;AACvC,WAAOA,UAAUC,IAAV,KAAmBF,sBAA1B;AACD","file":"isSchedulerComponent.js"}
