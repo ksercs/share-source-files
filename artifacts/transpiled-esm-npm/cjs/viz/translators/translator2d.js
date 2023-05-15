@@ -363,7 +363,7 @@ _Translator2d.prototype = {
     var minValue = this.from(visibleArea.min + minBarSize);
     return _abs(this.from(visibleArea.min) - (!(0, _type.isDefined)(minValue) ? this.from(visibleArea.max) : minValue));
   },
-  checkMinBarSize: function checkMinBarSize(value, minShownValue, stackValue) {
+  checkMinBarSize: function checkMinBarSize(value, minShownValue) {
     return _abs(value) < minShownValue ? value >= 0 ? minShownValue : -minShownValue : value;
   },
   translate: function translate(bp, direction) {

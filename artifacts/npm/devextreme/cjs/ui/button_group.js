@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/button_group.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -73,6 +73,9 @@ var ButtonCollection = _uiCollection_widget.default.inherit({
   _renderItemContent: function _renderItemContent(args) {
     args.container = (0, _renderer.default)(args.container).parent();
     return this.callBase(args);
+  },
+  _setAriaSelectionAttribute: function _setAriaSelectionAttribute($target, value) {
+    this.setAria('pressed', value, $target);
   },
   _renderItemContentByNode: function _renderItemContentByNode(args, $node) {
     args.container = (0, _renderer.default)(args.container.children().first());

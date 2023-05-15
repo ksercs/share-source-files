@@ -66,6 +66,9 @@ var ButtonCollection = _uiCollection_widget.default.inherit({
     args.container = (0, _renderer.default)(args.container).parent();
     return this.callBase(args);
   },
+  _setAriaSelectionAttribute: function _setAriaSelectionAttribute($target, value) {
+    this.setAria('pressed', value, $target);
+  },
   _renderItemContentByNode: function _renderItemContentByNode(args, $node) {
     args.container = (0, _renderer.default)(args.container.children().first());
     return this.callBase(args, $node);

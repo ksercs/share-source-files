@@ -335,6 +335,7 @@ var Lookup = _ui.default.inherit({
       _this2._toggleOpenState();
     });
     this._$field = (0, _renderer.default)('<div>').addClass(LOOKUP_FIELD_CLASS);
+    this._applyInputAttributes(this.option('inputAttr'));
     _events_engine.default.on(this._$field, (0, _index.addNamespace)(_click.name, this.NAME), function (e) {
       fieldClickAction({
         event: e
@@ -342,6 +343,9 @@ var Lookup = _ui.default.inherit({
     });
     var $arrow = (0, _renderer.default)('<div>').addClass(LOOKUP_ARROW_CLASS);
     this._$fieldWrapper = (0, _renderer.default)('<div>').addClass(LOOKUP_FIELD_WRAPPER_CLASS).append(this._$field).append($arrow).appendTo(this.$element());
+  },
+  _applyInputAttributes: function _applyInputAttributes(attributes) {
+    this._$field.attr(attributes);
   },
   _getInputContainer: function _getInputContainer() {
     return this._$fieldWrapper;
@@ -690,7 +694,13 @@ var Lookup = _ui.default.inherit({
       var currentDevice = _devices.default.current();
       var searchMode = currentDevice.android ? 'text' : 'search';
       var isKeyboardListeningEnabled = false;
-      this._searchBox = this._createComponent($searchBox, _text_box.default, {
+      var textBoxOptions = {
+        mode: searchMode,
+        showClearButton: true,
+        valueChangeEvent: this.option('searchStartEvent'),
+        inputAttr: {
+          'aria-label': 'Search'
+        },
         onDisposing: function onDisposing() {
           return isKeyboardListeningEnabled = false;
         },
@@ -703,13 +713,11 @@ var Lookup = _ui.default.inherit({
         onKeyboardHandled: function onKeyboardHandled(opts) {
           return isKeyboardListeningEnabled && _this5._list._keyboardHandler(opts);
         },
-        mode: searchMode,
-        showClearButton: true,
-        valueChangeEvent: this.option('searchStartEvent'),
         onValueChanged: function onValueChanged(e) {
-          _this5._searchHandler(e);
+          return _this5._searchHandler(e);
         }
-      });
+      };
+      this._searchBox = this._createComponent($searchBox, _text_box.default, textBoxOptions);
       this._registerSearchKeyHandlers();
       $searchWrapper.insertBefore(this._$list);
       this._setSearchPlaceholder();
@@ -817,7 +825,7 @@ var Lookup = _ui.default.inherit({
       if (_this8.option('searchEnabled')) {
         _this8._searchBox.focus();
       } else {
-        _events_engine.default.trigger(_this8._$list, 'focus');
+        _this8._list.focus();
       }
     });
   },
@@ -889,6 +897,9 @@ var Lookup = _ui.default.inherit({
       case 'minSearchLength':
         this._setSearchPlaceholder();
         this.callBase.apply(this, arguments);
+        break;
+      case 'inputAttr':
+        this._applyInputAttributes(value);
         break;
       case 'usePopover':
       case 'placeholder':

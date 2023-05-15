@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/lookup.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -336,6 +336,7 @@ var Lookup = DropDownList.inherit({
       this._toggleOpenState();
     });
     this._$field = $('<div>').addClass(LOOKUP_FIELD_CLASS);
+    this._applyInputAttributes(this.option('inputAttr'));
     eventsEngine.on(this._$field, addNamespace(clickEventName, this.NAME), e => {
       fieldClickAction({
         event: e
@@ -343,6 +344,9 @@ var Lookup = DropDownList.inherit({
     });
     var $arrow = $('<div>').addClass(LOOKUP_ARROW_CLASS);
     this._$fieldWrapper = $('<div>').addClass(LOOKUP_FIELD_WRAPPER_CLASS).append(this._$field).append($arrow).appendTo(this.$element());
+  },
+  _applyInputAttributes(attributes) {
+    this._$field.attr(attributes);
   },
   _getInputContainer() {
     return this._$fieldWrapper;
@@ -688,18 +692,20 @@ var Lookup = DropDownList.inherit({
       var currentDevice = devices.current();
       var searchMode = currentDevice.android ? 'text' : 'search';
       var isKeyboardListeningEnabled = false;
-      this._searchBox = this._createComponent($searchBox, TextBox, {
+      var textBoxOptions = {
+        mode: searchMode,
+        showClearButton: true,
+        valueChangeEvent: this.option('searchStartEvent'),
+        inputAttr: {
+          'aria-label': 'Search'
+        },
         onDisposing: () => isKeyboardListeningEnabled = false,
         onFocusIn: () => isKeyboardListeningEnabled = true,
         onFocusOut: () => isKeyboardListeningEnabled = false,
         onKeyboardHandled: opts => isKeyboardListeningEnabled && this._list._keyboardHandler(opts),
-        mode: searchMode,
-        showClearButton: true,
-        valueChangeEvent: this.option('searchStartEvent'),
-        onValueChanged: e => {
-          this._searchHandler(e);
-        }
-      });
+        onValueChanged: e => this._searchHandler(e)
+      };
+      this._searchBox = this._createComponent($searchBox, TextBox, textBoxOptions);
       this._registerSearchKeyHandlers();
       $searchWrapper.insertBefore(this._$list);
       this._setSearchPlaceholder();
@@ -805,7 +811,7 @@ var Lookup = DropDownList.inherit({
       if (this.option('searchEnabled')) {
         this._searchBox.focus();
       } else {
-        eventsEngine.trigger(this._$list, 'focus');
+        this._list.focus();
       }
     });
   },
@@ -878,6 +884,9 @@ var Lookup = DropDownList.inherit({
       case 'minSearchLength':
         this._setSearchPlaceholder();
         this.callBase(...arguments);
+        break;
+      case 'inputAttr':
+        this._applyInputAttributes(value);
         break;
       case 'usePopover':
       case 'placeholder':

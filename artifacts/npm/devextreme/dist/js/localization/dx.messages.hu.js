@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.hu.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,10 @@
             "dxDateBox-simulatedDataPickerTitleDate": "Válasszon dátumot",
             "dxDateBox-simulatedDataPickerTitleDateTime": "Válasszon dátumot és időt",
             "dxDateBox-validation-datetime": "Az érték dátum vagy idő kell legyen",
+            "dxDateBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateBox-endDateOutOfRangeMessage": "End date is out of range",
             "dxFileUploader-selectFile": "Válasszon fájlt",
             "dxFileUploader-dropFile": "vagy húzza a fájlt ide",
             "dxFileUploader-bytes": "bájt",
@@ -92,6 +96,10 @@
             "dxForm-requiredMessage": "{0} kötelező",
             "dxNumberBox-invalidValueMessage": "Az érték szám kell legyen",
             "dxNumberBox-noDataText": "Nincs adat",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "Use {0} to display columns",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "Drag a column from the group panel here",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Use {0} or drag a column from the group panel",
+            "dxDataGrid-emptyHeaderColumnChooserText": "column chooser",
             "dxDataGrid-columnChooserTitle": "Oszlopválasztó",
             "dxDataGrid-columnChooserEmptyText": "Húzza ide az oszlopot az elrejtéshez",
             "dxDataGrid-groupContinuesMessage": "A következő oldalon folytatódik",
@@ -124,6 +132,7 @@
             "dxDataGrid-filterRowOperationBetween": "Között",
             "dxDataGrid-filterRowOperationBetweenStartText": "Kezdete",
             "dxDataGrid-filterRowOperationBetweenEndText": "Vége",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "Szűrő alkalmazása",
             "dxDataGrid-trueText": "igaz",
             "dxDataGrid-falseText": "hamis",
@@ -180,11 +189,14 @@
             "dxTreeList-editingAddRowToNode": "Hozzáadás",
             "dxPager-infoText": "Oldal: {0}/{1} ({2} elem)",
             "dxPager-pagesCountText": "/",
+            "dxPager-pageSize": "Items per page: {0}",
             "dxPager-pageSizesAllText": "Mind",
             "dxPager-page": "Page {0}",
             "dxPager-prevPage": "Previous Page",
             "dxPager-nextPage": "Next Page",
             "dxPager-ariaLabel": "Page Navigation",
+            "dxPager-ariaPageSize": "Page size",
+            "dxPager-ariaPageNumber": "Page number",
             "dxPivotGrid-grandTotal": "Teljes összeg",
             "dxPivotGrid-total": "{0} Összeg",
             "dxPivotGrid-fieldChooserTitle": "Mezőválasztó",
@@ -250,6 +262,7 @@
             "dxScheduler-moreAppointments": "{0} több",
             "dxCalendar-todayButtonText": "Ma",
             "dxCalendar-ariaWidgetName": "Naptár",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "Piros",
             "dxColorView-ariaGreen": "Zöld",
             "dxColorView-ariaBlue": "Kék",

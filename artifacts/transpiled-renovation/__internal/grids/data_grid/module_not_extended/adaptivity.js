@@ -1,9 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-// @ts-expect-error
-var ui_grid_core_adaptivity_1 = require("../../../../ui/grid_core/ui.grid_core.adaptivity");
-var module_core_1 = __importDefault(require("../module_core"));
-module_core_1.default.registerModule('adaptivity', ui_grid_core_adaptivity_1.adaptivityModule);
+
+var _uiGrid_core = require("../../../../ui/grid_core/ui.grid_core.adaptivity");
+var _module_core = _interopRequireDefault(require("../module_core"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+_module_core.default.registerModule('adaptivity', _uiGrid_core.adaptivityModule);

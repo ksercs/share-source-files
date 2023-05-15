@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/context_menu/ui.menu_base.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -39,6 +39,9 @@ var DEFAULT_DELAY = {
   'show': 50,
   'hide': 300
 };
+var DX_MENU_ITEM_CAPTION_URL_CLASS = "".concat(DX_MENU_ITEM_CAPTION_CLASS, "-with-url");
+var DX_ICON_WITH_URL_CLASS = 'dx-icon-with-url';
+var DX_ITEM_URL_CLASS = 'dx-item-url';
 class MenuBase extends HierarchicalCollectionWidget {
   _getDefaultOptions() {
     return extend(super._getDefaultOptions(), {
@@ -128,7 +131,7 @@ class MenuBase extends HierarchicalCollectionWidget {
   _itemClass() {
     return ITEM_CLASS;
   }
-  _setAriaSelected() {}
+  _setAriaSelectionAttribute() {}
   _selectedItemClass() {
     return DX_MENU_SELECTED_ITEM_CLASS;
   }
@@ -153,7 +156,19 @@ class MenuBase extends HierarchicalCollectionWidget {
     return extend(super._supportedKeys(), {
       space: selectItem,
       pageUp: noop,
-      pageDown: noop
+      pageDown: noop,
+      enter: function enter(e) {
+        var $itemElement = $(this.option('focusedElement'));
+        if (!$itemElement.length) {
+          return;
+        }
+        this._enterKeyHandler(e);
+        var itemData = this._getItemData($itemElement);
+        if (itemData.url) {
+          var link = $itemElement.get(0).getElementsByClassName(DX_ITEM_URL_CLASS)[0];
+          link === null || link === void 0 ? void 0 : link.click();
+        }
+      }
     });
   }
   _isSelectionEnabled() {
@@ -165,22 +180,42 @@ class MenuBase extends HierarchicalCollectionWidget {
     this._renderSelectedItem();
     this._initActions();
   }
+  _getLinkContainer(iconContainer, textContainer, _ref) {
+    var {
+      linkAttr,
+      url
+    } = _ref;
+    iconContainer === null || iconContainer === void 0 ? void 0 : iconContainer.addClass(DX_ICON_WITH_URL_CLASS);
+    textContainer === null || textContainer === void 0 ? void 0 : textContainer.addClass(DX_MENU_ITEM_CAPTION_URL_CLASS);
+    var linkAttributes = isObject(linkAttr) ? linkAttr : {};
+    return $('<a>').addClass(DX_ITEM_URL_CLASS).attr(_extends({}, linkAttributes, {
+      href: url
+    })).append(iconContainer).append(textContainer);
+  }
+  _addContent($container, itemData) {
+    var {
+      html,
+      url
+    } = itemData;
+    var iconContainer = this._getIconContainer(itemData);
+    var textContainer = this._getTextContainer(itemData);
+    $container.html(html);
+    if (url) {
+      var link = this._getLinkContainer(iconContainer, textContainer, itemData);
+      $container.append(link);
+    } else {
+      $container.append(iconContainer).append(textContainer);
+    }
+    $container.append(this._getPopoutContainer(itemData));
+    this._addContentClasses(itemData, $container.parent());
+  }
   _getTextContainer(itemData) {
     var {
-      text,
-      url,
-      linkAttr
+      text
     } = itemData;
     var $itemContainer = $('<span>').addClass(DX_MENU_ITEM_CAPTION_CLASS);
-    var itemContent = isPlainObject(itemData) ? text : String(itemData);
-    if (url && text) {
-      var linkAttributes = isObject(linkAttr) ? linkAttr : {};
-      $('<a>').attr(_extends({}, linkAttributes, {
-        href: url
-      })).text(itemContent).appendTo($itemContainer);
-      return $itemContainer;
-    }
-    return text && $itemContainer.text(itemContent);
+    var itemText = isPlainObject(itemData) ? text : String(itemData);
+    return text && $itemContainer.text(itemText);
   }
   _getItemExtraPropNames() {
     return ['url', 'linkAttr'];
@@ -407,15 +442,15 @@ class MenuBase extends HierarchicalCollectionWidget {
     var $itemElement = $(args.itemElement);
     var selectedIndex = this._dataAdapter.getSelectedNodesKeys();
     if (!selectedIndex.length || !this._selectedGetter(args.itemData) || !this._isItemSelectable(args.itemData)) {
-      this._setAriaSelected($itemElement, 'false');
+      this._setAriaSelectionAttribute($itemElement, 'false');
       return;
     }
     var node = this._dataAdapter.getNodeByItem(args.itemData);
     if (node.internalFields.key === selectedIndex[0]) {
       $itemElement.addClass(this._selectedItemClass());
-      this._setAriaSelected($itemElement, 'true');
+      this._setAriaSelectionAttribute($itemElement, 'true');
     } else {
-      this._setAriaSelected($itemElement, 'false');
+      this._setAriaSelectionAttribute($itemElement, 'false');
     }
   }
   _isItemSelectable(item) {

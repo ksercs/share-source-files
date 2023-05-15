@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.lt.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,10 @@
             "dxDateBox-simulatedDataPickerTitleDate": "Pasirinkite Datą",
             "dxDateBox-simulatedDataPickerTitleDateTime": "Pasirinkite datą ir laiką",
             "dxDateBox-validation-datetime": "Vertė turi būti data ar laikas",
+            "dxDateBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateBox-endDateOutOfRangeMessage": "End date is out of range",
             "dxFileUploader-selectFile": "Pasirinkite failą",
             "dxFileUploader-dropFile": "Arba atsisakykite failo čia",
             "dxFileUploader-bytes": "baitai",
@@ -92,6 +96,10 @@
             "dxForm-requiredMessage": "{0} reikalingas",
             "dxNumberBox-invalidValueMessage": "Vertė turi būti skaičius",
             "dxNumberBox-noDataText": "Nėra duomenų",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "Use {0} to display columns",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "Drag a column from the group panel here",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Use {0} or drag a column from the group panel",
+            "dxDataGrid-emptyHeaderColumnChooserText": "column chooser",
             "dxDataGrid-columnChooserTitle": "Stulpelio pasirinkimas",
             "dxDataGrid-columnChooserEmptyText": "Vilkite stulpelį čia, kad jį paslėptumėte",
             "dxDataGrid-groupContinuesMessage": "Tęsiamas kitame puslapyje",
@@ -124,6 +132,7 @@
             "dxDataGrid-filterRowOperationBetween": "Tarp",
             "dxDataGrid-filterRowOperationBetweenStartText": "Pradėti",
             "dxDataGrid-filterRowOperationBetweenEndText": "Pabaiga",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "Taikyti filtrą",
             "dxDataGrid-trueText": "tiesa",
             "dxDataGrid-falseText": "melaginga",
@@ -180,11 +189,14 @@
             "dxTreeList-editingAddRowToNode": "Papildyti",
             "dxPager-infoText": "Puslapis {0} iš {1} ({2} elementai)",
             "dxPager-pagesCountText": "apie",
+            "dxPager-pageSize": "Items per page: {0}",
             "dxPager-pageSizesAllText": "Viskas",
             "dxPager-page": "Puslapis {0}",
             "dxPager-prevPage": "Ankstesnis puslapis",
             "dxPager-nextPage": "Kitas puslapis",
             "dxPager-ariaLabel": "Puslapio naršymas",
+            "dxPager-ariaPageSize": "Page size",
+            "dxPager-ariaPageNumber": "Page number",
             "dxPivotGrid-grandTotal": "Iš viso",
             "dxPivotGrid-total": "{0} iš viso",
             "dxPivotGrid-fieldChooserTitle": "Lauko pasirinkėjas",
@@ -250,6 +262,7 @@
             "dxScheduler-moreAppointments": "{0} daugiau",
             "dxCalendar-todayButtonText": "Šiandien",
             "dxCalendar-ariaWidgetName": "Kalendorius",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "Raudonas",
             "dxColorView-ariaGreen": "Žalias",
             "dxColorView-ariaBlue": "Mėlyna",

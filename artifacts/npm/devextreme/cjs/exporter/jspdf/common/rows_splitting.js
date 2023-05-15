@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/exporter/jspdf/common/rows_splitting.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -24,6 +24,7 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+var COORDINATE_EPSILON = 0.001;
 function convertToCellsArray(rows) {
   return [].concat.apply([], rows.map(function (rowInfo) {
     return rowInfo.cells.filter(function (cell) {
@@ -154,9 +155,7 @@ function splitRectsByPages(rects, marginValue, coordinate, dimension, isFitToPag
       // Check cells that have 'coordinate' less than 'currentPageMaxRectCoordinate'
       var currentRectLeft = rect[coordinate];
       var currentRectRight = rect[coordinate] + rect[dimension];
-      if (currentRectLeft < currentPageMaxRectCoordinate && currentPageMaxRectCoordinate < currentRectRight) {
-        return true;
-      }
+      return currentPageMaxRectCoordinate - currentRectLeft > COORDINATE_EPSILON && currentRectRight - currentPageMaxRectCoordinate > COORDINATE_EPSILON;
     });
     rectsToSeparate.forEach(function (rect) {
       onSeparateCallback(rect, currentPageMaxRectCoordinate, currentPageRects, rectsToSplit);

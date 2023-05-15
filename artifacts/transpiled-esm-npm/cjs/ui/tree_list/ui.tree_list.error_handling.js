@@ -1,6 +1,3 @@
 "use strict";
 
-var _uiTree_list = _interopRequireDefault(require("./ui.tree_list.core"));
-var _uiGrid_core = require("../grid_core/ui.grid_core.error_handling");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-_uiTree_list.default.registerModule('errorHandling', _uiGrid_core.errorHandlingModule);
+require("../../__internal/grids/tree_list/module_not_extended/error_handling");

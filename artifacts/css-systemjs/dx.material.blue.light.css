@@ -1,0 +1,10 @@
+
+    System.register('artifacts/css/dx.material.blue.light.css', [], false, function() {});
+    (function() {
+        if (typeof document == 'undefined') return;
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/artifacts/css/dx.material.blue.light.css';
+        link.setAttribute('data-theme', 'material.blue.light');
+        document.getElementsByTagName('head')[0].appendChild(link);
+    })();

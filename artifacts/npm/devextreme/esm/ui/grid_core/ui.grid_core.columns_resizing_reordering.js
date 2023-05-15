@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/grid_core/ui.grid_core.columns_resizing_reordering.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -961,7 +961,7 @@ var DraggingHeaderViewController = modules.ViewController.inherit({
           }
           var $columnElement = $(columnElement);
           var column = columns[index];
-          if (draggingPanel.allowDragging(column, nameDraggingPanel, draggingPanels)) {
+          if (column && draggingPanel.allowDragging(column)) {
             $columnElement.addClass(that.addWidgetPrefix(HEADERS_DRAG_ACTION_CLASS));
             eventsEngine.on($columnElement, addNamespace(dragEventStart, MODULE_NAMESPACE), that.createAction(function (args) {
               var e = args.event;

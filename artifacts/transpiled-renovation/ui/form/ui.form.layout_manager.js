@@ -28,6 +28,7 @@ var _button_item = require("./components/button_item");
 var _empty_item = require("./components/empty_item");
 var _uiFormLayout_manager = require("./ui.form.layout_manager.utils");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -637,13 +638,22 @@ var LayoutManager = _ui.default.inherit({
     return this._watch;
   },
   _createComponent: function _createComponent($editor, type, editorOptions) {
-    var that = this;
     var readOnlyState = this.option('readOnly');
-    var instance = that.callBase($editor, type, editorOptions);
-    readOnlyState && instance.option('readOnly', readOnlyState);
-    that.on('optionChanged', function (args) {
-      if (args.name === 'readOnly' && !(0, _type.isDefined)(editorOptions.readOnly)) {
+    var hasEditorReadOnly = Object.hasOwn(editorOptions, 'readOnly');
+    var instance = this.callBase($editor, type, _extends({}, editorOptions, {
+      readOnly: !hasEditorReadOnly ? readOnlyState : editorOptions.readOnly
+    }));
+    var isChangeByForm = false;
+    instance.on('optionChanged', function (args) {
+      if (args.name === 'readOnly' && !isChangeByForm) {
+        hasEditorReadOnly = true;
+      }
+    });
+    this.on('optionChanged', function (args) {
+      if (args.name === 'readOnly' && !hasEditorReadOnly) {
+        isChangeByForm = true;
         instance.option(args.name, args.value);
+        isChangeByForm = false;
       }
     });
     return instance;
@@ -746,6 +756,7 @@ var LayoutManager = _ui.default.inherit({
         this._invalidate();
         break;
       case 'colCount':
+      case 'colCountByScreen':
         this._resetColCount();
         break;
       case 'minColWidth':

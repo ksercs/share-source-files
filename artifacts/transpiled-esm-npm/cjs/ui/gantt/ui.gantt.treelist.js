@@ -76,7 +76,8 @@ var GanttTreeList = /*#__PURE__*/function () {
       },
       onNodesInitialized: function onNodesInitialized(e) {
         _this._onNodesInitialized(e);
-      }
+      },
+      _disableDeprecationWarnings: true
     });
     return this._treeList;
   };

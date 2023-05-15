@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/list/ui.list.base.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -35,6 +35,7 @@ import { BindableTemplate } from '../../core/templates/bindable_template';
 import { Deferred } from '../../core/utils/deferred';
 import DataConverterMixin from '../shared/grouped_data_converter_mixin';
 import { getElementMargin } from '../../renovation/ui/scroll_view/utils/get_element_style';
+import Guid from '../../core/guid';
 var LIST_CLASS = 'dx-list';
 var LIST_ITEM_CLASS = 'dx-list-item';
 var LIST_ITEM_SELECTOR = '.' + LIST_ITEM_CLASS;
@@ -150,9 +151,6 @@ export var ListBase = CollectionWidget.inherit({
       activeStateEnabled: true,
       _itemAttributes: {
         'role': 'option'
-      },
-      _listAttributes: {
-        'role': 'listbox'
       },
       useInkRipple: false,
       wrapItemText: false,
@@ -530,7 +528,23 @@ export var ListBase = CollectionWidget.inherit({
     this.$element().addClass(LIST_CLASS);
     this.callBase();
     this.option('useInkRipple') && this._renderInkRipple();
-    this.setAria('role', this.option('_listAttributes').role);
+    var elementAria = {
+      'role': 'group',
+      'roledescription': 'list'
+    };
+    this.setAria(elementAria, this.$element());
+    this.setAria('role', 'listbox');
+    this._setListAriaLabel();
+  },
+  _setListAriaLabel() {
+    var {
+      items
+    } = this.option();
+    var label = items !== null && items !== void 0 && items.length ? 'Items' : this.option('noDataText');
+    this.setAria('label', label);
+  },
+  _focusTarget: function _focusTarget() {
+    return this._itemContainer();
   },
   _renderInkRipple: function _renderInkRipple() {
     this._inkRipple = render();
@@ -586,7 +600,13 @@ export var ListBase = CollectionWidget.inherit({
   },
   _renderGroup: function _renderGroup(index, group) {
     var $groupElement = $('<div>').addClass(LIST_GROUP_CLASS).appendTo(this._itemContainer());
-    var $groupHeaderElement = $('<div>').addClass(LIST_GROUP_HEADER_CLASS).appendTo($groupElement);
+    var id = "dx-".concat(new Guid().toString());
+    var groupAria = {
+      role: 'group',
+      'labelledby': id
+    };
+    this.setAria(groupAria, $groupElement);
+    var $groupHeaderElement = $('<div>').addClass(LIST_GROUP_HEADER_CLASS).attr('id', id).appendTo($groupElement);
     var groupTemplateName = this.option('groupTemplate');
     var groupTemplate = this._getTemplate(group.template || groupTemplateName, group, index, $groupHeaderElement);
     var renderArgs = {
@@ -766,7 +786,6 @@ export var ListBase = CollectionWidget.inherit({
         break;
       case '_swipeEnabled':
         break;
-      case '_listAttributes':
       case 'selectByClick':
         break;
       default:

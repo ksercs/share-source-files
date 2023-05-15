@@ -56,17 +56,16 @@ var HierarchicalCollectionWidget = CollectionWidget.inherit({
   _getDataAdapterOptions: noop,
   _getItemExtraPropNames: noop,
   _initDynamicTemplates: function _initDynamicTemplates() {
-    var that = this;
     var fields = ['text', 'html', 'items', 'icon'].concat(this._getItemExtraPropNames());
     this._templateManager.addDefaultTemplates({
-      item: new BindableTemplate(function ($container, itemData) {
-        $container.html(itemData.html).append(this._getIconContainer(itemData)).append(this._getTextContainer(itemData)).append(this._getPopoutContainer(itemData));
-        that._addContentClasses(itemData, $container.parent());
-      }.bind(this), fields, this.option('integrationOptions.watchMethod'), {
+      item: new BindableTemplate(this._addContent.bind(this), fields, this.option('integrationOptions.watchMethod'), {
         'text': this._displayGetter,
         'items': this._itemsGetter
       })
     });
+  },
+  _addContent: function _addContent($container, itemData) {
+    $container.html(itemData.html).append(this._getIconContainer(itemData)).append(this._getTextContainer(itemData));
   },
   _getIconContainer: function _getIconContainer(itemData) {
     return itemData.icon ? getImageContainer(itemData.icon) : undefined;
@@ -74,8 +73,6 @@ var HierarchicalCollectionWidget = CollectionWidget.inherit({
   _getTextContainer: function _getTextContainer(itemData) {
     return $('<span>').text(itemData.text);
   },
-  _getPopoutContainer: noop,
-  _addContentClasses: noop,
   _initAccessors: function _initAccessors() {
     var that = this;
     each(this._getAccessors(), function (_, accessor) {

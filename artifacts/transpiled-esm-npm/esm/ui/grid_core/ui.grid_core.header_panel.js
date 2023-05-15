@@ -186,7 +186,8 @@ var members = {
   isVisible: function isVisible() {
     return !!(this._toolbarOptions && this._toolbarOptions.visible);
   },
-  allowDragging: noop
+  allowDragging: noop,
+  hasGroupedColumns: noop
 };
 var HeaderPanel = ColumnsView.inherit(members);
 

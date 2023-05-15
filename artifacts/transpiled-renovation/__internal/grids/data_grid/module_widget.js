@@ -1,9 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var module_widget_base_1 = __importDefault(require("./module_widget_base"));
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _module_widget_base = _interopRequireDefault(require("./module_widget_base"));
 require("./module_not_extended/state_storing");
 require("./module_not_extended/selection");
 require("./module_not_extended/column_chooser");
@@ -31,4 +32,6 @@ require("./module_not_extended/virtual_columns");
 require("./export/module");
 require("./focus/module");
 require("./module_not_extended/row_dragging");
-exports.default = module_widget_base_1.default;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _default = _module_widget_base.default;
+exports.default = _default;

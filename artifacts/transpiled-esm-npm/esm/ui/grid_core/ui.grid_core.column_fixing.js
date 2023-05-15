@@ -199,6 +199,10 @@ var baseFixedColumns = {
     }
     return $cell;
   },
+  _getContent: function _getContent(isFixedTableRendering) {
+    var _this$_fixedTableElem;
+    return isFixedTableRendering ? (_this$_fixedTableElem = this._fixedTableElement) === null || _this$_fixedTableElem === void 0 ? void 0 : _this$_fixedTableElem.parent() : this.callBase.apply(this, arguments);
+  },
   _wrapTableInScrollContainer: function _wrapTableInScrollContainer($table, isFixedTableRendering) {
     var $scrollContainer = this.callBase.apply(this, arguments);
     if (this._isFixedTableRendering || isFixedTableRendering) {
@@ -686,7 +690,9 @@ var RowsViewFixedColumnsExtender = extend({}, baseFixedColumns, {
     var isFixedColumns = this._isFixedColumns;
     this.element().toggleClass(FIXED_COLUMNS_CLASS, isFixedColumns);
     if (this.option('hoverStateEnabled') && isFixedColumns) {
-      this._attachHoverEvents();
+      deferred.done(() => {
+        this._attachHoverEvents();
+      });
     }
     return deferred;
   },

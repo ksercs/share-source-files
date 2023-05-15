@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/toast/ui.toast.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -230,7 +230,7 @@ var Toast = _ui.default.inherit({
     }
   },
   _show: function _show() {
-    return this.callBase.apply(this, arguments).done(function () {
+    return this.callBase.apply(this, arguments).always(function () {
       clearTimeout(this._hideTimeout);
       this._hideTimeout = setTimeout(this.hide.bind(this), this.option('displayTime'));
     }.bind(this));

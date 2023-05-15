@@ -1490,8 +1490,9 @@ class Scheduler extends Widget {
         }
       }],
       popupOptions: {
-        copyRootClassesToWrapper: true,
-        _ignoreCopyRootClassesToWrapperDeprecation: true
+        wrapperAttr: {
+          class: 'dx-dialog'
+        }
       }
     });
     return this._recurrenceDialog.show();

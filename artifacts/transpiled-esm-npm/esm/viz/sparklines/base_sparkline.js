@@ -6,7 +6,10 @@ import { extend } from '../../core/utils/extend';
 import { addNamespace } from '../../events/utils/index';
 import pointerEvents from '../../events/pointer';
 import { pointInCanvas } from '../core/utils';
+import $ from '../../core/renderer';
 var DEFAULT_LINE_SPACING = 2;
+var TOOLTIP_TABLE_BORDER_SPACING = 0;
+var TOOLTIP_TABLE_KEY_VALUE_SPACE = 15;
 var EVENT_NS = 'sparkline-tooltip';
 var POINTER_ACTION = addNamespace([pointerEvents.down, pointerEvents.move], EVENT_NS);
 import { Translator2D } from '../translators/translator2d';
@@ -35,33 +38,33 @@ function pointerHandler(_ref2) {
   that._enableOutHandler();
   that._showTooltip();
 }
-function generateDefaultCustomizeTooltipCallback(fontOptions, rtlEnabled) {
-  var lineSpacing = fontOptions.lineSpacing;
-  var lineHeight = (lineSpacing !== undefined && lineSpacing !== null ? lineSpacing : DEFAULT_LINE_SPACING) + fontOptions.size;
-  return function (customizeObject) {
-    var html = '';
-    var vt = customizeObject.valueText;
-    for (var i = 0; i < vt.length; i += 2) {
-      html += '<tr><td>' + vt[i] + '</td><td style=\'width: 15px\'></td><td style=\'text-align: ' + (rtlEnabled ? 'left' : 'right') + '\'>' + vt[i + 1] + '</td></tr>';
+function getDefaultTemplate(_ref3, textAlign) {
+  var {
+    lineSpacing,
+    size
+  } = _ref3;
+  var lineHeight = "".concat((lineSpacing !== null && lineSpacing !== void 0 ? lineSpacing : DEFAULT_LINE_SPACING) + size, "px");
+  return function (_ref4, container) {
+    var {
+      valueText
+    } = _ref4;
+    var table = $('<table>').css({
+      borderSpacing: TOOLTIP_TABLE_BORDER_SPACING,
+      lineHeight
+    });
+    for (var i = 0; i < valueText.length; i += 2) {
+      var tr = $('<tr>');
+      $('<td>').text(valueText[i]).appendTo(tr);
+      $('<td>').css({
+        width: TOOLTIP_TABLE_KEY_VALUE_SPACE
+      }).appendTo(tr);
+      $('<td>').css({
+        textAlign
+      }).text(valueText[i + 1]).appendTo(tr);
+      table.append(tr);
     }
-    return {
-      html: '<table style=\'border-spacing:0px; line-height: ' + lineHeight + 'px\'>' + html + '</table>'
-    };
+    container.append(table);
   };
-}
-function generateCustomizeTooltipCallback(customizeTooltip, fontOptions, rtlEnabled) {
-  var defaultCustomizeTooltip = generateDefaultCustomizeTooltipCallback(fontOptions, rtlEnabled);
-  if (isFunction(customizeTooltip)) {
-    return function (customizeObject) {
-      var res = customizeTooltip.call(customizeObject, customizeObject);
-      if (!('html' in res) && !('text' in res)) {
-        _extend(res, defaultCustomizeTooltip.call(customizeObject, customizeObject));
-      }
-      return res;
-    };
-  } else {
-    return defaultCustomizeTooltip;
-  }
 }
 function createAxis(isHorizontal) {
   var translator = new Translator2D({}, {}, {
@@ -189,11 +192,11 @@ var BaseSparkline = BaseWidget.inherit({
     if (that._outHandler) {
       return;
     }
-    var handler = _ref3 => {
+    var handler = _ref5 => {
       var {
         pageX,
         pageY
-      } = _ref3;
+      } = _ref5;
       var {
         left,
         top
@@ -252,12 +255,29 @@ BaseSparkline.prototype._setTooltipRendererOptions = function () {
   }
 };
 BaseSparkline.prototype._setTooltipOptions = function () {
-  var tooltip = this._tooltip;
-  var options = tooltip && this._getOption('tooltip');
-  tooltip && tooltip.update(_extend({}, options, {
-    customizeTooltip: generateCustomizeTooltipCallback(options.customizeTooltip, options.font, this.option('rtlEnabled')),
-    enabled: options.enabled && this._isTooltipEnabled()
-  }));
+  if (this._tooltip) {
+    var options = this._getOption('tooltip');
+    var defaultContentTemplate = this._getDefaultTooltipTemplate(options);
+    var contentTemplateOptions = defaultContentTemplate ? {
+      contentTemplate: defaultContentTemplate
+    } : {};
+    var optionsToUpdate = _extend(contentTemplateOptions, options, {
+      enabled: options.enabled && this._isTooltipEnabled()
+    });
+    this._tooltip.update(optionsToUpdate);
+  }
+};
+BaseSparkline.prototype._getDefaultTooltipTemplate = function (options) {
+  var defaultTemplateNeeded = true;
+  var textAlign = this.option('rtlEnabled') ? 'left' : 'right';
+  if (isFunction(options.customizeTooltip)) {
+    var _options$customizeToo;
+    this._tooltip.update(options);
+    var formatObject = this._getTooltipData();
+    var customizeResult = (_options$customizeToo = options.customizeTooltip.call(formatObject, formatObject)) !== null && _options$customizeToo !== void 0 ? _options$customizeToo : {};
+    defaultTemplateNeeded = !('html' in customizeResult) && !('text' in customizeResult);
+  }
+  return defaultTemplateNeeded && getDefaultTemplate(options.font, textAlign);
 };
 
 // PLUGINS_SECTION

@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/grid_core/ui.grid_core.column_headers.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -18,7 +18,14 @@ var _type = require("../../core/utils/type");
 var _iterator = require("../../core/utils/iterator");
 var _extend = require("../../core/utils/extend");
 var _uiGrid_core2 = require("./ui.grid_core.accessibility");
+var _dom_adapter = _interopRequireDefault(require("../../core/dom_adapter"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var CELL_CONTENT_CLASS = 'text-content';
 var HEADERS_CLASS = 'headers';
 var NOWRAP_CLASS = 'nowrap';
@@ -36,6 +43,7 @@ var SORT_INDEX_INDICATOR_CLASS = 'dx-sort-index-indicator';
 var HEADER_FILTER_CLASS_SELECTOR = '.dx-header-filter';
 var HEADER_FILTER_INDICATOR_CLASS = 'dx-header-filter-indicator';
 var MULTI_ROW_HEADER_CLASS = 'dx-header-multi-row';
+var LINK = 'dx-link';
 var columnHeadersModule = {
   defaultOptions: function defaultOptions() {
     return {
@@ -86,14 +94,55 @@ var columnHeadersModule = {
         _getDefaultTemplate: function _getDefaultTemplate(column) {
           var that = this;
           return function ($container, options) {
-            var $content = column.command ? $container : createCellContent(that, $container, options);
-            var caption = column.command !== 'expand' && column.caption;
-            if (caption) {
+            var caption = column.caption;
+            var needCellContent = !column.command || caption && column.command !== 'expand';
+            if (column.command === 'empty') {
+              that._renderEmptyMessage($container, options);
+            } else if (needCellContent) {
+              var $content = createCellContent(that, $container, options);
               $content.text(caption);
             } else if (column.command) {
               $container.html('&nbsp;');
             }
           };
+        },
+        _renderEmptyMessage: function _renderEmptyMessage($container, options) {
+          var textEmpty = this._getEmptyHeaderText();
+          if (!textEmpty) {
+            $container.html('&nbsp;');
+            return;
+          }
+          var $cellContent = createCellContent(this, $container, options);
+          var needSplit = textEmpty.includes('{0}');
+          if (needSplit) {
+            var _textEmpty$split = textEmpty.split('{0}'),
+              _textEmpty$split2 = _slicedToArray(_textEmpty$split, 2),
+              leftPart = _textEmpty$split2[0],
+              rightPart = _textEmpty$split2[1];
+            var columnChooserTitle = _message.default.format('dxDataGrid-emptyHeaderColumnChooserText');
+            var columnChooserView = this.component.getView('columnChooserView');
+            var $link = (0, _renderer.default)('<a>').text(columnChooserTitle).addClass(LINK);
+            _events_engine.default.on($link, 'click', this.createAction(function () {
+              return columnChooserView.showColumnChooser();
+            }));
+            $cellContent.append(_dom_adapter.default.createTextNode(leftPart)).append($link).append(_dom_adapter.default.createTextNode(rightPart));
+          } else {
+            $cellContent.text(textEmpty);
+          }
+        },
+        _getEmptyHeaderText: function _getEmptyHeaderText() {
+          var hasHiddenColumns = !!this.component.getView('columnChooserView').hasHiddenColumns();
+          var hasGroupedColumns = !!this.component.getView('headerPanel').hasGroupedColumns();
+          switch (true) {
+            case hasHiddenColumns && hasGroupedColumns:
+              return _message.default.format('dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText');
+            case hasGroupedColumns:
+              return _message.default.format('dxDataGrid-emptyHeaderWithGroupPanelText');
+            case hasHiddenColumns:
+              return _message.default.format('dxDataGrid-emptyHeaderWithColumnChooserText');
+            default:
+              return '';
+          }
         },
         _getHeaderTemplate: function _getHeaderTemplate(column) {
           return column.headerCellTemplate || {
@@ -206,11 +255,9 @@ var columnHeadersModule = {
             that._hasRowElements = true;
           }
         },
-        _getRowVisibleColumns: function _getRowVisibleColumns(rowIndex) {
-          return this._columnsController.getVisibleColumns(rowIndex);
-        },
         _renderRow: function _renderRow($table, options) {
-          options.columns = this._getRowVisibleColumns(options.row.rowIndex);
+          var rowIndex = this.getRowCount() === 1 ? null : options.row.rowIndex;
+          options.columns = this.getColumns(rowIndex);
           this.callBase($table, options);
         },
         _createCell: function _createCell(options) {
@@ -334,32 +381,11 @@ var columnHeadersModule = {
           }
           return this.callBase.apply(this, arguments);
         },
-        allowDragging: function allowDragging(column, sourceLocation, draggingPanels) {
-          var i;
-          var draggableColumnCount = 0;
+        allowDragging: function allowDragging(column) {
           var rowIndex = column && this._columnsController.getRowIndex(column.index);
-          var columns = this.getColumns(rowIndex === 0 ? 0 : null);
-          var canHideColumn = (column === null || column === void 0 ? void 0 : column.allowHiding) && columns.length > 1;
-          var allowDrag = function allowDrag(column) {
-            return column.allowReordering || column.allowGrouping || column.allowHiding;
-          };
-          for (i = 0; i < columns.length; i++) {
-            if (allowDrag(columns[i])) {
-              draggableColumnCount++;
-            }
-          }
-          if (draggableColumnCount <= 1 && !canHideColumn) {
-            return false;
-          } else if (!draggingPanels) {
-            return (this.option('allowColumnReordering') || this._columnsController.isColumnOptionUsed('allowReordering')) && column && column.allowReordering;
-          }
-          for (i = 0; i < draggingPanels.length; i++) {
-            var draggingPanel = draggingPanels[i];
-            if (draggingPanel && draggingPanel.allowDragging(column, sourceLocation)) {
-              return true;
-            }
-          }
-          return false;
+          var columns = this.getColumns(rowIndex);
+          var isReorderingEnabled = this.option('allowColumnReordering') || this._columnsController.isColumnOptionUsed('allowReordering');
+          return isReorderingEnabled && column.allowReordering && columns.length > 1;
         },
         getBoundingRect: function getBoundingRect() {
           var that = this;

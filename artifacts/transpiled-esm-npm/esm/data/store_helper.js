@@ -27,8 +27,13 @@ function arrangeSortingInfo(groupInfo, sortInfo) {
   return filteredGroup.concat(sortInfo);
 }
 function queryByOptions(query, options, isCountQuery) {
+  var _options;
   options = options || {};
   var filter = options.filter;
+  if ((_options = options) !== null && _options !== void 0 && _options.langParams) {
+    var _query$setLangParams, _query;
+    (_query$setLangParams = (_query = query).setLangParams) === null || _query$setLangParams === void 0 ? void 0 : _query$setLangParams.call(_query, options.langParams);
+  }
   if (filter) {
     query = query.filter(filter);
   }

@@ -455,14 +455,18 @@ var Form = _ui.default.inherit({
       guid: item.guid
     }].concat(_toConsumableArray((_item$tabs = item.tabs) !== null && _item$tabs !== void 0 ? _item$tabs : [])), tabPanel);
   },
-  _itemGroupTemplate: function _itemGroupTemplate(item, e, $container) {
+  _itemGroupTemplate: function _itemGroupTemplate(item, options, $container) {
     var _this4 = this;
+    var id = options.editorOptions.inputAttr.id;
     var $group = (0, _renderer.default)('<div>').toggleClass(_constants.FORM_GROUP_WITH_CAPTION_CLASS, (0, _type.isDefined)(item.caption) && item.caption.length).addClass(_constants.FORM_GROUP_CLASS).appendTo($container);
+    var groupAria = {
+      role: 'group',
+      'labelledby': id
+    };
+    this.setAria(groupAria, $group);
     (0, _renderer.default)($container).parent().addClass(_constants.FIELD_ITEM_CONTENT_HAS_GROUP_CLASS);
-    var colCount;
-    var layoutManager;
     if (item.caption) {
-      (0, _renderer.default)('<span>').addClass(_constants.FORM_GROUP_CAPTION_CLASS).text(item.caption).appendTo($group);
+      (0, _renderer.default)('<span>').addClass(_constants.FORM_GROUP_CAPTION_CLASS).text(item.caption).attr('id', id).appendTo($group);
     }
     var $groupContent = (0, _renderer.default)('<div>').addClass(_constants.FORM_GROUP_CONTENT_CLASS).appendTo($group);
     if (item.groupContentTemplate) {
@@ -479,7 +483,7 @@ var Form = _ui.default.inherit({
       };
       item._renderGroupContentTemplate();
     } else {
-      layoutManager = this._renderLayoutManager($groupContent, this._createLayoutManagerOptions(this._tryGetItemsForTemplate(item), {
+      var layoutManager = this._renderLayoutManager($groupContent, this._createLayoutManagerOptions(this._tryGetItemsForTemplate(item), {
         colCount: item.colCount,
         colCountByScreen: item.colCountByScreen,
         alignItemLabels: item.alignItemLabels,
@@ -488,7 +492,7 @@ var Form = _ui.default.inherit({
       this._itemsRunTimeInfo && this._itemsRunTimeInfo.extendRunTimeItemInfoByKey(item.guid, {
         layoutManager: layoutManager
       });
-      colCount = layoutManager._getColCount();
+      var colCount = layoutManager._getColCount();
       if (!this._groupsColCount.includes(colCount)) {
         this._groupsColCount.push(colCount);
       }

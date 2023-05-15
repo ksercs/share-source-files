@@ -1,7 +1,7 @@
 /**
 * DevExtreme (ui/drop_down_button.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -327,3 +327,55 @@ export type Properties = dxDropDownButtonOptions;
 
 /** @deprecated use Properties instead */
 export type Options = dxDropDownButtonOptions;
+
+type EventProps<T> = Extract<keyof T, `on${any}`>;
+type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+type FilterOutHidden<T> = Omit<T, 'onFocusIn' | 'onFocusOut'>;
+
+type EventsIntegrityCheckingHelper = CheckedEvents<FilterOutHidden<Properties>, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxDropDownButtonOptions.onButtonClick
+ * @type_function_param1 e:{ui/drop_down_button:ButtonClickEvent}
+ */
+onButtonClick?: ((e: ButtonClickEvent) => void);
+/**
+ * @skip
+ * @docid dxDropDownButtonOptions.onContentReady
+ * @type_function_param1 e:{ui/drop_down_button:ContentReadyEvent}
+ */
+onContentReady?: ((e: ContentReadyEvent) => void);
+/**
+ * @skip
+ * @docid dxDropDownButtonOptions.onDisposing
+ * @type_function_param1 e:{ui/drop_down_button:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxDropDownButtonOptions.onInitialized
+ * @type_function_param1 e:{ui/drop_down_button:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxDropDownButtonOptions.onItemClick
+ * @type_function_param1 e:{ui/drop_down_button:ItemClickEvent}
+ */
+onItemClick?: ((e: ItemClickEvent) => void);
+/**
+ * @skip
+ * @docid dxDropDownButtonOptions.onOptionChanged
+ * @type_function_param1 e:{ui/drop_down_button:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxDropDownButtonOptions.onSelectionChanged
+ * @type_function_param1 e:{ui/drop_down_button:SelectionChangedEvent}
+ */
+onSelectionChanged?: ((e: SelectionChangedEvent) => void);
+};

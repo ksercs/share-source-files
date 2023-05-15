@@ -1,20 +1,20 @@
 /**
 * DevExtreme (data/data_source.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 import {
- FilterDescriptor,
- GroupDescriptor,
- LoadOptions,
- SearchOperation,
- SelectDescriptor,
- SortDescriptor,
- Store,
- StoreOptions,
+  FilterDescriptor,
+  GroupDescriptor, LangParams,
+  LoadOptions,
+  SearchOperation,
+  SelectDescriptor,
+  SortDescriptor,
+  Store,
+  StoreOptions,
 } from './index';
 import { DxExtendedPromise } from '../core/utils/deferred';
 import { Options as CustomStoreOptions } from './custom_store';
@@ -59,6 +59,12 @@ export interface DataSourceOptions<
      * @public
      */
     group?: GroupDescriptor<TItem> | Array<GroupDescriptor<TItem>>;
+    /**
+     * @docid
+     * @public
+     */
+    // eslint-disable-next-line spellcheck/spell-checker
+    langParams?: LangParams;
     /**
      * @docid
      * @type_function_param1 dataItem:object

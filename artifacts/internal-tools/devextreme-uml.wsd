@@ -151,6 +151,7 @@ object DataSource {
   Array|String expand
   Filter expression filter
   Group expression group
+  LangParams langParams
   function(dataItem) map
   function(e) onChanged
   function(error) onLoadError
@@ -168,6 +169,20 @@ object DataSource {
   Sort expression sort
   Store|StoreOptions|Array store
 }
+
+object DateBoxBase {
+  String applyButtonText
+  dxCalendarOptions calendarOptions
+  String cancelButtonText
+  String dateSerializationFormat
+  Format displayFormat
+  dxPopupOptions dropDownOptions
+  Date|Number|String max
+  Date|Number|String min
+  String todayButtonText
+  Boolean useMaskBehavior
+}
+dxDropDownEditor <|-up- DateBoxBase
 
 object DOMComponent {
   Object bindingOptions
@@ -207,7 +222,16 @@ object dxAccordion {
   template|function(itemData, itemIndex, itemElement) itemTemplate
   template|function(itemData, itemIndex, itemElement) itemTitleTemplate
   Boolean multiple
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onItemClick
+  function(e) onItemContextMenu
+  function(e) onItemHold
+  function(e) onItemRendered
   function(e) onItemTitleClick
+  function(e) onOptionChanged
+  function(e) onSelectionChanged
   Boolean repaintChangesOnly
   Number selectedIndex
 }
@@ -245,6 +269,25 @@ object dxAutocomplete {
   Number maxItemCount
   Number minSearchLength
   String noDataText
+  function(e) onChange
+  function(e) onClosed
+  function(e) onContentReady
+  function(e) onCopy
+  function(e) onCut
+  function(e) onDisposing
+  function(e) onEnterKey
+  function(e) onFocusIn
+  function(e) onFocusOut
+  function(e) onInitialized
+  function(e) onInput
+  function(e) onItemClick
+  function(e) onKeyDown
+  function(e) onKeyUp
+  function(e) onOpened
+  function(e) onOptionChanged
+  function(e) onPaste
+  function(e) onSelectionChanged
+  function(e) onValueChanged
   NO_TYPE searchEnabled
   NO_TYPE showDataBeforeSearch
   Boolean showDropDownButton
@@ -299,6 +342,16 @@ CollectionWidget <|-up- dxBox
 object dxBullet {
   String color
   Number endScaleValue
+  function(e) onDisposing
+  function(e) onDrawn
+  function(e) onExported
+  function(e) onExporting
+  function(e) onFileSaving
+  function(e) onIncidentOccurred
+  function(e) onInitialized
+  function(e) onOptionChanged
+  function(e) onTooltipHidden
+  function(e) onTooltipShown
   Boolean showTarget
   Boolean showZeroLevel
   Number startScaleValue
@@ -412,6 +465,11 @@ object dxCheckBox {
   Boolean hoverStateEnabled
   Number|String iconSize
   String name
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
+  function(e) onValueChanged
   String text
   Boolean|null|undefined value
 }
@@ -420,6 +478,16 @@ Editor <|-up- dxCheckBox
 object dxCircularGauge {
   template centerTemplate
   Object geometry
+  function(e) onDisposing
+  function(e) onDrawn
+  function(e) onExported
+  function(e) onExporting
+  function(e) onFileSaving
+  function(e) onIncidentOccurred
+  function(e) onInitialized
+  function(e) onOptionChanged
+  function(e) onTooltipHidden
+  function(e) onTooltipShown
   Object rangeContainer
   Object scale
   GaugeIndicator subvalueIndicator
@@ -436,7 +504,23 @@ object dxColorBox {
   template|function(value, fieldElement) fieldTemplate
   Number keyStep
   NO_TYPE maxLength
+  function(e) onChange
+  function(e) onClosed
   NO_TYPE onContentReady
+  function(e) onCopy
+  function(e) onCut
+  function(e) onDisposing
+  function(e) onEnterKey
+  function(e) onFocusIn
+  function(e) onFocusOut
+  function(e) onInitialized
+  function(e) onInput
+  function(e) onKeyDown
+  function(e) onKeyUp
+  function(e) onOpened
+  function(e) onOptionChanged
+  function(e) onPaste
+  function(e) onValueChanged
   NO_TYPE spellcheck
   String value
   NO_TYPE valueChangeEvent
@@ -449,10 +533,18 @@ object dxContextMenu {
   Boolean|function(event) hideOnOutsideClick
   NO_TYPE itemHoldAction
   Array items
+  function(e) onContentReady
+  function(e) onDisposing
   function(e) onHidden
   function(e) onHiding
+  function(e) onInitialized
+  function(e) onItemClick
+  function(e) onItemContextMenu
+  function(e) onItemRendered
   NO_TYPE onItemReordered
+  function(e) onOptionChanged
   function(e) onPositioning
+  function(e) onSelectionChanged
   function(e) onShowing
   function(e) onShown
   PositionConfig position
@@ -504,30 +596,85 @@ GridBase <|-up- dxDataGrid
 
 object dxDateBox {
   Boolean adaptivityEnabled
-  String applyButtonText
-  dxCalendarOptions calendarOptions
-  String cancelButtonText
   String dateOutOfRangeMessage
-  String dateSerializationFormat
   Array|function(data) disabledDates
-  Format displayFormat
-  dxPopupOptions dropDownOptions
+  any inputAttr
   Number interval
   String invalidDateMessage
-  Date|Number|String max
-  Date|Number|String min
+  String label
+  String|Number maxLength
+  String name
+  function(e) onChange
+  function(e) onClosed
+  function(e) onContentReady
+  function(e) onCopy
+  function(e) onCut
+  function(e) onDisposing
+  function(e) onEnterKey
+  function(e) onFocusIn
+  function(e) onFocusOut
+  function(e) onInitialized
+  function(e) onInput
+  function(e) onKeyDown
+  function(e) onKeyUp
+  function(e) onOpened
+  function(e) onOptionChanged
+  function(e) onPaste
+  function(e) onValueChanged
   Enums.DatePickerType pickerType
   String placeholder
   Boolean showAnalogClock
-  String todayButtonText
+  String text
   Enums.DateType type
-  Boolean useMaskBehavior
   Date|Number|String value
 }
-dxDropDownEditor <|-up- dxDateBox
+DateBoxBase <|-up- dxDateBox
+
+object dxDateRangeBox {
+  Date|Number|String endDate
+  any endDateInputAttr
+  String endDateLabel
+  String endDateName
+  String endDateOutOfRangeMessage
+  String endDatePlaceholder
+  String endDateText
+  String invalidEndDateMessage
+  String invalidStartDateMessage
+  Boolean multiView
+  function(e) onChange
+  function(e) onClosed
+  function(e) onContentReady
+  function(e) onCopy
+  function(e) onCut
+  function(e) onDisposing
+  function(e) onEnterKey
+  function(e) onFocusIn
+  function(e) onFocusOut
+  function(e) onInitialized
+  function(e) onInput
+  function(e) onKeyDown
+  function(e) onKeyUp
+  function(e) onOpened
+  function(e) onOptionChanged
+  function(e) onPaste
+  function(e) onValueChanged
+  Date|Number|String startDate
+  any startDateInputAttr
+  String startDateLabel
+  String startDateName
+  String startDateOutOfRangeMessage
+  String startDatePlaceholder
+  String startDateText
+  Array value
+}
+DateBoxBase <|-up- dxDateRangeBox
 
 object dxDeferRendering {
   AnimationConfig animation
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
   function(e) onRendered
   function(e) onShown
   DxPromise|Boolean renderWhen
@@ -558,9 +705,13 @@ object dxDiagram {
   NO_TYPE hoverStateEnabled
   Object mainToolbar
   Object nodes
+  function(e) onContentReady
   function(e) onCustomCommand
+  function(e) onDisposing
+  function(e) onInitialized
   function(e) onItemClick
   function(e) onItemDblClick
+  function(e) onOptionChanged
   function(e) onRequestEditOperation
   function(e) onRequestLayoutUpdate
   function(e) onSelectionChanged
@@ -586,10 +737,13 @@ object dxDraggable {
   Boolean clone
   template|function(dragInfo, containerElement) dragTemplate
   String filter
+  function(e) onDisposing
   function(e) onDragEnd
   function(e) onDragMove
   function(e) onDragStart
   function(e) onDrop
+  function(e) onInitialized
+  function(e) onOptionChanged
 }
 DraggableBase <|-up- dxDraggable
 
@@ -603,6 +757,9 @@ object dxDrawer {
   Number maxSize
   Number minSize
   NO_TYPE onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
   Boolean opened
   Enums.OpenedStateMode openedStateMode
   Enums.PanelLocation position
@@ -624,7 +781,23 @@ object dxDropDownBox {
   template|function(value, fieldElement) fieldTemplate
   Array items
   template itemTemplate
+  function(e) onChange
+  function(e) onClosed
   NO_TYPE onContentReady
+  function(e) onCopy
+  function(e) onCut
+  function(e) onDisposing
+  function(e) onEnterKey
+  function(e) onFocusIn
+  function(e) onFocusOut
+  function(e) onInitialized
+  function(e) onInput
+  function(e) onKeyDown
+  function(e) onKeyUp
+  function(e) onOpened
+  function(e) onOptionChanged
+  function(e) onPaste
+  function(e) onValueChanged
   Boolean openOnFieldClick
   Boolean spellcheck
   String valueChangeEvent
@@ -776,9 +949,13 @@ object dxFileUploader {
   Boolean multiple
   String name
   function(e) onBeforeSend
+  function(e) onContentReady
+  function(e) onDisposing
   function(e) onDropZoneEnter
   function(e) onDropZoneLeave
   function(e) onFilesUploaded
+  function(e) onInitialized
+  function(e) onOptionChanged
   function(e) onProgress
   function(e) onUploadAborted
   function(e) onUploaded
@@ -888,6 +1065,15 @@ object dxGallery {
   NO_TYPE keyExpr
   Boolean loop
   String noDataText
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onItemClick
+  function(e) onItemContextMenu
+  function(e) onItemHold
+  function(e) onItemRendered
+  function(e) onOptionChanged
+  function(e) onSelectionChanged
   Number selectedIndex
   NO_TYPE selectedItemKeys
   NO_TYPE selectedItems
@@ -910,12 +1096,16 @@ object dxGantt {
   dxGanttFilterRow filterRow
   Enums.FirstDayOfWeek firstDayOfWeek
   dxGanttHeaderFilter headerFilter
+  function(e) onContentReady
   function(e) onContextMenuPreparing
   function(e) onCustomCommand
   function(e) onDependencyDeleted
   function(e) onDependencyDeleting
   function(e) onDependencyInserted
   function(e) onDependencyInserting
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
   function(e) onResourceAssigned
   function(e) onResourceAssigning
   function(e) onResourceDeleted
@@ -1051,6 +1241,10 @@ object dxLoadIndicator {
   NO_TYPE focusStateEnabled
   NO_TYPE hoverStateEnabled
   String indicatorSrc
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
   NO_TYPE tabIndex
 }
 Widget <|-up- dxLoadIndicator
@@ -1068,6 +1262,14 @@ object dxLoadPanel {
   Number|String|function() maxHeight
   Number|String|function() maxWidth
   String message
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onHidden
+  function(e) onHiding
+  function(e) onInitialized
+  function(e) onOptionChanged
+  function(e) onShowing
+  function(e) onShown
   Enums.PositionAlignment|PositionConfig|function() position
   String shadingColor
   Boolean showIndicator
@@ -1143,8 +1345,11 @@ object dxMap {
   Array markers
   function(e) onClick
   NO_TYPE onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
   function(e) onMarkerAdded
   function(e) onMarkerRemoved
+  function(e) onOptionChanged
   function(e) onReady
   function(e) onRouteAdded
   function(e) onRouteRemoved
@@ -1202,6 +1407,15 @@ object dxMultiView {
   Array items
   NO_TYPE keyExpr
   Boolean loop
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onItemClick
+  function(e) onItemContextMenu
+  function(e) onItemHold
+  function(e) onItemRendered
+  function(e) onOptionChanged
+  function(e) onSelectionChanged
   Number selectedIndex
   NO_TYPE selectedItemKeys
   NO_TYPE selectedItems
@@ -1220,6 +1434,21 @@ object dxNumberBox {
   Number max
   Number min
   Enums.NumberBoxType mode
+  function(e) onChange
+  function(e) onContentReady
+  function(e) onCopy
+  function(e) onCut
+  function(e) onDisposing
+  function(e) onEnterKey
+  function(e) onFocusIn
+  function(e) onFocusOut
+  function(e) onInitialized
+  function(e) onInput
+  function(e) onKeyDown
+  function(e) onKeyUp
+  function(e) onOptionChanged
+  function(e) onPaste
+  function(e) onValueChanged
   NO_TYPE showMaskMode
   Boolean showSpinButtons
   NO_TYPE spellcheck
@@ -1376,9 +1605,18 @@ object dxPopover {
   Object|String hideEvent
   Boolean|function(event) hideOnOutsideClick
   Boolean hideOnParentScroll
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onHidden
+  function(e) onHiding
+  function(e) onInitialized
+  function(e) onOptionChanged
   function(e) onResize
   function(e) onResizeEnd
   function(e) onResizeStart
+  function(e) onShowing
+  function(e) onShown
+  function(e) onTitleRendered
   Enums.Position|PositionConfig position
   NO_TYPE resizeEnabled
   NO_TYPE restorePosition
@@ -1422,6 +1660,11 @@ object dxProgressBar {
   NO_TYPE activeStateEnabled
   NO_TYPE focusStateEnabled
   function(e) onComplete
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
+  function(e) onValueChanged
   Boolean showStatus
   String|function(ratio, value) statusFormat
   NO_TYPE tabIndex
@@ -1465,6 +1708,10 @@ object dxRangeSlider {
   Number end
   String endName
   NO_TYPE name
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
   function(e) onValueChanged
   Number start
   String startName
@@ -1474,6 +1721,11 @@ dxSliderBase <|-up- dxRangeSlider
 
 object dxRecurrenceEditor {
   Enums.FirstDayOfWeek firstDayOfWeek
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
+  function(e) onValueChanged
   Date startDate
   String value
 }
@@ -1488,6 +1740,9 @@ object dxResizable {
   Number maxWidth
   Number minHeight
   Number minWidth
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
   function(e) onResize
   function(e) onResizeEnd
   function(e) onResizeStart
@@ -1630,8 +1885,13 @@ object dxScrollable {
 DOMComponent <|-up- dxScrollable
 
 object dxScrollView {
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
   function(e) onPullDown
   function(e) onReachBottom
+  function(e) onScroll
+  function(e) onUpdated
   String pulledDownText
   String pullingDownText
   String reachBottomText
@@ -1645,7 +1905,26 @@ object dxSelectBox {
   String customItemCreateEvent
   dxPopupOptions dropDownOptions
   template|function(selectedItem, fieldElement) fieldTemplate
+  function(e) onChange
+  function(e) onClosed
+  function(e) onContentReady
+  function(e) onCopy
   function(e) onCustomItemCreating
+  function(e) onCut
+  function(e) onDisposing
+  function(e) onEnterKey
+  function(e) onFocusIn
+  function(e) onFocusOut
+  function(e) onInitialized
+  function(e) onInput
+  function(e) onItemClick
+  function(e) onKeyDown
+  function(e) onKeyUp
+  function(e) onOpened
+  function(e) onOptionChanged
+  function(e) onPaste
+  function(e) onSelectionChanged
+  function(e) onValueChanged
   Boolean openOnFieldClick
   String placeholder
   Boolean showDropDownButton
@@ -1727,6 +2006,9 @@ object dxSpeedDialAction {
   String label
   function(e) onClick
   function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
   Boolean visible
   NO_TYPE width
 }
@@ -1737,6 +2019,11 @@ object dxSwitch {
   Boolean focusStateEnabled
   Boolean hoverStateEnabled
   String name
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onOptionChanged
+  function(e) onValueChanged
   String switchedOffText
   String switchedOnText
   Boolean value
@@ -1749,6 +2036,15 @@ object dxTabPanel {
   Boolean hoverStateEnabled
   Array items
   template|function(itemData, itemIndex, itemElement) itemTitleTemplate
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onItemClick
+  function(e) onItemContextMenu
+  function(e) onItemHold
+  function(e) onItemRendered
+  function(e) onOptionChanged
+  function(e) onSelectionChanged
   function(e) onTitleClick
   function(e) onTitleHold
   function(e) onTitleRendered
@@ -1784,12 +2080,28 @@ object dxTagBox {
   Number maxDisplayedTags
   Number maxFilterQueryLength
   Boolean multiline
+  function(e) onChange
+  function(e) onClosed
+  function(e) onContentReady
   NO_TYPE onCopy
+  function(e) onCustomItemCreating
   NO_TYPE onCut
+  function(e) onDisposing
+  function(e) onEnterKey
+  function(e) onFocusIn
+  function(e) onFocusOut
+  function(e) onInitialized
+  function(e) onInput
+  function(e) onItemClick
+  function(e) onKeyDown
+  function(e) onKeyUp
   function(e) onMultiTagPreparing
+  function(e) onOpened
+  function(e) onOptionChanged
   NO_TYPE onPaste
   function(e) onSelectAllValueChanged
   function(e) onSelectionChanged
+  function(e) onValueChanged
   NO_TYPE openAction
   Enums.SelectAllMode selectAllMode
   String selectAllText
@@ -1819,6 +2131,21 @@ object dxTextArea {
   Number|String maxHeight
   Number|String minHeight
   NO_TYPE mode
+  function(e) onChange
+  function(e) onContentReady
+  function(e) onCopy
+  function(e) onCut
+  function(e) onDisposing
+  function(e) onEnterKey
+  function(e) onFocusIn
+  function(e) onFocusOut
+  function(e) onInitialized
+  function(e) onInput
+  function(e) onKeyDown
+  function(e) onKeyUp
+  function(e) onOptionChanged
+  function(e) onPaste
+  function(e) onValueChanged
   NO_TYPE showClearButton
   NO_TYPE showMaskMode
   Boolean spellcheck
@@ -1829,6 +2156,21 @@ dxTextBox <|-up- dxTextArea
 object dxTextBox {
   String|Number maxLength
   Enums.TextBoxType mode
+  function(e) onChange
+  function(e) onContentReady
+  function(e) onCopy
+  function(e) onCut
+  function(e) onDisposing
+  function(e) onEnterKey
+  function(e) onFocusIn
+  function(e) onFocusOut
+  function(e) onInitialized
+  function(e) onInput
+  function(e) onKeyDown
+  function(e) onKeyUp
+  function(e) onOptionChanged
+  function(e) onPaste
+  function(e) onValueChanged
   String value
 }
 dxTextEditor <|-up- dxTextBox
@@ -1900,6 +2242,14 @@ object dxToast {
   Number|String|function() maxWidth
   String message
   Number|String|function() minWidth
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onHidden
+  function(e) onHiding
+  function(e) onInitialized
+  function(e) onOptionChanged
+  function(e) onShowing
+  function(e) onShown
   PositionConfig|String position
   Boolean shading
   Enums.ToastType type
@@ -1928,6 +2278,14 @@ CollectionWidget <|-up- dxToolbar
 
 object dxTooltip {
   NO_TYPE enableBodyScroll
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onHidden
+  function(e) onHiding
+  function(e) onInitialized
+  function(e) onOptionChanged
+  function(e) onShowing
+  function(e) onShown
   NO_TYPE onTitleRendered
   NO_TYPE showCloseButton
   NO_TYPE showTitle
@@ -2067,10 +2425,15 @@ object dxValidationSummary {
   NO_TYPE itemRender
   NO_TYPE keyExpr
   NO_TYPE noDataText
+  function(e) onContentReady
+  function(e) onDisposing
+  function(e) onInitialized
+  function(e) onItemClick
   NO_TYPE onItemContextMenu
   NO_TYPE onItemHold
   NO_TYPE onItemRendered
   NO_TYPE onItemSelect
+  function(e) onOptionChanged
   NO_TYPE onSelectionChanged
   NO_TYPE rtlEnabled
   NO_TYPE selectedIndex

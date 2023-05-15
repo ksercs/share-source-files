@@ -1,7 +1,7 @@
 /**
 * DevExtreme (renovation/ui/pager/page_size/small.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -12,11 +12,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 exports.viewFunction = exports.PageSizeSmallProps = exports.PageSizeSmall = void 0;
 var _inferno = require("inferno");
 var _inferno2 = require("@devextreme/runtime/inferno");
+var _message = _interopRequireDefault(require("../../../../localization/message"));
 var _select_box = require("../../editors/drop_down_editors/select_box");
 var _calculate_values_fitted_width = require("../utils/calculate_values_fitted_width");
 var _get_element_width = require("../utils/get_element_width");
 var _pager_props = require("../common/pager_props");
-var _excluded = ["pageSize", "pageSizeChange", "pageSizes", "parentRef"];
+var _excluded = ["inputAttr", "pageSize", "pageSizeChange", "pageSizes", "parentRef"];
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -29,6 +31,7 @@ function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.crea
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 var viewFunction = function viewFunction(_ref) {
   var _ref$props = _ref.props,
+    inputAttr = _ref$props.inputAttr,
     pageSize = _ref$props.pageSize,
     pageSizeChange = _ref$props.pageSizeChange,
     pageSizes = _ref$props.pageSizes,
@@ -39,16 +42,28 @@ var viewFunction = function viewFunction(_ref) {
     "dataSource": pageSizes,
     "value": pageSize,
     "valueChange": pageSizeChange,
-    "width": width
+    "width": width,
+    "inputAttr": inputAttr
   });
 };
 exports.viewFunction = viewFunction;
-var PageSizeSmallProps = {};
+var PageSizeSmallProps = {
+  inputAttr: Object.freeze({
+    'aria-label': _message.default.format('dxPager-ariaPageSize')
+  })
+};
 exports.PageSizeSmallProps = PageSizeSmallProps;
 var PageSizeSmallPropsType = Object.defineProperties({}, {
   pageSize: {
     get: function get() {
       return _pager_props.InternalPagerProps.pageSize;
+    },
+    configurable: true,
+    enumerable: true
+  },
+  inputAttr: {
+    get: function get() {
+      return PageSizeSmallProps.inputAttr;
     },
     configurable: true,
     enumerable: true
@@ -67,11 +82,11 @@ var PageSizeSmall = /*#__PURE__*/function (_InfernoComponent) {
   }
   var _proto = PageSizeSmall.prototype;
   _proto.createEffects = function createEffects() {
-    return [new _inferno2.InfernoEffect(this.updateWidth, [this.props, this.state.minWidth, this.props.pageSize, this.props.pageSizeChange, this.props.pageSizes])];
+    return [new _inferno2.InfernoEffect(this.updateWidth, [this.props, this.state.minWidth, this.props.pageSize, this.props.pageSizeChange, this.props.pageSizes, this.props.inputAttr])];
   };
   _proto.updateEffects = function updateEffects() {
     var _this$_effects$;
-    (_this$_effects$ = this._effects[0]) === null || _this$_effects$ === void 0 ? void 0 : _this$_effects$.update([this.props, this.state.minWidth, this.props.pageSize, this.props.pageSizeChange, this.props.pageSizes]);
+    (_this$_effects$ = this._effects[0]) === null || _this$_effects$ === void 0 ? void 0 : _this$_effects$.update([this.props, this.state.minWidth, this.props.pageSize, this.props.pageSizeChange, this.props.pageSizes, this.props.inputAttr]);
   };
   _proto.updateWidth = function updateWidth() {
     var _this2 = this;
@@ -100,6 +115,7 @@ var PageSizeSmall = /*#__PURE__*/function (_InfernoComponent) {
     key: "restAttributes",
     get: function get() {
       var _this$props = this.props,
+        inputAttr = _this$props.inputAttr,
         pageSize = _this$props.pageSize,
         pageSizeChange = _this$props.pageSizeChange,
         pageSizes = _this$props.pageSizes,

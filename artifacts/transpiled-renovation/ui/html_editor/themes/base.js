@@ -15,6 +15,7 @@ if (_devextremeQuill.default) {
       _this = _Theme.call(this, quill, options) || this;
       _this.quill.root.classList.add('dx-htmleditor-content');
       _this.quill.root.setAttribute('role', 'textbox');
+      _this.quill.root.setAttribute('aria-label', 'Editor content');
       return _this;
     }
     return BaseTheme;

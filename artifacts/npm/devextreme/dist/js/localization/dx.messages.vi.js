@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.vi.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,10 @@
             "dxDateBox-simulatedDataPickerTitleDate": "Lựa chọn ngày",
             "dxDateBox-simulatedDataPickerTitleDateTime": "Chọn ngày và giờ",
             "dxDateBox-validation-datetime": "Giá trị phải là ngày hoặc giờ",
+            "dxDateBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateBox-endDateOutOfRangeMessage": "End date is out of range",
             "dxFileUploader-selectFile": "Chọn tập tin",
             "dxFileUploader-dropFile": "hoặc Thả tập tin vào đây",
             "dxFileUploader-bytes": "byte",
@@ -92,6 +96,10 @@
             "dxForm-requiredMessage": "{0} là bắt buộc",
             "dxNumberBox-invalidValueMessage": "Giá trị phải là một số",
             "dxNumberBox-noDataText": "Không có dữ liệu",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "Use {0} to display columns",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "Drag a column from the group panel here",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Use {0} or drag a column from the group panel",
+            "dxDataGrid-emptyHeaderColumnChooserText": "column chooser",
             "dxDataGrid-columnChooserTitle": "Trình chọn cột",
             "dxDataGrid-columnChooserEmptyText": "Kéo một cột vào đây để ẩn nó đi",
             "dxDataGrid-groupContinuesMessage": "Tiếp tục ở trang tiếp theo",
@@ -124,6 +132,7 @@
             "dxDataGrid-filterRowOperationBetween": "Giữa",
             "dxDataGrid-filterRowOperationBetweenStartText": "Bắt đầu",
             "dxDataGrid-filterRowOperationBetweenEndText": "Kết thúc",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "Áp dụng bộ lọc",
             "dxDataGrid-trueText": "đúng",
             "dxDataGrid-falseText": "sai",
@@ -180,11 +189,14 @@
             "dxTreeList-editingAddRowToNode": "Thêm",
             "dxPager-infoText": "Trang {0} của {1} ({2} mục)",
             "dxPager-pagesCountText": "của",
+            "dxPager-pageSize": "Items per page: {0}",
             "dxPager-pageSizesAllText": "Tất cả",
             "dxPager-page": "Page {0}",
             "dxPager-prevPage": "Previous Page",
             "dxPager-nextPage": "Next Page",
             "dxPager-ariaLabel": "Page Navigation",
+            "dxPager-ariaPageSize": "Page size",
+            "dxPager-ariaPageNumber": "Page number",
             "dxPivotGrid-grandTotal": "Tổng tất cả",
             "dxPivotGrid-total": "{0} Tổng",
             "dxPivotGrid-fieldChooserTitle": "Trình lựa chọn Trường",
@@ -250,6 +262,7 @@
             "dxScheduler-moreAppointments": "{0} thêm",
             "dxCalendar-todayButtonText": "Hôm nay",
             "dxCalendar-ariaWidgetName": "Lịch",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "Đỏ",
             "dxColorView-ariaGreen": "Xanh lá",
             "dxColorView-ariaBlue": "Xanh nước biển",

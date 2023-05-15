@@ -3,7 +3,6 @@
 exports.default = void 0;
 var _renderer = _interopRequireDefault(require("../../core/renderer"));
 var _utils = _interopRequireDefault(require("./utils.caret"));
-var _utils2 = require("./utils.support");
 var _iterator = require("../../core/utils/iterator");
 var _index = require("../../events/utils/index");
 var _events_engine = _interopRequireDefault(require("../../events/core/events_engine"));
@@ -16,8 +15,7 @@ var _string = require("../../core/utils/string");
 var _wheel = require("../../events/core/wheel");
 var _uiText_editorMask = require("./ui.text_editor.mask.rule");
 var _uiText_editor = _interopRequireDefault(require("./ui.text_editor.base"));
-var _uiText_editorMaskStrategy = _interopRequireDefault(require("./ui.text_editor.mask.strategy.default"));
-var _uiText_editorMaskStrategy2 = _interopRequireDefault(require("./ui.text_editor.mask.strategy.input_events"));
+var _uiText_editorMask2 = _interopRequireDefault(require("./ui.text_editor.mask.strategy"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var stubCaret = function stubCaret() {
   return {};
@@ -71,7 +69,6 @@ var TextEditorMask = _uiText_editor.default.inherit({
   _supportedKeys: function _supportedKeys() {
     var that = this;
     var keyHandlerMap = {
-      backspace: that._maskStrategy.getHandler('backspace'),
       del: that._maskStrategy.getHandler('del'),
       enter: that._changeHandler
     };
@@ -93,9 +90,7 @@ var TextEditorMask = _uiText_editor.default.inherit({
     this._initMaskStrategy();
   },
   _initMaskStrategy: function _initMaskStrategy() {
-    this._maskStrategy = (0, _utils2.isInputEventsL2Supported)() ? new _uiText_editorMaskStrategy2.default(this) :
-    // FF, old Safari and desktop Chrome (https://bugs.chromium.org/p/chromium/issues/detail?id=947408)
-    new _uiText_editorMaskStrategy.default(this);
+    this._maskStrategy = new _uiText_editorMask2.default(this);
   },
   _initMarkup: function _initMarkup() {
     this._renderHiddenElement();
@@ -311,9 +306,7 @@ var TextEditorMask = _uiText_editor.default.inherit({
     var previousText = this._input().val();
     var raiseInputEvent = function raiseInputEvent() {
       if (previousText !== _this._input().val()) {
-        _this._maskStrategy.runWithoutEventProcessing(function () {
-          return _events_engine.default.trigger(_this._input(), 'input');
-        });
+        _events_engine.default.trigger(_this._input(), 'input');
       }
     };
     var handled = keyHandler();

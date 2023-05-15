@@ -109,8 +109,9 @@ var MobileTooltipStrategy = /*#__PURE__*/function (_TooltipStrategyBase) {
       },
       onShown: this._onShown.bind(this),
       contentTemplate: this._getContentTemplate(dataList),
-      copyRootClassesToWrapper: true,
-      _ignoreCopyRootClassesToWrapperDeprecation: true
+      wrapperAttr: {
+        class: SLIDE_PANEL_CLASS_NAME
+      }
     });
   };
   return MobileTooltipStrategy;

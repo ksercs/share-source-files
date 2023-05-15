@@ -34,6 +34,9 @@ registerDecorator('selection', 'default', EditDecorator.inherit({
     var $control = $('<div>').addClass(this._controlClass).appendTo($container);
     new this._controlWidget($control, extend(this._commonOptions(), {
       value: this._isSelected($itemElement),
+      elementAttr: {
+        'aria-label': 'Check State'
+      },
       focusStateEnabled: false,
       hoverStateEnabled: false,
       onValueChanged: function (e) {
@@ -94,6 +97,9 @@ registerDecorator('selection', 'default', EditDecorator.inherit({
     var list = this._list;
     var downArrowHandler = list._supportedKeys().downArrow.bind(list);
     this._selectAllCheckBox = list._createComponent($('<div>').addClass(SELECT_DECORATOR_SELECT_ALL_CHECKBOX_CLASS).appendTo($selectAll), CheckBox, {
+      elementAttr: {
+        'aria-label': 'Select All'
+      },
       focusStateEnabled: false,
       hoverStateEnabled: false
     });

@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/calendar/ui.calendar.range.selection.strategy.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -53,10 +53,26 @@ var CalendarRangeSelectionStrategy = /*#__PURE__*/function (_CalendarSelectionSt
     this.skipNavigate();
     this._updateCurrentDate(selectedValue);
     this._currentDateChanged = true;
-    if (!startDate || endDate) {
-      this.dateValue([selectedValue, null], e);
+    if (this.calendar.option('_allowChangeSelectionOrder') === true) {
+      if (this.calendar.option('_currentSelection') === 'startDate') {
+        if (this.calendar._convertToDate(selectedValue) > this.calendar._convertToDate(endDate)) {
+          this.dateValue([selectedValue, null], e);
+        } else {
+          this.dateValue([selectedValue, endDate], e);
+        }
+      } else {
+        if (this.calendar._convertToDate(selectedValue) > this.calendar._convertToDate(startDate)) {
+          this.dateValue([startDate, selectedValue], e);
+        } else {
+          this.dateValue([null, selectedValue], e);
+        }
+      }
     } else {
-      this.dateValue(startDate < selectedValue ? [startDate, selectedValue] : [selectedValue, startDate], e);
+      if (!startDate || endDate) {
+        this.dateValue([selectedValue, null], e);
+      } else {
+        this.dateValue(startDate < selectedValue ? [startDate, selectedValue] : [selectedValue, startDate], e);
+      }
     }
   };
   _proto.updateAriaSelected = function updateAriaSelected(value, previousValue) {
@@ -116,8 +132,16 @@ var CalendarRangeSelectionStrategy = /*#__PURE__*/function (_CalendarSelectionSt
       _this$_getValues6 = _slicedToArray(_this$_getValues5, 2),
       startDate = _this$_getValues6[0],
       endDate = _this$_getValues6[1];
-    if (isMaxZoomLevel && startDate && !endDate) {
-      this._updateViewsOption('range', this._getDaysInRange(startDate, e.value));
+    var _this$calendar$option = this.calendar.option(),
+      _allowChangeSelectionOrder = _this$calendar$option._allowChangeSelectionOrder,
+      _currentSelection = _this$calendar$option._currentSelection;
+    var skipHoveredRange = _allowChangeSelectionOrder && _currentSelection === 'startDate';
+    if (isMaxZoomLevel && startDate && !endDate && !skipHoveredRange) {
+      if (startDate < e.value) {
+        this._updateViewsOption('range', this._getDaysInRange(startDate, e.value));
+      } else {
+        this._updateViewsOption('range', this._getDaysInRange(e.value, startDate));
+      }
     }
   };
   return CalendarRangeSelectionStrategy;

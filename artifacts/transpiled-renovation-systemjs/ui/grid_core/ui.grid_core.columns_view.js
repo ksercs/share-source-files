@@ -1,0 +1,1103 @@
+!function(e){function r(e,r,o){return 4===arguments.length?t.apply(this,arguments):void n(e,{declarative:!0,deps:r,declare:o})}function t(e,r,t,o){n(e,{declarative:!1,deps:r,executingRequire:t,execute:o})}function n(e,r){r.name=e,e in v||(v[e]=r),r.normalizedDeps=r.deps}function o(e,r){if(r[e.groupIndex]=r[e.groupIndex]||[],-1==g.call(r[e.groupIndex],e)){r[e.groupIndex].push(e);for(var t=0,n=e.normalizedDeps.length;n>t;t++){var a=e.normalizedDeps[t],u=v[a];if(u&&!u.evaluated){var d=e.groupIndex+(u.declarative!=e.declarative);if(void 0===u.groupIndex||u.groupIndex<d){if(void 0!==u.groupIndex&&(r[u.groupIndex].splice(g.call(r[u.groupIndex],u),1),0==r[u.groupIndex].length))throw new TypeError("Mixed dependency cycle detected");u.groupIndex=d}o(u,r)}}}}function a(e){var r=v[e];r.groupIndex=0;var t=[];o(r,t);for(var n=!!r.declarative==t.length%2,a=t.length-1;a>=0;a--){for(var u=t[a],i=0;i<u.length;i++){var s=u[i];n?d(s):l(s)}n=!n}}function u(e){return y[e]||(y[e]={name:e,dependencies:[],exports:{},importers:[]})}function d(r){if(!r.module){var t=r.module=u(r.name),n=r.module.exports,o=r.declare.call(e,function(e,r){if(t.locked=!0,"object"==typeof e)for(var o in e)n[o]=e[o];else n[e]=r;for(var a=0,u=t.importers.length;u>a;a++){var d=t.importers[a];if(!d.locked)for(var i=0;i<d.dependencies.length;++i)d.dependencies[i]===t&&d.setters[i](n)}return t.locked=!1,r},{id:r.name});t.setters=o.setters,t.execute=o.execute;for(var a=0,i=r.normalizedDeps.length;i>a;a++){var l,s=r.normalizedDeps[a],c=v[s],f=y[s];f?l=f.exports:c&&!c.declarative?l=c.esModule:c?(d(c),f=c.module,l=f.exports):l=p(s),f&&f.importers?(f.importers.push(t),t.dependencies.push(f)):t.dependencies.push(null),t.setters[a]&&t.setters[a](l)}}}function i(e){var r,t=v[e];if(t)t.declarative?f(e,[]):t.evaluated||l(t),r=t.module.exports;else if(r=p(e),!r)throw new Error("Unable to load dependency "+e+".");return(!t||t.declarative)&&r&&r.__useDefault?r["default"]:r}function l(r){if(!r.module){var t={},n=r.module={exports:t,id:r.name};if(!r.executingRequire)for(var o=0,a=r.normalizedDeps.length;a>o;o++){var u=r.normalizedDeps[o],d=v[u];d&&l(d)}r.evaluated=!0;var c=r.execute.call(e,function(e){for(var t=0,n=r.deps.length;n>t;t++)if(r.deps[t]==e)return i(r.normalizedDeps[t]);throw new TypeError("Module "+e+" not declared as a dependency.")},t,n);void 0!==c&&(n.exports=c),t=n.exports,t&&t.__esModule?r.esModule=t:r.esModule=s(t)}}function s(r){var t={};if(("object"==typeof r||"function"==typeof r)&&r!==e)if(m)for(var n in r)"default"!==n&&c(t,r,n);else{var o=r&&r.hasOwnProperty;for(var n in r)"default"===n||o&&!r.hasOwnProperty(n)||(t[n]=r[n])}return t["default"]=r,x(t,"__useDefault",{value:!0}),t}function c(e,r,t){try{var n;(n=Object.getOwnPropertyDescriptor(r,t))&&x(e,t,n)}catch(o){return e[t]=r[t],!1}}function f(r,t){var n=v[r];if(n&&!n.evaluated&&n.declarative){t.push(r);for(var o=0,a=n.normalizedDeps.length;a>o;o++){var u=n.normalizedDeps[o];-1==g.call(t,u)&&(v[u]?f(u,t):p(u))}n.evaluated||(n.evaluated=!0,n.module.execute.call(e))}}function p(e){if(I[e])return I[e];if("@node/"==e.substr(0,6))return I[e]=s(D(e.substr(6)));var r=v[e];if(!r)throw"Module "+e+" not present.";return a(e),f(e,[]),v[e]=void 0,r.declarative&&x(r.module.exports,"__esModule",{value:!0}),I[e]=r.declarative?r.module.exports:r.esModule}var v={},g=Array.prototype.indexOf||function(e){for(var r=0,t=this.length;t>r;r++)if(this[r]===e)return r;return-1},m=!0;try{Object.getOwnPropertyDescriptor({a:0},"a")}catch(h){m=!1}var x;!function(){try{Object.defineProperty({},"a",{})&&(x=Object.defineProperty)}catch(e){x=function(e,r,t){try{e[r]=t.value||t.get.call(e)}catch(n){}}}}();var y={},D="undefined"!=typeof System&&System._nodeRequire||"undefined"!=typeof require&&"undefined"!=typeof require.resolve&&"undefined"!=typeof process&&process.platform&&require,I={"@empty":{}};return function(e,n,o,a){return function(u){u(function(u){for(var d={_nodeRequire:D,register:r,registerDynamic:t,get:p,set:function(e,r){I[e]=r},newModule:function(e){return e}},i=0;i<n.length;i++)(function(e,r){r&&r.__esModule?I[e]=r:I[e]=s(r)})(n[i],arguments[i]);a(d);var l=p(e[0]);if(e.length>1)for(var i=1;i<e.length;i++)p(e[i]);return o?l["default"]:l})}}}("undefined"!=typeof self?self:global)
+
+(["artifacts/transpiled-renovation/ui/grid_core/ui.grid_core.columns_view.js"], ["../../core/utils/size","../../core/renderer","../../core/dom_adapter","../../core/utils/window","../../events/core/events_engine","../../core/element_data","../../events/pointer","../../events/click","../../events/double_click","../../core/utils/browser","../../core/utils/common","../../core/utils/style","../../core/element","../../core/utils/type","../../core/utils/position","../../core/utils/iterator","../../core/utils/extend","./ui.grid_core.modules","./ui.grid_core.utils","./ui.grid_core.column_state_mixin","../../core/utils/deferred","../../core/utils/support"], true, function($__System) {
+var require = this.require, exports = this.exports, module = this.module;
+$__System.registerDynamic("artifacts/transpiled-renovation/ui/grid_core/ui.grid_core.columns_view.js", ["../../core/utils/size", "../../core/renderer", "../../core/dom_adapter", "../../core/utils/window", "../../events/core/events_engine", "../../core/element_data", "../../events/pointer", "../../events/click", "../../events/double_click", "../../core/utils/browser", "../../core/utils/common", "../../core/utils/style", "../../core/element", "../../core/utils/type", "../../core/utils/position", "../../core/utils/iterator", "../../core/utils/extend", "./ui.grid_core.modules", "./ui.grid_core.utils", "./ui.grid_core.column_state_mixin", "../../core/utils/deferred", "../../core/utils/support"], true, function ($__require, exports, module) {
+  "use strict";
+
+  var global = this || self,
+      GLOBAL = global;
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+      return typeof obj;
+    } : function (obj) {
+      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    }, _typeof(obj);
+  }
+  exports.ColumnsView = void 0;
+  var _size = $__require("../../core/utils/size");
+  var _renderer = _interopRequireDefault($__require("../../core/renderer"));
+  var _dom_adapter = _interopRequireDefault($__require("../../core/dom_adapter"));
+  var _window = $__require("../../core/utils/window");
+  var _events_engine = _interopRequireDefault($__require("../../events/core/events_engine"));
+  var _element_data = $__require("../../core/element_data");
+  var _pointer = _interopRequireDefault($__require("../../events/pointer"));
+  var _click = $__require("../../events/click");
+  var _double_click = $__require("../../events/double_click");
+  var _browser = _interopRequireDefault($__require("../../core/utils/browser"));
+  var _common = $__require("../../core/utils/common");
+  var _style = $__require("../../core/utils/style");
+  var _element = $__require("../../core/element");
+  var _type = $__require("../../core/utils/type");
+  var _position = $__require("../../core/utils/position");
+  var iteratorUtils = _interopRequireWildcard($__require("../../core/utils/iterator"));
+  var _extend = $__require("../../core/utils/extend");
+  var _uiGrid_core = _interopRequireDefault($__require("./ui.grid_core.modules"));
+  var _uiGrid_core2 = _interopRequireDefault($__require("./ui.grid_core.utils"));
+  var _uiGrid_core3 = _interopRequireDefault($__require("./ui.grid_core.column_state_mixin"));
+  var _deferred = $__require("../../core/utils/deferred");
+  var _support = $__require("../../core/utils/support");
+  function _getRequireWildcardCache(nodeInterop) {
+    if (typeof WeakMap !== "function") return null;var cacheBabelInterop = new WeakMap();var cacheNodeInterop = new WeakMap();return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) {
+      return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+    })(nodeInterop);
+  }
+  function _interopRequireWildcard(obj, nodeInterop) {
+    if (!nodeInterop && obj && obj.__esModule) {
+      return obj;
+    }if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
+      return { default: obj };
+    }var cache = _getRequireWildcardCache(nodeInterop);if (cache && cache.has(obj)) {
+      return cache.get(obj);
+    }var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {
+      if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
+        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {
+          Object.defineProperty(newObj, key, desc);
+        } else {
+          newObj[key] = obj[key];
+        }
+      }
+    }newObj.default = obj;if (cache) {
+      cache.set(obj, newObj);
+    }return newObj;
+  }
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
+  var SCROLL_CONTAINER_CLASS = 'scroll-container';
+  var SCROLLABLE_SIMULATED_CLASS = 'scrollable-simulated';
+  var GROUP_SPACE_CLASS = 'group-space';
+  var CONTENT_CLASS = 'content';
+  var TABLE_CLASS = 'table';
+  var TABLE_FIXED_CLASS = 'table-fixed';
+  var CONTENT_FIXED_CLASS = 'content-fixed';
+  var ROW_CLASS = 'dx-row';
+  var GROUP_ROW_CLASS = 'dx-group-row';
+  var GROUP_CELL_CLASS = 'dx-group-cell';
+  var DETAIL_ROW_CLASS = 'dx-master-detail-row';
+  var FILTER_ROW_CLASS = 'filter-row';
+  var ERROR_ROW_CLASS = 'dx-error-row';
+  var CELL_UPDATED_ANIMATION_CLASS = 'cell-updated-animation';
+  var HIDDEN_COLUMNS_WIDTH = '0.0001px';
+  var CELL_HINT_VISIBLE = 'dxCellHintVisible';
+  var FORM_FIELD_ITEM_CONTENT_CLASS = 'dx-field-item-content';
+  var appendElementTemplate = {
+    render: function render(options) {
+      options.container.append(options.content);
+    }
+  };
+  var subscribeToRowEvents = function subscribeToRowEvents(that, $table) {
+    var touchTarget;
+    var touchCurrentTarget;
+    var timeoutId;
+    function clearTouchTargets(timeout) {
+      return setTimeout(function () {
+        touchTarget = touchCurrentTarget = null;
+      }, timeout);
+    }
+    _events_engine.default.on($table, 'touchstart touchend', '.dx-row', function (e) {
+      clearTimeout(timeoutId);
+      if (e.type === 'touchstart') {
+        touchTarget = e.target;
+        touchCurrentTarget = e.currentTarget;
+        timeoutId = clearTouchTargets(1000);
+      } else {
+        timeoutId = clearTouchTargets();
+      }
+    });
+    _events_engine.default.on($table, [_click.name, _double_click.name, _pointer.default.down].join(' '), '.dx-row', that.createAction(function (e) {
+      var event = e.event;
+      if (touchTarget) {
+        event.target = touchTarget;
+        event.currentTarget = touchCurrentTarget;
+      }
+      if (!(0, _renderer.default)(event.target).closest('a').length) {
+        e.rowIndex = that.getRowIndex(event.currentTarget);
+        if (e.rowIndex >= 0) {
+          // @ts-ignore
+          e.rowElement = (0, _element.getPublicElement)((0, _renderer.default)(event.currentTarget));
+          e.columns = that.getColumns();
+          if (event.type === _pointer.default.down) {
+            that._rowPointerDown(e);
+          } else if (event.type === _click.name) {
+            that._rowClick(e);
+          } else {
+            that._rowDblClick(e);
+          }
+        }
+      }
+    }));
+  };
+  var getWidthStyle = function getWidthStyle(width) {
+    if (width === 'auto') return '';
+    return (0, _type.isNumeric)(width) ? width + 'px' : width;
+  };
+  var setCellWidth = function setCellWidth(cell, column, width) {
+    cell.style.width = cell.style.maxWidth = column.width === 'auto' ? '' : width;
+  };
+  var copyAttributes = function copyAttributes(element, newElement) {
+    if (!element || !newElement) return;
+    var oldAttributes = element.attributes;
+    var newAttributes = newElement.attributes;
+    var i;
+    for (i = 0; i < oldAttributes.length; i++) {
+      var name = oldAttributes[i].nodeName;
+      if (!newElement.hasAttribute(name)) {
+        element.removeAttribute(name);
+      }
+    }
+    for (i = 0; i < newAttributes.length; i++) {
+      element.setAttribute(newAttributes[i].nodeName, newAttributes[i].nodeValue);
+    }
+  };
+
+  /**
+   * @type {Partial<import('./ui.grid_core.columns_view').ColumnsView>}
+   */
+  var columnsViewMembers = {
+    _createScrollableOptions: function _createScrollableOptions() {
+      var that = this;
+      var scrollingOptions = that.option('scrolling');
+      var useNativeScrolling = that.option('scrolling.useNative');
+      var options = (0, _extend.extend)({}, scrollingOptions, {
+        direction: 'both',
+        bounceEnabled: false,
+        useKeyboard: false
+      });
+
+      // TODO jsdmitry: This condition is for unit tests and testing scrollable
+      if (useNativeScrolling === undefined) {
+        useNativeScrolling = true;
+      }
+      if (useNativeScrolling === 'auto') {
+        delete options.useNative;
+        delete options.useSimulatedScrollbar;
+      } else {
+        options.useNative = !!useNativeScrolling;
+        options.useSimulatedScrollbar = !useNativeScrolling;
+      }
+      return options;
+    },
+    _updateCell: function _updateCell($cell, parameters) {
+      if (parameters.rowType) {
+        this._cellPrepared($cell, parameters);
+      }
+    },
+    _createCell: function _createCell(options) {
+      var column = options.column;
+      var alignment = column.alignment || (0, _position.getDefaultAlignment)(this.option('rtlEnabled'));
+      var cell = _dom_adapter.default.createElement('td');
+      cell.style.textAlign = alignment;
+      var $cell = (0, _renderer.default)(cell);
+      if (options.rowType === 'data' && column.headerId && !column.type) {
+        if (this.component.option('showColumnHeaders')) {
+          this.setAria('describedby', column.headerId, $cell);
+        }
+      }
+      if (column.cssClass) {
+        $cell.addClass(column.cssClass);
+      }
+      if (column.command === 'expand') {
+        $cell.addClass(column.cssClass);
+        $cell.addClass(this.addWidgetPrefix(GROUP_SPACE_CLASS));
+      }
+      if (column.colspan > 1) {
+        $cell.attr('colSpan', column.colspan);
+      } else if (!column.isBand && column.visibleWidth !== 'auto' && this.option('columnAutoWidth')) {
+        if (column.width || column.minWidth) {
+          cell.style.minWidth = getWidthStyle(column.minWidth || column.width);
+        }
+        if (column.width) {
+          setCellWidth(cell, column, getWidthStyle(column.width));
+        }
+      }
+      return $cell;
+    },
+    _createRow: function _createRow(rowObject, tagName) {
+      tagName = tagName || 'tr';
+      var $element = (0, _renderer.default)("<".concat(tagName, ">")).addClass(ROW_CLASS);
+      this.setAria('role', 'row', $element);
+      return $element;
+    },
+    _isAltRow: function _isAltRow(row) {
+      return row && row.dataIndex % 2 === 1;
+    },
+    _createTable: function _createTable(columns, isAppend) {
+      var that = this;
+      var $table = (0, _renderer.default)('<table>').addClass(that.addWidgetPrefix(TABLE_CLASS)).addClass(that.addWidgetPrefix(TABLE_FIXED_CLASS));
+      if (columns && !isAppend) {
+        $table.append(that._createColGroup(columns));
+        if (_browser.default.safari) {
+          // T198380, T809552
+          // @ts-expect-error
+          $table.append((0, _renderer.default)('<thead>').append('<tr>'));
+        }
+        that.setAria('role', 'presentation', $table);
+      } else {
+        that.setAria('hidden', true, $table);
+      }
+      this.setAria('role', 'presentation', (0, _renderer.default)('<tbody>').appendTo($table));
+      if (isAppend) {
+        return $table;
+      }
+
+      // T138469
+      if (_browser.default.mozilla) {
+        _events_engine.default.on($table, 'mousedown', 'td', function (e) {
+          if (e.ctrlKey) {
+            e.preventDefault();
+          }
+        });
+      }
+      if (that.option('cellHintEnabled')) {
+        _events_engine.default.on($table, 'mousemove', '.dx-row > td', this.createAction(function (args) {
+          var e = args.event;
+          var $element = (0, _renderer.default)(e.target);
+          var $cell = (0, _renderer.default)(e.currentTarget);
+          var $row = $cell.parent();
+          var visibleColumns = that._columnsController.getVisibleColumns();
+          /**
+           * @type {any}
+           */
+          var rowOptions = $row.data('options');
+          var columnIndex = $cell.index();
+          var cellOptions = rowOptions && rowOptions.cells && rowOptions.cells[columnIndex];
+          var column = cellOptions ? cellOptions.column : visibleColumns[columnIndex];
+          var isHeaderRow = $row.hasClass('dx-header-row');
+          var isDataRow = $row.hasClass('dx-data-row');
+          var isMasterDetailRow = $row.hasClass(DETAIL_ROW_CLASS);
+          var isGroupRow = $row.hasClass(GROUP_ROW_CLASS);
+          var isFilterRow = $row.hasClass(that.addWidgetPrefix(FILTER_ROW_CLASS));
+          var isDataRowWithTemplate = isDataRow && (!column || column.cellTemplate);
+          var isEditorShown = isDataRow && cellOptions && (rowOptions.isEditing || cellOptions.isEditing || (column === null || column === void 0 ? void 0 : column.showEditorAlways));
+          var isHeaderRowWithTemplate = isHeaderRow && (!column || column.headerCellTemplate);
+          var isGroupCellWithTemplate = isGroupRow && (!column || column.groupIndex && column.groupCellTemplate);
+          var shouldShowHint = !isMasterDetailRow && !isFilterRow && !isEditorShown && !isDataRowWithTemplate && !isHeaderRowWithTemplate && !isGroupCellWithTemplate;
+          if (shouldShowHint) {
+            if ($element.data(CELL_HINT_VISIBLE)) {
+              $element.removeAttr('title');
+              $element.data(CELL_HINT_VISIBLE, false);
+            }
+            var difference = $element[0].scrollWidth - $element[0].clientWidth;
+            if (difference > 0 && !(0, _type.isDefined)($element.attr('title'))) {
+              $element.attr('title', $element.text());
+              $element.data(CELL_HINT_VISIBLE, true);
+            }
+          }
+        }));
+      }
+      var getOptions = function getOptions(event) {
+        var $cell = (0, _renderer.default)(event.currentTarget);
+        var $fieldItemContent = (0, _renderer.default)(event.target).closest('.' + FORM_FIELD_ITEM_CONTENT_CLASS);
+        var $row = $cell.parent();
+        /**
+         * @type {any}
+         */
+        var rowOptions = $row.data('options');
+        var options = rowOptions && rowOptions.cells && rowOptions.cells[$cell.index()];
+        if (!$cell.closest('table').is(event.delegateTarget)) return;
+        var resultOptions = (0, _extend.extend)({}, options, {
+          // @ts-ignore
+          cellElement: (0, _element.getPublicElement)($cell),
+          event: event,
+          eventType: event.type
+        });
+        resultOptions.rowIndex = that.getRowIndex($row);
+        if ($fieldItemContent.length) {
+          /**
+           * @type {any}
+           */
+          var formItemOptions = $fieldItemContent.data('dx-form-item');
+          if (formItemOptions.column) {
+            resultOptions.column = formItemOptions.column;
+            resultOptions.columnIndex = that._columnsController.getVisibleIndex(resultOptions.column.index);
+          }
+        }
+        return resultOptions;
+      };
+      _events_engine.default.on($table, 'mouseover', '.dx-row > td', function (e) {
+        var options = getOptions(e);
+        options && that.executeAction('onCellHoverChanged', options);
+      });
+      _events_engine.default.on($table, 'mouseout', '.dx-row > td', function (e) {
+        var options = getOptions(e);
+        options && that.executeAction('onCellHoverChanged', options);
+      });
+      _events_engine.default.on($table, _click.name, '.dx-row > td', function (e) {
+        var options = getOptions(e);
+        options && that.executeAction('onCellClick', options);
+      });
+      _events_engine.default.on($table, _double_click.name, '.dx-row > td', function (e) {
+        var options = getOptions(e);
+        options && that.executeAction('onCellDblClick', options);
+      });
+      subscribeToRowEvents(that, $table);
+      return $table;
+    },
+    _rowPointerDown: _common.noop,
+    _rowClick: _common.noop,
+    _rowDblClick: _common.noop,
+    _createColGroup: function _createColGroup(columns) {
+      var colgroupElement = (0, _renderer.default)('<colgroup>');
+      for (var i = 0; i < columns.length; i++) {
+        var colspan = columns[i].colspan || 1;
+        for (var j = 0; j < colspan; j++) {
+          colgroupElement.append(this._createCol(columns[i]));
+        }
+      }
+      return colgroupElement;
+    },
+    _createCol: function _createCol(column) {
+      var width = column.visibleWidth || column.width;
+      if (width === 'adaptiveHidden') {
+        width = HIDDEN_COLUMNS_WIDTH;
+      }
+      var col = (0, _renderer.default)('<col>');
+      (0, _style.setWidth)(col, width);
+      return col;
+    },
+    renderDelayedTemplates: function renderDelayedTemplates(change) {
+      var delayedTemplates = this._delayedTemplates;
+      var syncTemplates = delayedTemplates.filter(function (template) {
+        return !template.async;
+      });
+      var asyncTemplates = delayedTemplates.filter(function (template) {
+        return template.async;
+      });
+      this._delayedTemplates = [];
+      this._renderDelayedTemplatesCore(syncTemplates, false, change);
+      this._renderDelayedTemplatesCoreAsync(asyncTemplates);
+    },
+    _renderDelayedTemplatesCoreAsync: function _renderDelayedTemplatesCoreAsync(templates) {
+      var _this = this;
+      if (templates.length) {
+        var templateTimeout = (0, _window.getWindow)().setTimeout(function () {
+          _this._templateTimeouts.delete(templateTimeout);
+          _this._renderDelayedTemplatesCore(templates, true);
+        });
+        this._templateTimeouts.add(templateTimeout);
+      }
+    },
+    _renderDelayedTemplatesCore: function _renderDelayedTemplatesCore(templates, isAsync, change) {
+      var date = new Date();
+      while (templates.length) {
+        var templateParameters = templates.shift();
+        var options = templateParameters.options;
+        // @ts-expect-error
+        var doc = _dom_adapter.default.getRootNode((0, _renderer.default)(options.container).get(0));
+        var needWaitAsyncTemplates = this.needWaitAsyncTemplates();
+
+        // @ts-expect-error
+        if (!isAsync || (0, _renderer.default)(options.container).closest(doc).length || needWaitAsyncTemplates) {
+          if (change) {
+            options.change = change;
+          }
+          templateParameters.template.render(options);
+        }
+        // @ts-expect-error
+        if (isAsync && new Date() - date > 30) {
+          this._renderDelayedTemplatesCoreAsync(templates);
+          break;
+        }
+      }
+      if (!templates.length && this._delayedTemplates.length) {
+        this.renderDelayedTemplates();
+      }
+    },
+    _processTemplate: function _processTemplate(template) {
+      var that = this;
+      var renderingTemplate;
+      if (template && template.render && !(0, _type.isRenderer)(template)) {
+        renderingTemplate = {
+          allowRenderToDetachedContainer: template.allowRenderToDetachedContainer,
+          render: function render(options) {
+            template.render(options.container, options.model, options.change);
+            options.deferred && options.deferred.resolve();
+          }
+        };
+      } else if ((0, _type.isFunction)(template)) {
+        renderingTemplate = {
+          render: function render(options) {
+            var renderedTemplate = template((0, _element.getPublicElement)(options.container), options.model, options.change);
+            if (renderedTemplate && (renderedTemplate.nodeType || (0, _type.isRenderer)(renderedTemplate))) {
+              options.container.append(renderedTemplate);
+            }
+            options.deferred && options.deferred.resolve();
+          }
+        };
+      } else {
+        /**
+         * @type {any}
+         */
+        var templateID = (0, _type.isString)(template) ? template : (0, _renderer.default)(template).attr('id');
+        if (!templateID) {
+          renderingTemplate = that.getTemplate(template);
+        } else {
+          if (!that._templatesCache[templateID]) {
+            that._templatesCache[templateID] = that.getTemplate(template);
+          }
+          renderingTemplate = that._templatesCache[templateID];
+        }
+      }
+      return renderingTemplate;
+    },
+    renderTemplate: function renderTemplate(container, template, options, allowRenderToDetachedContainer, change) {
+      var _this2 = this;
+      var renderingTemplate = this._processTemplate(template, options);
+      var column = options.column;
+      var isDataRow = options.rowType === 'data';
+      // @ts-expect-error
+      var templateDeferred = new _deferred.Deferred();
+      var templateOptions = {
+        container: container,
+        model: options,
+        deferred: templateDeferred,
+        onRendered: function onRendered() {
+          if (_this2.isDisposed()) {
+            templateDeferred.reject();
+          } else {
+            templateDeferred.resolve();
+          }
+        }
+      };
+      if (renderingTemplate) {
+        options.component = this.component;
+        var async = column && (column.renderAsync && isDataRow || this.option('renderAsync') && (column.renderAsync !== false && (column.command || column.showEditorAlways) && isDataRow || options.rowType === 'filter'));
+        if ((renderingTemplate.allowRenderToDetachedContainer || allowRenderToDetachedContainer) && !async) {
+          renderingTemplate.render(templateOptions);
+        } else {
+          this._delayedTemplates.push({
+            template: renderingTemplate,
+            options: templateOptions,
+            async: async
+          });
+        }
+        this._templateDeferreds.add(templateDeferred);
+      } else {
+        templateDeferred.reject();
+      }
+      return templateDeferred.promise().always(function () {
+        _this2._templateDeferreds.delete(templateDeferred);
+      });
+    },
+    _getBodies: function _getBodies(tableElement) {
+      return (0, _renderer.default)(tableElement).children('tbody').not('.dx-header').not('.dx-footer');
+    },
+    _needWrapRow: function _needWrapRow($tableElement) {
+      var _this$_getBodies;
+      var hasRowTemplate = !!this.option().rowTemplate;
+      return hasRowTemplate && !!((_this$_getBodies = this._getBodies($tableElement)) !== null && _this$_getBodies !== void 0 && _this$_getBodies.filter('.' + ROW_CLASS).length);
+    },
+    _wrapRowIfNeed: function _wrapRowIfNeed($table, $row, isRefreshing) {
+      var $tableElement = isRefreshing ? $table || this._tableElement : this._tableElement || $table;
+      var needWrapRow = this._needWrapRow($tableElement);
+      if (needWrapRow) {
+        var $tbody = (0, _renderer.default)('<tbody>').addClass($row.attr('class'));
+        this.setAria('role', 'presentation', $tbody);
+        return $tbody.append($row);
+      }
+      return $row;
+    },
+    _appendRow: function _appendRow($table, $row, appendTemplate) {
+      appendTemplate = appendTemplate || appendElementTemplate;
+      appendTemplate.render({
+        content: $row,
+        container: $table
+      });
+    },
+    _resizeCore: function _resizeCore() {
+      var scrollLeft = this._scrollLeft;
+      if (scrollLeft >= 0) {
+        this._scrollLeft = 0;
+        this.scrollTo({
+          left: scrollLeft
+        });
+      }
+    },
+    _renderCore: function _renderCore(e) {
+      var $root = this.element().parent();
+      if (!$root || $root.parent().length) {
+        this.renderDelayedTemplates(e);
+      }
+    },
+    _renderTable: function _renderTable(options) {
+      options = options || {};
+      options.columns = this._columnsController.getVisibleColumns();
+      var changeType = options.change && options.change.changeType;
+      var $table = this._createTable(options.columns, changeType === 'append' || changeType === 'prepend' || changeType === 'update');
+      this._renderRows($table, options);
+      return $table;
+    },
+    _renderRows: function _renderRows($table, options) {
+      var that = this;
+      var rows = that._getRows(options.change);
+      var columnIndices = options.change && options.change.columnIndices || [];
+      var changeTypes = options.change && options.change.changeTypes || [];
+      for (var i = 0; i < rows.length; i++) {
+        that._renderRow($table, (0, _extend.extend)({
+          row: rows[i],
+          columnIndices: columnIndices[i],
+          changeType: changeTypes[i]
+        }, options));
+      }
+    },
+    _renderRow: function _renderRow($table, options) {
+      if (!options.columnIndices) {
+        options.row.cells = [];
+      }
+      var $row = this._createRow(options.row);
+      var $wrappedRow = this._wrapRowIfNeed($table, $row);
+      if (options.changeType !== 'remove') {
+        this._renderCells($row, options);
+      }
+      this._appendRow($table, $wrappedRow);
+      var rowOptions = (0, _extend.extend)({
+        columns: options.columns
+      }, options.row);
+      this._addWatchMethod(rowOptions, options.row);
+      this._rowPrepared($wrappedRow, rowOptions, options.row);
+    },
+    _needRenderCell: function _needRenderCell(columnIndex, columnIndices) {
+      return !columnIndices || columnIndices.indexOf(columnIndex) >= 0;
+    },
+    _renderCells: function _renderCells($row, options) {
+      var that = this;
+      var columnIndex = 0;
+      var row = options.row;
+      var columns = options.columns;
+      for (var i = 0; i < columns.length; i++) {
+        if (this._needRenderCell(i, options.columnIndices)) {
+          that._renderCell($row, (0, _extend.extend)({
+            column: columns[i],
+            columnIndex: columnIndex,
+            value: row.values && row.values[columnIndex],
+            oldValue: row.oldValues && row.oldValues[columnIndex]
+          }, options));
+        }
+        if (columns[i].colspan > 1) {
+          columnIndex += columns[i].colspan;
+        } else {
+          columnIndex++;
+        }
+      }
+    },
+    _updateCells: function _updateCells($rowElement, $newRowElement, columnIndices) {
+      var $cells = $rowElement.children();
+      var $newCells = $newRowElement.children();
+      var highlightChanges = this.option('highlightChanges');
+      var cellUpdatedClass = this.addWidgetPrefix(CELL_UPDATED_ANIMATION_CLASS);
+      columnIndices.forEach(function (columnIndex, index) {
+        var $cell = $cells.eq(columnIndex);
+        var $newCell = $newCells.eq(index);
+        $cell.replaceWith($newCell);
+        if (highlightChanges && !$newCell.hasClass('dx-command-expand')) {
+          $newCell.addClass(cellUpdatedClass);
+        }
+      });
+      copyAttributes($rowElement.get(0), $newRowElement.get(0));
+    },
+    _setCellAriaAttributes: function _setCellAriaAttributes($cell, cellOptions) {
+      if (cellOptions.rowType !== 'freeSpace') {
+        this.setAria('role', 'gridcell', $cell);
+        var columnIndexOffset = this._columnsController.getColumnIndexOffset();
+        var ariaColIndex = cellOptions.columnIndex + columnIndexOffset + 1;
+        this.setAria('colindex', ariaColIndex, $cell);
+      }
+    },
+    _renderCell: function _renderCell($row, options) {
+      var cellOptions = this._getCellOptions(options);
+      if (options.columnIndices) {
+        if (options.row.cells) {
+          var cellIndex = options.row.cells.findIndex(function (cell) {
+            return cell.columnIndex === cellOptions.columnIndex;
+          });
+          options.row.cells[cellIndex] = cellOptions;
+        }
+      } else {
+        options.row.cells.push(cellOptions);
+      }
+      var $cell = this._createCell(cellOptions);
+      this._setCellAriaAttributes($cell, cellOptions);
+      this._renderCellContent($cell, cellOptions, options);
+      $row.get(0).appendChild($cell.get(0));
+      return $cell;
+    },
+    _renderCellContent: function _renderCellContent($cell, options, renderOptions) {
+      var _this3 = this;
+      var template = this._getCellTemplate(options);
+      (0, _deferred.when)(!template || this.renderTemplate($cell, template, options, undefined, renderOptions.change)).done(function () {
+        _this3._updateCell($cell, options);
+      });
+    },
+    _getCellTemplate: function _getCellTemplate() {},
+    _getRows: function _getRows() {
+      return [];
+    },
+    _getCellOptions: function _getCellOptions(options) {
+      var cellOptions = {
+        column: options.column,
+        columnIndex: options.columnIndex,
+        rowType: options.row.rowType,
+        isAltRow: this._isAltRow(options.row)
+      };
+      this._addWatchMethod(cellOptions);
+      return cellOptions;
+    },
+    _addWatchMethod: function _addWatchMethod(options, source) {
+      if (!this.option('repaintChangesOnly')) return;
+      var watchers = [];
+      source = source || options;
+      source.watch = source.watch || function (getter, updateValueFunc, updateRowFunc) {
+        var oldValue = getter(source.data);
+        var watcher = function watcher(row) {
+          if (row && updateRowFunc) {
+            updateRowFunc(row);
+          }
+          var newValue = getter(source.data);
+          if (JSON.stringify(oldValue) !== JSON.stringify(newValue)) {
+            if (row) {
+              updateValueFunc(newValue);
+            }
+            oldValue = newValue;
+          }
+        };
+        watchers.push(watcher);
+        var stopWatch = function stopWatch() {
+          var index = watchers.indexOf(watcher);
+          if (index >= 0) {
+            watchers.splice(index, 1);
+          }
+        };
+        return stopWatch;
+      };
+      source.update = source.update || function (row, keepRow) {
+        if (row) {
+          this.data = options.data = row.data;
+          this.rowIndex = options.rowIndex = row.rowIndex;
+          this.dataIndex = options.dataIndex = row.dataIndex;
+          this.isExpanded = options.isExpanded = row.isExpanded;
+          if (options.row && !keepRow) {
+            options.row = row;
+          }
+        }
+        watchers.forEach(function (watcher) {
+          watcher(row);
+        });
+      };
+      if (source !== options) {
+        options.watch = source.watch.bind(source);
+      }
+      return options;
+    },
+    _cellPrepared: function _cellPrepared(cell, options) {
+      // @ts-ignore
+      options.cellElement = (0, _element.getPublicElement)((0, _renderer.default)(cell));
+      this.executeAction('onCellPrepared', options);
+    },
+    _rowPrepared: function _rowPrepared($row, options) {
+      (0, _element_data.data)($row.get(0), 'options', options);
+      options.rowElement = (0, _element.getPublicElement)($row);
+      this.executeAction('onRowPrepared', options);
+    },
+    _columnOptionChanged: function _columnOptionChanged(e) {
+      var optionNames = e.optionNames;
+      if (_uiGrid_core2.default.checkChanges(optionNames, ['width', 'visibleWidth'])) {
+        var visibleColumns = this._columnsController.getVisibleColumns();
+        var widths = iteratorUtils.map(visibleColumns, function (column) {
+          var width = column.visibleWidth || column.width;
+          return (0, _type.isDefined)(width) ? width : 'auto';
+        });
+        this.setColumnWidths({
+          widths: widths,
+          optionNames: optionNames
+        });
+        return;
+      }
+      if (!this._requireReady) {
+        this.render();
+      }
+    },
+    getCellIndex: function getCellIndex($cell) {
+      var cellIndex = $cell.length ? $cell[0].cellIndex : -1;
+      return cellIndex;
+    },
+    getTableElements: function getTableElements() {
+      // @ts-expect-error
+      return this._tableElement || (0, _renderer.default)();
+    },
+    getTableElement: function getTableElement() {
+      return this._tableElement;
+    },
+    setTableElement: function setTableElement(tableElement) {
+      this._tableElement = tableElement;
+    },
+    optionChanged: function optionChanged(args) {
+      this.callBase(args);
+      switch (args.name) {
+        case 'cellHintEnabled':
+        case 'onCellPrepared':
+        case 'onRowPrepared':
+        case 'onCellHoverChanged':
+          this._invalidate(true, true);
+          args.handled = true;
+          break;
+      }
+    },
+    init: function init() {
+      var _this4 = this;
+      this._scrollLeft = -1;
+      this._columnsController = this.getController('columns');
+      this._dataController = this.getController('data');
+      this._delayedTemplates = [];
+      this._templateDeferreds = new Set();
+      this._templatesCache = {};
+      this._templateTimeouts = new Set();
+      this.createAction('onCellClick');
+      this.createAction('onRowClick');
+      this.createAction('onCellDblClick');
+      this.createAction('onRowDblClick');
+      this.createAction('onCellHoverChanged', {
+        excludeValidators: ['disabled', 'readOnly']
+      });
+      this.createAction('onCellPrepared', {
+        excludeValidators: ['disabled', 'readOnly'],
+        category: 'rendering'
+      });
+      this.createAction('onRowPrepared', {
+        excludeValidators: ['disabled', 'readOnly'],
+        category: 'rendering',
+        afterExecute: function afterExecute(e) {
+          _this4._afterRowPrepared(e);
+        }
+      });
+      this._columnsController.columnsChanged.add(this._columnOptionChanged.bind(this));
+      this._dataController && this._dataController.changed.add(this._handleDataChanged.bind(this));
+    },
+    _afterRowPrepared: _common.noop,
+    _handleDataChanged: function _handleDataChanged() {},
+    callbackNames: function callbackNames() {
+      return ['scrollChanged'];
+    },
+    _updateScrollLeftPosition: function _updateScrollLeftPosition() {
+      var scrollLeft = this._scrollLeft;
+      if (scrollLeft >= 0) {
+        this._scrollLeft = 0;
+        this.scrollTo({
+          left: scrollLeft
+        });
+      }
+    },
+    scrollTo: function scrollTo(pos) {
+      var $element = this.element();
+      var $scrollContainer = $element && $element.children('.' + this.addWidgetPrefix(SCROLL_CONTAINER_CLASS)).not('.' + this.addWidgetPrefix(CONTENT_FIXED_CLASS));
+      if ((0, _type.isDefined)(pos) && (0, _type.isDefined)(pos.left) && this._scrollLeft !== pos.left) {
+        this._scrollLeft = pos.left;
+        $scrollContainer && $scrollContainer.scrollLeft(pos.left);
+      }
+    },
+    _getContent: function _getContent() {
+      var _this$_tableElement;
+      return (_this$_tableElement = this._tableElement) === null || _this$_tableElement === void 0 ? void 0 : _this$_tableElement.parent();
+    },
+    _removeContent: function _removeContent(isFixedTableRendering) {
+      var $scrollContainer = this._getContent(isFixedTableRendering);
+      if ($scrollContainer !== null && $scrollContainer !== void 0 && $scrollContainer.length) {
+        $scrollContainer.remove();
+      }
+    },
+    _wrapTableInScrollContainer: function _wrapTableInScrollContainer($table) {
+      var _this5 = this;
+      var $scrollContainer = (0, _renderer.default)('<div>');
+      var useNative = this.option('scrolling.useNative');
+      if (useNative === false || useNative === 'auto' && !_support.nativeScrolling) {
+        $scrollContainer.addClass(this.addWidgetPrefix(SCROLLABLE_SIMULATED_CLASS));
+      }
+      _events_engine.default.on($scrollContainer, 'scroll', function () {
+        var scrollLeft = $scrollContainer.scrollLeft();
+        if (scrollLeft !== _this5._scrollLeft) {
+          _this5.scrollChanged.fire({
+            left: scrollLeft
+          }, _this5.name);
+        }
+      });
+      $scrollContainer.addClass(this.addWidgetPrefix(CONTENT_CLASS)).addClass(this.addWidgetPrefix(SCROLL_CONTAINER_CLASS)).append($table).appendTo(this.element());
+      this.setAria('role', 'presentation', $scrollContainer);
+      return $scrollContainer;
+    },
+    needWaitAsyncTemplates: function needWaitAsyncTemplates() {
+      return this.option('templatesRenderAsynchronously') && this.option('renderAsync') === false;
+    },
+    waitAsyncTemplates: function waitAsyncTemplates() {
+      var _this6 = this;
+      var forceWaiting = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      // @ts-expect-error
+      var result = new _deferred.Deferred();
+      var needWaitAsyncTemplates = forceWaiting || this.needWaitAsyncTemplates();
+      if (!needWaitAsyncTemplates) {
+        return result.resolve();
+      }
+      var waitTemplatesRecursion = function waitTemplatesRecursion() {
+        return _deferred.when.apply(_this6, Array.from(_this6._templateDeferreds)).done(function () {
+          if (_this6.isDisposed()) {
+            result.reject();
+          } else if (_this6._templateDeferreds.size > 0) {
+            waitTemplatesRecursion();
+          } else {
+            result.resolve();
+          }
+        }).fail(result.reject);
+      };
+      waitTemplatesRecursion();
+      return result.promise();
+    },
+    _updateContent: function _updateContent($newTableElement, change, isFixedTableRendering) {
+      var _this7 = this;
+      return this.waitAsyncTemplates().done(function () {
+        _this7._removeContent(isFixedTableRendering);
+        _this7.setTableElement($newTableElement, isFixedTableRendering);
+        _this7._wrapTableInScrollContainer($newTableElement, isFixedTableRendering);
+      });
+    },
+    _findContentElement: _common.noop,
+    _getWidths: function _getWidths($cellElements) {
+      var result = [];
+      var width;
+      if ($cellElements) {
+        iteratorUtils.each($cellElements, function (index, item) {
+          width = item.offsetWidth;
+          if (item.getBoundingClientRect) {
+            var clientRect = (0, _position.getBoundingRect)(item);
+            if (clientRect.width > width - 1) {
+              width = clientRect.width;
+            }
+          }
+          result.push(width);
+        });
+      }
+      return result;
+    },
+    getColumnWidths: function getColumnWidths($tableElement) {
+      var that = this;
+      var result = [];
+      var $rows;
+      var $cells;
+      (this.option('forceApplyBindings') || _common.noop)();
+      $tableElement = $tableElement || that.getTableElement();
+      if ($tableElement) {
+        $rows = $tableElement.children('tbody:not(.dx-header)').children();
+        for (var i = 0; i < $rows.length; i++) {
+          var $row = $rows.eq(i);
+          var isRowVisible = $row.get(0).style.display !== 'none' && !$row.hasClass('dx-state-invisible');
+          if (!$row.is('.' + GROUP_ROW_CLASS) && !$row.is('.' + DETAIL_ROW_CLASS) && !$row.is('.' + ERROR_ROW_CLASS) && isRowVisible) {
+            $cells = $row.children('td');
+            break;
+          }
+        }
+        result = that._getWidths($cells);
+      }
+      return result;
+    },
+    getVisibleColumnIndex: function getVisibleColumnIndex(columnIndex, rowIndex) {
+      return columnIndex;
+    },
+    setColumnWidths: function setColumnWidths(_ref) {
+      var widths = _ref.widths,
+          $tableElement = _ref.$tableElement,
+          columns = _ref.columns,
+          fixed = _ref.fixed;
+      var $cols;
+      var width;
+      var minWidth;
+      var columnIndex;
+      var columnAutoWidth = this.option('columnAutoWidth');
+      $tableElement = $tableElement || this.getTableElement();
+      if ($tableElement && $tableElement.length && widths) {
+        columnIndex = 0;
+        $cols = $tableElement.children('colgroup').children('col');
+        (0, _style.setWidth)($cols, 'auto');
+        columns = columns || this.getColumns(null, $tableElement);
+        for (var i = 0; i < columns.length; i++) {
+          if (columnAutoWidth && !fixed) {
+            width = columns[i].width;
+            if (width && !columns[i].command) {
+              width = columns[i].visibleWidth || width;
+              width = getWidthStyle(width);
+              minWidth = getWidthStyle(columns[i].minWidth || width);
+              // @ts-expect-error
+              var $rows = $rows || $tableElement.children().children('.dx-row').not('.' + DETAIL_ROW_CLASS);
+              for (var rowIndex = 0; rowIndex < $rows.length; rowIndex++) {
+                var row = $rows[rowIndex];
+                var cell = void 0;
+                var visibleIndex = this.getVisibleColumnIndex(i, rowIndex);
+                if (row.classList.contains(GROUP_ROW_CLASS)) {
+                  cell = row.querySelector("td[aria-colindex='".concat(visibleIndex + 1, "']:not(.").concat(GROUP_CELL_CLASS, ")"));
+                } else {
+                  cell = row.cells[visibleIndex];
+                }
+                if (cell) {
+                  setCellWidth(cell, columns[i], width);
+                  cell.style.minWidth = minWidth;
+                }
+              }
+            }
+          }
+          if (columns[i].colspan) {
+            columnIndex += columns[i].colspan;
+            continue;
+          }
+          width = widths[columnIndex];
+          if (width === 'adaptiveHidden') {
+            width = HIDDEN_COLUMNS_WIDTH;
+          }
+          if (typeof width === 'number') {
+            width = width.toFixed(3) + 'px';
+          }
+          (0, _style.setWidth)($cols.eq(columnIndex), (0, _type.isDefined)(width) ? width : 'auto');
+          columnIndex++;
+        }
+      }
+    },
+    getCellElements: function getCellElements(rowIndex) {
+      return this._getCellElementsCore(rowIndex);
+    },
+    _getCellElementsCore: function _getCellElementsCore(rowIndex) {
+      var $row = this._getRowElements().eq(rowIndex);
+      return $row.children();
+    },
+    _getCellElement: function _getCellElement(rowIndex, columnIdentifier) {
+      var that = this;
+      var $cell;
+      var $cells = that.getCellElements(rowIndex);
+      var columnVisibleIndex = that._getVisibleColumnIndex($cells, rowIndex, columnIdentifier);
+      if ($cells.length && columnVisibleIndex >= 0) {
+        $cell = $cells.eq(columnVisibleIndex);
+      }
+      if ($cell && $cell.length) {
+        return $cell;
+      }
+    },
+    _getRowElement: function _getRowElement(rowIndex) {
+      var that = this;
+      // @ts-expect-error
+      var $rowElement = (0, _renderer.default)();
+      var $tableElements = that.getTableElements();
+      iteratorUtils.each($tableElements, function (_, tableElement) {
+        $rowElement = $rowElement.add(that._getRowElements((0, _renderer.default)(tableElement)).eq(rowIndex));
+      });
+      if ($rowElement.length) {
+        return $rowElement;
+      }
+    },
+    getCellElement: function getCellElement(rowIndex, columnIdentifier) {
+      return (0, _element.getPublicElement)(this._getCellElement(rowIndex, columnIdentifier));
+    },
+    getRowElement: function getRowElement(rowIndex) {
+      var $rows = this._getRowElement(rowIndex);
+      var elements = [];
+
+      // @ts-ignore
+      if ($rows && !(0, _element.getPublicElement)($rows).get) {
+        for (var i = 0; i < $rows.length; i++) {
+          elements.push($rows[i]);
+        }
+      } else {
+        elements = $rows;
+      }
+      return elements;
+    },
+    _getVisibleColumnIndex: function _getVisibleColumnIndex($cells, rowIndex, columnIdentifier) {
+      if ((0, _type.isString)(columnIdentifier)) {
+        var columnIndex = this._columnsController.columnOption(columnIdentifier, 'index');
+        return this._columnsController.getVisibleIndex(columnIndex);
+      }
+      return columnIdentifier;
+    },
+    getColumnElements: function getColumnElements() {},
+    getColumns: function getColumns(rowIndex) {
+      return this._columnsController.getVisibleColumns(rowIndex);
+    },
+    getCell: function getCell(cellPosition, rows, cells) {
+      var $rows = rows || this._getRowElements();
+      var $cells;
+      if ($rows.length > 0 && cellPosition.rowIndex >= 0) {
+        if (this.option('scrolling.mode') !== 'virtual' && this.option('scrolling.rowRenderingMode') !== 'virtual') {
+          cellPosition.rowIndex = cellPosition.rowIndex < $rows.length ? cellPosition.rowIndex : $rows.length - 1;
+        }
+        $cells = cells || this.getCellElements(cellPosition.rowIndex);
+        if ($cells && $cells.length > 0) {
+          return $cells.eq($cells.length > cellPosition.columnIndex ? cellPosition.columnIndex : $cells.length - 1);
+        }
+      }
+    },
+    getRowsCount: function getRowsCount() {
+      var tableElement = this.getTableElement();
+      if (tableElement && tableElement.length === 1) {
+        return tableElement[0].rows.length;
+      }
+      return 0;
+    },
+    _getRowElementsCore: function _getRowElementsCore(tableElement) {
+      tableElement = tableElement || this.getTableElement();
+      if (tableElement) {
+        var hasRowTemplate = this.option().rowTemplate || this.option('dataRowTemplate');
+        var tBodies = hasRowTemplate && tableElement.find('> tbody.' + ROW_CLASS);
+        return tBodies && tBodies.length ? tBodies : tableElement.find('> tbody > ' + '.' + ROW_CLASS + ', > .' + ROW_CLASS);
+      }
+
+      // @ts-expect-error
+      return (0, _renderer.default)();
+    },
+    _getRowElements: function _getRowElements(tableElement) {
+      return this._getRowElementsCore(tableElement);
+    },
+    getRowIndex: function getRowIndex($row) {
+      return this._getRowElements().index($row);
+    },
+    getBoundingRect: function getBoundingRect() {},
+    getName: function getName() {},
+    setScrollerSpacing: function setScrollerSpacing(width) {
+      var that = this;
+      var $element = that.element();
+      var rtlEnabled = that.option('rtlEnabled');
+      $element && $element.css({
+        paddingLeft: rtlEnabled ? width : '',
+        paddingRight: !rtlEnabled ? width : ''
+      });
+    },
+    isScrollbarVisible: function isScrollbarVisible(isHorizontal) {
+      var $element = this.element();
+      var $tableElement = this._tableElement;
+      if ($element && $tableElement) {
+        return isHorizontal ? (0, _size.getOuterWidth)($tableElement) - (0, _size.getWidth)($element) > 0 : (0, _size.getOuterHeight)($tableElement) - (0, _size.getHeight)($element) > 0;
+      }
+      return false;
+    },
+    isDisposed: function isDisposed() {
+      var _this$component;
+      return (_this$component = this.component) === null || _this$component === void 0 ? void 0 : _this$component._disposed;
+    },
+    dispose: function dispose() {
+      if ((0, _window.hasWindow)()) {
+        var _this$_templateTimeou, _this$_templateTimeou2;
+        var window = (0, _window.getWindow)();
+        (_this$_templateTimeou = this._templateTimeouts) === null || _this$_templateTimeou === void 0 ? void 0 : _this$_templateTimeou.forEach(function (templateTimeout) {
+          return window.clearTimeout(templateTimeout);
+        });
+        (_this$_templateTimeou2 = this._templateTimeouts) === null || _this$_templateTimeou2 === void 0 ? void 0 : _this$_templateTimeou2.clear();
+      }
+    }
+  };
+  var ColumnsView = _uiGrid_core.default.View.inherit(_uiGrid_core3.default).inherit(columnsViewMembers);
+  exports.ColumnsView = ColumnsView;
+});
+})
+(function(factory) {
+  if (typeof define == 'function' && define.amd)
+    define(["../../core/utils/size","../../core/renderer","../../core/dom_adapter","../../core/utils/window","../../events/core/events_engine","../../core/element_data","../../events/pointer","../../events/click","../../events/double_click","../../core/utils/browser","../../core/utils/common","../../core/utils/style","../../core/element","../../core/utils/type","../../core/utils/position","../../core/utils/iterator","../../core/utils/extend","./ui.grid_core.modules","./ui.grid_core.utils","./ui.grid_core.column_state_mixin","../../core/utils/deferred","../../core/utils/support"], factory);
+  else if (typeof module == 'object' && module.exports && typeof require == 'function')
+    module.exports = factory(require("../../core/utils/size"), require("../../core/renderer"), require("../../core/dom_adapter"), require("../../core/utils/window"), require("../../events/core/events_engine"), require("../../core/element_data"), require("../../events/pointer"), require("../../events/click"), require("../../events/double_click"), require("../../core/utils/browser"), require("../../core/utils/common"), require("../../core/utils/style"), require("../../core/element"), require("../../core/utils/type"), require("../../core/utils/position"), require("../../core/utils/iterator"), require("../../core/utils/extend"), require("./ui.grid_core.modules"), require("./ui.grid_core.utils"), require("./ui.grid_core.column_state_mixin"), require("../../core/utils/deferred"), require("../../core/utils/support"));
+  else
+    throw new Error("Module must be loaded as AMD or CommonJS");
+});
+//# sourceMappingURL=ui.grid_core.columns_view.js.map

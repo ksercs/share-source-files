@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/set_template_engine.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -12,14 +12,6 @@
  * @section utils
 */
 
-/**
- * @name ui.setTemplateEngine
- * @publicName setTemplateEngine(name)
- * @param1 templateEngineName:string
- * @static
- * @module ui/set_template_engine
- * @export default
-*/
 /**
  * @name ui.setTemplateEngine
  * @publicName setTemplateEngine(options)

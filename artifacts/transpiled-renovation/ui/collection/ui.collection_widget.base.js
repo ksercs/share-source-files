@@ -52,25 +52,9 @@ var FOCUS_FIRST = 'first';
 var CollectionWidget = _ui.default.inherit({
   _activeStateUnit: '.' + ITEM_CLASS,
   _supportedKeys: function _supportedKeys() {
-    var enter = function enter(e) {
-      var $itemElement = (0, _renderer.default)(this.option('focusedElement'));
-      if (!$itemElement.length) {
-        return;
-      }
-      var itemData = this._getItemData($itemElement);
-      if (itemData !== null && itemData !== void 0 && itemData.onClick) {
-        this._itemEventHandlerByHandler($itemElement, itemData.onClick, {
-          event: e
-        });
-      }
-      this._itemClickHandler((0, _extend.extend)({}, e, {
-        target: $itemElement.get(0),
-        currentTarget: $itemElement.get(0)
-      }));
-    };
     var space = function space(e) {
       e.preventDefault();
-      enter.call(this, e);
+      this._enterKeyHandler(e);
     };
     var move = function move(location, e) {
       if (!(0, _index.isCommandKeyPressed)(e)) {
@@ -81,7 +65,7 @@ var CollectionWidget = _ui.default.inherit({
     };
     return (0, _extend.extend)(this.callBase(), {
       space: space,
-      enter: enter,
+      enter: this._enterKeyHandler,
       leftArrow: move.bind(this, FOCUS_LEFT),
       rightArrow: move.bind(this, FOCUS_RIGHT),
       upArrow: move.bind(this, FOCUS_UP),
@@ -91,6 +75,22 @@ var CollectionWidget = _ui.default.inherit({
       home: move.bind(this, FOCUS_FIRST),
       end: move.bind(this, FOCUS_LAST)
     });
+  },
+  _enterKeyHandler: function _enterKeyHandler(e) {
+    var $itemElement = (0, _renderer.default)(this.option('focusedElement'));
+    if (!$itemElement.length) {
+      return;
+    }
+    var itemData = this._getItemData($itemElement);
+    if (itemData !== null && itemData !== void 0 && itemData.onClick) {
+      this._itemEventHandlerByHandler($itemElement, itemData.onClick, {
+        event: e
+      });
+    }
+    this._itemClickHandler((0, _extend.extend)({}, e, {
+      target: $itemElement.get(0),
+      currentTarget: $itemElement.get(0)
+    }));
   },
   _getDefaultOptions: function _getDefaultOptions() {
     return (0, _extend.extend)(this.callBase(), {
@@ -573,19 +573,19 @@ var CollectionWidget = _ui.default.inherit({
   _attachClickEvent: function _attachClickEvent() {
     var itemSelector = this._itemSelector();
     var clickEventNamespace = (0, _index.addNamespace)(_click.name, this.NAME);
-    var pointerDownEventNamespace = (0, _index.addNamespace)(_pointer.default.down, this.NAME);
+    var pointerUpEventNamespace = (0, _index.addNamespace)(_pointer.default.up, this.NAME);
     var that = this;
-    var pointerDownAction = new _action.default(function (args) {
+    var pointerUpAction = new _action.default(function (args) {
       var event = args.event;
       that._itemPointerDownHandler(event);
     });
     _events_engine.default.off(this._itemContainer(), clickEventNamespace, itemSelector);
-    _events_engine.default.off(this._itemContainer(), pointerDownEventNamespace, itemSelector);
+    _events_engine.default.off(this._itemContainer(), pointerUpEventNamespace, itemSelector);
     _events_engine.default.on(this._itemContainer(), clickEventNamespace, itemSelector, function (e) {
       this._itemClickHandler(e);
     }.bind(this));
-    _events_engine.default.on(this._itemContainer(), pointerDownEventNamespace, itemSelector, function (e) {
-      pointerDownAction.execute({
+    _events_engine.default.on(this._itemContainer(), pointerUpEventNamespace, itemSelector, function (e) {
+      pointerUpAction.execute({
         element: (0, _renderer.default)(e.target),
         event: e
       });

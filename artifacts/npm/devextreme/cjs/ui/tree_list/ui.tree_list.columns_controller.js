@@ -1,43 +1,21 @@
 /**
 * DevExtreme (cjs/ui/tree_list/ui.tree_list.columns_controller.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 "use strict";
 
-exports.ColumnsController = void 0;
-var _type = require("../../core/utils/type");
-var _uiTree_list = _interopRequireDefault(require("./ui.tree_list.core"));
-var _uiGrid_core = require("../grid_core/ui.grid_core.columns_controller");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-var ColumnsController = _uiGrid_core.columnsControllerModule.controllers.columns.inherit(function () {
-  return {
-    _getFirstItems: function _getFirstItems(dataSourceAdapter) {
-      return this.callBase(dataSourceAdapter).map(function (node) {
-        return node.data;
-      });
-    },
-    getFirstDataColumnIndex: function getFirstDataColumnIndex() {
-      var visibleColumns = this.getVisibleColumns();
-      var visibleColumnsLength = visibleColumns.length;
-      var firstDataColumnIndex = 0;
-      for (var i = 0; i <= visibleColumnsLength - 1; i++) {
-        if (!(0, _type.isDefined)(visibleColumns[i].command)) {
-          firstDataColumnIndex = visibleColumns[i].index;
-          break;
-        }
-      }
-      return firstDataColumnIndex;
+var _module_columns_controller = require("../../__internal/grids/tree_list/module_columns_controller");
+Object.keys(_module_columns_controller).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _module_columns_controller[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _module_columns_controller[key];
     }
-  };
-}());
-exports.ColumnsController = ColumnsController;
-_uiTree_list.default.registerModule('columns', {
-  defaultOptions: _uiGrid_core.columnsControllerModule.defaultOptions,
-  controllers: {
-    columns: ColumnsController
-  }
+  });
 });

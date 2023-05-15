@@ -26,6 +26,9 @@ var ROW_REMOVED = 'dx-row-removed';
 var EDITING_EDITROWKEY_OPTION_NAME = 'editing.editRowKey';
 var EDITING_EDITCOLUMNNAME_OPTION_NAME = 'editing.editColumnName';
 var DATA_EDIT_DATA_REMOVE_TYPE = 'remove';
+function isEditable($element) {
+  return $element && ($element.is('input') || $element.is('textarea'));
+}
 var _default = {
   extenders: {
     controllers: {
@@ -50,7 +53,7 @@ var _default = {
               var $target = (0, _renderer.default)(event.target);
               var targetComponent = event[_uiGrid_core.TARGET_COMPONENT_NAME];
               var component = this.component;
-              if ($pointerDownTarget && $pointerDownTarget.is('input') && !$pointerDownTarget.is($target)) {
+              if (isEditable($pointerDownTarget) && !$pointerDownTarget.is($target)) {
                 return;
               }
               function checkEditorPopup($element) {

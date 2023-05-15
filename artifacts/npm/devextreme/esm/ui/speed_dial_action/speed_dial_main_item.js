@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/speed_dial_action/speed_dial_main_item.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -14,12 +14,13 @@ import eventsEngine from '../../events/core/events_engine';
 import errors from '../widget/ui.errors';
 import swatchContainer from '../widget/swatch_container';
 import SpeedDialItem from './speed_dial_item';
-import { isMaterial } from '../themes';
+import { isMaterial, isCompact } from '../themes';
 var {
   getSwatchContainer
 } = swatchContainer;
 var FAB_MAIN_CLASS = 'dx-fa-button-main';
 var FAB_MAIN_CLASS_WITH_LABEL = 'dx-fa-button-with-label';
+var FAB_MAIN_CLASS_WITHOUT_ICON = 'dx-fa-button-without-icon';
 var FAB_CLOSE_ICON_CLASS = 'dx-fa-button-icon-close';
 var INVISIBLE_STATE_CLASS = 'dx-state-invisible';
 var speedDialMainItem = null;
@@ -91,9 +92,9 @@ class SpeedDialMainItem extends SpeedDialItem {
       actions: [],
       activeStateEnabled: true,
       hoverStateEnabled: true,
-      indent: 55,
+      indent: isCompact() ? 49 : 55,
       childIndent: 40,
-      childOffset: 9,
+      childOffset: isCompact() ? 2 : 9,
       callOverlayRenderShading: true,
       hideOnOutsideClick: true
     };
@@ -104,12 +105,21 @@ class SpeedDialMainItem extends SpeedDialItem {
   _defaultOptionsRules() {
     return super._defaultOptionsRules().concat([{
       device() {
-        return isMaterial();
+        return isMaterial() && !isCompact();
       },
       options: {
         indent: 72,
         childIndent: 56,
         childOffset: 8
+      }
+    }, {
+      device() {
+        return isMaterial() && isCompact();
+      },
+      options: {
+        indent: 58,
+        childIndent: 48,
+        childOffset: 1
       }
     }]);
   }
@@ -123,6 +133,10 @@ class SpeedDialMainItem extends SpeedDialItem {
   _renderLabel() {
     super._renderLabel();
     this.$element().toggleClass(FAB_MAIN_CLASS_WITH_LABEL, !!this._$label);
+  }
+  _renderIcon() {
+    super._renderIcon();
+    this.$element().toggleClass(FAB_MAIN_CLASS_WITHOUT_ICON, !this.option('icon'));
   }
   _renderCloseIcon() {
     this._$closeIcon = this._renderButtonIcon(this._$closeIcon, this._options.silent('closeIcon'), FAB_CLOSE_ICON_CLASS);

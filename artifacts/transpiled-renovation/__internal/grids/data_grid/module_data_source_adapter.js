@@ -1,16 +1,19 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _uiGrid_core = _interopRequireDefault(require("../../../ui/grid_core/ui.grid_core.data_source_adapter"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var dataSourceAdapterType = _uiGrid_core.default;
+var _default = {
+  extend: function extend(extender) {
+    dataSourceAdapterType = dataSourceAdapterType.inherit(extender);
+  },
+  create: function create(component) {
+    // eslint-disable-next-line new-cap
+    return new dataSourceAdapterType(component);
+  }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var ui_grid_core_data_source_adapter_1 = __importDefault(require("../../../ui/grid_core/ui.grid_core.data_source_adapter"));
-var dataSourceAdapterType = ui_grid_core_data_source_adapter_1.default;
-exports.default = {
-    extend: function (extender) {
-        dataSourceAdapterType = dataSourceAdapterType.inherit(extender);
-    },
-    create: function (component) {
-        // eslint-disable-next-line new-cap
-        return new dataSourceAdapterType(component);
-    },
-};
+exports.default = _default;

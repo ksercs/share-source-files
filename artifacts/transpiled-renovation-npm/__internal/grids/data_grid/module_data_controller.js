@@ -1,31 +1,33 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.DataController = void 0;
-var ui_errors_1 = __importDefault(require("../../../ui/widget/ui.errors"));
-// @ts-expect-error
-var ui_grid_core_data_controller_1 = require("../../../ui/grid_core/ui.grid_core.data_controller");
-var module_core_1 = __importDefault(require("./module_core"));
-var module_data_source_adapter_1 = __importDefault(require("./module_data_source_adapter"));
-exports.DataController = ui_grid_core_data_controller_1.dataControllerModule.controllers.data.inherit((function () {
-    return {
-        _getDataSourceAdapter: function () {
-            return module_data_source_adapter_1.default;
-        },
-        _getSpecificDataSourceOption: function () {
-            var dataSource = this.option('dataSource');
-            if (dataSource && !Array.isArray(dataSource) && this.option('keyExpr')) {
-                ui_errors_1.default.log('W1011');
-            }
-            return this.callBase();
-        },
-    };
-})());
-module_core_1.default.registerModule('data', {
-    defaultOptions: ui_grid_core_data_controller_1.dataControllerModule.defaultOptions,
-    controllers: {
-        data: exports.DataController,
+var _ui = _interopRequireDefault(require("../../../ui/widget/ui.errors"));
+var _uiGrid_core = require("../../../ui/grid_core/ui.grid_core.data_controller");
+var _module_core = _interopRequireDefault(require("./module_core"));
+var _module_data_source_adapter = _interopRequireDefault(require("./module_data_source_adapter"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _a;
+var DataController = ((_a = _uiGrid_core.dataControllerModule.controllers) === null || _a === void 0 ? void 0 : _a.data).inherit(function () {
+  return {
+    _getDataSourceAdapter: function _getDataSourceAdapter() {
+      return _module_data_source_adapter.default;
     },
+    _getSpecificDataSourceOption: function _getSpecificDataSourceOption() {
+      var dataSource = this.option('dataSource');
+      if (dataSource && !Array.isArray(dataSource) && this.option('keyExpr')) {
+        _ui.default.log('W1011');
+      }
+      return this.callBase();
+    }
+  };
+}());
+exports.DataController = DataController;
+_module_core.default.registerModule('data', {
+  defaultOptions: _uiGrid_core.dataControllerModule.defaultOptions,
+  controllers: {
+    data: DataController
+  }
 });

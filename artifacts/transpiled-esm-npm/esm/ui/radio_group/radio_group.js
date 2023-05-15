@@ -85,7 +85,7 @@ class RadioCollection extends CollectionWidget {
   _itemElements() {
     return this._itemContainer().children(this._itemSelector());
   }
-  _setAriaSelected() {}
+  _setAriaSelectionAttribute() {}
 }
 class RadioGroup extends Editor {
   _dataSourceOptions() {

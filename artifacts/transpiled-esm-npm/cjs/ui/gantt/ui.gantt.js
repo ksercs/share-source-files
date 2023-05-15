@@ -25,6 +25,7 @@ var _uiGantt10 = require("./ui.gantt.bars");
 var _uiGantt11 = require("./ui.gantt.treelist");
 var _uiGantt12 = require("./ui.gantt.view");
 var _uiGantt13 = require("./ui.gantt.data_changes_processing_helper");
+var _uiGrid_core = _interopRequireDefault(require("../grid_core/ui.grid_core.utils"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
@@ -49,6 +50,7 @@ var Gantt = /*#__PURE__*/function (_Widget) {
   var _proto = Gantt.prototype;
   _proto._init = function _init() {
     _Widget.prototype._init.call(this);
+    _uiGrid_core.default.logHeaderFilterDeprecatedWarningIfNeed(this);
     this._initGantt();
     this._isGanttRendered = false;
     this._initHelpers();

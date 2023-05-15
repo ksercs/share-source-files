@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/renovation/component_wrapper/common/component.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -18,6 +18,9 @@ import { getPublicElement } from '../../../core/element';
 import { isDefined, isRenderer, isString } from '../../../core/utils/type';
 import { TemplateWrapper, buildTemplateArgs } from './template_wrapper';
 import { updatePropsImmutable } from '../utils/update_props_immutable';
+import '../../../events/click';
+import '../../../events/core/emitter.feedback';
+import '../../../events/hover';
 var setDefaultOptionValue = (options, defaultValueGetter) => name => {
   if (Object.prototype.hasOwnProperty.call(options, name) && options[name] === undefined) {
     options[name] = defaultValueGetter(name);

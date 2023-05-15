@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/sortable.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -695,7 +695,10 @@ var Sortable = _draggable.default.inherit({
       position = null;
     }
     if (position) {
+      var isLastVerticalPosition = isVerticalOrientation && toIndex === items.length;
+      var outerPlaceholderHeight = (0, _size.getOuterHeight)($placeholderElement);
       position.left = that._makeLeftCorrection(position.left);
+      position.top = isLastVerticalPosition && position.top >= outerPlaceholderHeight ? position.top - outerPlaceholderHeight : position.top;
       that._move(position, $placeholderElement);
     }
     $placeholderElement.toggle(!!position);

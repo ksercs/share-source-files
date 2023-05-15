@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/collection/ui.collection_widget.edit.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -401,7 +401,7 @@ var CollectionWidget = BaseCollectionWidget.inherit({
   },
   _processSelectableItem: function _processSelectableItem($itemElement, isSelected) {
     $itemElement.toggleClass(this._selectedItemClass(), isSelected);
-    this._setAriaSelected($itemElement, String(isSelected));
+    this._setAriaSelectionAttribute($itemElement, String(isSelected));
   },
   _updateSelectedItems: function _updateSelectedItems(args) {
     var that = this;
@@ -441,7 +441,7 @@ var CollectionWidget = BaseCollectionWidget.inherit({
     });
   },
   _updateSelection: noop,
-  _setAriaSelected: function _setAriaSelected($target, value) {
+  _setAriaSelectionAttribute: function _setAriaSelectionAttribute($target, value) {
     this.setAria('selected', value, $target);
   },
   _removeSelection: function _removeSelection(normalizedIndex) {

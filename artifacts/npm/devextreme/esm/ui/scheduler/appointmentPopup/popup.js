@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/scheduler/appointmentPopup/popup.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -83,8 +83,9 @@ export class AppointmentPopup {
       onHiding: () => this.scheduler.focus(),
       contentTemplate: () => this._createPopupContent(),
       onShowing: e => this._onShowing(e),
-      copyRootClassesToWrapper: true,
-      _ignoreCopyRootClassesToWrapperDeprecation: true
+      wrapperAttr: {
+        class: APPOINTMENT_POPUP_CLASS
+      }
     });
   }
   _onShowing(e) {
@@ -250,9 +251,7 @@ export class AppointmentPopup {
       container,
       position: {
         of: container
-      },
-      copyRootClassesToWrapper: true,
-      _ignoreCopyRootClassesToWrapperDeprecation: true
+      }
     });
   }
   _tryLockSaveChanges() {

@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/data/abstract_store.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -18,6 +18,7 @@ var _data = require("../core/utils/data");
 var _store_helper = _interopRequireDefault(require("./store_helper"));
 var _deferred = require("../core/utils/deferred");
 var _common = require("../core/utils/common");
+var _type = require("../core/utils/type");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -25,10 +26,12 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 var abstract = _class.default.abstract;
 var queryByOptions = _store_helper.default.queryByOptions;
 var storeImpl = {};
 var Store = _class.default.inherit({
+  _langParams: {},
   ctor: function ctor(options) {
     var that = this;
     options = options || {};
@@ -69,6 +72,10 @@ var Store = _class.default.inherit({
     });
   },
   _loadImpl: function _loadImpl(options) {
+    if (!(0, _type.isEmptyObject)(this._langParams)) {
+      options = options || {};
+      options._langParams = _extends({}, this._langParams, options._langParams);
+    }
     return queryByOptions(this.createQuery(options), options).enumerate();
   },
   _withLock: function _withLock(task) {

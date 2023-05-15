@@ -1,7 +1,7 @@
 /**
 * DevExtreme (viz/range_selector.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -799,3 +799,65 @@ export type Properties = dxRangeSelectorOptions;
 
 /** @deprecated use Properties instead */
 export type Options = dxRangeSelectorOptions;
+
+type EventProps<T> = Extract<keyof T, `on${any}`>;
+type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+type EventsIntegrityCheckingHelper = CheckedEvents<Properties, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxRangeSelectorOptions.onDisposing
+ * @type_function_param1 e:{viz/range_selector:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxRangeSelectorOptions.onDrawn
+ * @type_function_param1 e:{viz/range_selector:DrawnEvent}
+ */
+onDrawn?: ((e: DrawnEvent) => void);
+/**
+ * @skip
+ * @docid dxRangeSelectorOptions.onExported
+ * @type_function_param1 e:{viz/range_selector:ExportedEvent}
+ */
+onExported?: ((e: ExportedEvent) => void);
+/**
+ * @skip
+ * @docid dxRangeSelectorOptions.onExporting
+ * @type_function_param1 e:{viz/range_selector:ExportingEvent}
+ */
+onExporting?: ((e: ExportingEvent) => void);
+/**
+ * @skip
+ * @docid dxRangeSelectorOptions.onFileSaving
+ * @type_function_param1 e:{viz/range_selector:FileSavingEvent}
+ */
+onFileSaving?: ((e: FileSavingEvent) => void);
+/**
+ * @skip
+ * @docid dxRangeSelectorOptions.onIncidentOccurred
+ * @type_function_param1 e:{viz/range_selector:IncidentOccurredEvent}
+ */
+onIncidentOccurred?: ((e: IncidentOccurredEvent) => void);
+/**
+ * @skip
+ * @docid dxRangeSelectorOptions.onInitialized
+ * @type_function_param1 e:{viz/range_selector:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxRangeSelectorOptions.onOptionChanged
+ * @type_function_param1 e:{viz/range_selector:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxRangeSelectorOptions.onValueChanged
+ * @type_function_param1 e:{viz/range_selector:ValueChangedEvent}
+ */
+onValueChanged?: ((e: ValueChangedEvent) => void);
+};

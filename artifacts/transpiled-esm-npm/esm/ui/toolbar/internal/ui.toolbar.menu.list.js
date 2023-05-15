@@ -7,6 +7,7 @@ var TOOLBAR_HIDDEN_BUTTON_GROUP_CLASS = 'dx-toolbar-hidden-button-group';
 var TOOLBAR_MENU_SECTION_CLASS = 'dx-toolbar-menu-section';
 var TOOLBAR_MENU_CUSTOM_CLASS = 'dx-toolbar-menu-custom';
 var TOOLBAR_MENU_LAST_SECTION_CLASS = 'dx-toolbar-menu-last-section';
+var SCROLLVIEW_CONTENT_CLASS = 'dx-scrollview-content';
 export default class ToolbarMenuList extends ListBase {
   _init() {
     super._init();
@@ -15,6 +16,7 @@ export default class ToolbarMenuList extends ListBase {
   _initMarkup() {
     this._renderSections();
     super._initMarkup();
+    this._setMenuRole();
   }
   _getSections() {
     return this._itemContainer().children();
@@ -35,6 +37,10 @@ export default class ToolbarMenuList extends ListBase {
   _renderItems() {
     super._renderItems.apply(this, arguments);
     this._updateSections();
+  }
+  _setMenuRole() {
+    var $menuContainer = this.$element().find(".".concat(SCROLLVIEW_CONTENT_CLASS));
+    $menuContainer.attr('role', 'menu');
   }
   _updateSections() {
     var $sections = this.$element().find(".".concat(TOOLBAR_MENU_SECTION_CLASS));
@@ -78,10 +84,6 @@ export default class ToolbarMenuList extends ListBase {
     if ($(e.target).closest(".".concat(TOOLBAR_MENU_ACTION_CLASS)).length) {
       super._itemClickHandler(e, args, config);
     }
-  }
-  _getAriaTarget() {
-    var _this$option;
-    return (_this$option = this.option('_areaTarget')) !== null && _this$option !== void 0 ? _this$option : super._getAriaTarget();
   }
   _clean() {
     this._getSections().empty();

@@ -374,18 +374,12 @@ var DropDownList = DropDownEditor.inherit({
     var canListHaveFocus = this._canListHaveFocus();
     return this.callBase().concat([!canListHaveFocus && this._list]);
   },
-  _setAriaTargetForList: function _setAriaTargetForList() {
-    this._list._getAriaTarget = this._getAriaTarget.bind(this);
-  },
   _renderList: function _renderList() {
     this._listId = 'dx-' + new Guid()._value;
-    var $list = this._$list = $('<div>').attr('id', this._listId).appendTo(this._popup.$content());
+    var $list = $('<div>').attr('id', this._listId).appendTo(this._popup.$content());
+    this._$list = $list;
     this._list = this._createComponent($list, List, this._listConfig());
     this._refreshList();
-    this._setAriaTargetForList();
-    this._list.option('_listAttributes', {
-      'role': 'combobox'
-    });
     this._renderPreventBlurOnListClick();
     this._setListFocusedElementOptionChange();
   },

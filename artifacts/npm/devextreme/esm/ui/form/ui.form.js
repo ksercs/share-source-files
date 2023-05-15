@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/form/ui.form.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -448,13 +448,17 @@ var Form = Widget.inherit({
       guid: item.guid
     }, ...((_item$tabs = item.tabs) !== null && _item$tabs !== void 0 ? _item$tabs : [])], tabPanel);
   },
-  _itemGroupTemplate: function _itemGroupTemplate(item, e, $container) {
+  _itemGroupTemplate: function _itemGroupTemplate(item, options, $container) {
+    var id = options.editorOptions.inputAttr.id;
     var $group = $('<div>').toggleClass(FORM_GROUP_WITH_CAPTION_CLASS, isDefined(item.caption) && item.caption.length).addClass(FORM_GROUP_CLASS).appendTo($container);
+    var groupAria = {
+      role: 'group',
+      'labelledby': id
+    };
+    this.setAria(groupAria, $group);
     $($container).parent().addClass(FIELD_ITEM_CONTENT_HAS_GROUP_CLASS);
-    var colCount;
-    var layoutManager;
     if (item.caption) {
-      $('<span>').addClass(FORM_GROUP_CAPTION_CLASS).text(item.caption).appendTo($group);
+      $('<span>').addClass(FORM_GROUP_CAPTION_CLASS).text(item.caption).attr('id', id).appendTo($group);
     }
     var $groupContent = $('<div>').addClass(FORM_GROUP_CONTENT_CLASS).appendTo($group);
     if (item.groupContentTemplate) {
@@ -471,7 +475,7 @@ var Form = Widget.inherit({
       };
       item._renderGroupContentTemplate();
     } else {
-      layoutManager = this._renderLayoutManager($groupContent, this._createLayoutManagerOptions(this._tryGetItemsForTemplate(item), {
+      var layoutManager = this._renderLayoutManager($groupContent, this._createLayoutManagerOptions(this._tryGetItemsForTemplate(item), {
         colCount: item.colCount,
         colCountByScreen: item.colCountByScreen,
         alignItemLabels: item.alignItemLabels,
@@ -480,7 +484,7 @@ var Form = Widget.inherit({
       this._itemsRunTimeInfo && this._itemsRunTimeInfo.extendRunTimeItemInfoByKey(item.guid, {
         layoutManager
       });
-      colCount = layoutManager._getColCount();
+      var colCount = layoutManager._getColCount();
       if (!this._groupsColCount.includes(colCount)) {
         this._groupsColCount.push(colCount);
       }

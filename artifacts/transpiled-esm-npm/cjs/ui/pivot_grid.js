@@ -51,6 +51,7 @@ var _default = _ui.default;
  * @name PivotGridDataSourceOptions.fields.headerFilter.allowSearch
  * @type boolean
  * @default undefined
+ * @deprecated
  */
 exports.default = _default;
 module.exports = exports.default;

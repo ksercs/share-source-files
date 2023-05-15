@@ -409,7 +409,7 @@ var CollectionWidget = _uiCollection_widget.default.inherit({
   },
   _processSelectableItem: function _processSelectableItem($itemElement, isSelected) {
     $itemElement.toggleClass(this._selectedItemClass(), isSelected);
-    this._setAriaSelected($itemElement, String(isSelected));
+    this._setAriaSelectionAttribute($itemElement, String(isSelected));
   },
   _updateSelectedItems: function _updateSelectedItems(args) {
     var that = this;
@@ -449,7 +449,7 @@ var CollectionWidget = _uiCollection_widget.default.inherit({
     });
   },
   _updateSelection: _common.noop,
-  _setAriaSelected: function _setAriaSelected($target, value) {
+  _setAriaSelectionAttribute: function _setAriaSelectionAttribute($target, value) {
     this.setAria('selected', value, $target);
   },
   _removeSelection: function _removeSelection(normalizedIndex) {

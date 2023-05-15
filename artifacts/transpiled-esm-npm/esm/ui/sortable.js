@@ -674,7 +674,10 @@ var Sortable = Draggable.inherit({
       position = null;
     }
     if (position) {
+      var isLastVerticalPosition = isVerticalOrientation && toIndex === items.length;
+      var outerPlaceholderHeight = getOuterHeight($placeholderElement);
       position.left = that._makeLeftCorrection(position.left);
+      position.top = isLastVerticalPosition && position.top >= outerPlaceholderHeight ? position.top - outerPlaceholderHeight : position.top;
       that._move(position, $placeholderElement);
     }
     $placeholderElement.toggle(!!position);

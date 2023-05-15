@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/grid_core/ui.grid_core.columns_controller.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -658,7 +658,9 @@ export var columnsControllerModule = {
         var prevValue = optionGetter(column, {
           functionsAsIs: true
         });
-        if (!equalByValue(prevValue, value)) {
+        if (!equalByValue(prevValue, value, {
+          maxDepth: 5
+        })) {
           if (optionName === 'groupIndex' || optionName === 'calculateGroupValue') {
             changeType = 'grouping';
             updateSortOrderWhenGrouping(that, column, value, prevValue);

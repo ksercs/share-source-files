@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/hierarchical_collection/ui.data_adapter.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -306,7 +306,9 @@ var DataAdapter = _class.default.inherit({
     return this.getChildrenNodes(this.options.rootValue);
   },
   getChildrenNodes: function getChildrenNodes(parentKey) {
-    return (0, _query.default)(this._dataStructure).filter(['internalFields.parentKey', parentKey]).toArray();
+    return (0, _query.default)(this._dataStructure, {
+      langParams: this.options.langParams
+    }).filter(['internalFields.parentKey', parentKey]).toArray();
   },
   getIndexByKey: function getIndexByKey(key) {
     return this.options.dataConverter.getIndexByKey(key);
@@ -388,7 +390,9 @@ var DataAdapter = _class.default.inherit({
     var operation = _ui2.default.getOperationBySearchMode(this.options.searchMode);
     var criteria = this._createCriteria(selector, filterValue, operation);
     dataStructure = dataStructure || this._initialDataStructure;
-    return (0, _query.default)(dataStructure).filter(criteria).toArray();
+    return (0, _query.default)(dataStructure, {
+      langParams: this.options.langParams
+    }).filter(criteria).toArray();
   },
   search: function search(searchValue) {
     var that = this;
@@ -422,7 +426,8 @@ var DataAdapter = _class.default.inherit({
     lookForParents(matches, 0);
     if (this.options.sort) {
       matches = _store_helper.default.queryByOptions((0, _query.default)(matches), {
-        sort: this.options.sort
+        sort: this.options.sort,
+        langParams: this.options.langParams
       }).toArray();
     }
     dataConverter._indexByKey = {};

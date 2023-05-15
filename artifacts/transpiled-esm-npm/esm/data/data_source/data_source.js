@@ -1,8 +1,9 @@
+import _extends from "@babel/runtime/helpers/esm/extends";
 import Class from '../../core/class';
 import { extend } from '../../core/utils/extend';
 import { executeAsync } from '../../core/utils/common';
 import { each } from '../../core/utils/iterator';
-import { isString, isNumeric, isBoolean, isDefined, isObject } from '../../core/utils/type';
+import { isString, isNumeric, isBoolean, isDefined, isObject, isEmptyObject } from '../../core/utils/type';
 import { throttleChanges } from '../utils';
 import { applyBatch } from '../array_utils';
 import CustomStore from '../custom_store';
@@ -121,7 +122,7 @@ export var DataSource = Class.inherit({
   },
   _extractLoadOptions(options) {
     var result = {};
-    var names = ['sort', 'filter', 'select', 'group', 'requireTotalCount'];
+    var names = ['sort', 'filter', 'langParams', 'select', 'group', 'requireTotalCount'];
     var customNames = this._store._customLoadOptions();
     if (customNames) {
       names = names.concat(customNames);
@@ -393,6 +394,9 @@ export var DataSource = Class.inherit({
   _createLoadOperation(deferred) {
     var operationId = this._operationManager.add(deferred);
     var storeLoadOptions = this._createStoreLoadOptions();
+    if (this._store && !isEmptyObject(storeLoadOptions === null || storeLoadOptions === void 0 ? void 0 : storeLoadOptions.langParams)) {
+      this._store._langParams = _extends({}, this._store._langParams, storeLoadOptions.langParams);
+    }
     deferred.always(() => this._operationManager.remove(operationId));
     return {
       operationId,

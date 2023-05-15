@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/multi_view.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -216,7 +216,7 @@ var MultiView = CollectionWidget.inherit({
     this.callBase($item, item);
     this._updateItemsVisibility(this.option('selectedIndex'));
   },
-  _setAriaSelected: noop,
+  _setAriaSelectionAttribute: noop,
   _updateSelection: function _updateSelection(addedSelection, removedSelection) {
     var newIndex = addedSelection[0];
     var prevIndex = removedSelection[0];

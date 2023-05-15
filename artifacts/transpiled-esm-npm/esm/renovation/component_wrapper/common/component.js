@@ -10,6 +10,9 @@ import { getPublicElement } from '../../../core/element';
 import { isDefined, isRenderer, isString } from '../../../core/utils/type';
 import { TemplateWrapper, buildTemplateArgs } from './template_wrapper';
 import { updatePropsImmutable } from '../utils/update_props_immutable';
+import '../../../events/click';
+import '../../../events/core/emitter.feedback';
+import '../../../events/hover';
 var setDefaultOptionValue = (options, defaultValueGetter) => name => {
   if (Object.prototype.hasOwnProperty.call(options, name) && options[name] === undefined) {
     options[name] = defaultValueGetter(name);

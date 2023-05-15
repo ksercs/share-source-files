@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.nb.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,10 @@
             "dxDateBox-simulatedDataPickerTitleDate": "Velg dato",
             "dxDateBox-simulatedDataPickerTitleDateTime": "Velg dato og tid",
             "dxDateBox-validation-datetime": "Verdien må være dato eller tid",
+            "dxDateBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateBox-endDateOutOfRangeMessage": "End date is out of range",
             "dxFileUploader-selectFile": "Velg fil",
             "dxFileUploader-dropFile": "eller dropp filen her",
             "dxFileUploader-bytes": "bytes",
@@ -92,6 +96,10 @@
             "dxForm-requiredMessage": "{0} er påkrevd",
             "dxNumberBox-invalidValueMessage": "Verdien må være et tall",
             "dxNumberBox-noDataText": "Ingen data",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "Use {0} to display columns",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "Drag a column from the group panel here",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Use {0} or drag a column from the group panel",
+            "dxDataGrid-emptyHeaderColumnChooserText": "column chooser",
             "dxDataGrid-columnChooserTitle": "Kollonnevelger",
             "dxDataGrid-columnChooserEmptyText": "Dra kolonnen hit for å skjule den",
             "dxDataGrid-groupContinuesMessage": "Fortsetter på neste side",
@@ -124,6 +132,7 @@
             "dxDataGrid-filterRowOperationBetween": "Mellom",
             "dxDataGrid-filterRowOperationBetweenStartText": "Start",
             "dxDataGrid-filterRowOperationBetweenEndText": "Slutt",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "Bruk filter",
             "dxDataGrid-trueText": "sant",
             "dxDataGrid-falseText": "usant",
@@ -180,11 +189,14 @@
             "dxTreeList-editingAddRowToNode": "Legg til",
             "dxPager-infoText": "Side {0} av {1} ({2} punkter)",
             "dxPager-pagesCountText": "av",
+            "dxPager-pageSize": "Items per page: {0}",
             "dxPager-pageSizesAllText": "Alle",
             "dxPager-page": "Page {0}",
             "dxPager-prevPage": "Previous Page",
             "dxPager-nextPage": "Next Page",
             "dxPager-ariaLabel": "Page Navigation",
+            "dxPager-ariaPageSize": "Page size",
+            "dxPager-ariaPageNumber": "Page number",
             "dxPivotGrid-grandTotal": "Totalsum",
             "dxPivotGrid-total": "{0} Totalt",
             "dxPivotGrid-fieldChooserTitle": "Feltvelger",
@@ -250,6 +262,7 @@
             "dxScheduler-moreAppointments": "{0} mer",
             "dxCalendar-todayButtonText": "I dag",
             "dxCalendar-ariaWidgetName": "Kalender",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "Rød",
             "dxColorView-ariaGreen": "Grønn",
             "dxColorView-ariaBlue": "Blå",

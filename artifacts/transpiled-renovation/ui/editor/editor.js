@@ -76,7 +76,8 @@ var Editor = _ui.default.inherit({
         h: 0,
         v: 0
       },
-      validationTooltipOptions: {}
+      validationTooltipOptions: {},
+      _showValidationMessage: true
     });
   },
   _attachKeyboardEvents: function _attachKeyboardEvents() {
@@ -193,14 +194,13 @@ var Editor = _ui.default.inherit({
     var validationErrors = this._getValidationErrors();
     var $element = this.$element();
     this._toggleValidationClasses(!isValid);
-    if (!(0, _window.hasWindow)()) {
+    if (!(0, _window.hasWindow)() || this.option('_showValidationMessage') === false) {
       return;
     }
     this._disposeValidationMessage();
     if (!isValid && validationErrors) {
       var _this$option2 = this.option(),
         validationMessageMode = _this$option2.validationMessageMode,
-        validationMessagePosition = _this$option2.validationMessagePosition,
         validationMessageOffset = _this$option2.validationMessageOffset,
         validationBoundary = _this$option2.validationBoundary,
         rtlEnabled = _this$option2.rtlEnabled;
@@ -213,13 +213,16 @@ var Editor = _ui.default.inherit({
         target: this._getValidationMessageTarget(),
         visualContainer: $element,
         mode: validationMessageMode,
-        positionSide: validationMessagePosition,
+        positionSide: this._getValidationMessagePosition(),
         offset: validationMessageOffset,
         boundary: validationBoundary,
         contentId: validationMessageContentId
       }, this._options.cache('validationTooltipOptions')));
       this._bindInnerWidgetOptions(this._validationMessage, 'validationTooltipOptions');
     }
+  },
+  _getValidationMessagePosition: function _getValidationMessagePosition() {
+    return this.option('validationMessagePosition');
   },
   _getValidationMessageTarget: function _getValidationMessageTarget() {
     return this.$element();
@@ -320,6 +323,8 @@ var Editor = _ui.default.inherit({
         break;
       case 'validationTooltipOptions':
         this._innerWidgetOptionChanged(this._validationMessage, args);
+        break;
+      case '_showValidationMessage':
         break;
       default:
         this.callBase(args);

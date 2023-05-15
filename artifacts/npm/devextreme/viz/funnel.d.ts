@@ -1,7 +1,7 @@
 /**
 * DevExtreme (viz/funnel.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -549,7 +549,10 @@ export interface dxFunnelOptions extends BaseWidgetOptions<dxFunnel> {
      */
     valueField?: string;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxFunnelLegend extends BaseLegend {
     /**
      * @docid dxFunnelOptions.legend.customizeHint
@@ -586,7 +589,10 @@ export interface dxFunnelLegend extends BaseLegend {
      */
     visible?: boolean;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxFunnelTooltip extends BaseWidgetTooltip {
     /**
      * @docid dxFunnelOptions.tooltip.contentTemplate
@@ -708,3 +714,83 @@ export type Properties = dxFunnelOptions;
 
 /** @deprecated use Properties instead */
 export type Options = dxFunnelOptions;
+
+type EventProps<T> = Extract<keyof T, `on${any}`>;
+type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+type EventsIntegrityCheckingHelper = CheckedEvents<Properties, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxFunnelOptions.onDisposing
+ * @type_function_param1 e:{viz/funnel:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxFunnelOptions.onDrawn
+ * @type_function_param1 e:{viz/funnel:DrawnEvent}
+ */
+onDrawn?: ((e: DrawnEvent) => void);
+/**
+ * @skip
+ * @docid dxFunnelOptions.onExported
+ * @type_function_param1 e:{viz/funnel:ExportedEvent}
+ */
+onExported?: ((e: ExportedEvent) => void);
+/**
+ * @skip
+ * @docid dxFunnelOptions.onExporting
+ * @type_function_param1 e:{viz/funnel:ExportingEvent}
+ */
+onExporting?: ((e: ExportingEvent) => void);
+/**
+ * @skip
+ * @docid dxFunnelOptions.onFileSaving
+ * @type_function_param1 e:{viz/funnel:FileSavingEvent}
+ */
+onFileSaving?: ((e: FileSavingEvent) => void);
+/**
+ * @skip
+ * @docid dxFunnelOptions.onHoverChanged
+ * @type_function_param1 e:{viz/funnel:HoverChangedEvent}
+ */
+onHoverChanged?: ((e: HoverChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxFunnelOptions.onIncidentOccurred
+ * @type_function_param1 e:{viz/funnel:IncidentOccurredEvent}
+ */
+onIncidentOccurred?: ((e: IncidentOccurredEvent) => void);
+/**
+ * @skip
+ * @docid dxFunnelOptions.onInitialized
+ * @type_function_param1 e:{viz/funnel:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxFunnelOptions.onItemClick
+ * @type_function_param1 e:{viz/funnel:ItemClickEvent}
+ */
+onItemClick?: ((e: ItemClickEvent) => void);
+/**
+ * @skip
+ * @docid dxFunnelOptions.onLegendClick
+ * @type_function_param1 e:{viz/funnel:LegendClickEvent}
+ */
+onLegendClick?: ((e: LegendClickEvent) => void);
+/**
+ * @skip
+ * @docid dxFunnelOptions.onOptionChanged
+ * @type_function_param1 e:{viz/funnel:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxFunnelOptions.onSelectionChanged
+ * @type_function_param1 e:{viz/funnel:SelectionChangedEvent}
+ */
+onSelectionChanged?: ((e: SelectionChangedEvent) => void);
+};

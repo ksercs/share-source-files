@@ -1,7 +1,7 @@
 /**
 * DevExtreme (ui/radio_group.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -106,3 +106,43 @@ export type Properties = dxRadioGroupOptions;
 
 /** @deprecated use Properties instead */
 export type Options = dxRadioGroupOptions;
+
+type EventProps<T> = Extract<keyof T, `on${any}`>;
+type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+type FilterOutHidden<T> = Omit<T, 'onFocusIn' | 'onFocusOut'>;
+
+type EventsIntegrityCheckingHelper = CheckedEvents<FilterOutHidden<Properties>, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxRadioGroupOptions.onContentReady
+ * @type_function_param1 e:{ui/radio_group:ContentReadyEvent}
+ */
+onContentReady?: ((e: ContentReadyEvent) => void);
+/**
+ * @skip
+ * @docid dxRadioGroupOptions.onDisposing
+ * @type_function_param1 e:{ui/radio_group:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxRadioGroupOptions.onInitialized
+ * @type_function_param1 e:{ui/radio_group:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxRadioGroupOptions.onOptionChanged
+ * @type_function_param1 e:{ui/radio_group:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxRadioGroupOptions.onValueChanged
+ * @type_function_param1 e:{ui/radio_group:ValueChangedEvent}
+ */
+onValueChanged?: ((e: ValueChangedEvent) => void);
+};

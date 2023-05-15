@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.el.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,10 @@
             "dxDateBox-simulatedDataPickerTitleDate": "Επιλέξτε ημερομηνία",
             "dxDateBox-simulatedDataPickerTitleDateTime": "Επιλέξτε ώρα και ημερομηνία",
             "dxDateBox-validation-datetime": "Η τιμή πρέπει να αναπαριστά ημερομηνία",
+            "dxDateBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateBox-endDateOutOfRangeMessage": "End date is out of range",
             "dxFileUploader-selectFile": "Επιλέξτε αρχείο",
             "dxFileUploader-dropFile": "ή σύρετε το αρχείο εδώ",
             "dxFileUploader-bytes": "bytes",
@@ -92,6 +96,10 @@
             "dxForm-requiredMessage": "Το πεδίο {0} είναι απαιτούμενο",
             "dxNumberBox-invalidValueMessage": "Η τιμή πρέπει να είναι αριθμητική",
             "dxNumberBox-noDataText": "Δεν υπάρχουν δεδομένα",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "Use {0} to display columns",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "Drag a column from the group panel here",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Use {0} or drag a column from the group panel",
+            "dxDataGrid-emptyHeaderColumnChooserText": "column chooser",
             "dxDataGrid-columnChooserTitle": "Επιλογέας στήλης",
             "dxDataGrid-columnChooserEmptyText": "Σύρετε μια στήλη εδώ για να την κρύψετε",
             "dxDataGrid-groupContinuesMessage": "Συνέχεια στην επόμενη σελίδα",
@@ -124,6 +132,7 @@
             "dxDataGrid-filterRowOperationBetween": "Ανάμεσα",
             "dxDataGrid-filterRowOperationBetweenStartText": "Εκκίνηση",
             "dxDataGrid-filterRowOperationBetweenEndText": "Τέλος",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "Εισαγωγή φίλτρου",
             "dxDataGrid-trueText": "Αληθές",
             "dxDataGrid-falseText": "Ψευδές",
@@ -180,11 +189,14 @@
             "dxTreeList-editingAddRowToNode": "Προσθέτω",
             "dxPager-infoText": "Σελίδα {0} από {1} ({2} αντικείμενα)",
             "dxPager-pagesCountText": "από",
+            "dxPager-pageSize": "Items per page: {0}",
             "dxPager-pageSizesAllText": "Όλα",
             "dxPager-page": "Page {0}",
             "dxPager-prevPage": "Previous Page",
             "dxPager-nextPage": "Next Page",
             "dxPager-ariaLabel": "Page Navigation",
+            "dxPager-ariaPageSize": "Page size",
+            "dxPager-ariaPageNumber": "Page number",
             "dxPivotGrid-grandTotal": "Σύνολο",
             "dxPivotGrid-total": "{0} Σύνολο",
             "dxPivotGrid-fieldChooserTitle": "Επιλογέας πεδίου",
@@ -250,6 +262,7 @@
             "dxScheduler-moreAppointments": "{0} περισσότερα",
             "dxCalendar-todayButtonText": "Σήμερα",
             "dxCalendar-ariaWidgetName": "Ημερολόγιο",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "Κόκκινο",
             "dxColorView-ariaGreen": "Πράσινο",
             "dxColorView-ariaBlue": "Μπλε",

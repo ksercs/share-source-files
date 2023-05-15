@@ -1,7 +1,7 @@
 /**
 * DevExtreme (viz/vector_map.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -714,7 +714,10 @@ export interface dxVectorMapCommonAnnotationConfig extends BaseWidgetAnnotationC
     tooltipTemplate?: template | ((annotation: dxVectorMapAnnotationConfig | any, element: DxElement) => string | UserDefinedElement);
 }
 
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxVectorMapLegends extends BaseLegend {
     /**
      * @docid dxVectorMapOptions.legends.customizeHint
@@ -785,7 +788,10 @@ export interface dxVectorMapLegends extends BaseLegend {
       layer?: string;
     };
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxVectorMapTooltip extends BaseWidgetTooltip {
     /**
      * @docid dxVectorMapOptions.tooltip.contentTemplate
@@ -901,3 +907,95 @@ export type Properties = dxVectorMapOptions;
 
 /** @deprecated use Properties instead */
 export type Options = dxVectorMapOptions;
+
+type EventProps<T> = Extract<keyof T, `on${any}`>;
+type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+type EventsIntegrityCheckingHelper = CheckedEvents<Properties, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onCenterChanged
+ * @type_function_param1 e:{viz/vector_map:CenterChangedEvent}
+ */
+onCenterChanged?: ((e: CenterChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onClick
+ * @type_function_param1 e:{viz/vector_map:ClickEvent}
+ */
+onClick?: ((e: ClickEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onDisposing
+ * @type_function_param1 e:{viz/vector_map:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onDrawn
+ * @type_function_param1 e:{viz/vector_map:DrawnEvent}
+ */
+onDrawn?: ((e: DrawnEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onExported
+ * @type_function_param1 e:{viz/vector_map:ExportedEvent}
+ */
+onExported?: ((e: ExportedEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onExporting
+ * @type_function_param1 e:{viz/vector_map:ExportingEvent}
+ */
+onExporting?: ((e: ExportingEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onFileSaving
+ * @type_function_param1 e:{viz/vector_map:FileSavingEvent}
+ */
+onFileSaving?: ((e: FileSavingEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onIncidentOccurred
+ * @type_function_param1 e:{viz/vector_map:IncidentOccurredEvent}
+ */
+onIncidentOccurred?: ((e: IncidentOccurredEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onInitialized
+ * @type_function_param1 e:{viz/vector_map:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onOptionChanged
+ * @type_function_param1 e:{viz/vector_map:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onSelectionChanged
+ * @type_function_param1 e:{viz/vector_map:SelectionChangedEvent}
+ */
+onSelectionChanged?: ((e: SelectionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onTooltipHidden
+ * @type_function_param1 e:{viz/vector_map:TooltipHiddenEvent}
+ */
+onTooltipHidden?: ((e: TooltipHiddenEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onTooltipShown
+ * @type_function_param1 e:{viz/vector_map:TooltipShownEvent}
+ */
+onTooltipShown?: ((e: TooltipShownEvent) => void);
+/**
+ * @skip
+ * @docid dxVectorMapOptions.onZoomFactorChanged
+ * @type_function_param1 e:{viz/vector_map:ZoomFactorChangedEvent}
+ */
+onZoomFactorChanged?: ((e: ZoomFactorChangedEvent) => void);
+};

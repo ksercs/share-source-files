@@ -216,7 +216,7 @@ var MultiView = _uiCollection_widget.default.inherit({
     this.callBase($item, item);
     this._updateItemsVisibility(this.option('selectedIndex'));
   },
-  _setAriaSelected: _common.noop,
+  _setAriaSelectionAttribute: _common.noop,
   _updateSelection: function _updateSelection(addedSelection, removedSelection) {
     var newIndex = addedSelection[0];
     var prevIndex = removedSelection[0];

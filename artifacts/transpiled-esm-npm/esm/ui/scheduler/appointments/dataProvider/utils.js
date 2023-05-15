@@ -76,7 +76,7 @@ export var _convertRecurrenceException = (exceptionString, startDate, timeZoneCa
   exceptionString = dateSerialization.serializeDate(convertedExceptionDate, FULL_DATE_FORMAT);
   return exceptionString;
 };
-export var replaceWrongEndDate = (appointment, startDate, endDate, appointmentDuration, dataAccessors) => {
+export var replaceWrongEndDate = (rawAppointment, startDate, endDate, appointmentDuration, dataAccessors) => {
   var calculateAppointmentEndDate = (isAllDay, startDate) => {
     if (isAllDay) {
       return dateUtils.setToDayEnd(new Date(startDate));
@@ -84,8 +84,9 @@ export var replaceWrongEndDate = (appointment, startDate, endDate, appointmentDu
     return new Date(startDate.getTime() + appointmentDuration * toMs('minute'));
   };
   if (_isEndDateWrong(startDate, endDate)) {
-    var calculatedEndDate = calculateAppointmentEndDate(appointment.allDay, startDate);
-    dataAccessors.setter.endDate(appointment, calculatedEndDate);
+    var isAllDay = ExpressionUtils.getField(dataAccessors, 'allDay', rawAppointment);
+    var calculatedEndDate = calculateAppointmentEndDate(isAllDay, startDate);
+    dataAccessors.setter.endDate(rawAppointment, calculatedEndDate);
   }
 };
 export var sortAppointmentsByStartDate = (appointments, dataAccessors) => {

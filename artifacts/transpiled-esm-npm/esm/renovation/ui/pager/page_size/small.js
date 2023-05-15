@@ -1,8 +1,9 @@
 import _extends from "@babel/runtime/helpers/esm/extends";
 import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
-var _excluded = ["pageSize", "pageSizeChange", "pageSizes", "parentRef"];
+var _excluded = ["inputAttr", "pageSize", "pageSizeChange", "pageSizes", "parentRef"];
 import { createComponentVNode } from "inferno";
 import { InfernoEffect, InfernoComponent } from '@devextreme/runtime/inferno';
+import messageLocalization from '../../../../localization/message';
 import { SelectBox } from '../../editors/drop_down_editors/select_box';
 import { calculateValuesFittedWidth } from '../utils/calculate_values_fitted_width';
 import { getElementMinWidth } from '../utils/get_element_width';
@@ -10,6 +11,7 @@ import { InternalPagerProps } from '../common/pager_props';
 export var viewFunction = _ref => {
   var {
     props: {
+      inputAttr,
       pageSize,
       pageSizeChange,
       pageSizes
@@ -22,13 +24,21 @@ export var viewFunction = _ref => {
     "dataSource": pageSizes,
     "value": pageSize,
     "valueChange": pageSizeChange,
-    "width": width
+    "width": width,
+    "inputAttr": inputAttr
   });
 };
-export var PageSizeSmallProps = {};
+export var PageSizeSmallProps = {
+  inputAttr: Object.freeze({
+    'aria-label': messageLocalization.format('dxPager-ariaPageSize')
+  })
+};
 var PageSizeSmallPropsType = {
   get pageSize() {
     return InternalPagerProps.pageSize;
+  },
+  get inputAttr() {
+    return PageSizeSmallProps.inputAttr;
   }
 };
 export class PageSizeSmall extends InfernoComponent {
@@ -40,11 +50,11 @@ export class PageSizeSmall extends InfernoComponent {
     this.updateWidth = this.updateWidth.bind(this);
   }
   createEffects() {
-    return [new InfernoEffect(this.updateWidth, [this.props, this.state.minWidth, this.props.pageSize, this.props.pageSizeChange, this.props.pageSizes])];
+    return [new InfernoEffect(this.updateWidth, [this.props, this.state.minWidth, this.props.pageSize, this.props.pageSizeChange, this.props.pageSizes, this.props.inputAttr])];
   }
   updateEffects() {
     var _this$_effects$;
-    (_this$_effects$ = this._effects[0]) === null || _this$_effects$ === void 0 ? void 0 : _this$_effects$.update([this.props, this.state.minWidth, this.props.pageSize, this.props.pageSizeChange, this.props.pageSizes]);
+    (_this$_effects$ = this._effects[0]) === null || _this$_effects$ === void 0 ? void 0 : _this$_effects$.update([this.props, this.state.minWidth, this.props.pageSize, this.props.pageSizeChange, this.props.pageSizes, this.props.inputAttr]);
   }
   updateWidth() {
     this.setState(__state_argument => ({

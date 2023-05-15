@@ -1,7 +1,7 @@
 /**
 * DevExtreme (integration/jquery.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -18,6 +18,7 @@ import dxColorBox, { Properties as ColorBoxProperties } from '../ui/color_box';
 import dxContextMenu, { Properties as ContextMenuProperties } from '../ui/context_menu';
 import dxDataGrid, { Properties as DataGridProperties } from '../ui/data_grid';
 import dxDateBox, { Properties as DateBoxProperties } from '../ui/date_box';
+import dxDateRangeBox, { Properties as DateRangeBoxProperties } from '../ui/date_range_box';
 import dxDeferRendering, { Properties as DeferRenderingProperties } from '../ui/defer_rendering';
 import dxDiagram, { Properties as DiagramProperties } from '../ui/diagram';
 import dxDraggable, { Properties as DraggableProperties } from '../ui/draggable';
@@ -207,6 +208,12 @@ declare global {
         dxDateBox(options: DateBoxProperties): JQuery;
         dxDateBox(options: string): any;
         dxDateBox(options: string, ...params: any[]): any;
+
+        dxDateRangeBox(): JQuery;
+        dxDateRangeBox(options: 'instance'): dxDateRangeBox;
+        dxDateRangeBox(options: DateRangeBoxProperties): JQuery;
+        dxDateRangeBox(options: string): any;
+        dxDateRangeBox(options: string, ...params: any[]): any;
 
         dxDeferRendering(): JQuery;
         dxDeferRendering(options: 'instance'): dxDeferRendering;

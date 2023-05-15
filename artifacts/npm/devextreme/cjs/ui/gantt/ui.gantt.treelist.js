@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/gantt/ui.gantt.treelist.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -84,7 +84,8 @@ var GanttTreeList = /*#__PURE__*/function () {
       },
       onNodesInitialized: function onNodesInitialized(e) {
         _this._onNodesInitialized(e);
-      }
+      },
+      _disableDeprecationWarnings: true
     });
     return this._treeList;
   };

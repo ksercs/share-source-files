@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/grid_core/ui.grid_core.header_filter_core.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -33,21 +33,18 @@ function resetChildrenItemSelection(items) {
     resetChildrenItemSelection(items[i].items);
   }
 }
-function updateSelectAllState(e, filterValues) {
+function getSelectAllCheckBox(listComponent) {
+  var selector = listComponent.NAME === 'dxTreeView' ? '.dx-treeview-select-all-item' : '.dx-list-select-all-checkbox';
+  return listComponent.$element().find(selector).dxCheckBox('instance');
+}
+function updateListSelectAllState(e, filterValues) {
   if (e.component.option('searchValue')) {
     return;
   }
-  var selectAllCheckBox = (0, _renderer.default)(e.element).find('.dx-list-select-all-checkbox').data('dxCheckBox');
+  var selectAllCheckBox = getSelectAllCheckBox(e.component);
   if (selectAllCheckBox && filterValues && filterValues.length) {
     selectAllCheckBox.option('value', undefined);
   }
-}
-function isSearchEnabled(that, options) {
-  var headerFilter = options.headerFilter;
-  if (headerFilter && (0, _type.isDefined)(headerFilter.allowSearch)) {
-    return headerFilter.allowSearch;
-  }
-  return that.option('headerFilter.allowSearch');
 }
 function updateHeaderFilterItemSelectionState(item, filterValuesMatch, isExcludeFilter) {
   if (filterValuesMatch ^ isExcludeFilter) {
@@ -69,14 +66,15 @@ var HeaderFilterView = _uiGrid_core.default.View.inherit({
   getPopupContainer: function getPopupContainer() {
     return this._popupContainer;
   },
-  getListContainer: function getListContainer() {
-    return this._listContainer;
+  getListComponent: function getListComponent() {
+    return this._listComponent;
   },
   applyHeaderFilter: function applyHeaderFilter(options) {
     var that = this;
-    var list = that.getListContainer();
+    var list = that.getListComponent();
     var searchValue = list.option('searchValue');
-    var isSelectAll = !searchValue && !options.isFilterBuilder && list.$element().find('.dx-checkbox').eq(0).hasClass('dx-checkbox-checked');
+    var selectAllCheckBox = getSelectAllCheckBox(list);
+    var isAllSelected = !searchValue && !options.isFilterBuilder && (selectAllCheckBox === null || selectAllCheckBox === void 0 ? void 0 : selectAllCheckBox.option('value'));
     var filterValues = [];
     var fillSelectedItemKeys = function fillSelectedItemKeys(filterValues, items, isExclude) {
       (0, _iterator.each)(items, function (_, item) {
@@ -96,7 +94,7 @@ var HeaderFilterView = _uiGrid_core.default.View.inherit({
         }
       });
     };
-    if (!isSelectAll) {
+    if (!isAllSelected) {
       if (options.type === 'tree') {
         if (options.filterType) {
           options.filterType = 'include';
@@ -152,10 +150,14 @@ var HeaderFilterView = _uiGrid_core.default.View.inherit({
     }
   },
 
-  _getSearchExpr: function _getSearchExpr(options) {
+  _getSearchExpr: function _getSearchExpr(options, headerFilterOptions) {
     var lookup = options.lookup;
     var useDefaultSearchExpr = options.useDefaultSearchExpr;
-    var headerFilterDataSource = options.headerFilter && options.headerFilter.dataSource;
+    var headerFilterDataSource = headerFilterOptions.dataSource;
+    var filterSearchExpr = headerFilterOptions.search.searchExpr;
+    if (filterSearchExpr) {
+      return filterSearchExpr;
+    }
     if (useDefaultSearchExpr || (0, _type.isDefined)(headerFilterDataSource) && !(0, _type.isFunction)(headerFilterDataSource)) {
       return DEFAULT_SEARCH_EXPRESSION;
     }
@@ -178,9 +180,9 @@ var HeaderFilterView = _uiGrid_core.default.View.inherit({
   _initializePopupContainer: function _initializePopupContainer(options) {
     var that = this;
     var $element = that.element();
-    var headerFilterOptions = that.option('headerFilter');
-    var width = options.headerFilter && options.headerFilter.width || headerFilterOptions && headerFilterOptions.width;
-    var height = options.headerFilter && options.headerFilter.height || headerFilterOptions && headerFilterOptions.height;
+    var headerFilterOptions = this._normalizeHeaderFilterOptions(options);
+    var height = headerFilterOptions.height,
+      width = headerFilterOptions.width;
     var dxPopupOptions = {
       width: width,
       height: height,
@@ -192,9 +194,10 @@ var HeaderFilterView = _uiGrid_core.default.View.inherit({
       // T756320
       dragEnabled: false,
       hideOnOutsideClick: true,
+      wrapperAttr: {
+        class: HEADER_FILTER_MENU_CLASS
+      },
       focusStateEnabled: false,
-      copyRootClassesToWrapper: true,
-      _ignoreCopyRootClassesToWrapperDeprecation: true,
       toolbarItems: [{
         toolbar: 'bottom',
         location: 'after',
@@ -219,11 +222,11 @@ var HeaderFilterView = _uiGrid_core.default.View.inherit({
       resizeEnabled: true,
       onShowing: function onShowing(e) {
         e.component.$content().parent().addClass('dx-dropdowneditor-overlay');
-        that._initializeListContainer(options);
+        that._initializeListContainer(options, headerFilterOptions);
         options.onShowing && options.onShowing(e);
       },
       onShown: function onShown() {
-        that.getListContainer().focus();
+        that.getListComponent().focus();
       },
       onHidden: options.onHidden,
       onInitialized: function onInitialized(e) {
@@ -238,13 +241,15 @@ var HeaderFilterView = _uiGrid_core.default.View.inherit({
       that._popupContainer.option(dxPopupOptions);
     }
   },
-  _initializeListContainer: function _initializeListContainer(options) {
+  _initializeListContainer: function _initializeListContainer(options, headerFilterOptions) {
     var that = this;
     var $content = that._popupContainer.$content();
+    var needShowSelectAllCheckbox = !options.isFilterBuilder && headerFilterOptions.allowSelectAll;
     var widgetOptions = {
-      searchEnabled: isSearchEnabled(that, options),
-      searchTimeout: that.option('headerFilter.searchTimeout'),
-      searchMode: options.headerFilter && options.headerFilter.searchMode || '',
+      searchEnabled: headerFilterOptions.search.enabled,
+      searchTimeout: headerFilterOptions.search.timeout,
+      searchEditorOptions: headerFilterOptions.search.editorOptions,
+      searchMode: headerFilterOptions.search.mode || '',
       dataSource: options.dataSource,
       onContentReady: function onContentReady() {
         that.renderCompleted.fire();
@@ -259,7 +264,7 @@ var HeaderFilterView = _uiGrid_core.default.View.inherit({
     };
     function onOptionChanged(e) {
       // T835492, T833015
-      if (e.fullName === 'searchValue' && !options.isFilterBuilder && that.option('headerFilter.hideSelectAllOnSearch') !== false) {
+      if (e.fullName === 'searchValue' && needShowSelectAllCheckbox && that.option('headerFilter.hideSelectAllOnSearch') !== false) {
         if (options.type === 'tree') {
           e.component.option('showCheckBoxesMode', e.value ? 'normal' : 'selectAll');
         } else {
@@ -268,17 +273,17 @@ var HeaderFilterView = _uiGrid_core.default.View.inherit({
       }
     }
     if (options.type === 'tree') {
-      that._listContainer = that._createComponent((0, _renderer.default)('<div>').appendTo($content), _tree_view.default, (0, _extend.extend)(widgetOptions, {
-        showCheckBoxesMode: options.isFilterBuilder ? 'normal' : 'selectAll',
+      that._listComponent = that._createComponent((0, _renderer.default)('<div>').appendTo($content), _tree_view.default, (0, _extend.extend)(widgetOptions, {
+        showCheckBoxesMode: needShowSelectAllCheckbox ? 'selectAll' : 'normal',
         onOptionChanged: onOptionChanged,
         keyExpr: 'id'
       }));
     } else {
-      that._listContainer = that._createComponent((0, _renderer.default)('<div>').appendTo($content), _list_light.default, (0, _extend.extend)(widgetOptions, {
-        searchExpr: that._getSearchExpr(options),
+      that._listComponent = that._createComponent((0, _renderer.default)('<div>').appendTo($content), _list_light.default, (0, _extend.extend)(widgetOptions, {
+        searchExpr: that._getSearchExpr(options, headerFilterOptions),
         pageLoadMode: 'scrollBottom',
         showSelectionControls: true,
-        selectionMode: options.isFilterBuilder ? 'multiple' : 'all',
+        selectionMode: needShowSelectAllCheckbox ? 'all' : 'multiple',
         onOptionChanged: onOptionChanged,
         onSelectionChanged: function onSelectionChanged(e) {
           var items = e.component.option('items');
@@ -309,7 +314,7 @@ var HeaderFilterView = _uiGrid_core.default.View.inherit({
               }
             }
           });
-          updateSelectAllState(e, options.filterValues);
+          updateListSelectAllState(e, options.filterValues);
         },
         onContentReady: function onContentReady(e) {
           var component = e.component;
@@ -323,10 +328,28 @@ var HeaderFilterView = _uiGrid_core.default.View.inherit({
           component._selectedItemsUpdating = true;
           component.option('selectedItems', selectedItems);
           component._selectedItemsUpdating = false;
-          updateSelectAllState(e, options.filterValues);
+          updateListSelectAllState(e, options.filterValues);
         }
       }));
     }
+  },
+  _normalizeHeaderFilterOptions: function _normalizeHeaderFilterOptions(options) {
+    var generalHeaderFilter = this.option('headerFilter') || {};
+    var specificHeaderFilter = options.headerFilter || {};
+    var generalDeprecated = {
+      search: {
+        enabled: generalHeaderFilter.allowSearch,
+        timeout: generalHeaderFilter.searchTimeout
+      }
+    };
+    var specificDeprecated = {
+      search: {
+        enabled: specificHeaderFilter.allowSearch,
+        mode: specificHeaderFilter.searchMode,
+        timeout: specificHeaderFilter.searchTimeout
+      }
+    };
+    return (0, _extend.extend)(true, {}, generalHeaderFilter, generalDeprecated, specificHeaderFilter, specificDeprecated);
   },
   _renderCore: function _renderCore() {
     this.element().addClass(HEADER_FILTER_MENU_CLASS);

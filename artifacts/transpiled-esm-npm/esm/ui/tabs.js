@@ -36,6 +36,7 @@ var TABS_NAV_BUTTON_CLASS = 'dx-tabs-nav-button';
 var TABS_LEFT_NAV_BUTTON_CLASS = 'dx-tabs-nav-button-left';
 var TABS_RIGHT_NAV_BUTTON_CLASS = 'dx-tabs-nav-button-right';
 var TABS_ITEM_TEXT_CLASS = 'dx-tab-text';
+var FOCUSED_NEXT_TAB_CLASS = 'dx-focused-next-tab';
 var TABS_ITEM_DATA_KEY = 'dxTabData';
 var BUTTON_NEXT_ICON = 'chevronnext';
 var BUTTON_PREV_ICON = 'chevronprev';
@@ -351,6 +352,9 @@ var Tabs = CollectionWidget.inherit({
     this._cleanScrolling();
     this.callBase();
   },
+  _toggleFocusedNextClass(index, isNextTabFocused) {
+    this._itemElements().eq(index).toggleClass(FOCUSED_NEXT_TAB_CLASS, isNextTabFocused);
+  },
   _optionChanged: function _optionChanged(args) {
     switch (args.name) {
       case 'useInkRipple':
@@ -373,9 +377,18 @@ var Tabs = CollectionWidget.inherit({
         this._invalidate();
         break;
       case 'focusedElement':
-        this.callBase(args);
-        this._scrollToItem(args.value);
-        break;
+        {
+          var {
+            selectedIndex
+          } = this.option();
+          var currentIndex = $(args.value).index();
+          if (currentIndex !== selectedIndex) {
+            this._toggleFocusedNextClass(selectedIndex, currentIndex === selectedIndex + 1);
+          }
+          this.callBase(args);
+          this._scrollToItem(args.value);
+          break;
+        }
       default:
         this.callBase(args);
     }

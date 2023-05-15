@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/radio_group/radio_group.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -100,7 +100,7 @@ var RadioCollection = /*#__PURE__*/function (_CollectionWidget) {
   _proto._itemElements = function _itemElements() {
     return this._itemContainer().children(this._itemSelector());
   };
-  _proto._setAriaSelected = function _setAriaSelected() {};
+  _proto._setAriaSelectionAttribute = function _setAriaSelectionAttribute() {};
   return RadioCollection;
 }(_uiCollection_widget.default);
 var RadioGroup = /*#__PURE__*/function (_Editor) {

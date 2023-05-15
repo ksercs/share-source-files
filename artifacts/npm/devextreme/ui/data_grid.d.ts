@@ -1,7 +1,7 @@
 /**
 * DevExtreme (ui/data_grid.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -113,10 +113,13 @@ export {
     ApplyFilterMode,
     ColumnChooser,
     ColumnChooserMode,
+    ColumnChooserSearchConfig,
+    ColumnChooserSelectionConfig,
     ColumnCustomizeTextArg,
     ColumnFixing,
     ColumnFixingTexts,
     ColumnHeaderFilter,
+    ColumnHeaderFilterSearchConfig,
     ColumnLookup,
     ColumnResizeMode,
     DataChange,
@@ -133,6 +136,7 @@ export {
     GridsEditRefreshMode,
     GroupExpandMode,
     HeaderFilter,
+    HeaderFilterSearchConfig,
     HeaderFilterGroupInterval,
     HeaderFilterTexts,
     KeyboardNavigation,
@@ -671,12 +675,14 @@ export type DataRowTemplateData<TRowData = any, TKey = any> = {
   readonly isExpanded?: boolean;
 };
 
+type OverriddenKeys = 'columns' | 'customizeColumns' | 'dataRowTemplate' | 'editing' | 'export' | 'grouping' | 'groupPanel' | 'keyExpr' | 'masterDetail' | 'onCellClick' | 'onCellDblClick' | 'onCellHoverChanged' | 'onCellPrepared' | 'onContextMenuPreparing' | 'onEditingStart' | 'onEditorPrepared' | 'onEditorPreparing' | 'onExporting' | 'onFocusedCellChanged' | 'onFocusedCellChanging' | 'onFocusedRowChanged' | 'onFocusedRowChanging' | 'onRowClick' | 'onRowDblClick' | 'onRowPrepared' | 'remoteOperations' | 'rowTemplate' | 'scrolling' | 'selection' | 'selectionFilter' | 'sortByGroupSummaryInfo' | 'summary' | 'toolbar';
+
 /**
  * @deprecated use Properties instead
  * @namespace DevExpress.ui
  * @public
  */
-export type dxDataGridOptions<TRowData = any, TKey = any> = GridBaseOptions<dxDataGrid<TRowData, TKey>, TRowData, TKey> & {
+export type dxDataGridOptions<TRowData = any, TKey = any> = Omit<GridBaseOptions<dxDataGrid<TRowData, TKey>, TRowData, TKey>, OverriddenKeys> & {
     /**
      * @docid
      * @type Array<dxDataGridColumn|string>
@@ -1022,7 +1028,10 @@ export type dxDataGridOptions<TRowData = any, TKey = any> = GridBaseOptions<dxDa
     toolbar?: Toolbar;
 };
 
-/** @public */
+/**
+ * @docid
+ * @public
+ */
 export type Export = {
   /**
    * @docid dxDataGridOptions.export.allowExportSelectedData
@@ -1047,7 +1056,10 @@ export type Export = {
   texts?: ExportTexts;
 };
 
-/** @public */
+/**
+ * @docid
+ * @public
+ */
 export type ExportTexts = {
   /**
    * @docid dxDataGridOptions.export.texts.exportAll
@@ -1072,7 +1084,10 @@ export type FilterPanel<TRowData = any, TKey = any> = ComponentFilterPanel<dxDat
 /** @public */
 export type FilterPanelCustomizeTextArg = ComponentFilterPanelCustomizeTextArg<dxDataGrid>;
 
-/** @public */
+/**
+ * @docid
+ * @public
+ */
 export type GroupPanel = {
   /**
    * @docid dxDataGridOptions.groupPanel.allowColumnDragging
@@ -1092,7 +1107,10 @@ export type GroupPanel = {
   visible?: boolean | Mode;
 };
 
-/** @public */
+/**
+ * @docid
+ * @public
+ */
 export type Grouping = {
   /**
    * @docid dxDataGridOptions.grouping.allowCollapsing
@@ -1122,7 +1140,10 @@ export type Grouping = {
   texts?: GroupingTexts;
 };
 
-/** @public */
+/**
+ * @docid
+ * @public
+ */
 export type GroupingTexts = {
   /**
    * @docid dxDataGridOptions.grouping.texts.groupByThisColumn
@@ -1151,7 +1172,10 @@ export type GroupingTexts = {
   ungroupAll?: string;
 };
 
-/** @public */
+/**
+ * @docid
+ * @public
+ */
 export type MasterDetail<TRowData = any, TKey = any> = {
   /**
    * @docid dxDataGridOptions.masterDetail.autoExpandAll
@@ -1172,6 +1196,9 @@ export type MasterDetail<TRowData = any, TKey = any> = {
   template?: template | ((detailElement: DxElement, detailInfo: MasterDetailTemplateData<TRowData, TKey>) => any);
 };
 
+/**
+ * @docid
+ */
 export interface dxDataGridSortByGroupSummaryInfoItem {
     /**
      * @docid dxDataGridOptions.sortByGroupSummaryInfo.groupColumn
@@ -1204,7 +1231,10 @@ export type CustomSummaryInfo<TRowData = any, TKey = any> = {
 /** @public */
 export type RowDragging<TRowData = any, TKey = any> = ComponentRowDragging<dxDataGrid, TRowData, TKey>;
 
-/** @public */
+/**
+ * @docid
+ * @public
+ */
 export type Summary<TRowData = any, TKey = any> = {
   /**
    * @docid dxDataGridOptions.summary.calculateCustomSummary
@@ -1246,7 +1276,10 @@ export type SummaryItemTextInfo = {
   readonly valueText: string;
 };
 
-/** @public */
+/**
+ * @docid
+ * @public
+ */
 export type SummaryGroupItem = {
     /**
      * @docid dxDataGridOptions.summary.groupItems.alignByColumn
@@ -1299,7 +1332,10 @@ export type SummaryGroupItem = {
     valueFormat?: Format;
 };
 
-/** @public */
+/**
+ * @docid
+ * @public
+ */
 export type SummaryTotalItem = {
   /**
    * @docid dxDataGridOptions.summary.totalItems.alignment
@@ -1352,7 +1388,10 @@ export type SummaryTotalItem = {
   valueFormat?: Format;
 };
 
-/** @public */
+/**
+ * @docid
+ * @public
+ */
 export type SummaryTexts = {
     /**
      * @docid dxDataGridOptions.summary.texts.avg
@@ -1457,7 +1496,9 @@ export type Toolbar = {
  */
 export type dxDataGridEditing<TRowData, TKey = any> = Editing<TRowData, TKey>;
 
-/** @public */
+/**
+ * @public
+ */
 export type Editing<TRowData = any, TKey = any> = EditingBase<TRowData, TKey> & {
     /**
      * @docid dxDataGridOptions.editing.allowAdding
@@ -1503,7 +1544,9 @@ export type Editing<TRowData = any, TKey = any> = EditingBase<TRowData, TKey> & 
  */
 export type dxDataGridScrolling = Scrolling;
 
-/** @public */
+/**
+ * @public
+ */
 export type Scrolling = ScrollingBase & {
     /**
      * @docid dxDataGridOptions.scrolling.mode
@@ -2046,3 +2089,259 @@ export type Properties<TRowData = any, TKey = any> = dxDataGridOptions<TRowData,
 export type Options<TRowData = any, TKey = any> = dxDataGridOptions<TRowData, TKey>;
 
 export default dxDataGrid;
+
+type EventProps<T> = Extract<keyof T, `on${any}`>;
+type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+type FilterOutHidden<T> = Omit<T, 'onFocusIn' | 'onFocusOut'>;
+
+type EventsIntegrityCheckingHelper = CheckedEvents<FilterOutHidden<Properties>, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxDataGridOptions.onAdaptiveDetailRowPreparing
+ * @type_function_param1 e:{ui/data_grid:AdaptiveDetailRowPreparingEvent}
+ */
+onAdaptiveDetailRowPreparing?: ((e: AdaptiveDetailRowPreparingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onCellClick
+ * @type_function_param1 e:{ui/data_grid:CellClickEvent}
+ */
+onCellClick?: ((e: CellClickEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onCellDblClick
+ * @type_function_param1 e:{ui/data_grid:CellDblClickEvent}
+ */
+onCellDblClick?: ((e: CellDblClickEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onCellHoverChanged
+ * @type_function_param1 e:{ui/data_grid:CellHoverChangedEvent}
+ */
+onCellHoverChanged?: ((e: CellHoverChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onCellPrepared
+ * @type_function_param1 e:{ui/data_grid:CellPreparedEvent}
+ */
+onCellPrepared?: ((e: CellPreparedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onContentReady
+ * @type_function_param1 e:{ui/data_grid:ContentReadyEvent}
+ */
+onContentReady?: ((e: ContentReadyEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onContextMenuPreparing
+ * @type_function_param1 e:{ui/data_grid:ContextMenuPreparingEvent}
+ */
+onContextMenuPreparing?: ((e: ContextMenuPreparingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onDataErrorOccurred
+ * @type_function_param1 e:{ui/data_grid:DataErrorOccurredEvent}
+ */
+onDataErrorOccurred?: ((e: DataErrorOccurredEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onDisposing
+ * @type_function_param1 e:{ui/data_grid:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onEditCanceled
+ * @type_function_param1 e:{ui/data_grid:EditCanceledEvent}
+ */
+onEditCanceled?: ((e: EditCanceledEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onEditCanceling
+ * @type_function_param1 e:{ui/data_grid:EditCancelingEvent}
+ */
+onEditCanceling?: ((e: EditCancelingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onEditingStart
+ * @type_function_param1 e:{ui/data_grid:EditingStartEvent}
+ */
+onEditingStart?: ((e: EditingStartEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onEditorPrepared
+ * @type_function_param1 e:{ui/data_grid:EditorPreparedEvent}
+ */
+onEditorPrepared?: ((e: EditorPreparedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onEditorPreparing
+ * @type_function_param1 e:{ui/data_grid:EditorPreparingEvent}
+ */
+onEditorPreparing?: ((e: EditorPreparingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onExporting
+ * @type_function_param1 e:{ui/data_grid:ExportingEvent}
+ */
+onExporting?: ((e: ExportingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onFocusedCellChanged
+ * @type_function_param1 e:{ui/data_grid:FocusedCellChangedEvent}
+ */
+onFocusedCellChanged?: ((e: FocusedCellChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onFocusedCellChanging
+ * @type_function_param1 e:{ui/data_grid:FocusedCellChangingEvent}
+ */
+onFocusedCellChanging?: ((e: FocusedCellChangingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onFocusedRowChanged
+ * @type_function_param1 e:{ui/data_grid:FocusedRowChangedEvent}
+ */
+onFocusedRowChanged?: ((e: FocusedRowChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onFocusedRowChanging
+ * @type_function_param1 e:{ui/data_grid:FocusedRowChangingEvent}
+ */
+onFocusedRowChanging?: ((e: FocusedRowChangingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onInitialized
+ * @type_function_param1 e:{ui/data_grid:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onInitNewRow
+ * @type_function_param1 e:{ui/data_grid:InitNewRowEvent}
+ */
+onInitNewRow?: ((e: InitNewRowEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onKeyDown
+ * @type_function_param1 e:{ui/data_grid:KeyDownEvent}
+ */
+onKeyDown?: ((e: KeyDownEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onOptionChanged
+ * @type_function_param1 e:{ui/data_grid:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowClick
+ * @type_function_param1 e:{ui/data_grid:RowClickEvent}
+ */
+onRowClick?: ((e: RowClickEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowCollapsed
+ * @type_function_param1 e:{ui/data_grid:RowCollapsedEvent}
+ */
+onRowCollapsed?: ((e: RowCollapsedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowCollapsing
+ * @type_function_param1 e:{ui/data_grid:RowCollapsingEvent}
+ */
+onRowCollapsing?: ((e: RowCollapsingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowDblClick
+ * @type_function_param1 e:{ui/data_grid:RowDblClickEvent}
+ */
+onRowDblClick?: ((e: RowDblClickEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowExpanded
+ * @type_function_param1 e:{ui/data_grid:RowExpandedEvent}
+ */
+onRowExpanded?: ((e: RowExpandedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowExpanding
+ * @type_function_param1 e:{ui/data_grid:RowExpandingEvent}
+ */
+onRowExpanding?: ((e: RowExpandingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowInserted
+ * @type_function_param1 e:{ui/data_grid:RowInsertedEvent}
+ */
+onRowInserted?: ((e: RowInsertedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowInserting
+ * @type_function_param1 e:{ui/data_grid:RowInsertingEvent}
+ */
+onRowInserting?: ((e: RowInsertingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowPrepared
+ * @type_function_param1 e:{ui/data_grid:RowPreparedEvent}
+ */
+onRowPrepared?: ((e: RowPreparedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowRemoved
+ * @type_function_param1 e:{ui/data_grid:RowRemovedEvent}
+ */
+onRowRemoved?: ((e: RowRemovedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowRemoving
+ * @type_function_param1 e:{ui/data_grid:RowRemovingEvent}
+ */
+onRowRemoving?: ((e: RowRemovingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowUpdated
+ * @type_function_param1 e:{ui/data_grid:RowUpdatedEvent}
+ */
+onRowUpdated?: ((e: RowUpdatedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowUpdating
+ * @type_function_param1 e:{ui/data_grid:RowUpdatingEvent}
+ */
+onRowUpdating?: ((e: RowUpdatingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onRowValidating
+ * @type_function_param1 e:{ui/data_grid:RowValidatingEvent}
+ */
+onRowValidating?: ((e: RowValidatingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onSaved
+ * @type_function_param1 e:{ui/data_grid:SavedEvent}
+ */
+onSaved?: ((e: SavedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onSaving
+ * @type_function_param1 e:{ui/data_grid:SavingEvent}
+ */
+onSaving?: ((e: SavingEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onSelectionChanged
+ * @type_function_param1 e:{ui/data_grid:SelectionChangedEvent}
+ */
+onSelectionChanged?: ((e: SelectionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxDataGridOptions.onToolbarPreparing
+ * @type_function_param1 e:{ui/data_grid:ToolbarPreparingEvent}
+ */
+onToolbarPreparing?: ((e: ToolbarPreparingEvent) => void);
+};

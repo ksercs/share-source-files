@@ -1,7 +1,7 @@
 /**
 * DevExtreme (renovation/ui/editors/number_box.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -17,7 +17,7 @@ var _dom_component_wrapper = require("../common/dom_component_wrapper");
 var _editor = require("./common/editor");
 var _editor_state_props = require("./common/editor_state_props");
 var _editor_label_props = require("./common/editor_label_props");
-var _excluded = ["accessKey", "activeStateEnabled", "className", "defaultValue", "disabled", "focusStateEnabled", "height", "hint", "hoverStateEnabled", "invalidValueMessage", "isValid", "label", "labelMode", "max", "min", "mode", "name", "onClick", "onFocusIn", "onKeyDown", "readOnly", "rtlEnabled", "showSpinButtons", "step", "tabIndex", "useLargeSpinButtons", "validationError", "validationErrors", "validationMessageMode", "validationMessagePosition", "validationStatus", "value", "valueChange", "visible", "width"];
+var _excluded = ["accessKey", "activeStateEnabled", "className", "defaultValue", "disabled", "focusStateEnabled", "height", "hint", "hoverStateEnabled", "inputAttr", "invalidValueMessage", "isValid", "label", "labelMode", "max", "min", "mode", "name", "onClick", "onFocusIn", "onKeyDown", "readOnly", "rtlEnabled", "showSpinButtons", "step", "tabIndex", "useLargeSpinButtons", "validationError", "validationErrors", "validationMessageMode", "validationMessagePosition", "validationStatus", "value", "valueChange", "visible", "width"];
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
@@ -106,6 +106,13 @@ var NumberBoxPropsType = Object.defineProperties({
   isValid: {
     get: function get() {
       return NumberBoxProps.isValid;
+    },
+    configurable: true,
+    enumerable: true
+  },
+  inputAttr: {
+    get: function get() {
+      return NumberBoxProps.inputAttr;
     },
     configurable: true,
     enumerable: true
@@ -218,6 +225,7 @@ var NumberBox = /*#__PURE__*/function (_BaseInfernoComponent) {
         height = _this$props$value.height,
         hint = _this$props$value.hint,
         hoverStateEnabled = _this$props$value.hoverStateEnabled,
+        inputAttr = _this$props$value.inputAttr,
         invalidValueMessage = _this$props$value.invalidValueMessage,
         isValid = _this$props$value.isValid,
         label = _this$props$value.label,

@@ -4,6 +4,7 @@ import { getPageWidth, getPageHeight } from './pdf_utils';
 import { roundToThreeDecimals } from './draw_utils';
 import { getMultiPageRowPages, checkPageContainsOnlyHeader } from './rows_spliting_utils/get_multipage_row_pages';
 import { createOnSplitMultiPageRow } from './rows_spliting_utils/create_on_split_multipage_row';
+var COORDINATE_EPSILON = 0.001;
 function convertToCellsArray(rows) {
   return [].concat.apply([], rows.map(rowInfo => {
     return rowInfo.cells.filter(cell => !isDefined(cell.pdfCell.isMerged)).map(cellInfo => {
@@ -122,9 +123,7 @@ function splitRectsByPages(rects, marginValue, coordinate, dimension, isFitToPag
       // Check cells that have 'coordinate' less than 'currentPageMaxRectCoordinate'
       var currentRectLeft = rect[coordinate];
       var currentRectRight = rect[coordinate] + rect[dimension];
-      if (currentRectLeft < currentPageMaxRectCoordinate && currentPageMaxRectCoordinate < currentRectRight) {
-        return true;
-      }
+      return currentPageMaxRectCoordinate - currentRectLeft > COORDINATE_EPSILON && currentRectRight - currentPageMaxRectCoordinate > COORDINATE_EPSILON;
     });
     rectsToSeparate.forEach(rect => {
       onSeparateCallback(rect, currentPageMaxRectCoordinate, currentPageRects, rectsToSplit);

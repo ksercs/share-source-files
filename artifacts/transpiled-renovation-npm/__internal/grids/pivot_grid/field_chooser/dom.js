@@ -1,64 +1,55 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.dragAndDropItemRender = void 0;
-var renderer_1 = __importDefault(require("../../../../core/renderer"));
-var size_1 = require("../../../../core/utils/size");
-var const_1 = require("./const");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.dragAndDropItemRender = dragAndDropItemRender;
+var _renderer = _interopRequireDefault(require("../../../../core/renderer"));
+var _size = require("../../../../core/utils/size");
+var _const = require("./const");
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 // === Drag-N-Drop item render ===
 function getTreeViewItem($sourceItem) {
-    return $sourceItem
-        .clone()
-        .addClass(const_1.CLASSES.area.box)
-        .css('width', parseFloat(size_1.getOuterWidth($sourceItem)));
+  return $sourceItem.clone().addClass(_const.CLASSES.area.box).css('width', parseFloat((0, _size.getOuterWidth)($sourceItem)));
 }
 function getAreaBoxItemArray($sourceItem, target) {
-    var $itemArray = $sourceItem.clone();
-    if (target === const_1.SORTABLE_CONST.targets.drag) {
-        $sourceItem.each(function (idx, sourceItem) {
-            var width = parseFloat(size_1.getOuterWidth(sourceItem));
-            $itemArray.eq(idx).css('width', width);
-            return true;
-        });
-    }
-    return $itemArray;
+  var $itemArray = $sourceItem.clone();
+  if (target === _const.SORTABLE_CONST.targets.drag) {
+    $sourceItem.each(function (idx, sourceItem) {
+      var width = parseFloat((0, _size.getOuterWidth)(sourceItem));
+      $itemArray.eq(idx).css('width', width);
+      return true;
+    });
+  }
+  return $itemArray;
 }
 function getDefaultItem($sourceItem) {
-    return renderer_1.default('<div>')
-        .addClass(const_1.CLASSES.area.field)
-        .addClass(const_1.CLASSES.area.box)
-        .text($sourceItem.text());
+  return (0, _renderer.default)('<div>').addClass(_const.CLASSES.area.field).addClass(_const.CLASSES.area.box).text($sourceItem.text());
 }
 function getItemArray($sourceItem, target) {
-    var isAreaBox = $sourceItem.hasClass(const_1.CLASSES.area.box);
-    var isTreeList = $sourceItem.attr(const_1.ATTRIBUTES.treeViewItem);
-    if (isAreaBox) {
-        return getAreaBoxItemArray($sourceItem, target);
-    }
-    if (isTreeList) {
-        return getTreeViewItem($sourceItem);
-    }
-    return getDefaultItem($sourceItem);
+  var isAreaBox = $sourceItem.hasClass(_const.CLASSES.area.box);
+  var isTreeList = $sourceItem.attr(_const.ATTRIBUTES.treeViewItem);
+  if (isAreaBox) {
+    return getAreaBoxItemArray($sourceItem, target);
+  }
+  if (isTreeList) {
+    return getTreeViewItem($sourceItem);
+  }
+  return getDefaultItem($sourceItem);
 }
 function wrapItemsInFieldsContainer($itemArray) {
-    var $wrappedTmpContainer = renderer_1.default('<div>');
-    $itemArray.each(function (_, item) {
-        var $wrappedItem = renderer_1.default('<div>')
-            .addClass(const_1.CLASSES.pivotGrid.fieldsContainer)
-            .addClass(const_1.CLASSES.widget)
-            .append(renderer_1.default(item));
-        $wrappedTmpContainer.append($wrappedItem);
-        return true;
-    });
-    return $wrappedTmpContainer.children();
+  var $wrappedTmpContainer = (0, _renderer.default)('<div>');
+  $itemArray.each(function (_, item) {
+    var $wrappedItem = (0, _renderer.default)('<div>').addClass(_const.CLASSES.pivotGrid.fieldsContainer).addClass(_const.CLASSES.widget).append((0, _renderer.default)(item));
+    $wrappedTmpContainer.append($wrappedItem);
+    return true;
+  });
+  return $wrappedTmpContainer.children();
 }
 function dragAndDropItemRender($sourceItem, target) {
-    var $itemArray = getItemArray($sourceItem, target);
-    if (target === const_1.SORTABLE_CONST.targets.drag) {
-        return wrapItemsInFieldsContainer($itemArray);
-    }
-    return $itemArray;
+  var $itemArray = getItemArray($sourceItem, target);
+  if (target === _const.SORTABLE_CONST.targets.drag) {
+    return wrapItemsInFieldsContainer($itemArray);
+  }
+  return $itemArray;
 }
-exports.dragAndDropItemRender = dragAndDropItemRender;

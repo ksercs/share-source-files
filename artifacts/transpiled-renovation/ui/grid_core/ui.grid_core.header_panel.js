@@ -190,7 +190,8 @@ var members = {
   isVisible: function isVisible() {
     return !!(this._toolbarOptions && this._toolbarOptions.visible);
   },
-  allowDragging: _common.noop
+  allowDragging: _common.noop,
+  hasGroupedColumns: _common.noop
 };
 var HeaderPanel = _uiGrid_core.ColumnsView.inherit(members);
 

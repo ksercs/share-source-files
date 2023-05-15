@@ -650,7 +650,9 @@ export var columnsControllerModule = {
         var prevValue = optionGetter(column, {
           functionsAsIs: true
         });
-        if (!equalByValue(prevValue, value)) {
+        if (!equalByValue(prevValue, value, {
+          maxDepth: 5
+        })) {
           if (optionName === 'groupIndex' || optionName === 'calculateGroupValue') {
             changeType = 'grouping';
             updateSortOrderWhenGrouping(that, column, value, prevValue);

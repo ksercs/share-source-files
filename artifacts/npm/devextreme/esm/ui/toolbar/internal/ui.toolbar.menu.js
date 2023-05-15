@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/toolbar/internal/ui.toolbar.menu.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -128,7 +128,6 @@ export default class DropDownMenu extends Widget {
   _render() {
     super._render();
     this.setAria({
-      'role': 'menubar',
       'haspopup': true,
       'expanded': this.option('opened')
     });
@@ -253,7 +252,6 @@ export default class DropDownMenu extends Widget {
       focusStateEnabled: false,
       activeStateEnabled: true,
       onItemRendered: this.option('onItemRendered'),
-      _areaTarget: this.$element(),
       _itemAttributes: {
         role: 'menuitem'
       }

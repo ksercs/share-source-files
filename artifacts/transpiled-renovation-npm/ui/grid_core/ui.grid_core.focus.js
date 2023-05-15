@@ -225,31 +225,34 @@ var FocusController = _uiGrid_core.default.ViewController.inherit(function () {
       }
     },
     _navigateToVirtualRow: function _navigateToVirtualRow(key, deferred, needFocusRow) {
-      var that = this;
+      var _this2 = this;
       var dataController = this.getController('data');
       // @ts-expect-error
       var rowsScrollController = dataController._rowsScrollController;
       var rowIndex = _uiGrid_core2.default.getIndexByKey(key, dataController.items(true));
-      var scrollable = that.getView('rowsView').getScrollable();
+      var scrollable = this.getView('rowsView').getScrollable();
       if (rowsScrollController && scrollable && rowIndex >= 0) {
         var focusedRowIndex = rowIndex + dataController.getRowIndexOffset(true);
         var offset = rowsScrollController.getItemOffset(focusedRowIndex);
         var triggerUpdateFocusedRow = function triggerUpdateFocusedRow() {
-          that.component.off('contentReady', triggerUpdateFocusedRow);
+          if (dataController.totalCount() && !dataController.items().length) {
+            return;
+          }
+          _this2.component.off('contentReady', triggerUpdateFocusedRow);
           if (needFocusRow) {
-            that._triggerUpdateFocusedRow(key, deferred);
+            _this2._triggerUpdateFocusedRow(key, deferred);
           } else {
             deferred.resolve(focusedRowIndex);
           }
         };
-        that.component.on('contentReady', triggerUpdateFocusedRow);
+        this.component.on('contentReady', triggerUpdateFocusedRow);
         this.getView('rowsView').scrollTopPosition(offset);
       } else {
         deferred.resolve(-1);
       }
     },
     _triggerUpdateFocusedRow: function _triggerUpdateFocusedRow(key, deferred) {
-      var _this2 = this;
+      var _this3 = this;
       var dataController = this.getController('data');
       var focusedRowIndex = this.getFocusedRowIndexByKey(key);
       if (this._isValidFocusedRowIndex(focusedRowIndex)) {
@@ -263,7 +266,7 @@ var FocusController = _uiGrid_core.default.ViewController.inherit(function () {
           d = this.getView('rowsView').scrollToRowElement(key);
         }
         (0, _deferred.when)(d).done(function () {
-          _this2.getController('keyboardNavigation').setFocusedRowIndex(focusedRowIndex);
+          _this3.getController('keyboardNavigation').setFocusedRowIndex(focusedRowIndex);
           deferred && deferred.resolve(focusedRowIndex);
         });
       } else {
@@ -276,7 +279,7 @@ var FocusController = _uiGrid_core.default.ViewController.inherit(function () {
       return loadedRowIndex >= 0 ? loadedRowIndex + dataController.getRowIndexOffset(true) : -1;
     },
     _focusRowByKeyOrIndex: function _focusRowByKeyOrIndex() {
-      var _this3 = this;
+      var _this4 = this;
       var focusedRowKey = this.option('focusedRowKey');
       var currentFocusedRowIndex = this.option('focusedRowIndex');
       var keyboardController = this.getController('keyboardNavigation');
@@ -293,7 +296,7 @@ var FocusController = _uiGrid_core.default.ViewController.inherit(function () {
         } else {
           this._navigateToRow(focusedRowKey, true).done(function (focusedRowIndex) {
             if (currentFocusedRowIndex >= 0 && focusedRowIndex < 0) {
-              _this3._focusRowByIndex();
+              _this4._focusRowByIndex();
             } else if (currentFocusedRowIndex < 0 && focusedRowIndex >= 0) {
               keyboardController.setFocusedRowIndex(focusedRowIndex);
             }
@@ -332,9 +335,9 @@ var FocusController = _uiGrid_core.default.ViewController.inherit(function () {
       $mainRow && rowsView.scrollToElementVertically($mainRow);
     },
     _clearPreviousFocusedRow: function _clearPreviousFocusedRow($tableElement, focusedRowIndex) {
-      var _this4 = this;
+      var _this5 = this;
       var isNotMasterDetailFocusedRow = function isNotMasterDetailFocusedRow(_, focusedRow) {
-        var $focusedRowTable = (0, _renderer.default)(focusedRow).closest(".".concat(_this4.addWidgetPrefix(TABLE_POSTFIX_CLASS)));
+        var $focusedRowTable = (0, _renderer.default)(focusedRow).closest(".".concat(_this5.addWidgetPrefix(TABLE_POSTFIX_CLASS)));
         return $tableElement.is($focusedRowTable);
       };
       var $prevRowFocusedElement = $tableElement.find(FOCUSED_ROW_SELECTOR).filter(isNotMasterDetailFocusedRow);
@@ -460,7 +463,7 @@ var focusModule = {
       },
       columns: {
         getSortDataSourceParameters: function getSortDataSourceParameters(_, sortByKey) {
-          var _this5 = this;
+          var _this6 = this;
           var result = this.callBase.apply(this, arguments);
           var dataController = this.getController('data');
           // @ts-expect-error
@@ -474,7 +477,7 @@ var focusModule = {
           if (key && (this.option('focusedRowEnabled') && this.getController('focus').isAutoNavigateToFocusedRow() !== false || sortByKey)) {
             key = Array.isArray(key) ? key : [key];
             var notSortedKeys = key.filter(function (key) {
-              return !_this5.columnOption(key, 'sortOrder');
+              return !_this6.columnOption(key, 'sortOrder');
             });
             if (notSortedKeys.length) {
               result = result || [];
@@ -712,7 +715,7 @@ var focusModule = {
       },
       editing: {
         _deleteRowCore: function _deleteRowCore(rowIndex) {
-          var _this6 = this;
+          var _this7 = this;
           var deferred = this.callBase.apply(this, arguments);
           var dataController = this.getController('data');
           var rowKey = dataController.getKeyByRowIndex(rowIndex);
@@ -721,7 +724,7 @@ var focusModule = {
             var visibleRows = dataController.getVisibleRows();
             if (rowIndex === -1 && !visibleRows.length) {
               // @ts-expect-error
-              _this6.getController('focus')._resetFocusedRow();
+              _this7.getController('focus')._resetFocusedRow();
             }
           });
         }
@@ -766,7 +769,7 @@ var focusModule = {
           }
         },
         _setFocusedRowElementTabIndex: function _setFocusedRowElementTabIndex(preventScroll) {
-          var _this7 = this;
+          var _this8 = this;
           var focusedRowKey = this.option('focusedRowKey');
           var tabIndex = this.option('tabIndex') || 0;
           var dataController = this._dataController;
@@ -776,8 +779,8 @@ var focusModule = {
           var $row = this._findRowElementForTabIndex();
           if (!(0, _type.isDefined)(this._scrollToFocusOnResize)) {
             this._scrollToFocusOnResize = function () {
-              _this7.scrollToElementVertically(_this7._findRowElementForTabIndex());
-              _this7.resizeCompleted.remove(_this7._scrollToFocusOnResize);
+              _this8.scrollToElementVertically(_this8._findRowElementForTabIndex());
+              _this8.resizeCompleted.remove(_this8._scrollToFocusOnResize);
             };
           }
           $row.attr('tabIndex', tabIndex);

@@ -1,7 +1,7 @@
 /**
 * DevExtreme (viz/circular_gauge.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -125,7 +125,10 @@ export interface dxCircularGaugeOptions extends BaseGaugeOptions<dxCircularGauge
      */
     valueIndicator?: GaugeIndicator;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxCircularGaugeRangeContainer extends BaseGaugeRangeContainer {
     /**
      * @docid dxCircularGaugeOptions.rangeContainer.orientation
@@ -140,7 +143,10 @@ export interface dxCircularGaugeRangeContainer extends BaseGaugeRangeContainer {
      */
     width?: number;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxCircularGaugeScale extends BaseGaugeScale {
     /**
      * @docid dxCircularGaugeOptions.scale.label
@@ -155,7 +161,10 @@ export interface dxCircularGaugeScale extends BaseGaugeScale {
      */
     orientation?: CircularGaugeElementOrientation;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxCircularGaugeScaleLabel extends BaseGaugeScaleLabel {
     /**
      * @docid dxCircularGaugeOptions.scale.label.hideFirstOrLast
@@ -183,3 +192,71 @@ export type Properties = dxCircularGaugeOptions;
 
 /** @deprecated use Properties instead */
 export type Options = dxCircularGaugeOptions;
+
+type EventProps<T> = Extract<keyof T, `on${any}`>;
+type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+type EventsIntegrityCheckingHelper = CheckedEvents<Properties, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxCircularGaugeOptions.onDisposing
+ * @type_function_param1 e:{viz/circular_gauge:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxCircularGaugeOptions.onDrawn
+ * @type_function_param1 e:{viz/circular_gauge:DrawnEvent}
+ */
+onDrawn?: ((e: DrawnEvent) => void);
+/**
+ * @skip
+ * @docid dxCircularGaugeOptions.onExported
+ * @type_function_param1 e:{viz/circular_gauge:ExportedEvent}
+ */
+onExported?: ((e: ExportedEvent) => void);
+/**
+ * @skip
+ * @docid dxCircularGaugeOptions.onExporting
+ * @type_function_param1 e:{viz/circular_gauge:ExportingEvent}
+ */
+onExporting?: ((e: ExportingEvent) => void);
+/**
+ * @skip
+ * @docid dxCircularGaugeOptions.onFileSaving
+ * @type_function_param1 e:{viz/circular_gauge:FileSavingEvent}
+ */
+onFileSaving?: ((e: FileSavingEvent) => void);
+/**
+ * @skip
+ * @docid dxCircularGaugeOptions.onIncidentOccurred
+ * @type_function_param1 e:{viz/circular_gauge:IncidentOccurredEvent}
+ */
+onIncidentOccurred?: ((e: IncidentOccurredEvent) => void);
+/**
+ * @skip
+ * @docid dxCircularGaugeOptions.onInitialized
+ * @type_function_param1 e:{viz/circular_gauge:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxCircularGaugeOptions.onOptionChanged
+ * @type_function_param1 e:{viz/circular_gauge:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxCircularGaugeOptions.onTooltipHidden
+ * @type_function_param1 e:{viz/circular_gauge:TooltipHiddenEvent}
+ */
+onTooltipHidden?: ((e: TooltipHiddenEvent) => void);
+/**
+ * @skip
+ * @docid dxCircularGaugeOptions.onTooltipShown
+ * @type_function_param1 e:{viz/circular_gauge:TooltipShownEvent}
+ */
+onTooltipShown?: ((e: TooltipShownEvent) => void);
+};

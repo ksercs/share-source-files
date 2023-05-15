@@ -92,7 +92,7 @@ var RadioCollection = /*#__PURE__*/function (_CollectionWidget) {
   _proto._itemElements = function _itemElements() {
     return this._itemContainer().children(this._itemSelector());
   };
-  _proto._setAriaSelected = function _setAriaSelected() {};
+  _proto._setAriaSelectionAttribute = function _setAriaSelectionAttribute() {};
   return RadioCollection;
 }(_uiCollection_widget.default);
 var RadioGroup = /*#__PURE__*/function (_Editor) {

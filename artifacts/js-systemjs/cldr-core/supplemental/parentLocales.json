@@ -1,0 +1,36 @@
+!function(e){function r(e,r,t){e in l||(l[e]={name:e,declarative:!0,deps:r,declare:t,normalizedDeps:r})}function t(e){return p[e]||(p[e]={name:e,dependencies:[],exports:{},importers:[]})}function n(r){if(!r.module){var o=r.module=t(r.name),a=r.module.exports,u=r.declare.call(e,function(e,r){if(o.locked=!0,"object"==typeof e)for(var t in e)a[t]=e[t];else a[e]=r;for(var n=0,u=o.importers.length;u>n;n++){var i=o.importers[n];if(!i.locked)for(var l=0;l<i.dependencies.length;++l)i.dependencies[l]===o&&i.setters[l](a)}return o.locked=!1,r},r.name);o.setters=u.setters,o.execute=u.execute;for(var s=0,d=r.normalizedDeps.length;d>s;s++){var f,c=r.normalizedDeps[s],v=l[c],m=p[c];m?f=m.exports:v&&!v.declarative?f=v.esModule:v?(n(v),m=v.module,f=m.exports):f=i(c),m&&m.importers?(m.importers.push(o),o.dependencies.push(m)):o.dependencies.push(null),o.setters[s]&&o.setters[s](f)}}}function o(r){var t={};if(("object"==typeof r||"function"==typeof r)&&r!==e)if(d)for(var n in r)"default"!==n&&a(t,r,n);else{var o=r&&r.hasOwnProperty;for(var n in r)"default"===n||o&&!r.hasOwnProperty(n)||(t[n]=r[n])}return t["default"]=r,c(t,"__useDefault",{value:!0}),t}function a(e,r,t){try{var n;(n=Object.getOwnPropertyDescriptor(r,t))&&c(e,t,n)}catch(o){return e[t]=r[t],!1}}function u(r,t){var n=l[r];if(n&&!n.evaluated&&n.declarative){t.push(r);for(var o=0,a=n.normalizedDeps.length;a>o;o++){var d=n.normalizedDeps[o];-1==s.call(t,d)&&(l[d]?u(d,t):i(d))}n.evaluated||(n.evaluated=!0,n.module.execute.call(e))}}function i(e){if(m[e])return m[e];if("@node/"==e.substr(0,6))return m[e]=o(v(e.substr(6)));var r=l[e];if(!r)throw"Module "+e+" not present.";return n(l[e]),u(e,[]),l[e]=void 0,r.declarative&&c(r.module.exports,"__esModule",{value:!0}),m[e]=r.declarative?r.module.exports:r.esModule}var l={},s=Array.prototype.indexOf||function(e){for(var r=0,t=this.length;t>r;r++)if(this[r]===e)return r;return-1},d=!0;try{Object.getOwnPropertyDescriptor({a:0},"a")}catch(f){d=!1}var c;!function(){try{Object.defineProperty({},"a",{})&&(c=Object.defineProperty)}catch(e){c=function(e,r,t){try{e[r]=t.value||t.get.call(e)}catch(n){}}}}();var p={},v="undefined"!=typeof System&&System._nodeRequire||"undefined"!=typeof require&&require.resolve&&"undefined"!=typeof process&&require,m={"@empty":{}};return function(e,t,n,a){return function(u){u(function(u){for(var l=0;l<t.length;l++)(function(e,r){r&&r.__esModule?m[e]=r:m[e]=o(r)})(t[l],arguments[l]);a({register:r});var s=i(e[0]);if(e.length>1)for(var l=1;l<e.length;l++)i(e[l]);return n?s["default"]:s})}}}("undefined"!=typeof self?self:global)
+
+(["node_modules/cldr-core/supplemental/parentLocales.json"], [], false, function($__System) {
+var require = this.require, exports = this.exports, module = this.module;
+$__System.register("node_modules/cldr-core/supplemental/parentLocales.json", [], function (_export, _context) {
+  "use strict";
+
+  var __useDefault, supplemental;
+
+  return {
+    setters: [],
+    execute: function () {
+      _export("__useDefault", __useDefault = true);
+
+      _export("__useDefault", __useDefault);
+
+      _export("supplemental", supplemental = { "version": { "_unicodeVersion": "14.0.0", "_cldrVersion": "41" }, "parentLocales": { "parentLocale": { "en-150": "en-001", "en-AG": "en-001", "en-AI": "en-001", "en-AU": "en-001", "en-BB": "en-001", "en-BM": "en-001", "en-BS": "en-001", "en-BW": "en-001", "en-BZ": "en-001", "en-CC": "en-001", "en-CK": "en-001", "en-CM": "en-001", "en-CX": "en-001", "en-CY": "en-001", "en-DG": "en-001", "en-DM": "en-001", "en-ER": "en-001", "en-FJ": "en-001", "en-FK": "en-001", "en-FM": "en-001", "en-GB": "en-001", "en-GD": "en-001", "en-GG": "en-001", "en-GH": "en-001", "en-GI": "en-001", "en-GM": "en-001", "en-GY": "en-001", "en-HK": "en-001", "en-IE": "en-001", "en-IL": "en-001", "en-IM": "en-001", "en-IN": "en-001", "en-IO": "en-001", "en-JE": "en-001", "en-JM": "en-001", "en-KE": "en-001", "en-KI": "en-001", "en-KN": "en-001", "en-KY": "en-001", "en-LC": "en-001", "en-LR": "en-001", "en-LS": "en-001", "en-MG": "en-001", "en-MO": "en-001", "en-MS": "en-001", "en-MT": "en-001", "en-MU": "en-001", "en-MV": "en-001", "en-MW": "en-001", "en-MY": "en-001", "en-NA": "en-001", "en-NF": "en-001", "en-NG": "en-001", "en-NR": "en-001", "en-NU": "en-001", "en-NZ": "en-001", "en-PG": "en-001", "en-PK": "en-001", "en-PN": "en-001", "en-PW": "en-001", "en-RW": "en-001", "en-SB": "en-001", "en-SC": "en-001", "en-SD": "en-001", "en-SG": "en-001", "en-SH": "en-001", "en-SL": "en-001", "en-SS": "en-001", "en-SX": "en-001", "en-SZ": "en-001", "en-TC": "en-001", "en-TK": "en-001", "en-TO": "en-001", "en-TT": "en-001", "en-TV": "en-001", "en-TZ": "en-001", "en-UG": "en-001", "en-VC": "en-001", "en-VG": "en-001", "en-VU": "en-001", "en-WS": "en-001", "en-ZA": "en-001", "en-ZM": "en-001", "en-ZW": "en-001", "en-AT": "en-150", "en-BE": "en-150", "en-CH": "en-150", "en-DE": "en-150", "en-DK": "en-150", "en-FI": "en-150", "en-NL": "en-150", "en-SE": "en-150", "en-SI": "en-150", "hi-Latn": "en-IN", "es-AR": "es-419", "es-BO": "es-419", "es-BR": "es-419", "es-BZ": "es-419", "es-CL": "es-419", "es-CO": "es-419", "es-CR": "es-419", "es-CU": "es-419", "es-DO": "es-419", "es-EC": "es-419", "es-GT": "es-419", "es-HN": "es-419", "es-MX": "es-419", "es-NI": "es-419", "es-PA": "es-419", "es-PE": "es-419", "es-PR": "es-419", "es-PY": "es-419", "es-SV": "es-419", "es-US": "es-419", "es-UY": "es-419", "es-VE": "es-419", "nb": "no", "nn": "no", "pt-AO": "pt-PT", "pt-CH": "pt-PT", "pt-CV": "pt-PT", "pt-FR": "pt-PT", "pt-GQ": "pt-PT", "pt-GW": "pt-PT", "pt-LU": "pt-PT", "pt-MO": "pt-PT", "pt-MZ": "pt-PT", "pt-ST": "pt-PT", "pt-TL": "pt-PT", "az-Arab": "und", "az-Cyrl": "und", "bal-Latn": "und", "blt-Latn": "und", "bm-Nkoo": "und", "bs-Cyrl": "und", "byn-Latn": "und", "cu-Glag": "und", "dje-Arab": "und", "dyo-Arab": "und", "en-Dsrt": "und", "en-Shaw": "und", "ff-Adlm": "und", "ff-Arab": "und", "ha-Arab": "und", "iu-Latn": "und", "kk-Arab": "und", "ks-Deva": "und", "ku-Arab": "und", "ky-Arab": "und", "ky-Latn": "und", "ml-Arab": "und", "mn-Mong": "und", "mni-Mtei": "und", "ms-Arab": "und", "pa-Arab": "und", "sat-Deva": "und", "sd-Deva": "und", "sd-Khoj": "und", "sd-Sind": "und", "shi-Latn": "und", "so-Arab": "und", "sr-Latn": "und", "sw-Arab": "und", "tg-Arab": "und", "ug-Cyrl": "und", "uz-Arab": "und", "uz-Cyrl": "und", "vai-Latn": "und", "wo-Arab": "und", "yo-Arab": "und", "yue-Hans": "und", "zh-Hant": "und", "zh-Hant-MO": "zh-Hant-HK" } } });
+
+      _export("supplemental", supplemental);
+
+      _export("default", {
+        supplemental: supplemental
+      });
+    }
+  };
+});
+})
+(function(factory) {
+  if (typeof define == 'function' && define.amd)
+    define([], factory);
+  else if (typeof module == 'object' && module.exports && typeof require == 'function')
+    module.exports = factory();
+  else
+    factory();
+});
+//# sourceMappingURL=parentLocales.json.map

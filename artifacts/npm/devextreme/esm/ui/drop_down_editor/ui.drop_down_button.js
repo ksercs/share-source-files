@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/drop_down_editor/ui.drop_down_button.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -25,6 +25,11 @@ export default class DropDownButton extends TextEditorButton {
       editor
     } = this;
     instance.option('onClick', e => {
+      var _editor$_shouldCallOp;
+      if ((_editor$_shouldCallOp = editor._shouldCallOpenHandler) !== null && _editor$_shouldCallOp !== void 0 && _editor$_shouldCallOp.call(editor)) {
+        editor._openHandler(e);
+        return;
+      }
       !editor.option('openOnFieldClick') && editor._openHandler(e);
     });
     eventsEngine.on(instance.$element(), 'mousedown', e => {

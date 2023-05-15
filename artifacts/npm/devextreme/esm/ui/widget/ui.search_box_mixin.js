@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/widget/ui.search_box_mixin.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -85,7 +85,7 @@ export default {
     if (this.option('searchEnabled')) {
       return this._itemContainer(true);
     }
-    return this.$element();
+    return this.callBase();
   },
   _focusTarget: function _focusTarget() {
     if (this.option('searchEnabled')) {

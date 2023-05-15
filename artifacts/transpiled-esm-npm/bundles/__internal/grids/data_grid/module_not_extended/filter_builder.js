@@ -1,8 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var ui_grid_core_filter_builder_1 = require("../../../../ui/grid_core/ui.grid_core.filter_builder");
-var module_core_1 = __importDefault(require("../module_core"));
-module_core_1.default.registerModule('filterBuilder', ui_grid_core_filter_builder_1.filterBuilderModule);
+
+var _uiGrid_core = require("../../../../ui/grid_core/ui.grid_core.filter_builder");
+var _module_core = _interopRequireDefault(require("../module_core"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+_module_core.default.registerModule('filterBuilder', _uiGrid_core.filterBuilderModule);

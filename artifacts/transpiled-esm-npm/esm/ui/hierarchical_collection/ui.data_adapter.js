@@ -294,7 +294,9 @@ var DataAdapter = Class.inherit({
     return this.getChildrenNodes(this.options.rootValue);
   },
   getChildrenNodes: function getChildrenNodes(parentKey) {
-    return query(this._dataStructure).filter(['internalFields.parentKey', parentKey]).toArray();
+    return query(this._dataStructure, {
+      langParams: this.options.langParams
+    }).filter(['internalFields.parentKey', parentKey]).toArray();
   },
   getIndexByKey: function getIndexByKey(key) {
     return this.options.dataConverter.getIndexByKey(key);
@@ -376,7 +378,9 @@ var DataAdapter = Class.inherit({
     var operation = uiSearchBoxMixin.getOperationBySearchMode(this.options.searchMode);
     var criteria = this._createCriteria(selector, filterValue, operation);
     dataStructure = dataStructure || this._initialDataStructure;
-    return query(dataStructure).filter(criteria).toArray();
+    return query(dataStructure, {
+      langParams: this.options.langParams
+    }).filter(criteria).toArray();
   },
   search: function search(searchValue) {
     var that = this;
@@ -410,7 +414,8 @@ var DataAdapter = Class.inherit({
     lookForParents(matches, 0);
     if (this.options.sort) {
       matches = storeHelper.queryByOptions(query(matches), {
-        sort: this.options.sort
+        sort: this.options.sort,
+        langParams: this.options.langParams
       }).toArray();
     }
     dataConverter._indexByKey = {};

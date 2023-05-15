@@ -1,5 +1,5 @@
 import Class from '../core/class';
-import { isFunction, isDefined } from '../core/utils/type';
+import { isFunction, isDefined, isString } from '../core/utils/type';
 import { each, map } from '../core/utils/iterator';
 import { compileGetter, toComparable } from '../core/utils/data';
 import { Deferred } from '../core/utils/deferred';
@@ -77,9 +77,13 @@ var MapIterator = WrappedIterator.inherit({
     return hasNext;
   }
 });
-var defaultCompare = function defaultCompare(xValue, yValue) {
-  xValue = toComparable(xValue);
-  yValue = toComparable(yValue);
+var defaultCompare = function defaultCompare(xValue, yValue, options) {
+  if (isString(xValue) && isString(yValue) && (options !== null && options !== void 0 && options.locale || options !== null && options !== void 0 && options.collatorOptions)) {
+    /* eslint-disable-next-line no-undef */
+    return new Intl.Collator((options === null || options === void 0 ? void 0 : options.locale) || undefined, (options === null || options === void 0 ? void 0 : options.collatorOptions) || undefined).compare(xValue, yValue);
+  }
+  xValue = toComparable(xValue, false, options);
+  yValue = toComparable(yValue, false, options);
   if (xValue === null && yValue !== null) {
     return -1;
   }
@@ -102,14 +106,17 @@ var defaultCompare = function defaultCompare(xValue, yValue) {
 };
 var SortIterator = Iterator.inherit({
   ctor: function ctor(iter, getter, desc, compare) {
+    this.langParams = iter.langParams;
     if (!(iter instanceof MapIterator)) {
       iter = new MapIterator(iter, this._wrap);
+      iter.langParams = this.langParams;
     }
     this.iter = iter;
     this.rules = [{
       getter: getter,
       desc: desc,
-      compare: compare
+      compare: compare,
+      langParams: this.langParams
     }];
   },
   thenBy: function thenBy(getter, desc, compare) {
@@ -160,6 +167,9 @@ var SortIterator = Iterator.inherit({
   _unwrap: function _unwrap(wrappedItem) {
     return wrappedItem.value;
   },
+  _getDefaultCompare(langParams) {
+    return (xValue, yValue) => defaultCompare(xValue, yValue, langParams);
+  },
   _compare: function _compare(x, y) {
     var xIndex = x.index;
     var yIndex = y.index;
@@ -172,7 +182,7 @@ var SortIterator = Iterator.inherit({
       var rule = this.rules[i];
       var xValue = rule.getter(x);
       var yValue = rule.getter(y);
-      var compare = rule.compare || defaultCompare;
+      var compare = rule.compare || this._getDefaultCompare(rule.langParams);
       var compareResult = compare(xValue, yValue);
       if (compareResult) {
         return rule.desc ? -compareResult : compareResult;
@@ -182,6 +192,8 @@ var SortIterator = Iterator.inherit({
   }
 });
 var compileCriteria = function () {
+  var langParams = {};
+  var _toComparable = value => toComparable(value, false, langParams);
   var compileGroup = function compileGroup(crit) {
     var ops = [];
     var isConjunctiveOperator = false;
@@ -191,7 +203,7 @@ var compileCriteria = function () {
         if (ops.length > 1 && isConjunctiveOperator !== isConjunctiveNextOperator) {
           throw new errors.Error('E4019');
         }
-        ops.push(compileCriteria(this));
+        ops.push(compileCriteria(this, langParams));
         isConjunctiveOperator = isConjunctiveNextOperator;
         isConjunctiveNextOperator = true;
       } else {
@@ -210,16 +222,17 @@ var compileCriteria = function () {
     };
   };
   var toString = function toString(value) {
-    return isDefined(value) ? value.toString() : '';
+    var _langParams;
+    return isDefined(value) ? (_langParams = langParams) !== null && _langParams !== void 0 && _langParams.locale ? value.toLocaleString(langParams.locale) : value.toString() : '';
   };
   var compileBinary = function compileBinary(crit) {
     crit = normalizeBinaryCriterion(crit);
     var getter = compileGetter(crit[0]);
     var op = crit[1];
     var value = crit[2];
-    value = toComparable(value);
+    value = _toComparable(value);
     var compare = (obj, operatorFn) => {
-      obj = toComparable(getter(obj));
+      obj = _toComparable(getter(obj));
       return (value == null || obj == null) && value !== obj ? false : operatorFn(obj, value);
     };
     switch (op.toLowerCase()) {
@@ -237,11 +250,11 @@ var compileCriteria = function () {
         return obj => compare(obj, (a, b) => a <= b);
       case 'startswith':
         return function (obj) {
-          return toComparable(toString(getter(obj))).indexOf(value) === 0;
+          return _toComparable(toString(getter(obj))).indexOf(value) === 0;
         };
       case 'endswith':
         return function (obj) {
-          var getterValue = toComparable(toString(getter(obj)));
+          var getterValue = _toComparable(toString(getter(obj)));
           var searchValue = toString(value);
           if (getterValue.length < searchValue.length) {
             return false;
@@ -251,18 +264,18 @@ var compileCriteria = function () {
         };
       case 'contains':
         return function (obj) {
-          return toComparable(toString(getter(obj))).indexOf(value) > -1;
+          return _toComparable(toString(getter(obj))).indexOf(value) > -1;
         };
       case 'notcontains':
         return function (obj) {
-          return toComparable(toString(getter(obj))).indexOf(value) === -1;
+          return _toComparable(toString(getter(obj))).indexOf(value) === -1;
         };
     }
     throw errors.Error('E4003', op);
   };
   function compileEquals(getter, value, negate) {
     return function (obj) {
-      obj = toComparable(getter(obj));
+      obj = _toComparable(getter(obj));
       // eslint-disable-next-line eqeqeq
       var result = useStrictComparison(value) ? obj === value : obj == value;
       if (negate) {
@@ -276,7 +289,7 @@ var compileCriteria = function () {
   }
   function compileUnary(crit) {
     var op = crit[0];
-    var criteria = compileCriteria(crit[1]);
+    var criteria = compileCriteria(crit[1], langParams);
     if (op === '!') {
       return function (obj) {
         return !criteria(obj);
@@ -284,7 +297,8 @@ var compileCriteria = function () {
     }
     throw errors.Error('E4003', op);
   }
-  return function (crit) {
+  return function (crit, options) {
+    langParams = options || {};
     if (isFunction(crit)) {
       return crit;
     }
@@ -300,7 +314,8 @@ var compileCriteria = function () {
 var FilterIterator = WrappedIterator.inherit({
   ctor: function ctor(iter, criteria) {
     this.callBase(iter);
-    this.criteria = compileCriteria(criteria);
+    this.langParams = iter.langParams;
+    this.criteria = compileCriteria(criteria, this.langParams);
   },
   next: function next() {
     while (this.iter.next()) {
@@ -408,6 +423,9 @@ var arrayQueryImpl = function arrayQueryImpl(iter, queryOptions) {
   if (!(iter instanceof Iterator)) {
     iter = new ArrayIterator(iter);
   }
+  if (queryOptions.langParams) {
+    iter.langParams = queryOptions.langParams;
+  }
   var handleError = function handleError(error) {
     var handler = queryOptions.errorHandler;
     if (handler) {
@@ -476,6 +494,9 @@ var arrayQueryImpl = function arrayQueryImpl(iter, queryOptions) {
         d.reject(x);
       }
       return d.promise();
+    },
+    setLangParams(options) {
+      iter.langParams = options;
     },
     sortBy: function sortBy(getter, desc, compare) {
       return chainQuery(new SortIterator(iter, getter, desc, compare));

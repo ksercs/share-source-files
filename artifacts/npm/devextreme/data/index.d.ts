@@ -1,7 +1,7 @@
 /**
 * DevExtreme (data/index.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -50,7 +50,23 @@ export type SelectDescriptor<T> = string | Array<string> | ((source: T) => any);
  * @public
  */
 export type FilterDescriptor = any;
-
+/**
+ * @docid
+ * @public
+ */
+export type LangParams = {
+  /**
+   * @docid
+   * @public
+   */
+  locale: string;
+  /**
+   * @docid
+   * @public
+   * @type object
+   */
+  collatorOptions?: Intl.CollatorOptions;
+};
  /**
  * @docid
  * @public

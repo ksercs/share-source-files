@@ -147,6 +147,7 @@ export var compileSetter = function compileSetter(expr) {
   };
 };
 export var toComparable = function toComparable(value, caseSensitive) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   if (value instanceof Date) {
     return value.getTime();
   }
@@ -154,7 +155,12 @@ export var toComparable = function toComparable(value, caseSensitive) {
     return value.valueOf();
   }
   if (!caseSensitive && typeof value === 'string') {
-    return value.toLowerCase();
+    var _options$collatorOpti;
+    if ((options === null || options === void 0 ? void 0 : (_options$collatorOpti = options.collatorOptions) === null || _options$collatorOpti === void 0 ? void 0 : _options$collatorOpti.sensitivity) === 'base') {
+      var REMOVE_DIACRITICAL_MARKS_REGEXP = /[\u0300-\u036f]/g;
+      value = value.normalize('NFD').replace(REMOVE_DIACRITICAL_MARKS_REGEXP, '');
+    }
+    return options !== null && options !== void 0 && options.locale ? value.toLocaleLowerCase(options.locale) : value.toLowerCase();
   }
   return value;
 };

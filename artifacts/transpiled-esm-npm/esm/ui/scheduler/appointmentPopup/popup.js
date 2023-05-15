@@ -75,8 +75,9 @@ export class AppointmentPopup {
       onHiding: () => this.scheduler.focus(),
       contentTemplate: () => this._createPopupContent(),
       onShowing: e => this._onShowing(e),
-      copyRootClassesToWrapper: true,
-      _ignoreCopyRootClassesToWrapperDeprecation: true
+      wrapperAttr: {
+        class: APPOINTMENT_POPUP_CLASS
+      }
     });
   }
   _onShowing(e) {
@@ -242,9 +243,7 @@ export class AppointmentPopup {
       container,
       position: {
         of: container
-      },
-      copyRootClassesToWrapper: true,
-      _ignoreCopyRootClassesToWrapperDeprecation: true
+      }
     });
   }
   _tryLockSaveChanges() {

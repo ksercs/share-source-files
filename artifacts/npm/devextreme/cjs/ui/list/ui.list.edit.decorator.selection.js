@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/list/ui.list.edit.decorator.selection.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -45,6 +45,9 @@ var CLICK_EVENT_NAME = (0, _index.addNamespace)(_click.name, 'dxListEditDecorato
     var $control = (0, _renderer.default)('<div>').addClass(this._controlClass).appendTo($container);
     new this._controlWidget($control, (0, _extend.extend)(this._commonOptions(), {
       value: this._isSelected($itemElement),
+      elementAttr: {
+        'aria-label': 'Check State'
+      },
       focusStateEnabled: false,
       hoverStateEnabled: false,
       onValueChanged: function (e) {
@@ -105,6 +108,9 @@ var CLICK_EVENT_NAME = (0, _index.addNamespace)(_click.name, 'dxListEditDecorato
     var list = this._list;
     var downArrowHandler = list._supportedKeys().downArrow.bind(list);
     this._selectAllCheckBox = list._createComponent((0, _renderer.default)('<div>').addClass(SELECT_DECORATOR_SELECT_ALL_CHECKBOX_CLASS).appendTo($selectAll), _check_box.default, {
+      elementAttr: {
+        'aria-label': 'Select All'
+      },
       focusStateEnabled: false,
       hoverStateEnabled: false
     });

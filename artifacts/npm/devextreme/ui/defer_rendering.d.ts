@@ -1,7 +1,7 @@
 /**
 * DevExtreme (ui/defer_rendering.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -100,3 +100,49 @@ export type Properties = dxDeferRenderingOptions;
 
 /** @deprecated use Properties instead */
 export type Options = dxDeferRenderingOptions;
+
+type EventProps<T> = Extract<keyof T, `on${any}`>;
+type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+type FilterOutHidden<T> = Omit<T, 'onFocusIn' | 'onFocusOut'>;
+
+type EventsIntegrityCheckingHelper = CheckedEvents<FilterOutHidden<Properties>, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxDeferRenderingOptions.onContentReady
+ * @type_function_param1 e:{ui/defer_rendering:ContentReadyEvent}
+ */
+onContentReady?: ((e: ContentReadyEvent) => void);
+/**
+ * @skip
+ * @docid dxDeferRenderingOptions.onDisposing
+ * @type_function_param1 e:{ui/defer_rendering:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxDeferRenderingOptions.onInitialized
+ * @type_function_param1 e:{ui/defer_rendering:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxDeferRenderingOptions.onOptionChanged
+ * @type_function_param1 e:{ui/defer_rendering:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxDeferRenderingOptions.onRendered
+ * @type_function_param1 e:{ui/defer_rendering:RenderedEvent}
+ */
+onRendered?: ((e: RenderedEvent) => void);
+/**
+ * @skip
+ * @docid dxDeferRenderingOptions.onShown
+ * @type_function_param1 e:{ui/defer_rendering:ShownEvent}
+ */
+onShown?: ((e: ShownEvent) => void);
+};

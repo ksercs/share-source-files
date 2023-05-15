@@ -37,6 +37,9 @@ var DEFAULT_DELAY = {
   'show': 50,
   'hide': 300
 };
+var DX_MENU_ITEM_CAPTION_URL_CLASS = "".concat(DX_MENU_ITEM_CAPTION_CLASS, "-with-url");
+var DX_ICON_WITH_URL_CLASS = 'dx-icon-with-url';
+var DX_ITEM_URL_CLASS = 'dx-item-url';
 var MenuBase = /*#__PURE__*/function (_HierarchicalCollecti) {
   _inheritsLoose(MenuBase, _HierarchicalCollecti);
   function MenuBase() {
@@ -130,7 +133,7 @@ var MenuBase = /*#__PURE__*/function (_HierarchicalCollecti) {
   _proto._itemClass = function _itemClass() {
     return ITEM_CLASS;
   };
-  _proto._setAriaSelected = function _setAriaSelected() {};
+  _proto._setAriaSelectionAttribute = function _setAriaSelectionAttribute() {};
   _proto._selectedItemClass = function _selectedItemClass() {
     return DX_MENU_SELECTED_ITEM_CLASS;
   };
@@ -156,7 +159,19 @@ var MenuBase = /*#__PURE__*/function (_HierarchicalCollecti) {
     return (0, _extend.extend)(_HierarchicalCollecti.prototype._supportedKeys.call(this), {
       space: selectItem,
       pageUp: _common.noop,
-      pageDown: _common.noop
+      pageDown: _common.noop,
+      enter: function enter(e) {
+        var $itemElement = (0, _renderer.default)(this.option('focusedElement'));
+        if (!$itemElement.length) {
+          return;
+        }
+        this._enterKeyHandler(e);
+        var itemData = this._getItemData($itemElement);
+        if (itemData.url) {
+          var link = $itemElement.get(0).getElementsByClassName(DX_ITEM_URL_CLASS)[0];
+          link === null || link === void 0 ? void 0 : link.click();
+        }
+      }
     });
   };
   _proto._isSelectionEnabled = function _isSelectionEnabled() {
@@ -168,20 +183,36 @@ var MenuBase = /*#__PURE__*/function (_HierarchicalCollecti) {
     this._renderSelectedItem();
     this._initActions();
   };
-  _proto._getTextContainer = function _getTextContainer(itemData) {
-    var text = itemData.text,
-      url = itemData.url,
-      linkAttr = itemData.linkAttr;
-    var $itemContainer = (0, _renderer.default)('<span>').addClass(DX_MENU_ITEM_CAPTION_CLASS);
-    var itemContent = (0, _type.isPlainObject)(itemData) ? text : String(itemData);
-    if (url && text) {
-      var linkAttributes = (0, _type.isObject)(linkAttr) ? linkAttr : {};
-      (0, _renderer.default)('<a>').attr(_extends({}, linkAttributes, {
-        href: url
-      })).text(itemContent).appendTo($itemContainer);
-      return $itemContainer;
+  _proto._getLinkContainer = function _getLinkContainer(iconContainer, textContainer, _ref) {
+    var linkAttr = _ref.linkAttr,
+      url = _ref.url;
+    iconContainer === null || iconContainer === void 0 ? void 0 : iconContainer.addClass(DX_ICON_WITH_URL_CLASS);
+    textContainer === null || textContainer === void 0 ? void 0 : textContainer.addClass(DX_MENU_ITEM_CAPTION_URL_CLASS);
+    var linkAttributes = (0, _type.isObject)(linkAttr) ? linkAttr : {};
+    return (0, _renderer.default)('<a>').addClass(DX_ITEM_URL_CLASS).attr(_extends({}, linkAttributes, {
+      href: url
+    })).append(iconContainer).append(textContainer);
+  };
+  _proto._addContent = function _addContent($container, itemData) {
+    var html = itemData.html,
+      url = itemData.url;
+    var iconContainer = this._getIconContainer(itemData);
+    var textContainer = this._getTextContainer(itemData);
+    $container.html(html);
+    if (url) {
+      var link = this._getLinkContainer(iconContainer, textContainer, itemData);
+      $container.append(link);
+    } else {
+      $container.append(iconContainer).append(textContainer);
     }
-    return text && $itemContainer.text(itemContent);
+    $container.append(this._getPopoutContainer(itemData));
+    this._addContentClasses(itemData, $container.parent());
+  };
+  _proto._getTextContainer = function _getTextContainer(itemData) {
+    var text = itemData.text;
+    var $itemContainer = (0, _renderer.default)('<span>').addClass(DX_MENU_ITEM_CAPTION_CLASS);
+    var itemText = (0, _type.isPlainObject)(itemData) ? text : String(itemData);
+    return text && $itemContainer.text(itemText);
   };
   _proto._getItemExtraPropNames = function _getItemExtraPropNames() {
     return ['url', 'linkAttr'];
@@ -409,15 +440,15 @@ var MenuBase = /*#__PURE__*/function (_HierarchicalCollecti) {
     var $itemElement = (0, _renderer.default)(args.itemElement);
     var selectedIndex = this._dataAdapter.getSelectedNodesKeys();
     if (!selectedIndex.length || !this._selectedGetter(args.itemData) || !this._isItemSelectable(args.itemData)) {
-      this._setAriaSelected($itemElement, 'false');
+      this._setAriaSelectionAttribute($itemElement, 'false');
       return;
     }
     var node = this._dataAdapter.getNodeByItem(args.itemData);
     if (node.internalFields.key === selectedIndex[0]) {
       $itemElement.addClass(this._selectedItemClass());
-      this._setAriaSelected($itemElement, 'true');
+      this._setAriaSelectionAttribute($itemElement, 'true');
     } else {
-      this._setAriaSelected($itemElement, 'false');
+      this._setAriaSelectionAttribute($itemElement, 'false');
     }
   };
   _proto._isItemSelectable = function _isItemSelectable(item) {

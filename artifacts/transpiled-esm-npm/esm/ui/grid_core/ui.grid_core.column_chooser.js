@@ -22,12 +22,11 @@ var COLUMN_CHOOSER_DRAG_CLASS = 'column-chooser-mode-drag';
 var COLUMN_CHOOSER_SELECT_CLASS = 'column-chooser-mode-select';
 var COLUMN_CHOOSER_ICON_NAME = 'column-chooser';
 var COLUMN_CHOOSER_ITEM_CLASS = 'dx-column-chooser-item';
-var TREEVIEW_NODE_SELECTOR = '.dx-treeview-node';
-var CHECKBOX_SELECTOR = '.dx-checkbox';
 var CLICK_TIMEOUT = 300;
 var processItems = function processItems(that, chooserColumns) {
   var items = [];
-  var isSelectMode = that.option('columnChooser.mode') === 'select';
+  var isSelectMode = that.isSelectMode();
+  var isRecursive = that.option('columnChooser.selection.recursive');
   if (chooserColumns.length) {
     each(chooserColumns, function (index, column) {
       var item = {
@@ -36,11 +35,11 @@ var processItems = function processItems(that, chooserColumns) {
         allowHiding: column.allowHiding,
         expanded: true,
         id: column.index,
-        disabled: false,
-        disableCheckBox: column.allowHiding === false,
+        disabled: column.allowHiding === false,
         parentId: isDefined(column.ownerBand) ? column.ownerBand : null
       };
-      if (isSelectMode) {
+      var isRecursiveWithColumns = isRecursive && column.hasColumns;
+      if (isSelectMode && !isRecursiveWithColumns) {
         item.selected = column.visible;
       }
       items.push(item);
@@ -80,7 +79,8 @@ var columnChooserControllerMembers = {
   },
   getPosition: function getPosition() {
     var rowsView = this.getView('rowsView');
-    return {
+    var position = this.option('columnChooser.position');
+    return isDefined(position) ? position : {
       my: 'right bottom',
       at: 'right bottom',
       of: rowsView && rowsView.element(),
@@ -101,40 +101,10 @@ var columnChooserMembers = {
     // @ts-expect-error
     return !!devices.real().win;
   },
-  _updateList: function _updateList(change) {
-    var items;
-    var $popupContent = this._popupContainer.$content();
-    var isSelectMode = this.option('columnChooser.mode') === 'select';
-    var columnChooserList = this._columnChooserList;
-    var chooserColumns = this._columnsController.getChooserColumns(isSelectMode);
-    this._popupContainer.setAria({
-      role: 'dialog',
-      label: messageLocalization.format('dxDataGrid-columnChooserTitle')
-    });
-
-    // T726413
-    if (isSelectMode && columnChooserList && change && change.changeType === 'selection') {
-      items = processItems(this, chooserColumns);
-      for (var i = 0; i < items.length; i++) {
-        var selected = items[i].selected;
-        var id = items[i].id;
-        if (id === change.columnIndex) {
-          if (selected) {
-            columnChooserList.selectItem(id, selected);
-          } else {
-            columnChooserList.unselectItem(id, selected);
-          }
-        }
-      }
-    } else if (!isSelectMode || !columnChooserList || change === 'full') {
-      this._popupContainer.$wrapper().toggleClass(this.addWidgetPrefix(COLUMN_CHOOSER_DRAG_CLASS), !isSelectMode).toggleClass(this.addWidgetPrefix(COLUMN_CHOOSER_SELECT_CLASS), isSelectMode);
-      items = processItems(this, chooserColumns);
-      this._renderTreeView($popupContent, items);
-    }
-  },
   _initializePopupContainer: function _initializePopupContainer() {
     var that = this;
-    var $element = that.element().addClass(that.addWidgetPrefix(COLUMN_CHOOSER_CLASS));
+    var columnChooserClass = that.addWidgetPrefix(COLUMN_CHOOSER_CLASS);
+    var $element = that.element().addClass(columnChooserClass);
     var columnChooserOptions = that.option('columnChooser');
     var themeName = current();
     var isGenericTheme = isGeneric(themeName);
@@ -145,8 +115,9 @@ var columnChooserMembers = {
       showCloseButton: false,
       dragEnabled: true,
       resizeEnabled: true,
-      copyRootClassesToWrapper: true,
-      _ignoreCopyRootClassesToWrapperDeprecation: true,
+      wrapperAttr: {
+        class: columnChooserClass
+      },
       toolbarItems: [{
         text: columnChooserOptions.title,
         toolbar: 'top',
@@ -185,21 +156,44 @@ var columnChooserMembers = {
     } else {
       this._popupContainer.option(dxPopupOptions);
     }
+    this.setPopupAttributes();
+  },
+  setPopupAttributes: function setPopupAttributes() {
+    var isSelectMode = this.isSelectMode();
+    var isBandColumnsUsed = this._columnsController.isBandColumnsUsed();
+    this._popupContainer.setAria({
+      role: 'dialog',
+      label: messageLocalization.format('dxDataGrid-columnChooserTitle')
+    });
+    this._popupContainer.$wrapper().toggleClass(this.addWidgetPrefix(COLUMN_CHOOSER_DRAG_CLASS), !isSelectMode).toggleClass(this.addWidgetPrefix(COLUMN_CHOOSER_SELECT_CLASS), isSelectMode);
+    this._popupContainer.$content().addClass(this.addWidgetPrefix(COLUMN_CHOOSER_LIST_CLASS));
+    if (isSelectMode && !isBandColumnsUsed) {
+      this._popupContainer.$content().addClass(this.addWidgetPrefix(COLUMN_CHOOSER_PLAIN_CLASS));
+    }
   },
   _renderCore: function _renderCore(change) {
     if (this._popupContainer) {
-      this._updateList(change);
+      var isDragMode = !this.isSelectMode();
+      if (!this._columnChooserList || change === 'full') {
+        this._renderTreeView();
+      } else if (isDragMode) {
+        this._updateItems();
+      }
     }
   },
-  _renderTreeView: function _renderTreeView($container, items) {
+  _renderTreeView: function _renderTreeView() {
+    var _columnChooser$search, _columnChooser$search2, _columnChooser$search3;
     var that = this;
+    var $container = this._popupContainer.$content();
     var columnChooser = this.option('columnChooser');
-    var isSelectMode = columnChooser.mode === 'select';
+    var isSelectMode = this.isSelectMode();
+    var searchEnabled = isDefined(columnChooser.allowSearch) ? columnChooser.allowSearch : (_columnChooser$search = columnChooser.search) === null || _columnChooser$search === void 0 ? void 0 : _columnChooser$search.enabled;
+    var searchTimeout = isDefined(columnChooser.searchTimeout) ? columnChooser.searchTimeout : (_columnChooser$search2 = columnChooser.search) === null || _columnChooser$search2 === void 0 ? void 0 : _columnChooser$search2.timeout;
+
     /**
      * @type {import('../tree_view').Options}
      */
     var treeViewConfig = {
-      items: items,
       dataStructure: 'plain',
       activeStateEnabled: true,
       focusStateEnabled: true,
@@ -207,49 +201,9 @@ var columnChooserMembers = {
       itemTemplate: 'item',
       showCheckBoxesMode: 'none',
       rootValue: null,
-      searchEnabled: columnChooser.allowSearch,
-      searchTimeout: columnChooser.searchTimeout,
-      onItemRendered: function onItemRendered(e) {
-        // @ts-expect-error
-        if (e.itemData.disableCheckBox) {
-          // @ts-expect-error
-          var $treeViewNode = $(e.itemElement).closest(TREEVIEW_NODE_SELECTOR);
-          var $checkBox;
-          if ($treeViewNode.length) {
-            $checkBox = $treeViewNode.find(CHECKBOX_SELECTOR);
-            if ($checkBox.length) {
-              /**
-               * @type {import('../check_box').default}
-               */
-              // @ts-expect-error
-              var checkBoxInstance = $checkBox.data('dxCheckBox');
-              checkBoxInstance && checkBoxInstance.option('disabled', true);
-            }
-          }
-        }
-      }
-    };
-    var scrollableInstance = $container.find('.dx-scrollable').data('dxScrollable');
-    var scrollTop = scrollableInstance && scrollableInstance.scrollTop();
-    if (isSelectMode && !this._columnsController.isBandColumnsUsed()) {
-      $container.addClass(this.addWidgetPrefix(COLUMN_CHOOSER_PLAIN_CLASS));
-    }
-    treeViewConfig.onContentReady = function (e) {
-      deferUpdate(function () {
-        if (scrollTop) {
-          /**
-           * @type {import('../scroll_view/ui.scrollable').default}
-          */
-          // @ts-expect-error
-          var scrollable = $(e.element).find('.dx-scrollable').data('dxScrollable');
-          scrollable && scrollable.scrollTo({
-            y: scrollTop
-          });
-        }
-
-        // @ts-expect-error
-        that.renderCompleted.fire();
-      });
+      searchEnabled: searchEnabled,
+      searchTimeout: searchTimeout,
+      searchEditorOptions: (_columnChooser$search3 = columnChooser.search) === null || _columnChooser$search3 === void 0 ? void 0 : _columnChooser$search3.editorOptions
     };
     if (this._isWinDevice()) {
       treeViewConfig.useNativeScrolling = false;
@@ -260,9 +214,28 @@ var columnChooserMembers = {
         treeViewConfig.searchValue = '';
       }
       this._columnChooserList.option(treeViewConfig);
+      // we need to set items after setting selectNodesRecursive, so they will be processed correctly inside TreeView
+      this._updateItems();
     } else {
       this._columnChooserList = this._createComponent($container, TreeView, treeViewConfig);
-      $container.addClass(this.addWidgetPrefix(COLUMN_CHOOSER_LIST_CLASS));
+      // we need to set items after setting selectNodesRecursive, so they will be processed correctly inside TreeView
+      this._updateItems();
+      var scrollTop = 0;
+      this._columnChooserList.on('optionChanged', e => {
+        var scrollable = e.component.getScrollable();
+        scrollTop = scrollable.scrollTop();
+      });
+      this._columnChooserList.on('contentReady', e => {
+        deferUpdate(function () {
+          var scrollable = e.component.getScrollable();
+          scrollable.scrollTo({
+            y: scrollTop
+          });
+
+          // @ts-expect-error
+          that.renderCompleted.fire();
+        });
+      });
     }
   },
   _prepareDragModeConfig: function _prepareDragModeConfig() {
@@ -279,40 +252,86 @@ var columnChooserMembers = {
   },
   _prepareSelectModeConfig: function _prepareSelectModeConfig() {
     var that = this;
-    var selectionChangedHandler = function selectionChangedHandler(e) {
-      var visibleColumns = that._columnsController.getVisibleColumns().filter(function (item) {
-        return !item.command;
+    var selectionOptions = this.option('columnChooser.selection') || {};
+    var getFlatNodes = nodes => {
+      var addNodesToArray = (nodes, flatNodesArray) => {
+        return nodes.reduce((result, node) => {
+          result.push(node);
+          if (node.children.length) {
+            addNodesToArray(node.children, result);
+          }
+          return result;
+        }, flatNodesArray);
+      };
+      return addNodesToArray(nodes, []);
+    };
+    var updateSelection = (e, nodes) => {
+      nodes.filter(node => node.itemData.allowHiding === false).forEach(node => e.component.selectItem(node.key));
+    };
+    var updateColumnVisibility = nodes => {
+      nodes.forEach(node => {
+        var columnIndex = node.itemData.id;
+        var isVisible = node.selected !== false;
+        that._columnsController.columnOption(columnIndex, 'visible', isVisible);
       });
-      var isLastColumnUnselected = visibleColumns.length === 1 && !e.itemData.selected;
-      if (isLastColumnUnselected) {
-        e.component.selectItem(e.itemElement);
-      } else {
-        setTimeout(function () {
-          that._columnsController.columnOption(e.itemData.id, 'visible', e.itemData.selected);
-        }, CLICK_TIMEOUT);
+    };
+    var updateColumnVisibilityTimeout;
+    var isUpdatingSelection = false;
+    var selectionChangedHandler = e => {
+      if (isUpdatingSelection) {
+        return;
       }
+      var nodes = getFlatNodes(e.component.getNodes());
+      e.component.beginUpdate();
+      isUpdatingSelection = true;
+      updateSelection(e, nodes);
+      e.component.endUpdate();
+      isUpdatingSelection = false;
+      clearTimeout(updateColumnVisibilityTimeout);
+      updateColumnVisibilityTimeout = setTimeout(() => {
+        that.component.beginUpdate();
+        this._isUpdatingColumnVisibility = true;
+        updateColumnVisibility(nodes);
+        that.component.endUpdate();
+        this._isUpdatingColumnVisibility = false;
+      }, CLICK_TIMEOUT);
     };
     return {
-      selectNodesRecursive: false,
-      showCheckBoxesMode: 'normal',
-      onItemSelectionChanged: selectionChangedHandler
+      selectByClick: selectionOptions.selectByClick,
+      selectNodesRecursive: selectionOptions.recursive,
+      showCheckBoxesMode: selectionOptions.allowSelectAll ? 'selectAll' : 'normal',
+      onSelectionChanged: selectionChangedHandler
     };
   },
+  _updateItems: function _updateItems() {
+    var isSelectMode = this.isSelectMode();
+    var chooserColumns = this._columnsController.getChooserColumns(isSelectMode);
+    var items = processItems(this, chooserColumns);
+    this._columnChooserList.option('items', items);
+  },
+  _updateItemSelection: function _updateItemSelection(columnIndex) {
+    var isRecursive = this.option('columnChooser.selection.recursive');
+    var column = this._columnsController.columnOption(columnIndex);
+    var isRecursiveWithColumns = isRecursive && column.hasColumns;
+    if (!isRecursiveWithColumns) {
+      column.visible ? this._columnChooserList.selectItem(columnIndex) : this._columnChooserList.unselectItem(columnIndex);
+    }
+  },
   _columnOptionChanged: function _columnOptionChanged(e) {
+    this.callBase(e);
     var changeTypes = e.changeTypes;
     var optionNames = e.optionNames;
-    var isSelectMode = this.option('columnChooser.mode') === 'select';
-    this.callBase(e);
-    if (isSelectMode) {
-      var needPartialRender = optionNames.visible && optionNames.length === 1 && e.columnIndex !== undefined;
-      var needFullRender = optionNames.showInColumnChooser || optionNames.caption || optionNames.visible || changeTypes.columns && optionNames.all;
-      if (needPartialRender) {
-        this.render(null, {
-          changeType: 'selection',
-          columnIndex: e.columnIndex
-        });
+    var isSelectMode = this.isSelectMode();
+    if (isSelectMode && this._columnChooserList && this._isUpdatingColumnVisibility !== true) {
+      var onlyOneColumnChanged = e.columnIndex !== undefined;
+      var onlyVisibleChanged = optionNames.visible && optionNames.length === 1;
+      var isDraggedFromGroupPanel = optionNames.visible && optionNames.groupIndex && optionNames.length === 2;
+      var optionsUsedInItems = ['showInColumnChooser', 'caption', 'allowHiding', 'visible', 'cssClass', 'ownerBand'];
+      var needFullRender = optionsUsedInItems.some(optionName => optionNames[optionName]) || changeTypes.columns && optionNames.all;
+      if (onlyOneColumnChanged && (onlyVisibleChanged || isDraggedFromGroupPanel)) {
+        this._updateItemSelection(e.columnIndex);
       } else if (needFullRender) {
-        this.render(null, 'full');
+        this._updateItems();
       }
     }
   },
@@ -328,14 +347,13 @@ var columnChooserMembers = {
   },
   getColumnElements: function getColumnElements() {
     var result = [];
-    var $node;
-    var isSelectMode = this.option('columnChooser.mode') === 'select';
+    var isSelectMode = this.isSelectMode();
     var chooserColumns = this._columnsController.getChooserColumns(isSelectMode);
     var $content = this._popupContainer && this._popupContainer.$content();
     var $nodes = $content && $content.find('.dx-treeview-node');
     if ($nodes) {
       chooserColumns.forEach(function (column) {
-        $node = $nodes.filter('[data-item-id = \'' + column.index + '\']');
+        var $node = $nodes.filter('[data-item-id = \'' + column.index + '\']');
         var item = $node.length ? $node.children('.' + COLUMN_CHOOSER_ITEM_CLASS).get(0) : null;
         result.push(item);
       });
@@ -350,9 +368,14 @@ var columnChooserMembers = {
   getColumns: function getColumns() {
     return this._columnsController.getChooserColumns();
   },
-  allowDragging: function allowDragging(column, sourceLocation) {
-    var columnVisible = column && column.allowHiding && (sourceLocation !== 'columnChooser' || !column.visible && this._columnsController.isParentColumnVisible(column.index));
-    return this.isColumnChooserVisible() && columnVisible;
+  allowDragging: function allowDragging(column) {
+    var isParentColumnVisible = this._columnsController.isParentColumnVisible(column.index);
+    var isColumnHidden = !column.visible && column.allowHiding;
+    return this.isColumnChooserVisible() && isParentColumnVisible && isColumnHidden;
+  },
+  allowColumnHeaderDragging: function allowColumnHeaderDragging(column) {
+    var isDragMode = !this.isSelectMode();
+    return isDragMode && this.isColumnChooserVisible() && column.allowHiding;
   },
   getBoundingRect: function getBoundingRect() {
     var that = this;
@@ -387,6 +410,14 @@ var columnChooserMembers = {
     var popupContainer = this._popupContainer;
     return popupContainer && popupContainer.option('visible');
   },
+  isSelectMode: function isSelectMode() {
+    return this.option('columnChooser.mode') === 'select';
+  },
+  hasHiddenColumns: function hasHiddenColumns() {
+    var isEnabled = this.option('columnChooser.enabled');
+    var hiddenColumns = this.getColumns().filter(column => !column.visible);
+    return isEnabled && hiddenColumns.length;
+  },
   publicMethods: function publicMethods() {
     return ['showColumnChooser', 'hideColumnChooser'];
   }
@@ -401,8 +432,17 @@ export var columnChooserModule = {
     return {
       columnChooser: {
         enabled: false,
-        allowSearch: false,
-        searchTimeout: 500,
+        search: {
+          enabled: false,
+          timeout: 500,
+          editorOptions: {}
+        },
+        selection: {
+          allowSelectAll: false,
+          selectByClick: false,
+          recursive: false
+        },
+        position: undefined,
         mode: 'dragAndDrop',
         width: 250,
         height: 260,
@@ -477,13 +517,21 @@ export var columnChooserModule = {
           var columnChooserEnabled = that.option('columnChooser.enabled');
           return that.callBase() || columnChooserEnabled;
         }
+      },
+      columnHeadersView: {
+        allowDragging: function allowDragging(column) {
+          var columnChooserView = this.component.getView('columnChooserView');
+          var isDragMode = !columnChooserView.isSelectMode();
+          var isColumnChooserVisible = columnChooserView.isColumnChooserVisible();
+          return isDragMode && isColumnChooserVisible && column.allowHiding || this.callBase(column);
+        }
       }
     },
     controllers: {
       columns: {
         allowMoveColumn: function allowMoveColumn(fromVisibleIndex, toVisibleIndex, sourceLocation, targetLocation) {
-          var columnChooserMode = this.option('columnChooser.mode');
-          var isMoveColumnDisallowed = columnChooserMode === 'select' && targetLocation === 'columnChooser';
+          var isSelectMode = this.option('columnChooser.mode') === 'select';
+          var isMoveColumnDisallowed = isSelectMode && targetLocation === 'columnChooser';
           return isMoveColumnDisallowed ? false : this.callBase(fromVisibleIndex, toVisibleIndex, sourceLocation, targetLocation);
         }
       }

@@ -1,14 +1,14 @@
 /**
 * DevExtreme (esm/renovation/ui/pager/pages/small.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 import _extends from "@babel/runtime/helpers/esm/extends";
 import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
-var _excluded = ["pageCount", "pageIndex", "pageIndexChange", "pagesCountText"];
+var _excluded = ["inputAttr", "pageCount", "pageIndex", "pageIndexChange", "pagesCountText"];
 import { createVNode, createComponentVNode } from "inferno";
 import { InfernoEffect, InfernoComponent } from '@devextreme/runtime/inferno';
 import { Page } from './page';
@@ -27,6 +27,7 @@ export var viewFunction = _ref => {
     pageIndexRef,
     pagesCountText,
     props: {
+      inputAttr,
       pageCount
     },
     selectLastPageIndex,
@@ -40,7 +41,8 @@ export var viewFunction = _ref => {
     "max": pageCount,
     "width": width,
     "value": value,
-    "valueChange": valueChange
+    "valueChange": valueChange,
+    "inputAttr": inputAttr
   }), createVNode(1, "span", PAGER_INFO_TEXT_CLASS, pagesCountText, 0), createComponentVNode(2, Page, {
     "className": PAGER_PAGES_COUNT_CLASS,
     "selected": false,
@@ -48,12 +50,20 @@ export var viewFunction = _ref => {
     "onClick": selectLastPageIndex
   })], 4, null, null, pageIndexRef);
 };
-var PagerSmallProps = {
+export var PagerSmallProps = {
+  inputAttr: Object.freeze({
+    'aria-label': messageLocalization.format('dxPager-ariaPageNumber')
+  })
+};
+var PagerSmallPropsType = {
   get pageIndex() {
     return InternalPagerProps.pageIndex;
   },
   get pageCount() {
     return InternalPagerProps.pageCount;
+  },
+  get inputAttr() {
+    return PagerSmallProps.inputAttr;
   }
 };
 import { createRef as infernoCreateRef } from 'inferno';
@@ -120,4 +130,4 @@ export class PagesSmall extends InfernoComponent {
     });
   }
 }
-PagesSmall.defaultProps = PagerSmallProps;
+PagesSmall.defaultProps = PagerSmallPropsType;

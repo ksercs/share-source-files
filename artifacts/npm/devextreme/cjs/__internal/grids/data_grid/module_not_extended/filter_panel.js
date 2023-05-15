@@ -1,16 +1,14 @@
 /**
 * DevExtreme (cjs/__internal/grids/data_grid/module_not_extended/filter_panel.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var ui_grid_core_filter_panel_1 = require("../../../../ui/grid_core/ui.grid_core.filter_panel");
-var module_core_1 = __importDefault(require("../module_core"));
-module_core_1.default.registerModule('filterPanel', ui_grid_core_filter_panel_1.filterPanelModule);
+
+var _uiGrid_core = require("../../../../ui/grid_core/ui.grid_core.filter_panel");
+var _module_core = _interopRequireDefault(require("../module_core"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+_module_core.default.registerModule('filterPanel', _uiGrid_core.filterPanelModule);

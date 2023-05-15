@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/grid_core/ui.grid_core.editing_cell_based.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -30,6 +30,9 @@ var ROW_REMOVED = 'dx-row-removed';
 var EDITING_EDITROWKEY_OPTION_NAME = 'editing.editRowKey';
 var EDITING_EDITCOLUMNNAME_OPTION_NAME = 'editing.editColumnName';
 var DATA_EDIT_DATA_REMOVE_TYPE = 'remove';
+function isEditable($element) {
+  return $element && ($element.is('input') || $element.is('textarea'));
+}
 export default {
   extenders: {
     controllers: {
@@ -51,7 +54,7 @@ export default {
               var $target = $(event.target);
               var targetComponent = event[TARGET_COMPONENT_NAME];
               var component = this.component;
-              if ($pointerDownTarget && $pointerDownTarget.is('input') && !$pointerDownTarget.is($target)) {
+              if (isEditable($pointerDownTarget) && !$pointerDownTarget.is($target)) {
                 return;
               }
               function checkEditorPopup($element) {

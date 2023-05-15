@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/data/store_helper.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -35,8 +35,13 @@ function arrangeSortingInfo(groupInfo, sortInfo) {
   return filteredGroup.concat(sortInfo);
 }
 function queryByOptions(query, options, isCountQuery) {
+  var _options;
   options = options || {};
   var filter = options.filter;
+  if ((_options = options) !== null && _options !== void 0 && _options.langParams) {
+    var _query$setLangParams, _query;
+    (_query$setLangParams = (_query = query).setLangParams) === null || _query$setLangParams === void 0 ? void 0 : _query$setLangParams.call(_query, options.langParams);
+  }
   if (filter) {
     query = query.filter(filter);
   }

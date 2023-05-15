@@ -1,7 +1,7 @@
 /**
 * DevExtreme (ui/form.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -815,3 +815,51 @@ export type Properties = dxFormOptions;
 
 /** @deprecated use Properties instead */
 export type Options = dxFormOptions;
+
+// TODO: temporary commented out to fix jquery generation error in R1
+
+// type EventProps<T> = Extract<keyof T, `on${any}`>;
+// type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+// type FilterOutHidden<T> = Omit<T, 'onFocusIn' | 'onFocusOut'>;
+
+// type EventsIntegrityCheckingHelper = CheckedEvents<FilterOutHidden<Properties>, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxFormOptions.onContentReady
+ * @type_function_param1 e:{ui/form:ContentReadyEvent}
+ */
+onContentReady?: ((e: ContentReadyEvent) => void);
+/**
+ * @skip
+ * @docid dxFormOptions.onDisposing
+ * @type_function_param1 e:{ui/form:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxFormOptions.onEditorEnterKey
+ * @type_function_param1 e:{ui/form:EditorEnterKeyEvent}
+ */
+onEditorEnterKey?: ((e: EditorEnterKeyEvent) => void);
+/**
+ * @skip
+ * @docid dxFormOptions.onFieldDataChanged
+ * @type_function_param1 e:{ui/form:FieldDataChangedEvent}
+ */
+onFieldDataChanged?: ((e: FieldDataChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxFormOptions.onInitialized
+ * @type_function_param1 e:{ui/form:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxFormOptions.onOptionChanged
+ * @type_function_param1 e:{ui/form:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+};

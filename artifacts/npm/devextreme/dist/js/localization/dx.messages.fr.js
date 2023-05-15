@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.fr.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,10 @@
             "dxDateBox-simulatedDataPickerTitleDate": "Choisissez la date",
             "dxDateBox-simulatedDataPickerTitleDateTime": "Choisissez la date et l'heure",
             "dxDateBox-validation-datetime": "La valeur doit être une date ou une heure.",
+            "dxDateBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateBox-endDateOutOfRangeMessage": "End date is out of range",
             "dxFileUploader-selectFile": "Choisissez un fichier",
             "dxFileUploader-dropFile": "Déposez un fichier",
             "dxFileUploader-bytes": "Bytes",
@@ -92,6 +96,10 @@
             "dxForm-requiredMessage": "{0} est obligatoire",
             "dxNumberBox-invalidValueMessage": "La valeur doit être un nombre",
             "dxNumberBox-noDataText": "Pas de données",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "Use {0} to display columns",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "Drag a column from the group panel here",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Use {0} or drag a column from the group panel",
+            "dxDataGrid-emptyHeaderColumnChooserText": "column chooser",
             "dxDataGrid-columnChooserTitle": "Choisir les colonnes",
             "dxDataGrid-columnChooserEmptyText": "Faites glisser une colonne ici pour la cacher",
             "dxDataGrid-groupContinuesMessage": "Suite à la page suivante",
@@ -124,6 +132,7 @@
             "dxDataGrid-filterRowOperationBetween": "Entre",
             "dxDataGrid-filterRowOperationBetweenStartText": "Début",
             "dxDataGrid-filterRowOperationBetweenEndText": "Fin",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "Filtrer le texte",
             "dxDataGrid-trueText": "Vrai",
             "dxDataGrid-falseText": "Faux",
@@ -151,8 +160,8 @@
             "dxDataGrid-exporting": "Exporter...",
             "dxDataGrid-excelFormat": "Fichier Excel",
             "dxDataGrid-selectedRows": "Lignes sélectionnées",
-            "dxDataGrid-exportSelectedRows": "Exporter les lignes sélectionnées",
-            "dxDataGrid-exportAll": "Exporter tout",
+            "dxDataGrid-exportSelectedRows": "Exporter les lignes sélectionnées vers {0}",
+            "dxDataGrid-exportAll": "Exporter tout vers {0}",
             "dxDataGrid-headerFilterLabel": "Filter options",
             "dxDataGrid-headerFilterIndicatorLabel": "Show filter options for column '{0}'",
             "dxDataGrid-headerFilterEmptyValue": "(aucune valeur)",
@@ -180,11 +189,14 @@
             "dxTreeList-editingAddRowToNode": "Ajouter",
             "dxPager-infoText": "Page {0} sur {1} ({2} élements)",
             "dxPager-pagesCountText": "sur",
+            "dxPager-pageSize": "Items per page: {0}",
             "dxPager-pageSizesAllText": "Tous",
             "dxPager-page": "Page {0}",
             "dxPager-prevPage": "Previous Page",
             "dxPager-nextPage": "Next Page",
             "dxPager-ariaLabel": "Page Navigation",
+            "dxPager-ariaPageSize": "Page size",
+            "dxPager-ariaPageNumber": "Page number",
             "dxPivotGrid-grandTotal": "Total général",
             "dxPivotGrid-total": "Total {0}",
             "dxPivotGrid-fieldChooserTitle": "Liste des champs",
@@ -250,6 +262,7 @@
             "dxScheduler-moreAppointments": "{0} en plus",
             "dxCalendar-todayButtonText": "Aujourd'hui",
             "dxCalendar-ariaWidgetName": "Calendrier",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "Rouge",
             "dxColorView-ariaGreen": "Vert",
             "dxColorView-ariaBlue": "Bleu",

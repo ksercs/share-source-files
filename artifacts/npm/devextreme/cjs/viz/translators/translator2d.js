@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/viz/translators/translator2d.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -371,7 +371,7 @@ _Translator2d.prototype = {
     var minValue = this.from(visibleArea.min + minBarSize);
     return _abs(this.from(visibleArea.min) - (!(0, _type.isDefined)(minValue) ? this.from(visibleArea.max) : minValue));
   },
-  checkMinBarSize: function checkMinBarSize(value, minShownValue, stackValue) {
+  checkMinBarSize: function checkMinBarSize(value, minShownValue) {
     return _abs(value) < minShownValue ? value >= 0 ? minShownValue : -minShownValue : value;
   },
   translate: function translate(bp, direction) {

@@ -979,7 +979,7 @@ var DraggingHeaderViewController = _uiGrid_core.default.ViewController.inherit({
           }
           var $columnElement = (0, _renderer.default)(columnElement);
           var column = columns[index];
-          if (draggingPanel.allowDragging(column, nameDraggingPanel, draggingPanels)) {
+          if (column && draggingPanel.allowDragging(column)) {
             $columnElement.addClass(that.addWidgetPrefix(HEADERS_DRAG_ACTION_CLASS));
             _events_engine.default.on($columnElement, (0, _index.addNamespace)(_drag.start, MODULE_NAMESPACE), that.createAction(function (args) {
               var e = args.event;

@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/core/config.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -50,13 +50,22 @@ var config = {
       optionsString = '{' + optionsString + '}';
     }
     try {
-      // eslint-disable-next-line no-new-func
-      return new Function('return ' + optionsString)();
+      return JSON.parse(optionsString);
     } catch (ex) {
-      throw errors.Error('E3018', ex, optionsString);
+      try {
+        return JSON.parse(normalizeToJSONString(optionsString));
+      } catch (exNormalize) {
+        throw errors.Error('E3018', ex, optionsString);
+      }
     }
   }
 };
+var normalizeToJSONString = optionsString => {
+  return optionsString.replace(/'/g, '"') // replace all ' to "
+  .replace(/,\s*([\]}])/g, '$1') // remove trailing commas
+  .replace(/([{,])\s*([^":\s]+)\s*:/g, '$1"$2":'); // add quotes for unquoted keys
+};
+
 var deprecatedFields = ['decimalSeparator', 'thousandsSeparator'];
 var configMethod = function configMethod() {
   if (!arguments.length) {

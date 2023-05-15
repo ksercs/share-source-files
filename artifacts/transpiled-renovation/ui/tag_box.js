@@ -22,6 +22,7 @@ var _index = require("../events/utils/index");
 var _click = require("../events/click");
 var _utils = _interopRequireDefault(require("./text_box/utils.caret"));
 var _utils2 = require("../data/data_source/utils");
+var _guid = _interopRequireDefault(require("../core/guid"));
 var _select_box = _interopRequireDefault(require("./select_box"));
 var _bindable_template = require("../core/templates/bindable_template");
 var _utils3 = require("./text_box/utils.scroll");
@@ -150,18 +151,24 @@ var TagBox = _select_box.default.inherit({
     var position = (0, _utils.default)(this._input());
     return position.start === 0 && position.end === 0;
   },
+  _updateInputAriaActiveDescendant: function _updateInputAriaActiveDescendant(id) {
+    this.setAria('activedescendant', id, this._input());
+  },
   _moveTagFocus: function _moveTagFocus(direction, clearOnBoundary) {
     if (!this._$focusedTag) {
       var tagElements = this._tagElements();
       this._$focusedTag = direction === 'next' ? tagElements.first() : tagElements.last();
       this._toggleFocusClass(true, this._$focusedTag);
+      this._updateInputAriaActiveDescendant(this._$focusedTag.attr('id'));
       return;
     }
     var $nextFocusedTag = this._$focusedTag[direction](".".concat(TAGBOX_TAG_CLASS));
     if ($nextFocusedTag.length > 0) {
       this._replaceFocusedTag($nextFocusedTag);
+      this._updateInputAriaActiveDescendant($nextFocusedTag.attr('id'));
     } else if (clearOnBoundary || direction === 'next' && this._isEditable()) {
       this._clearTagFocus();
+      this._updateInputAriaActiveDescendant();
     }
   },
   _replaceFocusedTag: function _replaceFocusedTag($nextFocusedTag) {
@@ -174,6 +181,7 @@ var TagBox = _select_box.default.inherit({
       return;
     }
     this._toggleFocusClass(false, this._$focusedTag);
+    this._updateInputAriaActiveDescendant();
     delete this._$focusedTag;
   },
   _focusClassTarget: function _focusClassTarget($element) {
@@ -184,6 +192,9 @@ var TagBox = _select_box.default.inherit({
   },
   _getLabelContainer: function _getLabelContainer() {
     return this._$tagsContainer;
+  },
+  _setLabelContainerAria: function _setLabelContainerAria() {
+    this.setAria('labelledby', this._label.getId(), this._input());
   },
   _scrollContainer: function _scrollContainer(direction) {
     if (this.option('multiline') || !(0, _window.hasWindow)()) {
@@ -358,7 +369,11 @@ var TagBox = _select_box.default.inherit({
     if (!this.option('useSubmitBehavior')) {
       return;
     }
-    this._$submitElement = (0, _renderer.default)('<select>').attr('multiple', 'multiple').css('display', 'none').appendTo(this.$element());
+    var attributes = {
+      'multiple': 'multiple',
+      'aria-label': 'Selected items'
+    };
+    this._$submitElement = (0, _renderer.default)('<select>').attr(attributes).css('display', 'none').appendTo(this.$element());
   },
   _setSubmitValue: function _setSubmitValue() {
     if (!this.option('useSubmitBehavior')) {
@@ -376,8 +391,37 @@ var TagBox = _select_box.default.inherit({
     this._tagElementsCache = (0, _renderer.default)();
     var isSingleLineMode = !this.option('multiline');
     this.$element().addClass(TAGBOX_CLASS).toggleClass(TAGBOX_ONLY_SELECT_CLASS, !(this.option('searchEnabled') || this.option('acceptCustomValue'))).toggleClass(TAGBOX_SINGLE_LINE_CLASS, isSingleLineMode);
+    var elementAria = {
+      'role': 'group',
+      'roledescription': 'tagbox'
+    };
+    this.setAria(elementAria, this.$element());
     this._initTagTemplate();
     this.callBase();
+  },
+  _getNewLabelId: function _getNewLabelId(actualId, newId, shouldRemove) {
+    if (!actualId) {
+      return newId;
+    }
+    if (shouldRemove) {
+      if (actualId === newId) {
+        return undefined;
+      }
+      return actualId.split(' ').filter(function (id) {
+        return id !== newId;
+      }).join(' ');
+    }
+    return "".concat(actualId, " ").concat(newId);
+  },
+  _updateElementAria: function _updateElementAria(id, shouldRemove) {
+    var shouldClearLabel = !id;
+    if (shouldClearLabel) {
+      this.setAria('labelledby', undefined, this.$element());
+      return;
+    }
+    var labelId = this.$element().attr('aria-labelledby');
+    var newLabelId = this._getNewLabelId(labelId, id, shouldRemove);
+    this.setAria('labelledby', newLabelId, this.$element());
   },
   _render: function _render() {
     this.callBase();
@@ -488,7 +532,7 @@ var TagBox = _select_box.default.inherit({
     this.callBase(e);
   },
   _getFirstPopupElement: function _getFirstPopupElement() {
-    return this.option('showSelectionControls') ? this._list.$element() : this.callBase();
+    return this.option('showSelectionControls') ? this._list._focusTarget() : this.callBase();
   },
   _initSelectAllValueChangedAction: function _initSelectAllValueChangedAction() {
     this._selectAllValueChangeAction = this._createActionByOption('onSelectAllValueChanged');
@@ -860,6 +904,7 @@ var TagBox = _select_box.default.inherit({
         }
       });
     }
+    this._updateElementAria();
   },
   _renderEmptyState: function _renderEmptyState() {
     var isEmpty = !(this._getValue().length || this._selectedItems.length || this._searchValue());
@@ -895,14 +940,17 @@ var TagBox = _select_box.default.inherit({
         this._applyTagTemplate(itemModel, $tag);
       }
       $tag.removeClass(TAGBOX_CUSTOM_TAG_CLASS);
+      this._updateElementAria($tag.attr('id'));
     } else {
-      $tag = this._createTag(value, $input);
+      var tagId = "dx-".concat(new _guid.default());
+      $tag = this._createTag(value, $input, tagId);
       if ((0, _type.isDefined)(item)) {
         this._applyTagTemplate(itemModel, $tag);
       } else {
         $tag.addClass(TAGBOX_CUSTOM_TAG_CLASS);
         this._applyTagTemplate(value, $tag);
       }
+      this._updateElementAria(tagId);
     }
   },
   _getItemModel: function _getItemModel(item, displayValue) {
@@ -926,8 +974,8 @@ var TagBox = _select_box.default.inherit({
     }
     return result;
   },
-  _createTag: function _createTag(value, $input) {
-    return (0, _renderer.default)('<div>').addClass(TAGBOX_TAG_CLASS).data(TAGBOX_TAG_DATA_KEY, value).insertBefore($input);
+  _createTag: function _createTag(value, $input, tagId) {
+    return (0, _renderer.default)('<div>').attr('id', tagId).addClass(TAGBOX_TAG_CLASS).data(TAGBOX_TAG_DATA_KEY, value).insertBefore($input);
   },
   _toggleEmptinessEventHandler: function _toggleEmptinessEventHandler() {
     this._toggleEmptiness(!this._getValue().length && !this._searchValue().length);
@@ -953,7 +1001,9 @@ var TagBox = _select_box.default.inherit({
       return;
     }
     var itemValue = $tag.data(TAGBOX_TAG_DATA_KEY);
+    var itemId = $tag.attr('id');
     this._removeTagWithUpdate(itemValue);
+    this._updateElementAria(itemId, true);
     this._refreshTagElements();
   },
   _updateField: _common.noop,

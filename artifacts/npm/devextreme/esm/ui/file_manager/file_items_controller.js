@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/file_manager/file_items_controller.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -129,7 +129,7 @@ export class FileItemsController {
     return this._setCurrentDirectoryByPathParts(pathParts);
   }
   setCurrentPathByKeys(pathKeys) {
-    if (equalByValue(this.getCurrentDirectory().fileItem.pathKeys, pathKeys, 0, true)) {
+    if (equalByValue(this.getCurrentDirectory().fileItem.pathKeys, pathKeys)) {
       return new Deferred().resolve().promise();
     }
     return this._setCurrentDirectoryByPathParts(pathKeys, true);

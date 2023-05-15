@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/speed_dial_action/speed_dial_main_item.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -26,6 +26,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
 var getSwatchContainer = _swatch_container.default.getSwatchContainer;
 var FAB_MAIN_CLASS = 'dx-fa-button-main';
 var FAB_MAIN_CLASS_WITH_LABEL = 'dx-fa-button-with-label';
+var FAB_MAIN_CLASS_WITHOUT_ICON = 'dx-fa-button-without-icon';
 var FAB_CLOSE_ICON_CLASS = 'dx-fa-button-icon-close';
 var INVISIBLE_STATE_CLASS = 'dx-state-invisible';
 var speedDialMainItem = null;
@@ -101,9 +102,9 @@ var SpeedDialMainItem = /*#__PURE__*/function (_SpeedDialItem) {
       actions: [],
       activeStateEnabled: true,
       hoverStateEnabled: true,
-      indent: 55,
+      indent: (0, _themes.isCompact)() ? 49 : 55,
       childIndent: 40,
-      childOffset: 9,
+      childOffset: (0, _themes.isCompact)() ? 2 : 9,
       callOverlayRenderShading: true,
       hideOnOutsideClick: true
     };
@@ -114,12 +115,21 @@ var SpeedDialMainItem = /*#__PURE__*/function (_SpeedDialItem) {
   _proto._defaultOptionsRules = function _defaultOptionsRules() {
     return _SpeedDialItem.prototype._defaultOptionsRules.call(this).concat([{
       device: function device() {
-        return (0, _themes.isMaterial)();
+        return (0, _themes.isMaterial)() && !(0, _themes.isCompact)();
       },
       options: {
         indent: 72,
         childIndent: 56,
         childOffset: 8
+      }
+    }, {
+      device: function device() {
+        return (0, _themes.isMaterial)() && (0, _themes.isCompact)();
+      },
+      options: {
+        indent: 58,
+        childIndent: 48,
+        childOffset: 1
       }
     }]);
   };
@@ -133,6 +143,10 @@ var SpeedDialMainItem = /*#__PURE__*/function (_SpeedDialItem) {
   _proto._renderLabel = function _renderLabel() {
     _SpeedDialItem.prototype._renderLabel.call(this);
     this.$element().toggleClass(FAB_MAIN_CLASS_WITH_LABEL, !!this._$label);
+  };
+  _proto._renderIcon = function _renderIcon() {
+    _SpeedDialItem.prototype._renderIcon.call(this);
+    this.$element().toggleClass(FAB_MAIN_CLASS_WITHOUT_ICON, !this.option('icon'));
   };
   _proto._renderCloseIcon = function _renderCloseIcon() {
     this._$closeIcon = this._renderButtonIcon(this._$closeIcon, this._options.silent('closeIcon'), FAB_CLOSE_ICON_CLASS);

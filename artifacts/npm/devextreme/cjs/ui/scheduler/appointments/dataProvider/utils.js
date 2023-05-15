@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/scheduler/appointments/dataProvider/utils.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -93,7 +93,7 @@ var _convertRecurrenceException = function _convertRecurrenceException(exception
   return exceptionString;
 };
 exports._convertRecurrenceException = _convertRecurrenceException;
-var replaceWrongEndDate = function replaceWrongEndDate(appointment, startDate, endDate, appointmentDuration, dataAccessors) {
+var replaceWrongEndDate = function replaceWrongEndDate(rawAppointment, startDate, endDate, appointmentDuration, dataAccessors) {
   var calculateAppointmentEndDate = function calculateAppointmentEndDate(isAllDay, startDate) {
     if (isAllDay) {
       return _date.default.setToDayEnd(new Date(startDate));
@@ -101,8 +101,9 @@ var replaceWrongEndDate = function replaceWrongEndDate(appointment, startDate, e
     return new Date(startDate.getTime() + appointmentDuration * toMs('minute'));
   };
   if (_isEndDateWrong(startDate, endDate)) {
-    var calculatedEndDate = calculateAppointmentEndDate(appointment.allDay, startDate);
-    dataAccessors.setter.endDate(appointment, calculatedEndDate);
+    var isAllDay = _expressionUtils.ExpressionUtils.getField(dataAccessors, 'allDay', rawAppointment);
+    var calculatedEndDate = calculateAppointmentEndDate(isAllDay, startDate);
+    dataAccessors.setter.endDate(rawAppointment, calculatedEndDate);
   }
 };
 exports.replaceWrongEndDate = replaceWrongEndDate;

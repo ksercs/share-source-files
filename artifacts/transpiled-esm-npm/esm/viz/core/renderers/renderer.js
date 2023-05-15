@@ -126,6 +126,7 @@ export function processHatchingAttrs(element, attrs) {
   } else if (element._hatching) {
     element.renderer.releaseDefsElements(element._hatching);
     element._hatching = null;
+    delete attrs.filter;
   } else if (attrs.filter) {
     attrs = extend({}, attrs);
     attrs.filter = element._filter = element.renderer.lockDefsElements({}, element._filter, 'filter');
@@ -619,7 +620,11 @@ function removeExtraAttrs(html) {
 function parseHTML(text) {
   var items = [];
   var div = domAdapter.createElement('div');
-  div.innerHTML = text.replace(/\r/g, '').replace(/\n/g, '<br/>');
+  div.innerHTML = text.replace(/\r/g, '').replace(/\n/g, '<br/>').replace(/style=/g, 'data-style=');
+  div.querySelectorAll('[data-style]').forEach(element => {
+    element.style = element.getAttribute('data-style');
+    element.removeAttribute('data-style');
+  });
   orderHtmlTree(items, 0, div, {}, '');
   adjustLineHeights(items);
   return items;

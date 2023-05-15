@@ -1,0 +1,218 @@
+!function(e){function r(e,r,o){return 4===arguments.length?t.apply(this,arguments):void n(e,{declarative:!0,deps:r,declare:o})}function t(e,r,t,o){n(e,{declarative:!1,deps:r,executingRequire:t,execute:o})}function n(e,r){r.name=e,e in v||(v[e]=r),r.normalizedDeps=r.deps}function o(e,r){if(r[e.groupIndex]=r[e.groupIndex]||[],-1==g.call(r[e.groupIndex],e)){r[e.groupIndex].push(e);for(var t=0,n=e.normalizedDeps.length;n>t;t++){var a=e.normalizedDeps[t],u=v[a];if(u&&!u.evaluated){var d=e.groupIndex+(u.declarative!=e.declarative);if(void 0===u.groupIndex||u.groupIndex<d){if(void 0!==u.groupIndex&&(r[u.groupIndex].splice(g.call(r[u.groupIndex],u),1),0==r[u.groupIndex].length))throw new TypeError("Mixed dependency cycle detected");u.groupIndex=d}o(u,r)}}}}function a(e){var r=v[e];r.groupIndex=0;var t=[];o(r,t);for(var n=!!r.declarative==t.length%2,a=t.length-1;a>=0;a--){for(var u=t[a],i=0;i<u.length;i++){var s=u[i];n?d(s):l(s)}n=!n}}function u(e){return y[e]||(y[e]={name:e,dependencies:[],exports:{},importers:[]})}function d(r){if(!r.module){var t=r.module=u(r.name),n=r.module.exports,o=r.declare.call(e,function(e,r){if(t.locked=!0,"object"==typeof e)for(var o in e)n[o]=e[o];else n[e]=r;for(var a=0,u=t.importers.length;u>a;a++){var d=t.importers[a];if(!d.locked)for(var i=0;i<d.dependencies.length;++i)d.dependencies[i]===t&&d.setters[i](n)}return t.locked=!1,r},{id:r.name});t.setters=o.setters,t.execute=o.execute;for(var a=0,i=r.normalizedDeps.length;i>a;a++){var l,s=r.normalizedDeps[a],c=v[s],f=y[s];f?l=f.exports:c&&!c.declarative?l=c.esModule:c?(d(c),f=c.module,l=f.exports):l=p(s),f&&f.importers?(f.importers.push(t),t.dependencies.push(f)):t.dependencies.push(null),t.setters[a]&&t.setters[a](l)}}}function i(e){var r,t=v[e];if(t)t.declarative?f(e,[]):t.evaluated||l(t),r=t.module.exports;else if(r=p(e),!r)throw new Error("Unable to load dependency "+e+".");return(!t||t.declarative)&&r&&r.__useDefault?r["default"]:r}function l(r){if(!r.module){var t={},n=r.module={exports:t,id:r.name};if(!r.executingRequire)for(var o=0,a=r.normalizedDeps.length;a>o;o++){var u=r.normalizedDeps[o],d=v[u];d&&l(d)}r.evaluated=!0;var c=r.execute.call(e,function(e){for(var t=0,n=r.deps.length;n>t;t++)if(r.deps[t]==e)return i(r.normalizedDeps[t]);throw new TypeError("Module "+e+" not declared as a dependency.")},t,n);void 0!==c&&(n.exports=c),t=n.exports,t&&t.__esModule?r.esModule=t:r.esModule=s(t)}}function s(r){var t={};if(("object"==typeof r||"function"==typeof r)&&r!==e)if(m)for(var n in r)"default"!==n&&c(t,r,n);else{var o=r&&r.hasOwnProperty;for(var n in r)"default"===n||o&&!r.hasOwnProperty(n)||(t[n]=r[n])}return t["default"]=r,x(t,"__useDefault",{value:!0}),t}function c(e,r,t){try{var n;(n=Object.getOwnPropertyDescriptor(r,t))&&x(e,t,n)}catch(o){return e[t]=r[t],!1}}function f(r,t){var n=v[r];if(n&&!n.evaluated&&n.declarative){t.push(r);for(var o=0,a=n.normalizedDeps.length;a>o;o++){var u=n.normalizedDeps[o];-1==g.call(t,u)&&(v[u]?f(u,t):p(u))}n.evaluated||(n.evaluated=!0,n.module.execute.call(e))}}function p(e){if(I[e])return I[e];if("@node/"==e.substr(0,6))return I[e]=s(D(e.substr(6)));var r=v[e];if(!r)throw"Module "+e+" not present.";return a(e),f(e,[]),v[e]=void 0,r.declarative&&x(r.module.exports,"__esModule",{value:!0}),I[e]=r.declarative?r.module.exports:r.esModule}var v={},g=Array.prototype.indexOf||function(e){for(var r=0,t=this.length;t>r;r++)if(this[r]===e)return r;return-1},m=!0;try{Object.getOwnPropertyDescriptor({a:0},"a")}catch(h){m=!1}var x;!function(){try{Object.defineProperty({},"a",{})&&(x=Object.defineProperty)}catch(e){x=function(e,r,t){try{e[r]=t.value||t.get.call(e)}catch(n){}}}}();var y={},D="undefined"!=typeof System&&System._nodeRequire||"undefined"!=typeof require&&"undefined"!=typeof require.resolve&&"undefined"!=typeof process&&process.platform&&require,I={"@empty":{}};return function(e,n,o,a){return function(u){u(function(u){for(var d={_nodeRequire:D,register:r,registerDynamic:t,get:p,set:function(e,r){I[e]=r},newModule:function(e){return e}},i=0;i<n.length;i++)(function(e,r){r&&r.__esModule?I[e]=r:I[e]=s(r)})(n[i],arguments[i]);a(d);var l=p(e[0]);if(e.length>1)for(var i=1;i<e.length;i++)p(e[i]);return o?l["default"]:l})}}}("undefined"!=typeof self?self:global)
+
+(["artifacts/transpiled-renovation/__internal/grids/data_grid/module_widget_base.js"], ["../../../core/renderer","../../../core/component_registrator","../../../core/utils/common","../../../core/utils/type","../../../core/utils/iterator","../../../core/utils/extend","../../../core/utils/console","../../../core/utils/browser","../../../ui/widget/ui.widget","../../../ui/themes","../../../ui/grid_core/ui.grid_core.utils","./module_core","./module_not_extended/column_headers","./module_columns_controller","./module_data_controller","./module_not_extended/sorting","./module_not_extended/rows","./module_not_extended/context_menu","./module_not_extended/error_handling","./module_not_extended/grid_view","./module_not_extended/header_panel"], false, function($__System) {
+var require = this.require, exports = this.exports, module = this.module;
+$__System.registerDynamic("artifacts/transpiled-renovation/__internal/grids/data_grid/module_widget_base.js", ["../../../core/renderer", "../../../core/component_registrator", "../../../core/utils/common", "../../../core/utils/type", "../../../core/utils/iterator", "../../../core/utils/extend", "../../../core/utils/console", "../../../core/utils/browser", "../../../ui/widget/ui.widget", "../../../ui/themes", "../../../ui/grid_core/ui.grid_core.utils", "./module_core", "./module_not_extended/column_headers", "./module_columns_controller", "./module_data_controller", "./module_not_extended/sorting", "./module_not_extended/rows", "./module_not_extended/context_menu", "./module_not_extended/error_handling", "./module_not_extended/grid_view", "./module_not_extended/header_panel"], true, function ($__require, exports, module) {
+  "use strict";
+
+  var global = this || self,
+      GLOBAL = global;
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+  var _renderer = _interopRequireDefault($__require("../../../core/renderer"));
+  var _component_registrator = _interopRequireDefault($__require("../../../core/component_registrator"));
+  var _common = $__require("../../../core/utils/common");
+  var _type = $__require("../../../core/utils/type");
+  var _iterator = $__require("../../../core/utils/iterator");
+  var _extend = $__require("../../../core/utils/extend");
+  var _console = $__require("../../../core/utils/console");
+  var _browser = _interopRequireDefault($__require("../../../core/utils/browser"));
+  var _ui = _interopRequireDefault($__require("../../../ui/widget/ui.widget"));
+  var _themes = $__require("../../../ui/themes");
+  var _uiGrid_core = _interopRequireDefault($__require("../../../ui/grid_core/ui.grid_core.utils"));
+  var _module_core = _interopRequireDefault($__require("./module_core"));
+  $__require("./module_not_extended/column_headers");
+  $__require("./module_columns_controller");
+  $__require("./module_data_controller");
+  $__require("./module_not_extended/sorting");
+  $__require("./module_not_extended/rows");
+  $__require("./module_not_extended/context_menu");
+  $__require("./module_not_extended/error_handling");
+  $__require("./module_not_extended/grid_view");
+  $__require("./module_not_extended/header_panel");
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
+  var DATAGRID_ROW_SELECTOR = '.dx-row';
+  var DATAGRID_DEPRECATED_TEMPLATE_WARNING = 'Specifying grid templates with the jQuery selector name is now deprecated. Use the DOM Node or the jQuery object that references this selector instead.';
+  _module_core.default.registerModulesOrder(['stateStoring', 'columns', 'selection', 'editorFactory', 'columnChooser', 'grouping', 'editing', 'editingRowBased', 'editingFormBased', 'editingCellBased', 'masterDetail', 'validating', 'adaptivity', 'data', 'virtualScrolling', 'columnHeaders', 'filterRow', 'headerPanel', 'headerFilter', 'sorting', 'search', 'rows', 'pager', 'columnsResizingReordering', 'contextMenu', 'keyboardNavigation', 'errorHandling', 'summary', 'columnFixing', 'export', 'gridView']);
+  var DataGrid = _ui.default.inherit({
+    _activeStateUnit: DATAGRID_ROW_SELECTOR,
+    _getDefaultOptions: function _getDefaultOptions() {
+      var that = this;
+      var result = that.callBase();
+      (0, _iterator.each)(_module_core.default.modules, function () {
+        if ((0, _type.isFunction)(this.defaultOptions)) {
+          (0, _extend.extend)(true, result, this.defaultOptions());
+        }
+      });
+      return result;
+    },
+    _setDeprecatedOptions: function _setDeprecatedOptions() {
+      this.callBase();
+      (0, _extend.extend)(this._deprecatedOptions, {
+        useKeyboard: {
+          since: '19.2',
+          alias: 'keyboardNavigation.enabled'
+        },
+        rowTemplate: {
+          since: '21.2',
+          message: 'Use the "dataRowTemplate" option instead'
+        },
+        'columnChooser.allowSearch': {
+          since: '23.1',
+          message: 'Use the "columnChooser.search.enabled" option instead'
+        },
+        'columnChooser.searchTimeout': {
+          since: '23.1',
+          message: 'Use the "columnChooser.search.timeout" option instead'
+        }
+      });
+    },
+    _defaultOptionsRules: function _defaultOptionsRules() {
+      return this.callBase().concat([{
+        device: {
+          platform: 'ios'
+        },
+        options: {
+          showRowLines: true
+        }
+      }, {
+        device: function device() {
+          // @ts-expect-error
+          return (0, _themes.isMaterial)();
+        },
+        options: {
+          showRowLines: true,
+          showColumnLines: false,
+          headerFilter: {
+            height: 315
+          },
+          editing: {
+            useIcons: true
+          },
+          selection: {
+            showCheckBoxesMode: 'always'
+          }
+        }
+      }, {
+        device: function device() {
+          return _browser.default.webkit;
+        },
+        options: {
+          loadingTimeout: 30,
+          loadPanel: {
+            animation: {
+              show: {
+                easing: 'cubic-bezier(1, 0, 1, 0)',
+                duration: 500,
+                from: {
+                  opacity: 0
+                },
+                to: {
+                  opacity: 1
+                }
+              }
+            }
+          }
+        }
+      }, {
+        device: function device(_device) {
+          return _device.deviceType !== 'desktop';
+        },
+        options: {
+          grouping: {
+            expandMode: 'rowClick'
+          }
+        }
+      }]);
+    },
+    _init: function _init() {
+      var that = this;
+      that.callBase();
+      _uiGrid_core.default.logHeaderFilterDeprecatedWarningIfNeed(that);
+      _module_core.default.processModules(that, _module_core.default);
+      _module_core.default.callModuleItemsMethod(that, 'init');
+    },
+    _clean: _common.noop,
+    _optionChanged: function _optionChanged(args) {
+      var that = this;
+      _module_core.default.callModuleItemsMethod(that, 'optionChanged', [args]);
+      if (!args.handled) {
+        that.callBase(args);
+      }
+    },
+    _dimensionChanged: function _dimensionChanged() {
+      this.updateDimensions(true);
+    },
+    _visibilityChanged: function _visibilityChanged(visible) {
+      if (visible) {
+        this.updateDimensions();
+      }
+    },
+    _initMarkup: function _initMarkup() {
+      this.callBase.apply(this, arguments);
+      this.getView('gridView').render(this.$element());
+    },
+    _renderContentImpl: function _renderContentImpl() {
+      this.getView('gridView').update();
+    },
+    _renderContent: function _renderContent() {
+      var that = this;
+      (0, _common.deferRender)(function () {
+        that._renderContentImpl();
+      });
+    },
+    _getTemplate: function _getTemplate(templateName) {
+      var template = templateName;
+      if ((0, _type.isString)(template) && template.startsWith('#')) {
+        template = (0, _renderer.default)(templateName);
+        _console.logger.warn(DATAGRID_DEPRECATED_TEMPLATE_WARNING);
+      }
+      return this.callBase(template);
+    },
+    _dispose: function _dispose() {
+      var that = this;
+      that.callBase();
+      _module_core.default.callModuleItemsMethod(that, 'dispose');
+    },
+    isReady: function isReady() {
+      return this.getController('data').isReady();
+    },
+    beginUpdate: function beginUpdate() {
+      var that = this;
+      that.callBase();
+      _module_core.default.callModuleItemsMethod(that, 'beginUpdate');
+    },
+    endUpdate: function endUpdate() {
+      var that = this;
+      _module_core.default.callModuleItemsMethod(that, 'endUpdate');
+      that.callBase();
+    },
+    getController: function getController(name) {
+      return this._controllers[name];
+    },
+    getView: function getView(name) {
+      return this._views[name];
+    },
+    focus: function focus(element) {
+      this.getController('keyboardNavigation').focus(element);
+    }
+  });
+  DataGrid.registerModule = _module_core.default.registerModule.bind(_module_core.default);
+  (0, _component_registrator.default)('dxDataGrid', DataGrid);
+  var _default = DataGrid;
+  exports.default = _default;
+});
+})
+(function(factory) {
+  if (typeof define == 'function' && define.amd)
+    define(["../../../core/renderer","../../../core/component_registrator","../../../core/utils/common","../../../core/utils/type","../../../core/utils/iterator","../../../core/utils/extend","../../../core/utils/console","../../../core/utils/browser","../../../ui/widget/ui.widget","../../../ui/themes","../../../ui/grid_core/ui.grid_core.utils","./module_core","./module_not_extended/column_headers","./module_columns_controller","./module_data_controller","./module_not_extended/sorting","./module_not_extended/rows","./module_not_extended/context_menu","./module_not_extended/error_handling","./module_not_extended/grid_view","./module_not_extended/header_panel"], factory);
+  else if (typeof module == 'object' && module.exports && typeof require == 'function')
+    module.exports = factory(require("../../../core/renderer"), require("../../../core/component_registrator"), require("../../../core/utils/common"), require("../../../core/utils/type"), require("../../../core/utils/iterator"), require("../../../core/utils/extend"), require("../../../core/utils/console"), require("../../../core/utils/browser"), require("../../../ui/widget/ui.widget"), require("../../../ui/themes"), require("../../../ui/grid_core/ui.grid_core.utils"), require("./module_core"), require("./module_not_extended/column_headers"), require("./module_columns_controller"), require("./module_data_controller"), require("./module_not_extended/sorting"), require("./module_not_extended/rows"), require("./module_not_extended/context_menu"), require("./module_not_extended/error_handling"), require("./module_not_extended/grid_view"), require("./module_not_extended/header_panel"));
+  else
+    throw new Error("Module must be loaded as AMD or CommonJS");
+});
+//# sourceMappingURL=module_widget_base.js.map

@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/grid_core/ui.grid_core.header_filter.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -447,8 +447,13 @@ var headerFilterModule = {
         visible: false,
         width: 252,
         height: 325,
-        allowSearch: false,
-        searchTimeout: 500,
+        allowSelectAll: true,
+        search: {
+          enabled: false,
+          timeout: 500,
+          mode: 'contains',
+          editorOptions: {}
+        },
         texts: {
           emptyValue: _message.default.format('dxDataGrid-headerFilterEmptyValue'),
           ok: _message.default.format('dxDataGrid-headerFilterOK'),

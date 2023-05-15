@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/viz/core/renderers/renderer.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -147,6 +147,7 @@ function processHatchingAttrs(element, attrs) {
   } else if (element._hatching) {
     element.renderer.releaseDefsElements(element._hatching);
     element._hatching = null;
+    delete attrs.filter;
   } else if (attrs.filter) {
     attrs = extend({}, attrs);
     attrs.filter = element._filter = element.renderer.lockDefsElements({}, element._filter, 'filter');
@@ -640,7 +641,11 @@ function removeExtraAttrs(html) {
 function parseHTML(text) {
   var items = [];
   var div = _dom_adapter.default.createElement('div');
-  div.innerHTML = text.replace(/\r/g, '').replace(/\n/g, '<br/>');
+  div.innerHTML = text.replace(/\r/g, '').replace(/\n/g, '<br/>').replace(/style=/g, 'data-style=');
+  div.querySelectorAll('[data-style]').forEach(function (element) {
+    element.style = element.getAttribute('data-style');
+    element.removeAttribute('data-style');
+  });
   orderHtmlTree(items, 0, div, {}, '');
   adjustLineHeights(items);
   return items;

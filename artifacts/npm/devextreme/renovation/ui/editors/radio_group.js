@@ -1,7 +1,7 @@
 /**
 * DevExtreme (renovation/ui/editors/radio_group.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -17,7 +17,7 @@ var _editor = require("./common/editor");
 var _editor_state_props = require("./common/editor_state_props");
 var _dom_component_wrapper = require("../common/dom_component_wrapper");
 var _devices = _interopRequireDefault(require("../../../core/devices"));
-var _excluded = ["accessKey", "activeStateEnabled", "className", "dataSource", "defaultValue", "disabled", "displayExpr", "focusStateEnabled", "height", "hint", "hoverStateEnabled", "isValid", "items", "layout", "name", "onClick", "onFocusIn", "onKeyDown", "readOnly", "rtlEnabled", "tabIndex", "validationError", "validationErrors", "validationMessageMode", "validationMessagePosition", "validationStatus", "value", "valueChange", "valueExpr", "visible", "width"];
+var _excluded = ["accessKey", "activeStateEnabled", "className", "dataSource", "defaultValue", "disabled", "displayExpr", "focusStateEnabled", "height", "hint", "hoverStateEnabled", "inputAttr", "isValid", "items", "layout", "name", "onClick", "onFocusIn", "onKeyDown", "readOnly", "rtlEnabled", "tabIndex", "validationError", "validationErrors", "validationMessageMode", "validationMessagePosition", "validationStatus", "value", "valueChange", "valueExpr", "visible", "width"];
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
@@ -112,6 +112,13 @@ var RadioGroupPropsType = Object.defineProperties({
   isValid: {
     get: function get() {
       return RadioGroupProps.isValid;
+    },
+    configurable: true,
+    enumerable: true
+  },
+  inputAttr: {
+    get: function get() {
+      return RadioGroupProps.inputAttr;
     },
     configurable: true,
     enumerable: true
@@ -219,6 +226,7 @@ var RadioGroup = /*#__PURE__*/function (_BaseInfernoComponent) {
         height = _this$props$value.height,
         hint = _this$props$value.hint,
         hoverStateEnabled = _this$props$value.hoverStateEnabled,
+        inputAttr = _this$props$value.inputAttr,
         isValid = _this$props$value.isValid,
         items = _this$props$value.items,
         layout = _this$props$value.layout,

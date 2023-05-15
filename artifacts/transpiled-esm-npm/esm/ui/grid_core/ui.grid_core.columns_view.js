@@ -321,12 +321,12 @@ var columnsViewMembers = {
     this._renderDelayedTemplatesCoreAsync(asyncTemplates);
   },
   _renderDelayedTemplatesCoreAsync: function _renderDelayedTemplatesCoreAsync(templates) {
-    var that = this;
     if (templates.length) {
-      getWindow().clearTimeout(that._templateTimeout);
-      that._templateTimeout = getWindow().setTimeout(function () {
-        that._renderDelayedTemplatesCore(templates, true);
+      var templateTimeout = getWindow().setTimeout(() => {
+        this._templateTimeouts.delete(templateTimeout);
+        this._renderDelayedTemplatesCore(templates, true);
       });
+      this._templateTimeouts.add(templateTimeout);
     }
   },
   _renderDelayedTemplatesCore: function _renderDelayedTemplatesCore(templates, isAsync, change) {
@@ -393,8 +393,7 @@ var columnsViewMembers = {
     return renderingTemplate;
   },
   renderTemplate: function renderTemplate(container, template, options, allowRenderToDetachedContainer, change) {
-    var that = this;
-    var renderingTemplate = that._processTemplate(template, options);
+    var renderingTemplate = this._processTemplate(template, options);
     var column = options.column;
     var isDataRow = options.rowType === 'data';
     // @ts-expect-error
@@ -404,17 +403,20 @@ var columnsViewMembers = {
       model: options,
       deferred: templateDeferred,
       onRendered: () => {
-        if (that.component._disposed) return;
-        templateDeferred.resolve();
+        if (this.isDisposed()) {
+          templateDeferred.reject();
+        } else {
+          templateDeferred.resolve();
+        }
       }
     };
     if (renderingTemplate) {
-      options.component = that.component;
-      var async = column && (column.renderAsync && isDataRow || that.option('renderAsync') && (column.renderAsync !== false && (column.command || column.showEditorAlways) && isDataRow || options.rowType === 'filter'));
+      options.component = this.component;
+      var async = column && (column.renderAsync && isDataRow || this.option('renderAsync') && (column.renderAsync !== false && (column.command || column.showEditorAlways) && isDataRow || options.rowType === 'filter'));
       if ((renderingTemplate.allowRenderToDetachedContainer || allowRenderToDetachedContainer) && !async) {
         renderingTemplate.render(templateOptions);
       } else {
-        that._delayedTemplates.push({
+        this._delayedTemplates.push({
           template: renderingTemplate,
           options: templateOptions,
           async: async
@@ -695,6 +697,7 @@ var columnsViewMembers = {
     this._delayedTemplates = [];
     this._templateDeferreds = new Set();
     this._templatesCache = {};
+    this._templateTimeouts = new Set();
     this.createAction('onCellClick');
     this.createAction('onRowClick');
     this.createAction('onCellDblClick');
@@ -738,6 +741,16 @@ var columnsViewMembers = {
       $scrollContainer && $scrollContainer.scrollLeft(pos.left);
     }
   },
+  _getContent: function _getContent() {
+    var _this$_tableElement;
+    return (_this$_tableElement = this._tableElement) === null || _this$_tableElement === void 0 ? void 0 : _this$_tableElement.parent();
+  },
+  _removeContent: function _removeContent(isFixedTableRendering) {
+    var $scrollContainer = this._getContent(isFixedTableRendering);
+    if ($scrollContainer !== null && $scrollContainer !== void 0 && $scrollContainer.length) {
+      $scrollContainer.remove();
+    }
+  },
   _wrapTableInScrollContainer: function _wrapTableInScrollContainer($table) {
     var $scrollContainer = $('<div>');
     var useNative = this.option('scrolling.useNative');
@@ -768,7 +781,9 @@ var columnsViewMembers = {
       return result.resolve();
     }
     var waitTemplatesRecursion = () => when.apply(this, Array.from(this._templateDeferreds)).done(() => {
-      if (this._templateDeferreds.size > 0) {
+      if (this.isDisposed()) {
+        result.reject();
+      } else if (this._templateDeferreds.size > 0) {
         waitTemplatesRecursion();
       } else {
         result.resolve();
@@ -779,6 +794,7 @@ var columnsViewMembers = {
   },
   _updateContent: function _updateContent($newTableElement, change, isFixedTableRendering) {
     return this.waitAsyncTemplates().done(() => {
+      this._removeContent(isFixedTableRendering);
       this.setTableElement($newTableElement, isFixedTableRendering);
       this._wrapTableInScrollContainer($newTableElement, isFixedTableRendering);
     });
@@ -999,9 +1015,16 @@ var columnsViewMembers = {
     }
     return false;
   },
+  isDisposed: function isDisposed() {
+    var _this$component;
+    return (_this$component = this.component) === null || _this$component === void 0 ? void 0 : _this$component._disposed;
+  },
   dispose: function dispose() {
     if (hasWindow()) {
-      getWindow().clearTimeout(this._templateTimeout);
+      var _this$_templateTimeou, _this$_templateTimeou2;
+      var window = getWindow();
+      (_this$_templateTimeou = this._templateTimeouts) === null || _this$_templateTimeou === void 0 ? void 0 : _this$_templateTimeou.forEach(templateTimeout => window.clearTimeout(templateTimeout));
+      (_this$_templateTimeou2 = this._templateTimeouts) === null || _this$_templateTimeou2 === void 0 ? void 0 : _this$_templateTimeou2.clear();
     }
   }
 };

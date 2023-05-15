@@ -1,7 +1,7 @@
 /**
 * DevExtreme (ui/scroll_view.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -122,3 +122,53 @@ export type Properties = dxScrollViewOptions;
 
 /** @deprecated use Properties instead */
 export type Options = dxScrollViewOptions;
+
+type EventProps<T> = Extract<keyof T, `on${any}`>;
+type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+type EventsIntegrityCheckingHelper = CheckedEvents<Properties, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxScrollViewOptions.onDisposing
+ * @type_function_param1 e:{ui/scroll_view:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxScrollViewOptions.onInitialized
+ * @type_function_param1 e:{ui/scroll_view:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxScrollViewOptions.onOptionChanged
+ * @type_function_param1 e:{ui/scroll_view:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxScrollViewOptions.onPullDown
+ * @type_function_param1 e:{ui/scroll_view:PullDownEvent}
+ */
+onPullDown?: ((e: PullDownEvent) => void);
+/**
+ * @skip
+ * @docid dxScrollViewOptions.onReachBottom
+ * @type_function_param1 e:{ui/scroll_view:ReachBottomEvent}
+ */
+onReachBottom?: ((e: ReachBottomEvent) => void);
+/**
+ * @skip
+ * @docid dxScrollViewOptions.onScroll
+ * @type_function_param1 e:{ui/scroll_view:ScrollEvent}
+ */
+onScroll?: ((e: ScrollEvent) => void);
+/**
+ * @skip
+ * @docid dxScrollViewOptions.onUpdated
+ * @type_function_param1 e:{ui/scroll_view:UpdatedEvent}
+ */
+onUpdated?: ((e: UpdatedEvent) => void);
+};

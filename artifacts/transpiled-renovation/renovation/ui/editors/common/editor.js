@@ -11,7 +11,7 @@ var _base_props = require("../../common/base_props");
 var _combine_classes = require("../../../utils/combine_classes");
 var _validation_message = require("../../overlays/validation_message");
 var _utils = require("../../../../core/options/utils");
-var _excluded = ["accessKey", "activeStateEnabled", "aria", "children", "className", "classes", "defaultValue", "disabled", "focusStateEnabled", "height", "hint", "hoverStateEnabled", "isValid", "name", "onClick", "onFocusIn", "onKeyDown", "readOnly", "rtlEnabled", "tabIndex", "validationError", "validationErrors", "validationMessageMode", "validationMessagePosition", "validationStatus", "value", "valueChange", "visible", "width"];
+var _excluded = ["accessKey", "activeStateEnabled", "aria", "children", "className", "classes", "defaultValue", "disabled", "focusStateEnabled", "height", "hint", "hoverStateEnabled", "inputAttr", "isValid", "name", "onClick", "onFocusIn", "onKeyDown", "readOnly", "rtlEnabled", "tabIndex", "validationError", "validationErrors", "validationMessageMode", "validationMessagePosition", "validationStatus", "value", "valueChange", "visible", "width"];
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
@@ -112,6 +112,7 @@ var EditorProps = Object.create(Object.prototype, _extends(Object.getOwnProperty
   validationMessagePosition: 'bottom',
   validationStatus: 'valid',
   isValid: true,
+  inputAttr: Object.freeze({}),
   defaultValue: null,
   valueChange: function valueChange() {}
 })));
@@ -169,6 +170,13 @@ var EditorPropsType = Object.defineProperties({}, {
   isValid: {
     get: function get() {
       return EditorProps.isValid;
+    },
+    configurable: true,
+    enumerable: true
+  },
+  inputAttr: {
+    get: function get() {
+      return EditorProps.inputAttr;
     },
     configurable: true,
     enumerable: true
@@ -397,6 +405,7 @@ var Editor = /*#__PURE__*/function (_InfernoWrapperCompon) {
         height = _this$props$value.height,
         hint = _this$props$value.hint,
         hoverStateEnabled = _this$props$value.hoverStateEnabled,
+        inputAttr = _this$props$value.inputAttr,
         isValid = _this$props$value.isValid,
         name = _this$props$value.name,
         onClick = _this$props$value.onClick,

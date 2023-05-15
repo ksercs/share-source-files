@@ -37,6 +37,9 @@ var CLICK_EVENT_NAME = (0, _index.addNamespace)(_click.name, 'dxListEditDecorato
     var $control = (0, _renderer.default)('<div>').addClass(this._controlClass).appendTo($container);
     new this._controlWidget($control, (0, _extend.extend)(this._commonOptions(), {
       value: this._isSelected($itemElement),
+      elementAttr: {
+        'aria-label': 'Check State'
+      },
       focusStateEnabled: false,
       hoverStateEnabled: false,
       onValueChanged: function (e) {
@@ -97,6 +100,9 @@ var CLICK_EVENT_NAME = (0, _index.addNamespace)(_click.name, 'dxListEditDecorato
     var list = this._list;
     var downArrowHandler = list._supportedKeys().downArrow.bind(list);
     this._selectAllCheckBox = list._createComponent((0, _renderer.default)('<div>').addClass(SELECT_DECORATOR_SELECT_ALL_CHECKBOX_CLASS).appendTo($selectAll), _check_box.default, {
+      elementAttr: {
+        'aria-label': 'Select All'
+      },
       focusStateEnabled: false,
       hoverStateEnabled: false
     });

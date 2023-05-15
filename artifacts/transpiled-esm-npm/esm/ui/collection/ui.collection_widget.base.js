@@ -48,25 +48,9 @@ var FOCUS_FIRST = 'first';
 var CollectionWidget = Widget.inherit({
   _activeStateUnit: '.' + ITEM_CLASS,
   _supportedKeys: function _supportedKeys() {
-    var enter = function enter(e) {
-      var $itemElement = $(this.option('focusedElement'));
-      if (!$itemElement.length) {
-        return;
-      }
-      var itemData = this._getItemData($itemElement);
-      if (itemData !== null && itemData !== void 0 && itemData.onClick) {
-        this._itemEventHandlerByHandler($itemElement, itemData.onClick, {
-          event: e
-        });
-      }
-      this._itemClickHandler(extend({}, e, {
-        target: $itemElement.get(0),
-        currentTarget: $itemElement.get(0)
-      }));
-    };
     var space = function space(e) {
       e.preventDefault();
-      enter.call(this, e);
+      this._enterKeyHandler(e);
     };
     var move = function move(location, e) {
       if (!isCommandKeyPressed(e)) {
@@ -77,7 +61,7 @@ var CollectionWidget = Widget.inherit({
     };
     return extend(this.callBase(), {
       space: space,
-      enter: enter,
+      enter: this._enterKeyHandler,
       leftArrow: move.bind(this, FOCUS_LEFT),
       rightArrow: move.bind(this, FOCUS_RIGHT),
       upArrow: move.bind(this, FOCUS_UP),
@@ -87,6 +71,22 @@ var CollectionWidget = Widget.inherit({
       home: move.bind(this, FOCUS_FIRST),
       end: move.bind(this, FOCUS_LAST)
     });
+  },
+  _enterKeyHandler: function _enterKeyHandler(e) {
+    var $itemElement = $(this.option('focusedElement'));
+    if (!$itemElement.length) {
+      return;
+    }
+    var itemData = this._getItemData($itemElement);
+    if (itemData !== null && itemData !== void 0 && itemData.onClick) {
+      this._itemEventHandlerByHandler($itemElement, itemData.onClick, {
+        event: e
+      });
+    }
+    this._itemClickHandler(extend({}, e, {
+      target: $itemElement.get(0),
+      currentTarget: $itemElement.get(0)
+    }));
   },
   _getDefaultOptions: function _getDefaultOptions() {
     return extend(this.callBase(), {
@@ -571,19 +571,19 @@ var CollectionWidget = Widget.inherit({
   _attachClickEvent: function _attachClickEvent() {
     var itemSelector = this._itemSelector();
     var clickEventNamespace = addNamespace(clickEventName, this.NAME);
-    var pointerDownEventNamespace = addNamespace(pointerEvents.down, this.NAME);
+    var pointerUpEventNamespace = addNamespace(pointerEvents.up, this.NAME);
     var that = this;
-    var pointerDownAction = new Action(function (args) {
+    var pointerUpAction = new Action(function (args) {
       var event = args.event;
       that._itemPointerDownHandler(event);
     });
     eventsEngine.off(this._itemContainer(), clickEventNamespace, itemSelector);
-    eventsEngine.off(this._itemContainer(), pointerDownEventNamespace, itemSelector);
+    eventsEngine.off(this._itemContainer(), pointerUpEventNamespace, itemSelector);
     eventsEngine.on(this._itemContainer(), clickEventNamespace, itemSelector, function (e) {
       this._itemClickHandler(e);
     }.bind(this));
-    eventsEngine.on(this._itemContainer(), pointerDownEventNamespace, itemSelector, function (e) {
-      pointerDownAction.execute({
+    eventsEngine.on(this._itemContainer(), pointerUpEventNamespace, itemSelector, function (e) {
+      pointerUpAction.execute({
         element: $(e.target),
         event: e
       });

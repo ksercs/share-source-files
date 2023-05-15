@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/grid_core/ui.grid_core.focus.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -228,24 +228,26 @@ var FocusController = core.ViewController.inherit(function () {
       }
     },
     _navigateToVirtualRow: function _navigateToVirtualRow(key, deferred, needFocusRow) {
-      var that = this;
       var dataController = this.getController('data');
       // @ts-expect-error
       var rowsScrollController = dataController._rowsScrollController;
       var rowIndex = gridCoreUtils.getIndexByKey(key, dataController.items(true));
-      var scrollable = that.getView('rowsView').getScrollable();
+      var scrollable = this.getView('rowsView').getScrollable();
       if (rowsScrollController && scrollable && rowIndex >= 0) {
         var focusedRowIndex = rowIndex + dataController.getRowIndexOffset(true);
         var offset = rowsScrollController.getItemOffset(focusedRowIndex);
-        var triggerUpdateFocusedRow = function triggerUpdateFocusedRow() {
-          that.component.off('contentReady', triggerUpdateFocusedRow);
+        var triggerUpdateFocusedRow = () => {
+          if (dataController.totalCount() && !dataController.items().length) {
+            return;
+          }
+          this.component.off('contentReady', triggerUpdateFocusedRow);
           if (needFocusRow) {
-            that._triggerUpdateFocusedRow(key, deferred);
+            this._triggerUpdateFocusedRow(key, deferred);
           } else {
             deferred.resolve(focusedRowIndex);
           }
         };
-        that.component.on('contentReady', triggerUpdateFocusedRow);
+        this.component.on('contentReady', triggerUpdateFocusedRow);
         this.getView('rowsView').scrollTopPosition(offset);
       } else {
         deferred.resolve(-1);

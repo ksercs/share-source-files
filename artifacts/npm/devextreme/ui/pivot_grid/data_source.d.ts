@@ -1,7 +1,7 @@
 /**
 * DevExtreme (ui/pivot_grid/data_source.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -31,6 +31,7 @@ import {
 
 import {
     FilterType,
+    HeaderFilterSearchConfig,
     SummaryType,
 } from '../../common/grids';
 
@@ -390,7 +391,20 @@ export interface PivotGridDataSourceField {
      * @docid PivotGridDataSourceOptions.fields.headerFilter
      * @public
      */
-    headerFilter?: { allowSearch?: boolean; height?: number; width?: number };
+    headerFilter?: {
+        allowSearch?: boolean;
+        /**
+         * @docid PivotGridDataSourceOptions.fields.headerFilter.allowSelectAll
+         * @default true
+         */
+        allowSelectAll?: boolean;
+        height?: number;
+        /**
+         * @docid PivotGridDataSourceOptions.fields.headerFilter.search
+         */
+        search?: HeaderFilterSearchConfig;
+        width?: number;
+    };
     /**
      * @docid PivotGridDataSourceOptions.fields.isMeasure
      * @default undefined

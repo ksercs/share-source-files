@@ -1,0 +1,1195 @@
+!function(e){function r(e,r,o){return 4===arguments.length?t.apply(this,arguments):void n(e,{declarative:!0,deps:r,declare:o})}function t(e,r,t,o){n(e,{declarative:!1,deps:r,executingRequire:t,execute:o})}function n(e,r){r.name=e,e in v||(v[e]=r),r.normalizedDeps=r.deps}function o(e,r){if(r[e.groupIndex]=r[e.groupIndex]||[],-1==g.call(r[e.groupIndex],e)){r[e.groupIndex].push(e);for(var t=0,n=e.normalizedDeps.length;n>t;t++){var a=e.normalizedDeps[t],u=v[a];if(u&&!u.evaluated){var d=e.groupIndex+(u.declarative!=e.declarative);if(void 0===u.groupIndex||u.groupIndex<d){if(void 0!==u.groupIndex&&(r[u.groupIndex].splice(g.call(r[u.groupIndex],u),1),0==r[u.groupIndex].length))throw new TypeError("Mixed dependency cycle detected");u.groupIndex=d}o(u,r)}}}}function a(e){var r=v[e];r.groupIndex=0;var t=[];o(r,t);for(var n=!!r.declarative==t.length%2,a=t.length-1;a>=0;a--){for(var u=t[a],i=0;i<u.length;i++){var s=u[i];n?d(s):l(s)}n=!n}}function u(e){return y[e]||(y[e]={name:e,dependencies:[],exports:{},importers:[]})}function d(r){if(!r.module){var t=r.module=u(r.name),n=r.module.exports,o=r.declare.call(e,function(e,r){if(t.locked=!0,"object"==typeof e)for(var o in e)n[o]=e[o];else n[e]=r;for(var a=0,u=t.importers.length;u>a;a++){var d=t.importers[a];if(!d.locked)for(var i=0;i<d.dependencies.length;++i)d.dependencies[i]===t&&d.setters[i](n)}return t.locked=!1,r},{id:r.name});t.setters=o.setters,t.execute=o.execute;for(var a=0,i=r.normalizedDeps.length;i>a;a++){var l,s=r.normalizedDeps[a],c=v[s],f=y[s];f?l=f.exports:c&&!c.declarative?l=c.esModule:c?(d(c),f=c.module,l=f.exports):l=p(s),f&&f.importers?(f.importers.push(t),t.dependencies.push(f)):t.dependencies.push(null),t.setters[a]&&t.setters[a](l)}}}function i(e){var r,t=v[e];if(t)t.declarative?f(e,[]):t.evaluated||l(t),r=t.module.exports;else if(r=p(e),!r)throw new Error("Unable to load dependency "+e+".");return(!t||t.declarative)&&r&&r.__useDefault?r["default"]:r}function l(r){if(!r.module){var t={},n=r.module={exports:t,id:r.name};if(!r.executingRequire)for(var o=0,a=r.normalizedDeps.length;a>o;o++){var u=r.normalizedDeps[o],d=v[u];d&&l(d)}r.evaluated=!0;var c=r.execute.call(e,function(e){for(var t=0,n=r.deps.length;n>t;t++)if(r.deps[t]==e)return i(r.normalizedDeps[t]);throw new TypeError("Module "+e+" not declared as a dependency.")},t,n);void 0!==c&&(n.exports=c),t=n.exports,t&&t.__esModule?r.esModule=t:r.esModule=s(t)}}function s(r){var t={};if(("object"==typeof r||"function"==typeof r)&&r!==e)if(m)for(var n in r)"default"!==n&&c(t,r,n);else{var o=r&&r.hasOwnProperty;for(var n in r)"default"===n||o&&!r.hasOwnProperty(n)||(t[n]=r[n])}return t["default"]=r,x(t,"__useDefault",{value:!0}),t}function c(e,r,t){try{var n;(n=Object.getOwnPropertyDescriptor(r,t))&&x(e,t,n)}catch(o){return e[t]=r[t],!1}}function f(r,t){var n=v[r];if(n&&!n.evaluated&&n.declarative){t.push(r);for(var o=0,a=n.normalizedDeps.length;a>o;o++){var u=n.normalizedDeps[o];-1==g.call(t,u)&&(v[u]?f(u,t):p(u))}n.evaluated||(n.evaluated=!0,n.module.execute.call(e))}}function p(e){if(I[e])return I[e];if("@node/"==e.substr(0,6))return I[e]=s(D(e.substr(6)));var r=v[e];if(!r)throw"Module "+e+" not present.";return a(e),f(e,[]),v[e]=void 0,r.declarative&&x(r.module.exports,"__esModule",{value:!0}),I[e]=r.declarative?r.module.exports:r.esModule}var v={},g=Array.prototype.indexOf||function(e){for(var r=0,t=this.length;t>r;r++)if(this[r]===e)return r;return-1},m=!0;try{Object.getOwnPropertyDescriptor({a:0},"a")}catch(h){m=!1}var x;!function(){try{Object.defineProperty({},"a",{})&&(x=Object.defineProperty)}catch(e){x=function(e,r,t){try{e[r]=t.value||t.get.call(e)}catch(n){}}}}();var y={},D="undefined"!=typeof System&&System._nodeRequire||"undefined"!=typeof require&&"undefined"!=typeof require.resolve&&"undefined"!=typeof process&&process.platform&&require,I={"@empty":{}};return function(e,n,o,a){return function(u){u(function(u){for(var d={_nodeRequire:D,register:r,registerDynamic:t,get:p,set:function(e,r){I[e]=r},newModule:function(e){return e}},i=0;i<n.length;i++)(function(e,r){r&&r.__esModule?I[e]=r:I[e]=s(r)})(n[i],arguments[i]);a(d);var l=p(e[0]);if(e.length>1)for(var i=1;i<e.length;i++)p(e[i]);return o?l["default"]:l})}}}("undefined"!=typeof self?self:global)
+
+(["artifacts/transpiled-renovation/__internal/grids/pivot_grid/module_widget.js"], ["../../../core/renderer","../../../core/utils/window","../../../events/core/events_engine","../../../core/component_registrator","../../../core/element","../../../core/utils/string","../../../core/utils/common","../../../core/utils/iterator","../../../core/utils/type","../../../core/utils/extend","../../../events/click","../../../localization/message","../../../ui/widget/ui.widget","../../../events/utils/index","../../../ui/grid_core/ui.grid_core.utils","../../../core/utils/size","../../../ui/popup/ui.popup","../../../ui/context_menu","../../../core/utils/deferred","./module_widget_utils","./data_controller/module","./data_area/module","./headers_area/module","./fields_area/module","./field_chooser/module","./field_chooser/module_base","./export/module","./chart_integration/module"], false, function($__System) {
+var require = this.require, exports = this.exports, module = this.module;
+$__System.registerDynamic("artifacts/transpiled-renovation/__internal/grids/pivot_grid/module_widget.js", ["../../../core/renderer", "../../../core/utils/window", "../../../events/core/events_engine", "../../../core/component_registrator", "../../../core/element", "../../../core/utils/string", "../../../core/utils/common", "../../../core/utils/iterator", "../../../core/utils/type", "../../../core/utils/extend", "../../../events/click", "../../../localization/message", "../../../ui/widget/ui.widget", "../../../events/utils/index", "../../../ui/grid_core/ui.grid_core.utils", "../../../core/utils/size", "../../../ui/popup/ui.popup", "../../../ui/context_menu", "../../../core/utils/deferred", "./module_widget_utils", "./data_controller/module", "./data_area/module", "./headers_area/module", "./fields_area/module", "./field_chooser/module", "./field_chooser/module_base", "./export/module", "./chart_integration/module"], true, function ($__require, exports, module) {
+  "use strict";
+
+  var global = this || self,
+      GLOBAL = global;
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = exports.PivotGrid = void 0;
+  var _renderer = _interopRequireDefault($__require("../../../core/renderer"));
+  var _window = $__require("../../../core/utils/window");
+  var _events_engine = _interopRequireDefault($__require("../../../events/core/events_engine"));
+  var _component_registrator = _interopRequireDefault($__require("../../../core/component_registrator"));
+  var _element = $__require("../../../core/element");
+  var _string = $__require("../../../core/utils/string");
+  var _common = $__require("../../../core/utils/common");
+  var _iterator = $__require("../../../core/utils/iterator");
+  var _type = $__require("../../../core/utils/type");
+  var _extend = $__require("../../../core/utils/extend");
+  var _click = $__require("../../../events/click");
+  var _message = _interopRequireDefault($__require("../../../localization/message"));
+  var _ui = _interopRequireDefault($__require("../../../ui/widget/ui.widget"));
+  var _index = $__require("../../../events/utils/index");
+  var _uiGrid_core = _interopRequireDefault($__require("../../../ui/grid_core/ui.grid_core.utils"));
+  var _size = $__require("../../../core/utils/size");
+  var _ui2 = _interopRequireDefault($__require("../../../ui/popup/ui.popup"));
+  var _context_menu = _interopRequireDefault($__require("../../../ui/context_menu"));
+  var _deferred = $__require("../../../core/utils/deferred");
+  var _module_widget_utils = $__require("./module_widget_utils");
+  var _module = _interopRequireDefault($__require("./data_controller/module"));
+  var _module2 = _interopRequireDefault($__require("./data_area/module"));
+  var _module3 = _interopRequireDefault($__require("./headers_area/module"));
+  var _module4 = $__require("./fields_area/module");
+  var _module5 = $__require("./field_chooser/module");
+  var _module_base = $__require("./field_chooser/module_base");
+  var _module6 = $__require("./export/module");
+  var _module7 = $__require("./chart_integration/module");
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
+  var window = (0, _window.getWindow)();
+  var DATA_AREA_CELL_CLASS = 'dx-area-data-cell';
+  var ROW_AREA_CELL_CLASS = 'dx-area-row-cell';
+  var COLUMN_AREA_CELL_CLASS = 'dx-area-column-cell';
+  var DESCRIPTION_AREA_CELL_CLASS = 'dx-area-description-cell';
+  var BORDERS_CLASS = 'dx-pivotgrid-border';
+  var PIVOTGRID_CLASS = 'dx-pivotgrid';
+  var ROW_LINES_CLASS = 'dx-row-lines';
+  var BOTTOM_ROW_CLASS = 'dx-bottom-row';
+  var BOTTOM_BORDER_CLASS = 'dx-bottom-border';
+  var FIELDS_CONTAINER_CLASS = 'dx-pivotgrid-fields-container';
+  var FIELDS_CLASS = 'dx-area-fields';
+  var FIELD_CHOOSER_POPUP_CLASS = 'dx-fieldchooser-popup';
+  var INCOMPRESSIBLE_FIELDS_CLASS = 'dx-incompressible-fields';
+  var OVERFLOW_HIDDEN_CLASS = 'dx-overflow-hidden';
+  var TR = '<tr>';
+  var TD = '<td>';
+  var DIV = '<div>';
+  var TEST_HEIGHT = 66666;
+  var FIELD_CALCULATED_OPTIONS = ['allowSorting', 'allowSortingBySummary', 'allowFiltering', 'allowExpandAll'];
+  function getArraySum(array) {
+    var sum = 0;
+    (0, _iterator.each)(array, function (_, value) {
+      sum += value || 0;
+    });
+    return sum;
+  }
+  function adjustSizeArray(sizeArray, space) {
+    var delta = space / sizeArray.length;
+    for (var i = 0; i < sizeArray.length; i += 1) {
+      sizeArray[i] -= delta;
+    }
+  }
+  function unsubscribeScrollEvents(area) {
+    area.off('scroll').off('stop');
+  }
+  function subscribeToScrollEvent(area, handler) {
+    unsubscribeScrollEvents(area);
+    area.on('scroll', handler).on('stop', handler);
+  }
+  function getCommonBorderWidth(elements, direction) {
+    var borderStyleNames = direction === 'width' ? ['borderLeftWidth', 'borderRightWidth'] : ['borderTopWidth', 'borderBottomWidth'];
+    var width = 0;
+    (0, _iterator.each)(elements, function (_, elem) {
+      var computedStyle = window.getComputedStyle(elem.get(0));
+      borderStyleNames.forEach(function (borderStyleName) {
+        width += parseFloat(computedStyle[borderStyleName]) || 0;
+      });
+    });
+    return width;
+  }
+  function clickedOnFieldsArea($targetElement) {
+    return $targetElement.closest(".".concat(FIELDS_CLASS)).length || $targetElement.find(".".concat(FIELDS_CLASS)).length;
+  }
+  var PivotGrid = _ui.default.inherit({
+    _getDefaultOptions: function _getDefaultOptions() {
+      return (0, _extend.extend)(this.callBase(), {
+        scrolling: {
+          timeout: 300,
+          renderingThreshold: 150,
+          minTimeout: 10,
+          mode: 'standard',
+          useNative: 'auto',
+          removeInvisiblePages: true,
+          virtualRowHeight: 50,
+          virtualColumnWidth: 100,
+          loadTwoPagesOnStart: true
+        },
+        encodeHtml: true,
+        dataSource: null,
+        activeStateEnabled: false,
+        fieldChooser: {
+          minWidth: 250,
+          minHeight: 250,
+          enabled: true,
+          allowSearch: false,
+          searchTimeout: 500,
+          layout: 0,
+          title: _message.default.format('dxPivotGrid-fieldChooserTitle'),
+          width: 600,
+          height: 600,
+          applyChangesMode: 'instantly'
+        },
+        onContextMenuPreparing: null,
+        allowSorting: false,
+        allowSortingBySummary: false,
+        allowFiltering: false,
+        allowExpandAll: false,
+        wordWrapEnabled: true,
+        fieldPanel: {
+          showColumnFields: true,
+          showFilterFields: true,
+          showDataFields: true,
+          showRowFields: true,
+          allowFieldDragging: true,
+          visible: false,
+          texts: {
+            columnFieldArea: _message.default.format('dxPivotGrid-columnFieldArea'),
+            rowFieldArea: _message.default.format('dxPivotGrid-rowFieldArea'),
+            filterFieldArea: _message.default.format('dxPivotGrid-filterFieldArea'),
+            dataFieldArea: _message.default.format('dxPivotGrid-dataFieldArea')
+          }
+        },
+        dataFieldArea: 'column',
+        export: {
+          enabled: false,
+          fileName: 'PivotGrid'
+        },
+        showRowTotals: true,
+        showRowGrandTotals: true,
+        showColumnTotals: true,
+        showColumnGrandTotals: true,
+        hideEmptySummaryCells: true,
+        showTotalsPrior: 'none',
+        rowHeaderLayout: 'standard',
+        loadPanel: {
+          enabled: true,
+          text: _message.default.format('Loading'),
+          width: 200,
+          height: 70,
+          showIndicator: true,
+          indicatorSrc: '',
+          showPane: true
+        },
+        texts: {
+          grandTotal: _message.default.format('dxPivotGrid-grandTotal'),
+          total: _message.default.getFormatter('dxPivotGrid-total'),
+          noData: _message.default.format('dxDataGrid-noDataText'),
+          showFieldChooser: _message.default.format('dxPivotGrid-showFieldChooser'),
+          expandAll: _message.default.format('dxPivotGrid-expandAll'),
+          collapseAll: _message.default.format('dxPivotGrid-collapseAll'),
+          sortColumnBySummary: _message.default.getFormatter('dxPivotGrid-sortColumnBySummary'),
+          sortRowBySummary: _message.default.getFormatter('dxPivotGrid-sortRowBySummary'),
+          removeAllSorting: _message.default.format('dxPivotGrid-removeAllSorting'),
+          exportToExcel: _message.default.format('dxDataGrid-exportToExcel'),
+          dataNotAvailable: _message.default.format('dxPivotGrid-dataNotAvailable')
+        },
+        onCellClick: null,
+        onCellPrepared: null,
+        showBorders: false,
+        stateStoring: {
+          enabled: false,
+          storageKey: null,
+          type: 'localStorage',
+          customLoad: null,
+          customSave: null,
+          savingTimeout: 2000
+        },
+        onExpandValueChanging: null,
+        renderCellCountLimit: 20000,
+        onExporting: null,
+        headerFilter: {
+          width: 252,
+          height: 325,
+          allowSelectAll: true,
+          showRelevantValues: false,
+          search: {
+            enabled: false,
+            timeout: 500,
+            editorOptions: {},
+            mode: 'contains'
+          },
+          texts: {
+            emptyValue: _message.default.format('dxDataGrid-headerFilterEmptyValue'),
+            ok: _message.default.format('dxDataGrid-headerFilterOK'),
+            cancel: _message.default.format('dxDataGrid-headerFilterCancel')
+          }
+        }
+      });
+    },
+    _updateCalculatedOptions: function _updateCalculatedOptions(fields) {
+      var that = this;
+      (0, _iterator.each)(fields, function (_, field) {
+        (0, _iterator.each)(FIELD_CALCULATED_OPTIONS, function (_, optionName) {
+          var isCalculated = field._initProperties && optionName in field._initProperties && field._initProperties[optionName] === undefined;
+          var needUpdate = field[optionName] === undefined || isCalculated;
+          if (needUpdate) {
+            (0, _module_widget_utils.setFieldProperty)(field, optionName, that.option(optionName));
+          }
+        });
+      });
+    },
+    _getDataControllerOptions: function _getDataControllerOptions() {
+      var that = this;
+      return {
+        component: that,
+        dataSource: that.option('dataSource'),
+        texts: that.option('texts'),
+        showRowTotals: that.option('showRowTotals'),
+        showRowGrandTotals: that.option('showRowGrandTotals'),
+        showColumnTotals: that.option('showColumnTotals'),
+        showTotalsPrior: that.option('showTotalsPrior'),
+        showColumnGrandTotals: that.option('showColumnGrandTotals'),
+        dataFieldArea: that.option('dataFieldArea'),
+        rowHeaderLayout: that.option('rowHeaderLayout'),
+        hideEmptySummaryCells: that.option('hideEmptySummaryCells'),
+        onFieldsPrepared: function onFieldsPrepared(fields) {
+          that._updateCalculatedOptions(fields);
+        }
+      };
+    },
+    _initDataController: function _initDataController() {
+      var that = this;
+      that._dataController && that._dataController.dispose();
+      that._dataController = new _module.default.DataController(that._getDataControllerOptions());
+      if ((0, _window.hasWindow)()) {
+        that._dataController.changed.add(function () {
+          that._render();
+        });
+      }
+      that._dataController.scrollChanged.add(function (options) {
+        that._scrollLeft = options.left;
+        that._scrollTop = options.top;
+      });
+      that._dataController.loadingChanged.add(function () {
+        that._updateLoading();
+      });
+      that._dataController.progressChanged.add(that._updateLoading.bind(that));
+      that._dataController.dataSourceChanged.add(function () {
+        that._trigger('onChanged');
+      });
+      var expandValueChanging = that.option('onExpandValueChanging');
+      if (expandValueChanging) {
+        that._dataController.expandValueChanging.add(function (e) {
+          expandValueChanging(e);
+        });
+      }
+    },
+    _init: function _init() {
+      var that = this;
+      that.callBase();
+      that._initDataController();
+      _uiGrid_core.default.logHeaderFilterDeprecatedWarningIfNeed(this);
+      that._scrollLeft = that._scrollTop = null;
+      that._initActions();
+    },
+    _initActions: function _initActions() {
+      var that = this;
+      that._actions = {
+        onChanged: that._createActionByOption('onChanged'),
+        onContextMenuPreparing: that._createActionByOption('onContextMenuPreparing'),
+        onCellClick: that._createActionByOption('onCellClick'),
+        onExporting: that._createActionByOption('onExporting'),
+        onCellPrepared: that._createActionByOption('onCellPrepared')
+      };
+    },
+    _trigger: function _trigger(eventName, eventArg) {
+      this._actions[eventName](eventArg);
+    },
+    _optionChanged: function _optionChanged(args) {
+      var that = this;
+      if (FIELD_CALCULATED_OPTIONS.includes(args.name)) {
+        var fields = this.getDataSource().fields();
+        this._updateCalculatedOptions(fields);
+      }
+      switch (args.name) {
+        case 'dataSource':
+        case 'allowSorting':
+        case 'allowFiltering':
+        case 'allowExpandAll':
+        case 'allowSortingBySummary':
+        case 'scrolling':
+        case 'stateStoring':
+          that._initDataController();
+          that._fieldChooserPopup.hide();
+          that._renderFieldChooser();
+          that._invalidate();
+          break;
+        case 'texts':
+        case 'showTotalsPrior':
+        case 'showRowTotals':
+        case 'showRowGrandTotals':
+        case 'showColumnTotals':
+        case 'showColumnGrandTotals':
+        case 'hideEmptySummaryCells':
+        case 'dataFieldArea':
+          that._dataController.updateViewOptions(that._getDataControllerOptions());
+          break;
+        case 'useNativeScrolling':
+        case 'encodeHtml':
+        case 'renderCellCountLimit':
+          break;
+        case 'rtlEnabled':
+          that.callBase(args);
+          that._renderFieldChooser();
+          that._renderContextMenu();
+          (0, _window.hasWindow)() && that._renderLoadPanel(that._dataArea.groupElement(), that.$element());
+          that._invalidate();
+          break;
+        case 'export':
+          that._renderDescriptionArea();
+          break;
+        case 'onExpandValueChanging':
+          break;
+        case 'onCellClick':
+        case 'onContextMenuPreparing':
+        case 'onExporting':
+        case 'onExported':
+        case 'onFileSaving':
+        case 'onCellPrepared':
+          that._actions[args.name] = that._createActionByOption(args.name);
+          break;
+        case 'fieldChooser':
+          that._renderFieldChooser();
+          that._renderDescriptionArea();
+          break;
+        case 'loadPanel':
+          if ((0, _window.hasWindow)()) {
+            if (args.fullName === 'loadPanel.enabled') {
+              clearTimeout(this._hideLoadingTimeoutID);
+              that._renderLoadPanel(that._dataArea.groupElement(), that.$element());
+            } else {
+              that._renderLoadPanel(that._dataArea.groupElement(), that.$element());
+              that._invalidate();
+            }
+          }
+          break;
+        case 'fieldPanel':
+          that._renderDescriptionArea();
+          that._invalidate();
+          break;
+        case 'headerFilter':
+          that._renderFieldChooser();
+          that._invalidate();
+          break;
+        case 'showBorders':
+          that._tableElement().toggleClass(BORDERS_CLASS, !!args.value);
+          that.updateDimensions();
+          break;
+        case 'wordWrapEnabled':
+          that._tableElement().toggleClass('dx-word-wrap', !!args.value);
+          that.updateDimensions();
+          break;
+        case 'rowHeaderLayout':
+          that._tableElement().find(".".concat(ROW_AREA_CELL_CLASS)).toggleClass('dx-area-tree-view', args.value === 'tree');
+          that._dataController.updateViewOptions(that._getDataControllerOptions());
+          break;
+        case 'height':
+        case 'width':
+          that._hasHeight = null;
+          that.callBase(args);
+          that.resize();
+          break;
+        default:
+          that.callBase(args);
+      }
+    },
+    _updateScrollPosition: function _updateScrollPosition(columnsArea, rowsArea, dataArea) {
+      var force = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+      var that = this;
+      var scrollTop;
+      var scrollLeft;
+      var scrolled = that._scrollTop || that._scrollLeft;
+      if (that._scrollUpdating) return; // T645458
+      that._scrollUpdating = true;
+      if (rowsArea && !rowsArea.hasScroll() && that._hasHeight) {
+        that._scrollTop = null;
+      }
+      if (columnsArea && !columnsArea.hasScroll()) {
+        that._scrollLeft = null;
+      }
+      if (that._scrollTop !== null || that._scrollLeft !== null || scrolled || that.option('rtlEnabled')) {
+        scrollTop = that._scrollTop || 0;
+        scrollLeft = that._scrollLeft || 0;
+        dataArea.scrollTo({
+          left: scrollLeft,
+          top: scrollTop
+        }, force);
+        columnsArea.scrollTo({
+          left: scrollLeft
+        }, force);
+        rowsArea.scrollTo({
+          top: scrollTop
+        }, force);
+        that._dataController.updateWindowScrollPosition(that._scrollTop);
+      }
+      that._scrollUpdating = false;
+    },
+    _subscribeToEvents: function _subscribeToEvents(columnsArea, rowsArea, dataArea) {
+      var that = this;
+      var scrollHandler = function scrollHandler(e, area) {
+        var scrollOffset = e.scrollOffset;
+        var scrollable = area._getScrollable();
+        var leftOffset = scrollable.option('direction') !== 'vertical' ? scrollOffset.left : that._scrollLeft;
+        var topOffset = scrollable.option('direction') !== 'horizontal' && that._hasHeight ? scrollOffset.top : that._scrollTop;
+        if ((that._scrollLeft || 0) !== (leftOffset || 0) || (that._scrollTop || 0) !== (topOffset || 0)) {
+          that._scrollLeft = leftOffset;
+          that._scrollTop = topOffset;
+          that._updateScrollPosition(columnsArea, rowsArea, dataArea);
+          if (that.option('scrolling.mode') === 'virtual') {
+            that._dataController.setViewportPosition(that._scrollLeft, that._scrollTop);
+          }
+        }
+      };
+      (0, _iterator.each)([columnsArea, rowsArea, dataArea], function (_, area) {
+        subscribeToScrollEvent(area, function (e) {
+          return scrollHandler(e, area);
+        });
+      });
+      !that._hasHeight && that._dataController.subscribeToWindowScrollEvents(dataArea.groupElement());
+    },
+    _clean: _common.noop,
+    _needDelayResizing: function _needDelayResizing(cellsInfo) {
+      var cellsCount = cellsInfo.length * (cellsInfo.length ? cellsInfo[0].length : 0);
+      return cellsCount > this.option('renderCellCountLimit');
+    },
+    _renderFieldChooser: function _renderFieldChooser() {
+      var _a;
+      var that = this;
+      var container = that._pivotGridContainer;
+      var fieldChooserOptions = that.option('fieldChooser') || {};
+      var toolbarItems = fieldChooserOptions.applyChangesMode === 'onDemand' ? [{
+        toolbar: 'bottom',
+        location: 'after',
+        widget: 'dxButton',
+        options: {
+          text: _message.default.format('OK'),
+          onClick: function onClick() {
+            that._fieldChooserPopup.$content().dxPivotGridFieldChooser('applyChanges');
+            that._fieldChooserPopup.hide();
+          }
+        }
+      }, {
+        toolbar: 'bottom',
+        location: 'after',
+        widget: 'dxButton',
+        options: {
+          text: _message.default.format('Cancel'),
+          onClick: function onClick() {
+            that._fieldChooserPopup.hide();
+          }
+        }
+      }] : [];
+      var fieldChooserComponentOptions = {
+        layout: fieldChooserOptions.layout,
+        texts: fieldChooserOptions.texts || {},
+        dataSource: that.getDataSource(),
+        allowSearch: fieldChooserOptions.allowSearch,
+        searchTimeout: fieldChooserOptions.searchTimeout,
+        width: undefined,
+        height: undefined,
+        headerFilter: that.option('headerFilter'),
+        encodeHtml: (_a = that.option('fieldChooser.encodeHtml')) !== null && _a !== void 0 ? _a : that.option('encodeHtml'),
+        applyChangesMode: fieldChooserOptions.applyChangesMode,
+        onContextMenuPreparing: function onContextMenuPreparing(e) {
+          that._trigger('onContextMenuPreparing', e);
+        }
+      };
+      var popupOptions = {
+        shading: false,
+        title: fieldChooserOptions.title,
+        width: fieldChooserOptions.width,
+        height: fieldChooserOptions.height,
+        showCloseButton: true,
+        resizeEnabled: true,
+        minWidth: fieldChooserOptions.minWidth,
+        minHeight: fieldChooserOptions.minHeight,
+        toolbarItems: toolbarItems,
+        onResize: function onResize(e) {
+          e.component.$content().dxPivotGridFieldChooser('updateDimensions');
+        },
+        onShown: function onShown(e) {
+          that._createComponent(e.component.content(), _module5.FieldChooser, fieldChooserComponentOptions);
+        },
+        onHidden: function onHidden(e) {
+          var fieldChooser = e.component.$content().dxPivotGridFieldChooser('instance');
+          fieldChooser.resetTreeView();
+          fieldChooser.cancelChanges();
+        }
+      };
+      if (that._fieldChooserPopup) {
+        that._fieldChooserPopup.option(popupOptions);
+        that._fieldChooserPopup.$content().dxPivotGridFieldChooser(fieldChooserComponentOptions);
+      } else {
+        that._fieldChooserPopup = that._createComponent((0, _renderer.default)(DIV).addClass(FIELD_CHOOSER_POPUP_CLASS).appendTo(container), _ui2.default, popupOptions);
+      }
+    },
+    _renderContextMenu: function _renderContextMenu() {
+      var that = this;
+      var $container = that._pivotGridContainer;
+      if (that._contextMenu) {
+        that._contextMenu.$element().remove();
+      }
+      that._contextMenu = that._createComponent((0, _renderer.default)(DIV).appendTo($container), _context_menu.default, {
+        onPositioning: function onPositioning(actionArgs) {
+          var event = actionArgs.event;
+          actionArgs.cancel = true;
+          if (!event) {
+            return;
+          }
+          var targetElement = event.target.cellIndex >= 0 ? event.target : (0, _renderer.default)(event.target).closest('td').get(0);
+          if (!targetElement) {
+            return;
+          }
+          var args = that._createEventArgs(targetElement, event);
+          var items = that._getContextMenuItems(args);
+          if (items) {
+            actionArgs.component.option('items', items);
+            actionArgs.cancel = false;
+          }
+        },
+        onItemClick: function onItemClick(params) {
+          params.itemData.onItemClick && params.itemData.onItemClick(params);
+        },
+        cssClass: PIVOTGRID_CLASS,
+        target: that.$element()
+      });
+    },
+    _getContextMenuItems: function _getContextMenuItems(e) {
+      var that = this;
+      var items = [];
+      var texts = that.option('texts');
+      if (e.area === 'row' || e.area === 'column') {
+        var areaFields = e["".concat(e.area, "Fields")];
+        var oppositeAreaFields = e[e.area === 'column' ? 'rowFields' : 'columnFields'];
+        var field = e.cell.path && areaFields[e.cell.path.length - 1];
+        var dataSource = that.getDataSource();
+        if (field && field.allowExpandAll && e.cell.path.length < e["".concat(e.area, "Fields")].length && !dataSource.paginate()) {
+          items.push({
+            beginGroup: true,
+            icon: 'none',
+            text: texts.expandAll,
+            onItemClick: function onItemClick() {
+              dataSource.expandAll(field.index);
+            }
+          });
+          items.push({
+            text: texts.collapseAll,
+            icon: 'none',
+            onItemClick: function onItemClick() {
+              dataSource.collapseAll(field.index);
+            }
+          });
+        }
+        if (e.cell.isLast && !dataSource.paginate()) {
+          var sortingBySummaryItemCount = 0;
+          (0, _iterator.each)(oppositeAreaFields, function (_, field) {
+            if (!field.allowSortingBySummary) {
+              return;
+            }
+            (0, _iterator.each)(e.dataFields, function (dataIndex, dataField) {
+              if ((0, _type.isDefined)(e.cell.dataIndex) && e.cell.dataIndex !== dataIndex) {
+                return;
+              }
+              var showDataFieldCaption = !(0, _type.isDefined)(e.cell.dataIndex) && e.dataFields.length > 1;
+              var textFormat = e.area === 'column' ? texts.sortColumnBySummary : texts.sortRowBySummary;
+              var checked = (0, _module_widget_utils.findField)(e.dataFields, field.sortBySummaryField) === dataIndex && (e.cell.path || []).join('/') === (field.sortBySummaryPath || []).join('/');
+              var text = (0, _string.format)(textFormat, showDataFieldCaption ? "".concat(field.caption, " - ").concat(dataField.caption) : field.caption);
+              items.push({
+                beginGroup: sortingBySummaryItemCount === 0,
+                icon: checked ? field.sortOrder === 'desc' ? 'sortdowntext' : 'sortuptext' : 'none',
+                text: text,
+                onItemClick: function onItemClick() {
+                  dataSource.field(field.index, {
+                    sortBySummaryField: dataField.name || dataField.caption || dataField.dataField,
+                    sortBySummaryPath: e.cell.path,
+                    sortOrder: field.sortOrder === 'desc' ? 'asc' : 'desc'
+                  });
+                  dataSource.load();
+                }
+              });
+              sortingBySummaryItemCount += 1;
+            });
+          });
+          (0, _iterator.each)(oppositeAreaFields, function (_, field) {
+            if (!field.allowSortingBySummary || !(0, _type.isDefined)(field.sortBySummaryField)) {
+              return undefined;
+            }
+            items.push({
+              beginGroup: sortingBySummaryItemCount === 0,
+              icon: 'none',
+              text: texts.removeAllSorting,
+              onItemClick: function onItemClick() {
+                (0, _iterator.each)(oppositeAreaFields, function (_, field) {
+                  dataSource.field(field.index, {
+                    sortBySummaryField: undefined,
+                    sortBySummaryPath: undefined,
+                    sortOrder: undefined
+                  });
+                });
+                dataSource.load();
+              }
+            });
+            return false;
+          });
+        }
+      }
+      if (that.option('fieldChooser.enabled')) {
+        items.push({
+          beginGroup: true,
+          icon: 'columnchooser',
+          text: texts.showFieldChooser,
+          onItemClick: function onItemClick() {
+            that._fieldChooserPopup.show();
+          }
+        });
+      }
+      if (that.option('export.enabled')) {
+        items.push({
+          beginGroup: true,
+          icon: 'xlsxfile',
+          text: texts.exportToExcel,
+          onItemClick: function onItemClick() {
+            that.exportTo();
+          }
+        });
+      }
+      e.items = items;
+      that._trigger('onContextMenuPreparing', e);
+      items = e.items;
+      if (items && items.length) {
+        return items;
+      }
+      return undefined;
+    },
+    _createEventArgs: function _createEventArgs(targetElement, dxEvent) {
+      var that = this;
+      var dataSource = that.getDataSource();
+      var args = {
+        rowFields: dataSource.getAreaFields('row'),
+        columnFields: dataSource.getAreaFields('column'),
+        dataFields: dataSource.getAreaFields('data'),
+        event: dxEvent
+      };
+      if (clickedOnFieldsArea((0, _renderer.default)(targetElement))) {
+        return (0, _extend.extend)(that._createFieldArgs(targetElement), args);
+      }
+      return (0, _extend.extend)(that._createCellArgs(targetElement), args);
+    },
+    _createFieldArgs: function _createFieldArgs(targetElement) {
+      var field = (0, _renderer.default)(targetElement).children().data('field');
+      var args = {
+        field: field
+      };
+      return (0, _type.isDefined)(field) ? args : {};
+    },
+    _createCellArgs: function _createCellArgs(cellElement) {
+      var $cellElement = (0, _renderer.default)(cellElement);
+      var columnIndex = cellElement.cellIndex;
+      var rowIndex = cellElement.parentElement.rowIndex;
+      var $table = $cellElement.closest('table');
+      var data = $table.data('data');
+      var cell = data && data[rowIndex] && data[rowIndex][columnIndex];
+      var args = {
+        area: $table.data('area'),
+        rowIndex: rowIndex,
+        columnIndex: columnIndex,
+        cellElement: (0, _element.getPublicElement)($cellElement),
+        cell: cell
+      };
+      return args;
+    },
+    _handleCellClick: function _handleCellClick(e) {
+      var that = this;
+      var args = that._createEventArgs(e.currentTarget, e);
+      var cell = args.cell;
+      if (!cell || !args.area && (args.rowIndex || args.columnIndex)) {
+        return;
+      }
+      that._trigger('onCellClick', args);
+      cell && !args.cancel && (0, _type.isDefined)(cell.expanded) && setTimeout(function () {
+        that._dataController[cell.expanded ? 'collapseHeaderItem' : 'expandHeaderItem'](args.area, cell.path);
+      });
+    },
+    _getNoDataText: function _getNoDataText() {
+      return this.option('texts.noData');
+    },
+    _renderNoDataText: _uiGrid_core.default.renderNoDataText,
+    _renderLoadPanel: _uiGrid_core.default.renderLoadPanel,
+    _updateLoading: function _updateLoading(progress) {
+      var that = this;
+      var isLoading = that._dataController.isLoading();
+      if (!that._loadPanel) return;
+      var loadPanelVisible = that._loadPanel.option('visible');
+      if (!loadPanelVisible) {
+        that._startLoadingTime = new Date();
+      }
+      if (isLoading) {
+        if (progress) {
+          if (new Date() - that._startLoadingTime >= 1000) {
+            that._loadPanel.option('message', "".concat(Math.floor(progress * 100), "%"));
+          }
+        } else {
+          that._loadPanel.option('message', that.option('loadPanel.text'));
+        }
+      }
+      clearTimeout(that._hideLoadingTimeoutID);
+      if (loadPanelVisible && !isLoading) {
+        that._hideLoadingTimeoutID = setTimeout(function () {
+          that._loadPanel.option('visible', false);
+          that.$element().removeClass(OVERFLOW_HIDDEN_CLASS);
+        });
+      } else {
+        var visibilityOptions = {
+          visible: isLoading
+        };
+        if (isLoading) {
+          visibilityOptions.position = _uiGrid_core.default.calculateLoadPanelPosition(that._dataArea.groupElement());
+        }
+        that._loadPanel.option(visibilityOptions);
+        that.$element().toggleClass(OVERFLOW_HIDDEN_CLASS, !isLoading);
+      }
+    },
+    _renderDescriptionArea: function _renderDescriptionArea() {
+      var _this = this;
+      var $element = this.$element();
+      var $descriptionCell = $element.find(".".concat(DESCRIPTION_AREA_CELL_CLASS));
+      var $toolbarContainer = (0, _renderer.default)(DIV).addClass('dx-pivotgrid-toolbar');
+      var fieldPanel = this.option('fieldPanel');
+      var $filterHeader = $element.find('.dx-filter-header');
+      var $columnHeader = $element.find('.dx-column-header');
+      var $targetContainer;
+      if (fieldPanel.visible && fieldPanel.showFilterFields) {
+        $targetContainer = $filterHeader;
+      } else if (fieldPanel.visible && (fieldPanel.showDataFields || fieldPanel.showColumnFields)) {
+        $targetContainer = $columnHeader;
+      } else {
+        $targetContainer = $descriptionCell;
+      }
+      $columnHeader.toggleClass(BOTTOM_BORDER_CLASS, !!(fieldPanel.visible && (fieldPanel.showDataFields || fieldPanel.showColumnFields)));
+      $filterHeader.toggleClass(BOTTOM_BORDER_CLASS, !!(fieldPanel.visible && fieldPanel.showFilterFields));
+      $descriptionCell.toggleClass('dx-pivotgrid-background', fieldPanel.visible && (fieldPanel.showDataFields || fieldPanel.showColumnFields || fieldPanel.showRowFields));
+      this.$element().find('.dx-pivotgrid-toolbar').remove();
+      $toolbarContainer.prependTo($targetContainer);
+      if (this.option('fieldChooser.enabled')) {
+        var $buttonElement = (0, _renderer.default)(DIV).appendTo($toolbarContainer).addClass('dx-pivotgrid-field-chooser-button');
+        var buttonOptions = {
+          icon: 'columnchooser',
+          hint: this.option('texts.showFieldChooser'),
+          onClick: function onClick() {
+            _this.getFieldChooserPopup().show();
+          }
+        };
+        this._createComponent($buttonElement, 'dxButton', buttonOptions);
+      }
+      if (this.option('export.enabled')) {
+        var _$buttonElement = (0, _renderer.default)(DIV).appendTo($toolbarContainer).addClass('dx-pivotgrid-export-button');
+        var _buttonOptions = {
+          icon: 'xlsxfile',
+          hint: this.option('texts.exportToExcel'),
+          onClick: function onClick() {
+            _this.exportTo();
+          }
+        };
+        this._createComponent(_$buttonElement, 'dxButton', _buttonOptions);
+      }
+    },
+    _detectHasContainerHeight: function _detectHasContainerHeight() {
+      var that = this;
+      var element = that.$element();
+      if ((0, _type.isDefined)(that._hasHeight)) {
+        var height = that.option('height') || that.$element().get(0).style.height;
+        if (height && that._hasHeight ^ height !== 'auto') {
+          that._hasHeight = null;
+        }
+      }
+      if ((0, _type.isDefined)(that._hasHeight) || element.is(':hidden')) {
+        return;
+      }
+      that._pivotGridContainer.addClass('dx-hidden');
+      var testElement = (0, _renderer.default)(DIV);
+      (0, _size.setHeight)(testElement, TEST_HEIGHT);
+      element.append(testElement);
+      that._hasHeight = (0, _size.getHeight)(element) !== TEST_HEIGHT;
+      that._pivotGridContainer.removeClass('dx-hidden');
+      testElement.remove();
+    },
+    _renderHeaders: function _renderHeaders(rowHeaderContainer, columnHeaderContainer, filterHeaderContainer, dataHeaderContainer) {
+      var that = this;
+      var dataSource = that.getDataSource();
+      that._rowFields = that._rowFields || new _module4.FieldsArea(that, 'row');
+      that._rowFields.render(rowHeaderContainer, dataSource.getAreaFields('row'));
+      that._columnFields = that._columnFields || new _module4.FieldsArea(that, 'column');
+      that._columnFields.render(columnHeaderContainer, dataSource.getAreaFields('column'));
+      that._filterFields = that._filterFields || new _module4.FieldsArea(that, 'filter');
+      that._filterFields.render(filterHeaderContainer, dataSource.getAreaFields('filter'));
+      that._dataFields = that._dataFields || new _module4.FieldsArea(that, 'data');
+      that._dataFields.render(dataHeaderContainer, dataSource.getAreaFields('data'));
+      that.$element().dxPivotGridFieldChooserBase('instance').renderSortable();
+    },
+    _createTableElement: function _createTableElement() {
+      var that = this;
+      var $table = (0, _renderer.default)('<table>').css({
+        width: '100%'
+      }).toggleClass(BORDERS_CLASS, !!that.option('showBorders')).toggleClass('dx-word-wrap', !!that.option('wordWrapEnabled'));
+      _events_engine.default.on($table, (0, _index.addNamespace)(_click.name, 'dxPivotGrid'), 'td', that._handleCellClick.bind(that));
+      return $table;
+    },
+    _renderDataArea: function _renderDataArea(dataAreaElement) {
+      var that = this;
+      var dataArea = that._dataArea || new _module2.default.DataArea(that);
+      that._dataArea = dataArea;
+      dataArea.render(dataAreaElement, that._dataController.getCellsInfo());
+      return dataArea;
+    },
+    _renderRowsArea: function _renderRowsArea(rowsAreaElement) {
+      var that = this;
+      var rowsArea = that._rowsArea || new _module3.default.VerticalHeadersArea(that);
+      that._rowsArea = rowsArea;
+      rowsArea.render(rowsAreaElement, that._dataController.getRowsInfo());
+      return rowsArea;
+    },
+    _renderColumnsArea: function _renderColumnsArea(columnsAreaElement) {
+      var that = this;
+      var columnsArea = that._columnsArea || new _module3.default.HorizontalHeadersArea(that);
+      that._columnsArea = columnsArea;
+      columnsArea.render(columnsAreaElement, that._dataController.getColumnsInfo());
+      return columnsArea;
+    },
+    _initMarkup: function _initMarkup() {
+      var that = this;
+      that.callBase.apply(this, arguments);
+      that.$element().addClass(PIVOTGRID_CLASS);
+    },
+    _renderContentImpl: function _renderContentImpl() {
+      var that = this;
+      var columnsAreaElement;
+      var rowsAreaElement;
+      var dataAreaElement;
+      var tableElement;
+      var isFirstDrawing = !that._pivotGridContainer;
+      var rowHeaderContainer;
+      var columnHeaderContainer;
+      var filterHeaderContainer;
+      var dataHeaderContainer;
+      tableElement = !isFirstDrawing && that._tableElement();
+      if (!tableElement) {
+        that.$element().addClass(ROW_LINES_CLASS).addClass(FIELDS_CONTAINER_CLASS);
+        that._pivotGridContainer = (0, _renderer.default)(DIV).addClass('dx-pivotgrid-container');
+        that._renderFieldChooser();
+        that._renderContextMenu();
+        columnsAreaElement = (0, _renderer.default)(TD).addClass(COLUMN_AREA_CELL_CLASS);
+        rowsAreaElement = (0, _renderer.default)(TD).addClass(ROW_AREA_CELL_CLASS);
+        dataAreaElement = (0, _renderer.default)(TD).addClass(DATA_AREA_CELL_CLASS);
+        tableElement = that._createTableElement();
+        dataHeaderContainer = (0, _renderer.default)(TD).addClass('dx-data-header');
+        filterHeaderContainer = (0, _renderer.default)('<td>').attr('colspan', '2').addClass('dx-filter-header');
+        columnHeaderContainer = (0, _renderer.default)(TD).addClass('dx-column-header');
+        rowHeaderContainer = (0, _renderer.default)(TD).addClass(DESCRIPTION_AREA_CELL_CLASS);
+        (0, _renderer.default)(TR).append(filterHeaderContainer).appendTo(tableElement);
+        (0, _renderer.default)(TR).append(dataHeaderContainer).append(columnHeaderContainer).appendTo(tableElement);
+        (0, _renderer.default)(TR).append(rowHeaderContainer).append(columnsAreaElement).appendTo(tableElement);
+        (0, _renderer.default)(TR).addClass(BOTTOM_ROW_CLASS).append(rowsAreaElement).append(dataAreaElement).appendTo(tableElement);
+        that._pivotGridContainer.append(tableElement);
+        that.$element().append(that._pivotGridContainer);
+        if (that.option('rowHeaderLayout') === 'tree') {
+          rowsAreaElement.addClass('dx-area-tree-view');
+        }
+      }
+      that.$element().addClass(OVERFLOW_HIDDEN_CLASS);
+      that._createComponent(that.$element(), _module_base.FieldChooserBase, {
+        dataSource: that.getDataSource(),
+        encodeHtml: that.option('encodeHtml'),
+        allowFieldDragging: that.option('fieldPanel.allowFieldDragging'),
+        headerFilter: that.option('headerFilter'),
+        visible: that.option('visible'),
+        remoteSort: that.option('scrolling.mode') === 'virtual'
+      });
+      var dataArea = that._renderDataArea(dataAreaElement);
+      var rowsArea = that._renderRowsArea(rowsAreaElement);
+      var columnsArea = that._renderColumnsArea(columnsAreaElement);
+      dataArea.tableElement().prepend(columnsArea.headElement());
+      if (isFirstDrawing) {
+        that._renderLoadPanel(dataArea.groupElement().parent(), that.$element());
+        that._renderDescriptionArea();
+        rowsArea.renderScrollable();
+        columnsArea.renderScrollable();
+        dataArea.renderScrollable();
+      }
+      [dataArea, rowsArea, columnsArea].forEach(function (area) {
+        unsubscribeScrollEvents(area);
+      });
+      that._renderHeaders(rowHeaderContainer, columnHeaderContainer, filterHeaderContainer, dataHeaderContainer);
+      that._update(isFirstDrawing);
+    },
+    _update: function _update(isFirstDrawing) {
+      var that = this;
+      var updateHandler = function updateHandler() {
+        that.updateDimensions();
+      };
+      if (that._needDelayResizing(that._dataArea.getData()) && isFirstDrawing) {
+        setTimeout(updateHandler);
+      } else {
+        updateHandler();
+      }
+    },
+    _fireContentReadyAction: function _fireContentReadyAction() {
+      if (!this._dataController.isLoading()) {
+        this.callBase();
+      }
+    },
+    getScrollPath: function getScrollPath(area) {
+      var that = this;
+      if (area === 'column') {
+        return that._columnsArea.getScrollPath(that._scrollLeft);
+      }
+      return that._rowsArea.getScrollPath(that._scrollTop);
+    },
+    getDataSource: function getDataSource() {
+      return this._dataController.getDataSource();
+    },
+    getFieldChooserPopup: function getFieldChooserPopup() {
+      return this._fieldChooserPopup;
+    },
+    hasScroll: function hasScroll(area) {
+      var that = this;
+      return area === 'column' ? that._columnsArea.hasScroll() : that._rowsArea.hasScroll();
+    },
+    _dimensionChanged: function _dimensionChanged() {
+      this.updateDimensions();
+    },
+    _visibilityChanged: function _visibilityChanged(visible) {
+      if (visible) {
+        this.updateDimensions();
+      }
+    },
+    _dispose: function _dispose() {
+      var that = this;
+      clearTimeout(that._hideLoadingTimeoutID);
+      that.callBase.apply(that, arguments);
+      if (that._dataController) {
+        that._dataController.dispose();
+      }
+    },
+    _tableElement: function _tableElement() {
+      return this.$element().find('table').first();
+    },
+    addWidgetPrefix: function addWidgetPrefix(className) {
+      return "dx-pivotgrid-".concat(className);
+    },
+    resize: function resize() {
+      this.updateDimensions();
+    },
+    isReady: function isReady() {
+      return this.callBase() && !this._dataController.isLoading();
+    },
+    updateDimensions: function updateDimensions() {
+      var that = this;
+      var groupWidth;
+      var tableElement = that._tableElement();
+      var bordersWidth;
+      var totalWidth = 0;
+      var totalHeight = 0;
+      var rowsAreaWidth = 0;
+      var hasRowsScroll;
+      var hasColumnsScroll;
+      var dataAreaCell = tableElement.find(".".concat(DATA_AREA_CELL_CLASS));
+      var rowAreaCell = tableElement.find(".".concat(ROW_AREA_CELL_CLASS));
+      var columnAreaCell = tableElement.find(".".concat(COLUMN_AREA_CELL_CLASS));
+      var descriptionCell = tableElement.find(".".concat(DESCRIPTION_AREA_CELL_CLASS));
+      var filterHeaderCell = tableElement.find('.dx-filter-header');
+      var columnHeaderCell = tableElement.find('.dx-column-header');
+      var rowFieldsHeader = that._rowFields;
+      // @ts-expect-error
+      var d = new _deferred.Deferred();
+      if (!(0, _window.hasWindow)()) {
+        return undefined;
+      }
+      var needSynchronizeFieldPanel = rowFieldsHeader.isVisible() && that.option('rowHeaderLayout') !== 'tree';
+      that._detectHasContainerHeight();
+      if (!that._dataArea.headElement().length) {
+        that._dataArea.tableElement().prepend(that._columnsArea.headElement());
+      }
+      if (needSynchronizeFieldPanel) {
+        that._rowsArea.updateColspans(rowFieldsHeader.getColumnsCount());
+        that._rowsArea.tableElement().prepend(rowFieldsHeader.headElement());
+      }
+      tableElement.addClass(INCOMPRESSIBLE_FIELDS_CLASS);
+      that._dataArea.reset();
+      that._rowsArea.reset();
+      that._columnsArea.reset();
+      rowFieldsHeader.reset();
+      var calculateHasScroll = function calculateHasScroll(areaSize, totalSize) {
+        return totalSize - areaSize >= 1;
+      };
+      var calculateGroupHeight = function calculateGroupHeight(dataAreaHeight, totalHeight, hasRowsScroll, hasColumnsScroll, scrollBarWidth) {
+        return hasRowsScroll ? dataAreaHeight : totalHeight + (hasColumnsScroll ? scrollBarWidth : 0);
+      };
+      (0, _common.deferUpdate)(function () {
+        var rowHeights = that._rowsArea.getRowsHeight();
+        var descriptionCellHeight = (0, _size.getOuterHeight)(descriptionCell[0], true) + (needSynchronizeFieldPanel ? rowHeights[0] : 0);
+        var filterAreaHeight = 0;
+        var dataAreaHeight = 0;
+        if (that._hasHeight) {
+          filterAreaHeight = (0, _size.getHeight)(filterHeaderCell);
+          var $dataHeader = tableElement.find('.dx-data-header');
+          var dataHeaderHeight = (0, _size.getHeight)($dataHeader);
+          bordersWidth = getCommonBorderWidth([columnAreaCell, dataAreaCell, tableElement, columnHeaderCell, filterHeaderCell], 'height');
+          dataAreaHeight = (0, _size.getHeight)(that.$element()) - filterAreaHeight - dataHeaderHeight - (Math.max((0, _size.getHeight)(that._dataArea.headElement()), (0, _size.getHeight)(columnAreaCell), descriptionCellHeight) + bordersWidth);
+        }
+        var scrollBarWidth = that._dataArea.getScrollbarWidth();
+        var hasVerticalScrollbar = calculateHasScroll(dataAreaHeight, (0, _size.getHeight)(that._dataArea.tableElement()));
+        that._dataArea.tableElement().css({
+          width: that._hasHeight && hasVerticalScrollbar && scrollBarWidth ? "calc(100% - ".concat(scrollBarWidth, "px)") : '100%'
+        });
+        var resultWidths = that._dataArea.getColumnsWidth();
+        var rowsAreaHeights = needSynchronizeFieldPanel ? rowHeights.slice(1) : rowHeights;
+        var dataAreaHeights = that._dataArea.getRowsHeight();
+        var columnsAreaRowCount = that._dataController.getColumnsInfo().length;
+        var resultHeights = (0, _module_widget_utils.mergeArraysByMaxValue)(rowsAreaHeights, dataAreaHeights.slice(columnsAreaRowCount));
+        var columnsAreaRowHeights = dataAreaHeights.slice(0, columnsAreaRowCount);
+        var columnsAreaHeight = getArraySum(columnsAreaRowHeights);
+        var rowsAreaColumnWidths = that._rowsArea.getColumnsWidth();
+        totalWidth = (0, _size.getWidth)(that._dataArea.tableElement());
+        totalHeight = getArraySum(resultHeights);
+        if (!totalWidth || !totalHeight) {
+          d.resolve();
+          return;
+        }
+        rowsAreaWidth = getArraySum(rowsAreaColumnWidths);
+        var elementWidth = (0, _size.getWidth)(that.$element());
+        bordersWidth = getCommonBorderWidth([rowAreaCell, dataAreaCell, tableElement], 'width');
+        groupWidth = elementWidth - rowsAreaWidth - bordersWidth;
+        groupWidth = groupWidth > 0 ? groupWidth : totalWidth;
+        var diff = totalWidth - groupWidth;
+        var needAdjustWidthOnZoom = diff >= 0 && diff <= 2;
+        if (needAdjustWidthOnZoom) {
+          // T914454
+          adjustSizeArray(resultWidths, diff);
+          totalWidth = groupWidth;
+        }
+        hasRowsScroll = that._hasHeight && calculateHasScroll(dataAreaHeight, totalHeight);
+        hasColumnsScroll = calculateHasScroll(groupWidth, totalWidth);
+        /// #DEBUG
+        that.__scrollBarUseNative = that._dataArea.getUseNativeValue();
+        that.__scrollBarWidth = scrollBarWidth;
+        /// #ENDDEBUG
+        var groupHeight = calculateGroupHeight(dataAreaHeight, totalHeight, hasRowsScroll, hasColumnsScroll, scrollBarWidth);
+        (0, _common.deferRender)(function () {
+          that._columnsArea.tableElement().append(that._dataArea.headElement());
+          rowFieldsHeader.tableElement().append(that._rowsArea.headElement());
+          if (descriptionCellHeight > columnsAreaHeight) {
+            adjustSizeArray(columnsAreaRowHeights, columnsAreaHeight - descriptionCellHeight);
+            that._columnsArea.setRowsHeight(columnsAreaRowHeights);
+          }
+          tableElement.removeClass(INCOMPRESSIBLE_FIELDS_CLASS);
+          columnHeaderCell.children().css('maxWidth', groupWidth);
+          that._columnsArea.setGroupWidth(groupWidth);
+          that._columnsArea.processScrollBarSpacing(hasRowsScroll ? scrollBarWidth : 0);
+          that._columnsArea.setColumnsWidth(resultWidths);
+          that._rowsArea.setGroupHeight(that._hasHeight ? groupHeight : 'auto');
+          that._rowsArea.processScrollBarSpacing(hasColumnsScroll ? scrollBarWidth : 0);
+          // B232690
+          that._rowsArea.setColumnsWidth(rowsAreaColumnWidths);
+          that._rowsArea.setRowsHeight(resultHeights);
+          that._dataArea.setColumnsWidth(resultWidths);
+          that._dataArea.setRowsHeight(resultHeights);
+          that._dataArea.setGroupWidth(groupWidth);
+          that._dataArea.setGroupHeight(that._hasHeight ? groupHeight : 'auto');
+          needSynchronizeFieldPanel && rowFieldsHeader.setColumnsWidth(rowsAreaColumnWidths);
+          dataAreaCell.toggleClass(BOTTOM_BORDER_CLASS, !hasRowsScroll);
+          rowAreaCell.toggleClass(BOTTOM_BORDER_CLASS, !hasRowsScroll);
+          // T317921
+          if (!that._hasHeight && elementWidth !== (0, _size.getWidth)(that.$element())) {
+            var _diff = elementWidth - (0, _size.getWidth)(that.$element());
+            if (!hasColumnsScroll) {
+              adjustSizeArray(resultWidths, _diff);
+              that._columnsArea.setColumnsWidth(resultWidths);
+              that._dataArea.setColumnsWidth(resultWidths);
+            }
+            that._dataArea.setGroupWidth(groupWidth - _diff);
+            that._columnsArea.setGroupWidth(groupWidth - _diff);
+          }
+          if (that._hasHeight && that._filterFields.isVisible() && (0, _size.getHeight)(filterHeaderCell) !== filterAreaHeight) {
+            var _diff2 = (0, _size.getHeight)(filterHeaderCell) - filterAreaHeight;
+            if (_diff2 > 0) {
+              hasRowsScroll = calculateHasScroll(dataAreaHeight - _diff2, totalHeight);
+              var _groupHeight = calculateGroupHeight(dataAreaHeight - _diff2, totalHeight, hasRowsScroll, hasColumnsScroll, scrollBarWidth);
+              that._dataArea.setGroupHeight(_groupHeight);
+              that._rowsArea.setGroupHeight(_groupHeight);
+            }
+          }
+          var scrollingOptions = that.option('scrolling');
+          if (scrollingOptions.mode === 'virtual') {
+            that._setVirtualContentParams(scrollingOptions, resultWidths, resultHeights, groupWidth, groupHeight, that._hasHeight, rowsAreaWidth);
+          }
+          var updateScrollableResults = [];
+          that._dataArea.updateScrollableOptions({
+            direction: that._dataArea.getScrollableDirection(hasColumnsScroll, hasRowsScroll),
+            rtlEnabled: that.option('rtlEnabled')
+          });
+          that._columnsArea.updateScrollableOptions({
+            rtlEnabled: that.option('rtlEnabled')
+          });
+          (0, _iterator.each)([that._columnsArea, that._rowsArea, that._dataArea], function (_, area) {
+            updateScrollableResults.push(area && area.updateScrollable());
+          });
+          that._updateLoading();
+          that._renderNoDataText(dataAreaCell);
+          /// #DEBUG
+          that._testResultWidths = resultWidths;
+          that._testResultHeights = resultHeights;
+          /// #ENDDEBUG
+          _deferred.when.apply(_renderer.default, updateScrollableResults).done(function () {
+            that._updateScrollPosition(that._columnsArea, that._rowsArea, that._dataArea, true);
+            that._subscribeToEvents(that._columnsArea, that._rowsArea, that._dataArea);
+            d.resolve();
+          });
+        });
+      });
+      return d;
+    },
+    _setVirtualContentParams: function _setVirtualContentParams(scrollingOptions, resultWidths, resultHeights, groupWidth, groupHeight, hasHeight, rowsAreaWidth) {
+      var virtualContentParams = this._dataController.calculateVirtualContentParams({
+        virtualRowHeight: scrollingOptions.virtualRowHeight,
+        virtualColumnWidth: scrollingOptions.virtualColumnWidth,
+        itemWidths: resultWidths,
+        itemHeights: resultHeights,
+        rowCount: resultHeights.length,
+        columnCount: resultWidths.length,
+        viewportWidth: groupWidth,
+        viewportHeight: hasHeight ? groupHeight : (0, _size.getOuterHeight)(window)
+      });
+      this._dataArea.setVirtualContentParams({
+        top: virtualContentParams.contentTop,
+        left: virtualContentParams.contentLeft,
+        width: virtualContentParams.width,
+        height: virtualContentParams.height
+      });
+      this._rowsArea.setVirtualContentParams({
+        top: virtualContentParams.contentTop,
+        width: rowsAreaWidth,
+        height: virtualContentParams.height
+      });
+      this._columnsArea.setVirtualContentParams({
+        left: virtualContentParams.contentLeft,
+        width: virtualContentParams.width,
+        height: (0, _size.getHeight)(this._columnsArea.groupElement())
+      });
+    },
+    applyPartialDataSource: function applyPartialDataSource(area, path, dataSource) {
+      this._dataController.applyPartialDataSource(area, path, dataSource);
+    }
+  }).inherit(_module6.ExportController).include(_module7.ChartIntegrationMixin);
+  exports.PivotGrid = PivotGrid;
+  (0, _component_registrator.default)('dxPivotGrid', PivotGrid);
+  var _default = {
+    PivotGrid: PivotGrid
+  };
+  exports.default = _default;
+});
+})
+(function(factory) {
+  if (typeof define == 'function' && define.amd)
+    define(["../../../core/renderer","../../../core/utils/window","../../../events/core/events_engine","../../../core/component_registrator","../../../core/element","../../../core/utils/string","../../../core/utils/common","../../../core/utils/iterator","../../../core/utils/type","../../../core/utils/extend","../../../events/click","../../../localization/message","../../../ui/widget/ui.widget","../../../events/utils/index","../../../ui/grid_core/ui.grid_core.utils","../../../core/utils/size","../../../ui/popup/ui.popup","../../../ui/context_menu","../../../core/utils/deferred","./module_widget_utils","./data_controller/module","./data_area/module","./headers_area/module","./fields_area/module","./field_chooser/module","./field_chooser/module_base","./export/module","./chart_integration/module"], factory);
+  else if (typeof module == 'object' && module.exports && typeof require == 'function')
+    module.exports = factory(require("../../../core/renderer"), require("../../../core/utils/window"), require("../../../events/core/events_engine"), require("../../../core/component_registrator"), require("../../../core/element"), require("../../../core/utils/string"), require("../../../core/utils/common"), require("../../../core/utils/iterator"), require("../../../core/utils/type"), require("../../../core/utils/extend"), require("../../../events/click"), require("../../../localization/message"), require("../../../ui/widget/ui.widget"), require("../../../events/utils/index"), require("../../../ui/grid_core/ui.grid_core.utils"), require("../../../core/utils/size"), require("../../../ui/popup/ui.popup"), require("../../../ui/context_menu"), require("../../../core/utils/deferred"), require("./module_widget_utils"), require("./data_controller/module"), require("./data_area/module"), require("./headers_area/module"), require("./fields_area/module"), require("./field_chooser/module"), require("./field_chooser/module_base"), require("./export/module"), require("./chart_integration/module"));
+  else
+    throw new Error("Module must be loaded as AMD or CommonJS");
+});
+//# sourceMappingURL=module_widget.js.map

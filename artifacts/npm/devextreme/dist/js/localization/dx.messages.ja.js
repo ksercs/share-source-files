@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.ja.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,10 @@
             "dxDateBox-simulatedDataPickerTitleDate": "日付を選択してください。",
             "dxDateBox-simulatedDataPickerTitleDateTime": "日付と時刻を選択してください。",
             "dxDateBox-validation-datetime": "日付または時刻を指定してください。",
+            "dxDateBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateBox-endDateOutOfRangeMessage": "End date is out of range",
             "dxFileUploader-selectFile": "ファイルを選択",
             "dxFileUploader-dropFile": "またはファイルをこちらにドロップしてください。",
             "dxFileUploader-bytes": "バイト",
@@ -92,6 +96,10 @@
             "dxForm-requiredMessage": "{0} は必須フィールドです",
             "dxNumberBox-invalidValueMessage": "数値を指定してください。",
             "dxNumberBox-noDataText": "データがありません",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "{0} を使用して列を表示してください",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "グループパネルからここに列をドラッグしてください",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "{0} を使用するか、グループ パネルから列をドラッグしてください",
+            "dxDataGrid-emptyHeaderColumnChooserText": "列の選択",
             "dxDataGrid-columnChooserTitle": "列の選択",
             "dxDataGrid-columnChooserEmptyText": "隠したい列のヘッダーをここにドラッグしてください。",
             "dxDataGrid-groupContinuesMessage": "次ページに続く",
@@ -124,6 +132,7 @@
             "dxDataGrid-filterRowOperationBetween": "～から～の間",
             "dxDataGrid-filterRowOperationBetweenStartText": "開始値",
             "dxDataGrid-filterRowOperationBetweenEndText": "終了値",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "フィルターを適用",
             "dxDataGrid-trueText": "true",
             "dxDataGrid-falseText": "false",
@@ -186,6 +195,8 @@
             "dxPager-prevPage": "前のページ",
             "dxPager-nextPage": "次のページ",
             "dxPager-ariaLabel": "ページ ナビゲーション",
+            "dxPager-ariaPageSize": "ページ サイズ",
+            "dxPager-ariaPageNumber": "ページ番号",
             "dxPivotGrid-grandTotal": "総計",
             "dxPivotGrid-total": "{0} 合計",
             "dxPivotGrid-fieldChooserTitle": "フィールドの選択",
@@ -251,6 +262,7 @@
             "dxScheduler-moreAppointments": "その他 {0} つ選択",
             "dxCalendar-todayButtonText": "今日",
             "dxCalendar-ariaWidgetName": "カレンダー",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "赤",
             "dxColorView-ariaGreen": "緑",
             "dxColorView-ariaBlue": "青",

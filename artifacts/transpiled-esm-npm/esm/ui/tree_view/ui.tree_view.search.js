@@ -49,6 +49,9 @@ var TreeViewSearch = TreeViewBase.inherit(searchBoxMixin).inherit({
       searchExpr: this.option('searchExpr')
     });
   },
+  _getNodeContainer: function _getNodeContainer() {
+    return this.$element().find(".".concat(NODE_CONTAINER_CLASS)).first();
+  },
   _updateSearch: function _updateSearch() {
     if (this._searchEditor) {
       var editorOptions = this._getSearchEditorOptions();
@@ -56,7 +59,7 @@ var TreeViewSearch = TreeViewBase.inherit(searchBoxMixin).inherit({
     }
   },
   _repaintContainer: function _repaintContainer() {
-    var $container = this.$element().find(".".concat(NODE_CONTAINER_CLASS)).first();
+    var $container = this._getNodeContainer();
     var rootNodes;
     if ($container.length) {
       $container.empty();
@@ -66,7 +69,16 @@ var TreeViewSearch = TreeViewBase.inherit(searchBoxMixin).inherit({
       this._fireContentReadyAction();
     }
   },
+  _focusTarget: function _focusTarget() {
+    return this._itemContainer(this.option('searchEnabled'));
+  },
+  _cleanItemContainer: function _cleanItemContainer() {
+    this.$element().empty();
+  },
   _itemContainer: function _itemContainer(isSearchMode) {
+    if (this._selectAllEnabled()) {
+      return this._getNodeContainer();
+    }
     if (this._scrollable && isSearchMode) {
       return $(this._scrollable.content());
     }

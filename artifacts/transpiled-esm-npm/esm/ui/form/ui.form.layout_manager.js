@@ -1,3 +1,4 @@
+import _extends from "@babel/runtime/helpers/esm/extends";
 import { getWidth } from '../../core/utils/size';
 import $ from '../../core/renderer';
 import eventsEngine from '../../events/core/events_engine';
@@ -628,13 +629,22 @@ var LayoutManager = Widget.inherit({
     return this._watch;
   },
   _createComponent: function _createComponent($editor, type, editorOptions) {
-    var that = this;
     var readOnlyState = this.option('readOnly');
-    var instance = that.callBase($editor, type, editorOptions);
-    readOnlyState && instance.option('readOnly', readOnlyState);
-    that.on('optionChanged', function (args) {
-      if (args.name === 'readOnly' && !isDefined(editorOptions.readOnly)) {
+    var hasEditorReadOnly = Object.hasOwn(editorOptions, 'readOnly');
+    var instance = this.callBase($editor, type, _extends({}, editorOptions, {
+      readOnly: !hasEditorReadOnly ? readOnlyState : editorOptions.readOnly
+    }));
+    var isChangeByForm = false;
+    instance.on('optionChanged', args => {
+      if (args.name === 'readOnly' && !isChangeByForm) {
+        hasEditorReadOnly = true;
+      }
+    });
+    this.on('optionChanged', function (args) {
+      if (args.name === 'readOnly' && !hasEditorReadOnly) {
+        isChangeByForm = true;
         instance.option(args.name, args.value);
+        isChangeByForm = false;
       }
     });
     return instance;
@@ -732,6 +742,7 @@ var LayoutManager = Widget.inherit({
         this._invalidate();
         break;
       case 'colCount':
+      case 'colCountByScreen':
         this._resetColCount();
         break;
       case 'minColWidth':

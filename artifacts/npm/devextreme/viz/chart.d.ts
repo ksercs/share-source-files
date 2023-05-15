@@ -1,7 +1,7 @@
 /**
 * DevExtreme (viz/chart.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -1218,7 +1218,10 @@ export interface dxChartOptions extends BaseChartOptions<dxChart> {
       valueAxis?: ChartZoomAndPanMode;
     };
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartArgumentAxis extends dxChartCommonAxisSettings {
     /**
      * @docid dxChartOptions.argumentAxis.aggregateByCategory
@@ -1426,7 +1429,10 @@ export interface dxChartArgumentAxis extends dxChartCommonAxisSettings {
      */
     workdaysOnly?: boolean;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartArgumentAxisConstantLineStyle extends dxChartCommonAxisSettingsConstantLineStyle {
     /**
      * @docid dxChartOptions.argumentAxis.constantLineStyle.label
@@ -1435,7 +1441,10 @@ export interface dxChartArgumentAxisConstantLineStyle extends dxChartCommonAxisS
      */
     label?: dxChartArgumentAxisConstantLineStyleLabel;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartArgumentAxisConstantLineStyleLabel extends dxChartCommonAxisSettingsConstantLineStyleLabel {
     /**
      * @docid dxChartOptions.argumentAxis.constantLineStyle.label.horizontalAlignment
@@ -1450,7 +1459,10 @@ export interface dxChartArgumentAxisConstantLineStyleLabel extends dxChartCommon
      */
     verticalAlignment?: VerticalAlignment;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartArgumentAxisConstantLines extends dxChartCommonAxisSettingsConstantLineStyle {
     /**
      * @docid dxChartOptions.argumentAxis.constantLines.displayBehindSeries
@@ -1477,7 +1489,10 @@ export interface dxChartArgumentAxisConstantLines extends dxChartCommonAxisSetti
      */
     value?: number | Date | string;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartArgumentAxisConstantLinesLabel extends dxChartCommonAxisSettingsConstantLineStyleLabel {
     /**
      * @docid dxChartOptions.argumentAxis.constantLines.label.horizontalAlignment
@@ -1498,7 +1513,10 @@ export interface dxChartArgumentAxisConstantLinesLabel extends dxChartCommonAxis
      */
     verticalAlignment?: VerticalAlignment;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartArgumentAxisLabel extends dxChartCommonAxisSettingsLabel {
     /**
      * @docid dxChartOptions.argumentAxis.label.customizeHint
@@ -1518,7 +1536,10 @@ export interface dxChartArgumentAxisLabel extends dxChartCommonAxisSettingsLabel
      */
     format?: Format;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartArgumentAxisStrips extends dxChartCommonAxisSettingsStripStyle {
     /**
      * @docid dxChartOptions.argumentAxis.strips.color
@@ -1545,7 +1566,10 @@ export interface dxChartArgumentAxisStrips extends dxChartCommonAxisSettingsStri
      */
     startValue?: number | Date | string;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartArgumentAxisStripsLabel extends dxChartCommonAxisSettingsStripStyleLabel {
     /**
      * @docid dxChartOptions.argumentAxis.strips.label.text
@@ -1554,7 +1578,10 @@ export interface dxChartArgumentAxisStripsLabel extends dxChartCommonAxisSetting
      */
     text?: string;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartArgumentAxisTitle extends dxChartCommonAxisSettingsTitle {
     /**
      * @docid dxChartOptions.argumentAxis.title.text
@@ -1563,7 +1590,10 @@ export interface dxChartArgumentAxisTitle extends dxChartCommonAxisSettingsTitle
      */
     text?: string;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartCommonAxisSettings {
     /**
      * @docid dxChartOptions.commonAxisSettings.allowDecimals
@@ -1813,7 +1843,10 @@ export interface dxChartCommonAxisSettings {
      */
     width?: number;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartCommonAxisSettingsConstantLineStyle {
     /**
      * @docid dxChartOptions.commonAxisSettings.constantLineStyle.color
@@ -1852,7 +1885,10 @@ export interface dxChartCommonAxisSettingsConstantLineStyle {
      */
     width?: number;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartCommonAxisSettingsConstantLineStyleLabel {
     /**
      * @docid dxChartOptions.commonAxisSettings.constantLineStyle.label.font
@@ -1873,7 +1909,10 @@ export interface dxChartCommonAxisSettingsConstantLineStyleLabel {
      */
     visible?: boolean;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartCommonAxisSettingsLabel {
     /**
      * @docid dxChartOptions.commonAxisSettings.label.template
@@ -1951,7 +1990,10 @@ export interface dxChartCommonAxisSettingsLabel {
      */
     wordWrap?: WordWrap;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartCommonAxisSettingsStripStyle {
     /**
      * @docid dxChartOptions.commonAxisSettings.stripStyle.label
@@ -1972,7 +2014,10 @@ export interface dxChartCommonAxisSettingsStripStyle {
      */
     paddingTopBottom?: number;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartCommonAxisSettingsStripStyleLabel {
     /**
      * @docid dxChartOptions.commonAxisSettings.stripStyle.label.font
@@ -1993,7 +2038,10 @@ export interface dxChartCommonAxisSettingsStripStyleLabel {
      */
     verticalAlignment?: VerticalAlignment;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartCommonAxisSettingsTitle {
     /**
      * @docid dxChartOptions.commonAxisSettings.title.alignment
@@ -2027,7 +2075,10 @@ export interface dxChartCommonAxisSettingsTitle {
      */
     wordWrap?: WordWrap;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartCommonPaneSettings {
     /**
      * @docid dxChartOptions.commonPaneSettings.backgroundColor
@@ -2087,7 +2138,10 @@ export interface dxChartCommonPaneSettings {
       width?: number;
     };
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartCommonSeriesSettings extends dxChartSeriesTypesCommonSeries {
     /**
      * @docid dxChartOptions.commonSeriesSettings.area
@@ -2212,7 +2266,10 @@ export interface dxChartCommonSeriesSettings extends dxChartSeriesTypesCommonSer
      */
     type?: SeriesType;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartLegend extends BaseChartLegend {
     /**
      * @docid dxChartOptions.legend.customizeHint
@@ -2238,7 +2295,10 @@ export interface dxChartLegend extends BaseChartLegend {
      */
     position?: RelativePosition;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartPanes extends dxChartCommonPaneSettings {
     /**
      * @docid dxChartOptions.panes.height
@@ -2253,7 +2313,10 @@ export interface dxChartPanes extends dxChartCommonPaneSettings {
      */
     name?: string;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartTooltip extends BaseChartTooltip {
     /**
      * @docid dxChartOptions.tooltip.location
@@ -2263,7 +2326,10 @@ export interface dxChartTooltip extends BaseChartTooltip {
      */
     location?: ChartTooltipLocation;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartValueAxis extends dxChartCommonAxisSettings {
     /**
      * @docid dxChartOptions.valueAxis.autoBreaksEnabled
@@ -2459,7 +2525,10 @@ export interface dxChartValueAxis extends dxChartCommonAxisSettings {
      */
     wholeRange?: VisualRange | Array<number | string | Date>;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartValueAxisConstantLineStyle extends dxChartCommonAxisSettingsConstantLineStyle {
     /**
      * @docid dxChartOptions.valueAxis.constantLineStyle.label
@@ -2468,7 +2537,10 @@ export interface dxChartValueAxisConstantLineStyle extends dxChartCommonAxisSett
      */
     label?: dxChartValueAxisConstantLineStyleLabel;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartValueAxisConstantLineStyleLabel extends dxChartCommonAxisSettingsConstantLineStyleLabel {
     /**
      * @docid dxChartOptions.valueAxis.constantLineStyle.label.horizontalAlignment
@@ -2483,7 +2555,10 @@ export interface dxChartValueAxisConstantLineStyleLabel extends dxChartCommonAxi
      */
     verticalAlignment?: VerticalAlignment;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartValueAxisConstantLines extends dxChartCommonAxisSettingsConstantLineStyle {
     /**
      * @docid dxChartOptions.valueAxis.constantLines.displayBehindSeries
@@ -2510,7 +2585,10 @@ export interface dxChartValueAxisConstantLines extends dxChartCommonAxisSettings
      */
     value?: number | Date | string;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartValueAxisConstantLinesLabel extends dxChartCommonAxisSettingsConstantLineStyleLabel {
     /**
      * @docid dxChartOptions.valueAxis.constantLines.label.horizontalAlignment
@@ -2531,7 +2609,10 @@ export interface dxChartValueAxisConstantLinesLabel extends dxChartCommonAxisSet
      */
     verticalAlignment?: VerticalAlignment;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartValueAxisLabel extends dxChartCommonAxisSettingsLabel {
     /**
      * @docid dxChartOptions.valueAxis.label.customizeHint
@@ -2551,7 +2632,10 @@ export interface dxChartValueAxisLabel extends dxChartCommonAxisSettingsLabel {
      */
     format?: Format;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartValueAxisStrips extends dxChartCommonAxisSettingsStripStyle {
     /**
      * @docid dxChartOptions.valueAxis.strips.color
@@ -2578,7 +2662,10 @@ export interface dxChartValueAxisStrips extends dxChartCommonAxisSettingsStripSt
      */
     startValue?: number | Date | string;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartValueAxisStripsLabel extends dxChartCommonAxisSettingsStripStyleLabel {
     /**
      * @docid dxChartOptions.valueAxis.strips.label.text
@@ -2587,7 +2674,10 @@ export interface dxChartValueAxisStripsLabel extends dxChartCommonAxisSettingsSt
      */
     text?: string;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface dxChartValueAxisTitle extends dxChartCommonAxisSettingsTitle {
     /**
      * @docid dxChartOptions.valueAxis.title.text
@@ -5082,3 +5172,137 @@ export type Properties = dxChartOptions;
 
 /** @deprecated use Properties instead */
 export type Options = dxChartOptions;
+
+type EventProps<T> = Extract<keyof T, `on${any}`>;
+type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+type EventsIntegrityCheckingHelper = CheckedEvents<Properties, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxChartOptions.onArgumentAxisClick
+ * @type_function_param1 e:{viz/chart:ArgumentAxisClickEvent}
+ */
+onArgumentAxisClick?: ((e: ArgumentAxisClickEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onDisposing
+ * @type_function_param1 e:{viz/chart:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onDone
+ * @type_function_param1 e:{viz/chart:DoneEvent}
+ */
+onDone?: ((e: DoneEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onDrawn
+ * @type_function_param1 e:{viz/chart:DrawnEvent}
+ */
+onDrawn?: ((e: DrawnEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onExported
+ * @type_function_param1 e:{viz/chart:ExportedEvent}
+ */
+onExported?: ((e: ExportedEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onExporting
+ * @type_function_param1 e:{viz/chart:ExportingEvent}
+ */
+onExporting?: ((e: ExportingEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onFileSaving
+ * @type_function_param1 e:{viz/chart:FileSavingEvent}
+ */
+onFileSaving?: ((e: FileSavingEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onIncidentOccurred
+ * @type_function_param1 e:{viz/chart:IncidentOccurredEvent}
+ */
+onIncidentOccurred?: ((e: IncidentOccurredEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onInitialized
+ * @type_function_param1 e:{viz/chart:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onLegendClick
+ * @type_function_param1 e:{viz/chart:LegendClickEvent}
+ */
+onLegendClick?: ((e: LegendClickEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onOptionChanged
+ * @type_function_param1 e:{viz/chart:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onPointClick
+ * @type_function_param1 e:{viz/chart:PointClickEvent}
+ */
+onPointClick?: ((e: PointClickEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onPointHoverChanged
+ * @type_function_param1 e:{viz/chart:PointHoverChangedEvent}
+ */
+onPointHoverChanged?: ((e: PointHoverChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onPointSelectionChanged
+ * @type_function_param1 e:{viz/chart:PointSelectionChangedEvent}
+ */
+onPointSelectionChanged?: ((e: PointSelectionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onSeriesClick
+ * @type_function_param1 e:{viz/chart:SeriesClickEvent}
+ */
+onSeriesClick?: ((e: SeriesClickEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onSeriesHoverChanged
+ * @type_function_param1 e:{viz/chart:SeriesHoverChangedEvent}
+ */
+onSeriesHoverChanged?: ((e: SeriesHoverChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onSeriesSelectionChanged
+ * @type_function_param1 e:{viz/chart:SeriesSelectionChangedEvent}
+ */
+onSeriesSelectionChanged?: ((e: SeriesSelectionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onTooltipHidden
+ * @type_function_param1 e:{viz/chart:TooltipHiddenEvent}
+ */
+onTooltipHidden?: ((e: TooltipHiddenEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onTooltipShown
+ * @type_function_param1 e:{viz/chart:TooltipShownEvent}
+ */
+onTooltipShown?: ((e: TooltipShownEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onZoomEnd
+ * @type_function_param1 e:{viz/chart:ZoomEndEvent}
+ */
+onZoomEnd?: ((e: ZoomEndEvent) => void);
+/**
+ * @skip
+ * @docid dxChartOptions.onZoomStart
+ * @type_function_param1 e:{viz/chart:ZoomStartEvent}
+ */
+onZoomStart?: ((e: ZoomStartEvent) => void);
+};

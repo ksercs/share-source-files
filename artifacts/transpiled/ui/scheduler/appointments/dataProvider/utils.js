@@ -85,7 +85,7 @@ var _convertRecurrenceException = function _convertRecurrenceException(exception
   return exceptionString;
 };
 exports._convertRecurrenceException = _convertRecurrenceException;
-var replaceWrongEndDate = function replaceWrongEndDate(appointment, startDate, endDate, appointmentDuration, dataAccessors) {
+var replaceWrongEndDate = function replaceWrongEndDate(rawAppointment, startDate, endDate, appointmentDuration, dataAccessors) {
   var calculateAppointmentEndDate = function calculateAppointmentEndDate(isAllDay, startDate) {
     if (isAllDay) {
       return _date.default.setToDayEnd(new Date(startDate));
@@ -93,8 +93,9 @@ var replaceWrongEndDate = function replaceWrongEndDate(appointment, startDate, e
     return new Date(startDate.getTime() + appointmentDuration * toMs('minute'));
   };
   if (_isEndDateWrong(startDate, endDate)) {
-    var calculatedEndDate = calculateAppointmentEndDate(appointment.allDay, startDate);
-    dataAccessors.setter.endDate(appointment, calculatedEndDate);
+    var isAllDay = _expressionUtils.ExpressionUtils.getField(dataAccessors, 'allDay', rawAppointment);
+    var calculatedEndDate = calculateAppointmentEndDate(isAllDay, startDate);
+    dataAccessors.setter.endDate(rawAppointment, calculatedEndDate);
   }
 };
 exports.replaceWrongEndDate = replaceWrongEndDate;

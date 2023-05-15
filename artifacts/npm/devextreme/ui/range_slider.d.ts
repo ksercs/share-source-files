@@ -1,7 +1,7 @@
 /**
 * DevExtreme (ui/range_slider.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -101,3 +101,43 @@ export type Properties = dxRangeSliderOptions;
 
 /** @deprecated use Properties instead */
 export type Options = dxRangeSliderOptions;
+
+type EventProps<T> = Extract<keyof T, `on${any}`>;
+type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+type FilterOutHidden<T> = Omit<T, 'onFocusIn' | 'onFocusOut'>;
+
+type EventsIntegrityCheckingHelper = CheckedEvents<FilterOutHidden<Properties>, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxRangeSliderOptions.onContentReady
+ * @type_function_param1 e:{ui/range_slider:ContentReadyEvent}
+ */
+onContentReady?: ((e: ContentReadyEvent) => void);
+/**
+ * @skip
+ * @docid dxRangeSliderOptions.onDisposing
+ * @type_function_param1 e:{ui/range_slider:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxRangeSliderOptions.onInitialized
+ * @type_function_param1 e:{ui/range_slider:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxRangeSliderOptions.onOptionChanged
+ * @type_function_param1 e:{ui/range_slider:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxRangeSliderOptions.onValueChanged
+ * @type_function_param1 e:{ui/range_slider:ValueChangedEvent}
+ */
+onValueChanged?: ((e: ValueChangedEvent) => void);
+};

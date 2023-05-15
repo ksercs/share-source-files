@@ -133,8 +133,8 @@ var _default = _uiGrid_core.default.Controller.inherit(function () {
         if (skips.length) {
           result.isContinuation = true;
         }
-        if (takes.length) {
-          result.isContinuationOnNextPage = true;
+        if (take) {
+          result.isContinuationOnNextPage = cacheItem.count > take;
         }
         for (var i = 0; take === undefined ? items[i + skip] : i < take; i++) {
           var childCacheItem = items[i + skip];
@@ -511,7 +511,8 @@ var _default = _uiGrid_core.default.Controller.inherit(function () {
         summary: !remoteOperations.summary,
         skip: !remoteOperations.paging,
         take: !remoteOperations.paging,
-        requireTotalCount: cachedExtra && 'totalCount' in cachedExtra || !remoteOperations.paging
+        requireTotalCount: cachedExtra && 'totalCount' in cachedExtra || !remoteOperations.paging,
+        langParams: !remoteOperations.filtering || !remoteOperations.sorting
       };
       (0, _iterator.each)(options.storeLoadOptions, function (optionName, optionValue) {
         if (localLoadOptionNames[optionName]) {
@@ -753,7 +754,9 @@ var _default = _uiGrid_core.default.Controller.inherit(function () {
         var store = dataSource.store();
         var dataSourceLoadOptions = dataSource.loadOptions();
         var loadResult = {
-          storeLoadOptions: options,
+          storeLoadOptions: (0, _extend.extend)({}, options, {
+            langParams: dataSourceLoadOptions === null || dataSourceLoadOptions === void 0 ? void 0 : dataSourceLoadOptions.langParams
+          }),
           isCustomLoading: true
         };
 

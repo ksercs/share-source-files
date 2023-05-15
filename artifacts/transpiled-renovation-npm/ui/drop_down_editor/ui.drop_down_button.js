@@ -25,6 +25,11 @@ var DropDownButton = /*#__PURE__*/function (_TextEditorButton) {
   _proto._attachEvents = function _attachEvents(instance) {
     var editor = this.editor;
     instance.option('onClick', function (e) {
+      var _editor$_shouldCallOp;
+      if ((_editor$_shouldCallOp = editor._shouldCallOpenHandler) !== null && _editor$_shouldCallOp !== void 0 && _editor$_shouldCallOp.call(editor)) {
+        editor._openHandler(e);
+        return;
+      }
       !editor.option('openOnFieldClick') && editor._openHandler(e);
     });
     _events_engine.default.on(instance.$element(), 'mousedown', function (e) {

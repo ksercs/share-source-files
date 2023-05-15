@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/scheduler/tooltip_strategies/desktopTooltipStrategy.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -46,8 +46,9 @@ export class DesktopTooltipStrategy extends TooltipStrategyBase {
       rtlEnabled: this._extraOptions.rtlEnabled,
       onShown: this._onShown.bind(this),
       contentTemplate: this._getContentTemplate(dataList),
-      copyRootClassesToWrapper: true,
-      _ignoreCopyRootClassesToWrapperDeprecation: true
+      wrapperAttr: {
+        class: APPOINTMENT_TOOLTIP_WRAPPER_CLASS
+      }
     });
   }
   _onListRender(e) {

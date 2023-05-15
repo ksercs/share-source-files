@@ -16,6 +16,7 @@ var _deferred = require("../../core/utils/deferred");
 var _operation_manager = _interopRequireDefault(require("./operation_manager"));
 var _utils2 = require("./utils");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -138,7 +139,7 @@ var DataSource = _class.default.inherit({
   },
   _extractLoadOptions: function _extractLoadOptions(options) {
     var result = {};
-    var names = ['sort', 'filter', 'select', 'group', 'requireTotalCount'];
+    var names = ['sort', 'filter', 'langParams', 'select', 'group', 'requireTotalCount'];
     var customNames = this._store._customLoadOptions();
     if (customNames) {
       names = names.concat(customNames);
@@ -423,6 +424,9 @@ var DataSource = _class.default.inherit({
     var _this9 = this;
     var operationId = this._operationManager.add(deferred);
     var storeLoadOptions = this._createStoreLoadOptions();
+    if (this._store && !(0, _type.isEmptyObject)(storeLoadOptions === null || storeLoadOptions === void 0 ? void 0 : storeLoadOptions.langParams)) {
+      this._store._langParams = _extends({}, this._store._langParams, storeLoadOptions.langParams);
+    }
     deferred.always(function () {
       return _this9._operationManager.remove(operationId);
     });

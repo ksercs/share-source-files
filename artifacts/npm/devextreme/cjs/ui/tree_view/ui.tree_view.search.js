@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/tree_view/ui.tree_view.search.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -61,6 +61,9 @@ var TreeViewSearch = _uiTree_view.default.inherit(_ui.default).inherit({
       searchExpr: this.option('searchExpr')
     });
   },
+  _getNodeContainer: function _getNodeContainer() {
+    return this.$element().find(".".concat(NODE_CONTAINER_CLASS)).first();
+  },
   _updateSearch: function _updateSearch() {
     if (this._searchEditor) {
       var editorOptions = this._getSearchEditorOptions();
@@ -68,7 +71,7 @@ var TreeViewSearch = _uiTree_view.default.inherit(_ui.default).inherit({
     }
   },
   _repaintContainer: function _repaintContainer() {
-    var $container = this.$element().find(".".concat(NODE_CONTAINER_CLASS)).first();
+    var $container = this._getNodeContainer();
     var rootNodes;
     if ($container.length) {
       $container.empty();
@@ -78,7 +81,16 @@ var TreeViewSearch = _uiTree_view.default.inherit(_ui.default).inherit({
       this._fireContentReadyAction();
     }
   },
+  _focusTarget: function _focusTarget() {
+    return this._itemContainer(this.option('searchEnabled'));
+  },
+  _cleanItemContainer: function _cleanItemContainer() {
+    this.$element().empty();
+  },
   _itemContainer: function _itemContainer(isSearchMode) {
+    if (this._selectAllEnabled()) {
+      return this._getNodeContainer();
+    }
     if (this._scrollable && isSearchMode) {
       return (0, _renderer.default)(this._scrollable.content());
     }

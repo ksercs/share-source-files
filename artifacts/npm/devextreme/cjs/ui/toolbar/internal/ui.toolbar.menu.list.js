@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/toolbar/internal/ui.toolbar.menu.list.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -21,6 +21,7 @@ var TOOLBAR_HIDDEN_BUTTON_GROUP_CLASS = 'dx-toolbar-hidden-button-group';
 var TOOLBAR_MENU_SECTION_CLASS = 'dx-toolbar-menu-section';
 var TOOLBAR_MENU_CUSTOM_CLASS = 'dx-toolbar-menu-custom';
 var TOOLBAR_MENU_LAST_SECTION_CLASS = 'dx-toolbar-menu-last-section';
+var SCROLLVIEW_CONTENT_CLASS = 'dx-scrollview-content';
 var ToolbarMenuList = /*#__PURE__*/function (_ListBase) {
   _inheritsLoose(ToolbarMenuList, _ListBase);
   function ToolbarMenuList() {
@@ -34,6 +35,7 @@ var ToolbarMenuList = /*#__PURE__*/function (_ListBase) {
   _proto._initMarkup = function _initMarkup() {
     this._renderSections();
     _ListBase.prototype._initMarkup.call(this);
+    this._setMenuRole();
   };
   _proto._getSections = function _getSections() {
     return this._itemContainer().children();
@@ -55,6 +57,10 @@ var ToolbarMenuList = /*#__PURE__*/function (_ListBase) {
   _proto._renderItems = function _renderItems() {
     _ListBase.prototype._renderItems.apply(this, arguments);
     this._updateSections();
+  };
+  _proto._setMenuRole = function _setMenuRole() {
+    var $menuContainer = this.$element().find(".".concat(SCROLLVIEW_CONTENT_CLASS));
+    $menuContainer.attr('role', 'menu');
   };
   _proto._updateSections = function _updateSections() {
     var $sections = this.$element().find(".".concat(TOOLBAR_MENU_SECTION_CLASS));
@@ -98,10 +104,6 @@ var ToolbarMenuList = /*#__PURE__*/function (_ListBase) {
     if ((0, _renderer.default)(e.target).closest(".".concat(TOOLBAR_MENU_ACTION_CLASS)).length) {
       _ListBase.prototype._itemClickHandler.call(this, e, args, config);
     }
-  };
-  _proto._getAriaTarget = function _getAriaTarget() {
-    var _this$option;
-    return (_this$option = this.option('_areaTarget')) !== null && _this$option !== void 0 ? _this$option : _ListBase.prototype._getAriaTarget.call(this);
   };
   _proto._clean = function _clean() {
     this._getSections().empty();

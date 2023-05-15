@@ -12,7 +12,7 @@ var _combine_classes = require("../../../utils/combine_classes");
 var _check_box_icon = require("./check_box_icon");
 var _widget = require("../../common/widget");
 var _utils = require("../../../../core/options/utils");
-var _excluded = ["accessKey", "activeStateEnabled", "aria", "className", "defaultValue", "disabled", "enableThreeStateBehavior", "focusStateEnabled", "height", "hint", "hoverStateEnabled", "iconSize", "isValid", "name", "onClick", "onFocusIn", "onKeyDown", "readOnly", "rtlEnabled", "saveValueChangeEvent", "tabIndex", "text", "validationError", "validationErrors", "validationMessageMode", "validationMessagePosition", "validationStatus", "value", "valueChange", "visible", "width"];
+var _excluded = ["accessKey", "activeStateEnabled", "aria", "className", "defaultValue", "disabled", "enableThreeStateBehavior", "focusStateEnabled", "height", "hint", "hoverStateEnabled", "iconSize", "inputAttr", "isValid", "name", "onClick", "onFocusIn", "onKeyDown", "readOnly", "rtlEnabled", "saveValueChangeEvent", "tabIndex", "text", "validationError", "validationErrors", "validationMessageMode", "validationMessagePosition", "validationStatus", "value", "valueChange", "visible", "width"];
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
@@ -230,6 +230,13 @@ var CheckBoxPropsType = Object.defineProperties({}, {
     configurable: true,
     enumerable: true
   },
+  inputAttr: {
+    get: function get() {
+      return CheckBoxProps.inputAttr;
+    },
+    configurable: true,
+    enumerable: true
+  },
   className: {
     get: function get() {
       return CheckBoxProps.className;
@@ -391,6 +398,7 @@ var CheckBox = /*#__PURE__*/function (_InfernoWrapperCompon) {
         hint = _this$props$value.hint,
         hoverStateEnabled = _this$props$value.hoverStateEnabled,
         iconSize = _this$props$value.iconSize,
+        inputAttr = _this$props$value.inputAttr,
         isValid = _this$props$value.isValid,
         name = _this$props$value.name,
         onClick = _this$props$value.onClick,

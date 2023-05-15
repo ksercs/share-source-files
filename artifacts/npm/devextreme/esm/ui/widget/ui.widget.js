@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/widget/ui.widget.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -159,7 +159,6 @@ var Widget = DOMComponent.inherit({
   },
   _toggleVisibility(visible) {
     this.$element().toggleClass('dx-state-invisible', !visible);
-    this.setAria('hidden', !visible || void 0);
   },
   _renderFocusState() {
     this._attachKeyboardEvents();

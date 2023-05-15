@@ -1,508 +1,512 @@
-2023-04-13 17:42:39.4461 | Info | JS Declarations Discovering
+2023-05-15 11:19:08.7654 | Info | JS Declarations Discovering
 
 ================================================================
 JS Declarations Discovering Started
 Path to log file: /Users/ksercs/dx/DevExtreme/artifacts/internal-tools/internal-tools-log.txt
 ================================================================
 
-2023-04-13 17:42:40.7178 | Debug | JS Declarations Discovering
-Descriptors loaded from TS: 5847
-2023-04-13 17:42:40.7189 | Debug | JS Declarations Discovering
-Types loaded from TS: 2180
-2023-04-13 17:42:40.7601 | Info | JS Declarations Discovering
+2023-05-15 11:19:09.8425 | Debug | JS Declarations Discovering
+Descriptors loaded from TS: 6447
+2023-05-15 11:19:09.8425 | Debug | JS Declarations Discovering
+Types loaded from TS: 2254
+2023-05-15 11:19:09.8805 | Info | JS Declarations Discovering
 Searching for members in '/Users/ksercs/dx/DevExtreme/js'
-2023-04-13 17:42:40.8065 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9245 | Debug | JS Declarations Discovering
 3 members found in /Users/ksercs/dx/DevExtreme/js/excel_exporter.js
-2023-04-13 17:42:40.8113 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9279 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/localization.js
-2023-04-13 17:42:40.8113 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9279 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/pdf_exporter.js
-2023-04-13 17:42:40.8137 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9292 | Debug | JS Declarations Discovering
 6 members found in /Users/ksercs/dx/DevExtreme/js/ui/load_panel.js
-2023-04-13 17:42:40.8168 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9317 | Debug | JS Declarations Discovering
 19 members found in /Users/ksercs/dx/DevExtreme/js/ui/lookup.js
-2023-04-13 17:42:40.8196 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9332 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/sortable.js
-2023-04-13 17:42:40.8218 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9339 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/ui/gantt.js
-2023-04-13 17:42:40.8244 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9356 | Debug | JS Declarations Discovering
 3 members found in /Users/ksercs/dx/DevExtreme/js/ui/draggable.js
-2023-04-13 17:42:40.8244 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9356 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/context_menu.js
-2023-04-13 17:42:40.8292 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9379 | Debug | JS Declarations Discovering
 27 members found in /Users/ksercs/dx/DevExtreme/js/ui/validation_summary.js
-2023-04-13 17:42:40.8301 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9379 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/tree_view.js
-2023-04-13 17:42:40.8312 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9385 | Debug | JS Declarations Discovering
 3 members found in /Users/ksercs/dx/DevExtreme/js/ui/html_editor.js
-2023-04-13 17:42:40.8333 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9397 | Debug | JS Declarations Discovering
 15 members found in /Users/ksercs/dx/DevExtreme/js/ui/box.js
-2023-04-13 17:42:40.8333 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9397 | Debug | JS Declarations Discovering
 6 members found in /Users/ksercs/dx/DevExtreme/js/ui/data_grid.js
-2023-04-13 17:42:40.8373 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9431 | Debug | JS Declarations Discovering
 4 members found in /Users/ksercs/dx/DevExtreme/js/ui/validator.js
-2023-04-13 17:42:40.8389 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9444 | Debug | JS Declarations Discovering
 7 members found in /Users/ksercs/dx/DevExtreme/js/ui/tile_view.js
-2023-04-13 17:42:40.8428 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9471 | Debug | JS Declarations Discovering
 12 members found in /Users/ksercs/dx/DevExtreme/js/ui/tag_box.js
-2023-04-13 17:42:40.8440 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9476 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/dialog.js
-2023-04-13 17:42:40.8459 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9485 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/ui/tabs.js
-2023-04-13 17:42:40.8517 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9508 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/list.js
-2023-04-13 17:42:40.8534 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9520 | Debug | JS Declarations Discovering
 5 members found in /Users/ksercs/dx/DevExtreme/js/ui/drop_down_box.js
-2023-04-13 17:42:40.8558 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9542 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/resizable.js
-2023-04-13 17:42:40.8580 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9637 | Debug | JS Declarations Discovering
 6 members found in /Users/ksercs/dx/DevExtreme/js/ui/gallery.js
-2023-04-13 17:42:40.8599 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9651 | Debug | JS Declarations Discovering
 3 members found in /Users/ksercs/dx/DevExtreme/js/ui/drop_down_button.js
-2023-04-13 17:42:40.8611 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9658 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/ui/tab_panel.js
-2023-04-13 17:42:40.8620 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9658 | Debug | JS Declarations Discovering
 7 members found in /Users/ksercs/dx/DevExtreme/js/ui/autocomplete.js
-2023-04-13 17:42:40.8628 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9670 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/ui/button_group.js
-2023-04-13 17:42:40.8640 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9678 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/range_slider.js
-2023-04-13 17:42:40.8647 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9678 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/ui/tree_list.js
-2023-04-13 17:42:40.8647 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9678 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/filter_builder.js
-2023-04-13 17:42:40.8667 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9690 | Debug | JS Declarations Discovering
 10 members found in /Users/ksercs/dx/DevExtreme/js/ui/text_area.js
-2023-04-13 17:42:40.8675 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9696 | Debug | JS Declarations Discovering
 6 members found in /Users/ksercs/dx/DevExtreme/js/ui/progress_bar.js
-2023-04-13 17:42:40.8675 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9696 | Debug | JS Declarations Discovering
 10 members found in /Users/ksercs/dx/DevExtreme/js/ui/pivot_grid.js
-2023-04-13 17:42:40.8710 | Debug | JS Declarations Discovering
-3 members found in /Users/ksercs/dx/DevExtreme/js/ui/set_template_engine.js
-2023-04-13 17:42:40.8717 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9711 | Debug | JS Declarations Discovering
+2 members found in /Users/ksercs/dx/DevExtreme/js/ui/set_template_engine.js
+2023-05-15 11:19:09.9719 | Debug | JS Declarations Discovering
 8 members found in /Users/ksercs/dx/DevExtreme/js/ui/load_indicator.js
-2023-04-13 17:42:40.8717 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9719 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/ui/file_manager.js
-2023-04-13 17:42:40.8742 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9736 | Debug | JS Declarations Discovering
 5 members found in /Users/ksercs/dx/DevExtreme/js/ui/multi_view.js
-2023-04-13 17:42:40.8762 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9752 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/select_box.js
-2023-04-13 17:42:40.8770 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9757 | Debug | JS Declarations Discovering
 5 members found in /Users/ksercs/dx/DevExtreme/js/ui/form.js
-2023-04-13 17:42:40.8774 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9757 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/menu.js
-2023-04-13 17:42:40.8803 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9776 | Debug | JS Declarations Discovering
 16 members found in /Users/ksercs/dx/DevExtreme/js/ui/action_sheet.js
-2023-04-13 17:42:40.8831 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9790 | Debug | JS Declarations Discovering
 9 members found in /Users/ksercs/dx/DevExtreme/js/ui/map.js
-2023-04-13 17:42:40.8839 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9790 | Debug | JS Declarations Discovering
 4 members found in /Users/ksercs/dx/DevExtreme/js/ui/validation_group.js
-2023-04-13 17:42:40.8870 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9816 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/accordion.js
-2023-04-13 17:42:40.8884 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9830 | Debug | JS Declarations Discovering
 15 members found in /Users/ksercs/dx/DevExtreme/js/ui/responsive_box.js
-2023-04-13 17:42:40.8914 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9858 | Debug | JS Declarations Discovering
 3 members found in /Users/ksercs/dx/DevExtreme/js/ui/file_uploader.js
-2023-04-13 17:42:40.8929 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9858 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/core/guid.js
-2023-04-13 17:42:40.8982 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9886 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/core/dom_component.js
-2023-04-13 17:42:40.8989 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9886 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/core/config.js
-2023-04-13 17:42:40.9006 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9896 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/core/component.js
-2023-04-13 17:42:40.9067 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9924 | Debug | JS Declarations Discovering
 50 members found in /Users/ksercs/dx/DevExtreme/js/core/errors.js
-2023-04-13 17:42:40.9079 | Debug | JS Declarations Discovering
+2023-05-15 11:19:09.9935 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/core/devices.js
-2023-04-13 17:42:40.9278 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0146 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/viz/funnel.js
-2023-04-13 17:42:40.9352 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0205 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/events/remove.js
-2023-04-13 17:42:40.9357 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0205 | Debug | JS Declarations Discovering
 6 members found in /Users/ksercs/dx/DevExtreme/js/events/drag.js
-2023-04-13 17:42:40.9357 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0218 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/events/core.js
-2023-04-13 17:42:40.9368 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0218 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/events/dblclick.js
-2023-04-13 17:42:40.9368 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0226 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/events/hold.js
-2023-04-13 17:42:40.9379 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0226 | Debug | JS Declarations Discovering
 3 members found in /Users/ksercs/dx/DevExtreme/js/events/swipe.js
-2023-04-13 17:42:40.9386 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0236 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/events/click.js
-2023-04-13 17:42:40.9386 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0236 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/events/index.js
-2023-04-13 17:42:40.9386 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0236 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/events/hover.js
-2023-04-13 17:42:40.9399 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0250 | Debug | JS Declarations Discovering
 8 members found in /Users/ksercs/dx/DevExtreme/js/events/pointer.js
-2023-04-13 17:42:40.9406 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0250 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/events/contextmenu.js
-2023-04-13 17:42:40.9415 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0263 | Debug | JS Declarations Discovering
 12 members found in /Users/ksercs/dx/DevExtreme/js/events/transform.js
-2023-04-13 17:42:40.9433 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0272 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/data/endpoint_selector.js
-2023-04-13 17:42:40.9474 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0297 | Debug | JS Declarations Discovering
 29 members found in /Users/ksercs/dx/DevExtreme/js/data/errors.js
-2023-04-13 17:42:40.9486 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0306 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/data/utils.js
-2023-04-13 17:42:40.9645 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0434 | Debug | JS Declarations Discovering
 4 members found in /Users/ksercs/dx/DevExtreme/js/ui/color_box/color_box.js
-2023-04-13 17:42:40.9689 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0463 | Debug | JS Declarations Discovering
 3 members found in /Users/ksercs/dx/DevExtreme/js/ui/speed_dial_action/speed_dial_action.js
-2023-04-13 17:42:40.9709 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0480 | Debug | JS Declarations Discovering
 8 members found in /Users/ksercs/dx/DevExtreme/js/ui/drawer/ui.drawer.js
-2023-04-13 17:42:40.9826 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0618 | Debug | JS Declarations Discovering
 7 members found in /Users/ksercs/dx/DevExtreme/js/ui/tooltip/tooltip.js
-2023-04-13 17:42:40.9844 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0643 | Debug | JS Declarations Discovering
 10 members found in /Users/ksercs/dx/DevExtreme/js/ui/collection/ui.collection_widget.edit.js
-2023-04-13 17:42:40.9864 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0662 | Debug | JS Declarations Discovering
 6 members found in /Users/ksercs/dx/DevExtreme/js/ui/collection/ui.collection_widget.base.js
-2023-04-13 17:42:40.9943 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0711 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/ui/calendar/ui.calendar.js
-2023-04-13 17:42:40.9958 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0720 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/ui/widget/ui.widget.js
-2023-04-13 17:42:40.9985 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0747 | Debug | JS Declarations Discovering
 68 members found in /Users/ksercs/dx/DevExtreme/js/ui/widget/ui.errors.js
-2023-04-13 17:42:41.0328 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0888 | Debug | JS Declarations Discovering
 7 members found in /Users/ksercs/dx/DevExtreme/js/ui/diagram/ui.diagram.js
-2023-04-13 17:42:41.0428 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.0937 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/toast/ui.toast.js
-2023-04-13 17:42:41.0865 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.1235 | Debug | JS Declarations Discovering
 3 members found in /Users/ksercs/dx/DevExtreme/js/ui/grid_core/ui.grid_core.columns_controller.js
-2023-04-13 17:42:41.1319 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.1462 | Debug | JS Declarations Discovering
 14 members found in /Users/ksercs/dx/DevExtreme/js/ui/toolbar/ui.toolbar.js
-2023-04-13 17:42:41.1371 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.1493 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/ui/scheduler/recurrence_editor.js
-2023-04-13 17:42:41.1457 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.1590 | Debug | JS Declarations Discovering
 5 members found in /Users/ksercs/dx/DevExtreme/js/ui/scheduler/ui.scheduler.js
-2023-04-13 17:42:41.1563 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.1666 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/scroll_view/ui.scroll_view.js
-2023-04-13 17:42:41.1715 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.1746 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/gantt/ui.gantt.helper.js
-2023-04-13 17:42:41.1787 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.1785 | Debug | JS Declarations Discovering
 14 members found in /Users/ksercs/dx/DevExtreme/js/ui/popover/ui.popover.js
-2023-04-13 17:42:41.1835 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.1811 | Debug | JS Declarations Discovering
 7 members found in /Users/ksercs/dx/DevExtreme/js/ui/number_box/number_box.base.js
-2023-04-13 17:42:41.1931 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2025 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/radio_group/radio_button.js
-2023-04-13 17:42:41.2404 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2312 | Debug | JS Declarations Discovering
 4 members found in /Users/ksercs/dx/DevExtreme/js/ui/tree_view/ui.tree_view.base.js
-2023-04-13 17:42:41.2435 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2326 | Debug | JS Declarations Discovering
 3 members found in /Users/ksercs/dx/DevExtreme/js/ui/list/ui.list.edit.js
-2023-04-13 17:42:41.2487 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2351 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/ui/list/ui.list.base.js
-2023-04-13 17:42:41.2548 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2374 | Debug | JS Declarations Discovering
 3 members found in /Users/ksercs/dx/DevExtreme/js/ui/menu/ui.menu.js
-2023-04-13 17:42:41.2915 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2388 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/filter_builder/filter_builder.js
-2023-04-13 17:42:41.3190 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2496 | Debug | JS Declarations Discovering
 4 members found in /Users/ksercs/dx/DevExtreme/js/ui/drop_down_editor/ui.drop_down_list.js
-2023-04-13 17:42:41.3216 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2517 | Debug | JS Declarations Discovering
 7 members found in /Users/ksercs/dx/DevExtreme/js/ui/drop_down_editor/ui.drop_down_editor.js
-2023-04-13 17:42:41.3233 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2542 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/ui/overlay/ui.overlay.js
-2023-04-13 17:42:41.3259 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2567 | Debug | JS Declarations Discovering
 9 members found in /Users/ksercs/dx/DevExtreme/js/ui/context_menu/ui.menu_base.js
-2023-04-13 17:42:41.3285 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2589 | Debug | JS Declarations Discovering
 3 members found in /Users/ksercs/dx/DevExtreme/js/ui/context_menu/ui.context_menu.js
-2023-04-13 17:42:41.3304 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2605 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/ui/editor/editor.js
-2023-04-13 17:42:41.3814 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.2943 | Debug | JS Declarations Discovering
 27 members found in /Users/ksercs/dx/DevExtreme/js/viz/core/errors_warnings.js
-2023-04-13 17:42:41.4312 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.3432 | Debug | JS Declarations Discovering
 12 members found in /Users/ksercs/dx/DevExtreme/js/viz/docs/docGaugeIndicators.js
-2023-04-13 17:42:41.4316 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.3436 | Debug | JS Declarations Discovering
 2 members found in /Users/ksercs/dx/DevExtreme/js/viz/docs/docObjectsDxPolarChart.js
-2023-04-13 17:42:41.4316 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.3436 | Debug | JS Declarations Discovering
 4 members found in /Users/ksercs/dx/DevExtreme/js/viz/docs/docgauges.js
-2023-04-13 17:42:41.4323 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.3436 | Debug | JS Declarations Discovering
 3 members found in /Users/ksercs/dx/DevExtreme/js/viz/docs/docStatic.js
-2023-04-13 17:42:41.4323 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.3436 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/viz/docs/docpolarchartseries.js
-2023-04-13 17:42:41.4866 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.3873 | Debug | JS Declarations Discovering
 5 members found in /Users/ksercs/dx/DevExtreme/js/data/data_source/data_source.js
-2023-04-13 17:42:41.4899 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.3891 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/data/odata/utils.js
-2023-04-13 17:42:41.5111 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.4033 | Debug | JS Declarations Discovering
 1 members found in /Users/ksercs/dx/DevExtreme/js/bundles/modules/core.js
-2023-04-13 17:42:41.7017 | Info | JS Declarations Discovering
+2023-05-15 11:19:10.5621 | Info | JS Declarations Discovering
 Post-parsing validations...
 
-2023-04-13 17:42:41.7212 | Info | JS Declarations Discovering
+2023-05-15 11:19:10.5758 | Info | JS Declarations Discovering
 Building members
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9195 | Warn | JS Declarations Discovering
 Patch has no effect: 'ArrayStoreOptions' -> 'ArrayStoreOptions'
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9195 | Warn | JS Declarations Discovering
 Patch has no effect: 'BaseChartOptions' -> 'BaseChartOptions'
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9195 | Warn | JS Declarations Discovering
 Patch has no effect: 'BaseGaugeOptions' -> 'BaseGaugeOptions'
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9195 | Warn | JS Declarations Discovering
 Patch has no effect: 'BaseSparklineOptions' -> 'BaseSparklineOptions'
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9195 | Warn | JS Declarations Discovering
 Patch has no effect: 'BaseWidgetOptions' -> 'BaseWidgetOptions'
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9195 | Warn | JS Declarations Discovering
 Patch has no effect: 'CollectionWidgetOptions' -> 'CollectionWidgetOptions'
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9195 | Warn | JS Declarations Discovering
 Patch has no effect: 'ComponentOptions' -> 'ComponentOptions'
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9195 | Warn | JS Declarations Discovering
 Patch has no effect: 'CustomFileSystemProviderOptions' -> 'CustomFileSystemProviderOptions'
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9195 | Warn | JS Declarations Discovering
 Patch has no effect: 'CustomStoreOptions' -> 'CustomStoreOptions'
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9195 | Warn | JS Declarations Discovering
 Patch has no effect: 'DataExpressionMixinOptions' -> 'DataExpressionMixinOptions'
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9195 | Warn | JS Declarations Discovering
 Patch has no effect: 'DataSourceOptions' -> 'DataSourceOptions'
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
+Patch has no effect: 'DateBoxBaseOptions' -> 'DateBoxBaseOptions'
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'DOMComponentOptions' -> 'DOMComponentOptions'
-2023-04-13 17:42:42.0663 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'DraggableBaseOptions' -> 'DraggableBaseOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxAccordionOptions' -> 'dxAccordionOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxActionSheetOptions' -> 'dxActionSheetOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxAutocompleteOptions' -> 'dxAutocompleteOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxBarGaugeOptions' -> 'dxBarGaugeOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxBoxOptions' -> 'dxBoxOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxBulletOptions' -> 'dxBulletOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxButtonGroupOptions' -> 'dxButtonGroupOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxButtonOptions' -> 'dxButtonOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxCalendarOptions' -> 'dxCalendarOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxChartOptions' -> 'dxChartOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxCheckBoxOptions' -> 'dxCheckBoxOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxCircularGaugeOptions' -> 'dxCircularGaugeOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxColorBoxOptions' -> 'dxColorBoxOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9205 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxContextMenuOptions' -> 'dxContextMenuOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxDataGridOptions' -> 'dxDataGridOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxDateBoxOptions' -> 'dxDateBoxOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
+Patch has no effect: 'dxDateRangeBoxOptions' -> 'dxDateRangeBoxOptions'
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxDeferRenderingOptions' -> 'dxDeferRenderingOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxDiagramOptions' -> 'dxDiagramOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxDraggableOptions' -> 'dxDraggableOptions'
-2023-04-13 17:42:42.0673 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxDrawerOptions' -> 'dxDrawerOptions'
-2023-04-13 17:42:42.0684 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxDropDownBoxOptions' -> 'dxDropDownBoxOptions'
-2023-04-13 17:42:42.0684 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxDropDownButtonOptions' -> 'dxDropDownButtonOptions'
-2023-04-13 17:42:42.0684 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxDropDownEditorOptions' -> 'dxDropDownEditorOptions'
-2023-04-13 17:42:42.0684 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxDropDownListOptions' -> 'dxDropDownListOptions'
-2023-04-13 17:42:42.0684 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxFileManagerOptions' -> 'dxFileManagerOptions'
-2023-04-13 17:42:42.0684 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxFileUploaderOptions' -> 'dxFileUploaderOptions'
-2023-04-13 17:42:42.0684 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxFilterBuilderOptions' -> 'dxFilterBuilderOptions'
-2023-04-13 17:42:42.0684 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxFormOptions' -> 'dxFormOptions'
-2023-04-13 17:42:42.0684 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxFunnelOptions' -> 'dxFunnelOptions'
-2023-04-13 17:42:42.0684 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9215 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxGalleryOptions' -> 'dxGalleryOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxGanttOptions' -> 'dxGanttOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxHtmlEditorOptions' -> 'dxHtmlEditorOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxLinearGaugeOptions' -> 'dxLinearGaugeOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxListOptions' -> 'dxListOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxLoadIndicatorOptions' -> 'dxLoadIndicatorOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxLoadPanelOptions' -> 'dxLoadPanelOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxLookupOptions' -> 'dxLookupOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxMapOptions' -> 'dxMapOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxMenuBaseOptions' -> 'dxMenuBaseOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxMenuOptions' -> 'dxMenuOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxMultiViewOptions' -> 'dxMultiViewOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxNumberBoxOptions' -> 'dxNumberBoxOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxOverlayOptions' -> 'dxOverlayOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxPieChartOptions' -> 'dxPieChartOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9225 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxPivotGridFieldChooserOptions' -> 'dxPivotGridFieldChooserOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxPivotGridOptions' -> 'dxPivotGridOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxPolarChartOptions' -> 'dxPolarChartOptions'
-2023-04-13 17:42:42.0693 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxPopoverOptions' -> 'dxPopoverOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxPopupOptions' -> 'dxPopupOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxProgressBarOptions' -> 'dxProgressBarOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxRadioGroupOptions' -> 'dxRadioGroupOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxRangeSelectorOptions' -> 'dxRangeSelectorOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxRangeSliderOptions' -> 'dxRangeSliderOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxRecurrenceEditorOptions' -> 'dxRecurrenceEditorOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxResizableOptions' -> 'dxResizableOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxResponsiveBoxOptions' -> 'dxResponsiveBoxOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxSankeyOptions' -> 'dxSankeyOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxSchedulerOptions' -> 'dxSchedulerOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxScrollableOptions' -> 'dxScrollableOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxScrollViewOptions' -> 'dxScrollViewOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9235 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxSelectBoxOptions' -> 'dxSelectBoxOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxSliderBaseOptions' -> 'dxSliderBaseOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxSliderOptions' -> 'dxSliderOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxSortableOptions' -> 'dxSortableOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxSparklineOptions' -> 'dxSparklineOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxSpeedDialActionOptions' -> 'dxSpeedDialActionOptions'
-2023-04-13 17:42:42.0703 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxSwitchOptions' -> 'dxSwitchOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTabPanelOptions' -> 'dxTabPanelOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTabsOptions' -> 'dxTabsOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTagBoxOptions' -> 'dxTagBoxOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTemplateOptions' -> 'dxTemplateOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTextAreaOptions' -> 'dxTextAreaOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTextBoxOptions' -> 'dxTextBoxOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTextEditorOptions' -> 'dxTextEditorOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTileViewOptions' -> 'dxTileViewOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxToastOptions' -> 'dxToastOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxToolbarOptions' -> 'dxToolbarOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9245 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTooltipOptions' -> 'dxTooltipOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTrackBarOptions' -> 'dxTrackBarOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTreeListOptions' -> 'dxTreeListOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTreeMapOptions' -> 'dxTreeMapOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxTreeViewOptions' -> 'dxTreeViewOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxValidationGroupOptions' -> 'dxValidationGroupOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxValidationSummaryOptions' -> 'dxValidationSummaryOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxValidatorOptions' -> 'dxValidatorOptions'
-2023-04-13 17:42:42.0713 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'dxVectorMapOptions' -> 'dxVectorMapOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'EditorOptions' -> 'EditorOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'FileSystemProviderBaseOptions' -> 'FileSystemProviderBaseOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'GridBaseOptions' -> 'GridBaseOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'HierarchicalCollectionWidgetOptions' -> 'HierarchicalCollectionWidgetOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9255 | Warn | JS Declarations Discovering
 Patch has no effect: 'LocalStoreOptions' -> 'LocalStoreOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9265 | Warn | JS Declarations Discovering
 Patch has no effect: 'ObjectFileSystemProviderOptions' -> 'ObjectFileSystemProviderOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9265 | Warn | JS Declarations Discovering
 Patch has no effect: 'ODataContextOptions' -> 'ODataContextOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9265 | Warn | JS Declarations Discovering
 Patch has no effect: 'ODataStoreOptions' -> 'ODataStoreOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9265 | Warn | JS Declarations Discovering
 Patch has no effect: 'PivotGridDataSourceOptions' -> 'PivotGridDataSourceOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9265 | Warn | JS Declarations Discovering
 Patch has no effect: 'RemoteFileSystemProviderOptions' -> 'RemoteFileSystemProviderOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9265 | Warn | JS Declarations Discovering
 Patch has no effect: 'SearchBoxMixinOptions' -> 'SearchBoxMixinOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9265 | Warn | JS Declarations Discovering
 Patch has no effect: 'StoreOptions' -> 'StoreOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9265 | Warn | JS Declarations Discovering
 Patch has no effect: 'WidgetOptions' -> 'WidgetOptions'
-2023-04-13 17:42:42.0723 | Warn | JS Declarations Discovering
+2023-05-15 11:19:10.9265 | Warn | JS Declarations Discovering
 Patch has no effect: 'XmlaStoreOptions' -> 'XmlaStoreOptions'
-2023-04-13 17:42:42.1264 | Info | JS Declarations Discovering
+2023-05-15 11:19:10.9830 | Info | JS Declarations Discovering
 Applying post-building modifications (namespaces and categories)...
-2023-04-13 17:42:42.1315 | Info | JS Declarations Discovering
-Total members built: 6787 (476 root members)
-2023-04-13 17:42:42.1680 | Debug | JS Declarations Discovering
+2023-05-15 11:19:10.9891 | Info | JS Declarations Discovering
+Total members built: 7311 (614 root members)
+2023-05-15 11:19:11.0246 | Debug | JS Declarations Discovering
 Saving /Users/ksercs/dx/DevExtreme/artifacts/internal-tools/Declarations.json
-2023-04-13 17:42:43.0785 | Debug | JS Declarations Discovering
-Members discovered in JS: 6787
-2023-04-13 17:42:43.0785 | Info | JS Declarations Discovering
+2023-05-15 11:19:11.8300 | Debug | JS Declarations Discovering
+Members discovered in JS: 7311
+2023-05-15 11:19:11.8300 | Info | JS Declarations Discovering
 Result saved to /Users/ksercs/dx/DevExtreme/artifacts/internal-tools/Declarations.json
-2023-04-13 17:42:43.0785 | Info | JS Declarations Discovering
+2023-05-15 11:19:11.8300 | Info | JS Declarations Discovering
 Generating UML-file..
-2023-04-13 17:42:43.0896 | Info | JS Declarations Discovering
+2023-05-15 11:19:11.8383 | Info | JS Declarations Discovering
 
 ================================================================
 
 JS Declarations Discovering SUCCEEDED
 
-Files searched: 1071
-Members discovered: 634
+Files searched: 1072
+Members discovered: 633
 
-Warnings: 113
+Warnings: 115
 Errors: 0
-Ellapsed time: 3.652 sec
+Ellapsed time: 3.083 sec
 
-2023-04-13 17:42:32.7117 | Debug | CLI
+2023-05-15 11:19:03.4284 | Debug | CLI
 Process args: /usr/local/bin/node /Users/ksercs/dx/DevExtreme/node_modules/.bin/dx-tools discover --js-scripts ./js --exclude js/(renovation|__internal|.eslintrc.js) --compiler-options { "typeRoots": [] }
-2023-04-13 17:42:32.7127 | Info | CLI
-Tools version: 10.0.0-beta.5
+2023-05-15 11:19:03.4294 | Info | CLI
+Tools version: 10.0.0-beta.6
 TS version: 4.2.4
-2023-04-13 17:42:32.7137 | Trace | TS Declarations Discovering
+2023-05-15 11:19:03.4294 | Trace | TS Declarations Discovering
 
 ================================================================
 TS Declarations Discovering Started
 ================================================================
 
-2023-04-13 17:42:32.7968 | Info | TS Declarations Discovering
-262 files discovered
-2023-04-13 17:42:32.7968 | Info | TS Declarations Discovering
+2023-05-15 11:19:03.5235 | Info | TS Declarations Discovering
+265 files discovered
+2023-05-15 11:19:03.5235 | Info | TS Declarations Discovering
 Discovering modules
-2023-04-13 17:42:34.1612 | Info | TS Declarations Discovering
+2023-05-15 11:19:04.4705 | Info | TS Declarations Discovering
 162 modules discovered
-2023-04-13 17:42:34.1652 | Info | TS Declarations Discovering
+2023-05-15 11:19:04.4725 | Info | TS Declarations Discovering
 Discovering members
-2023-04-13 17:42:34.96810 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.0531 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -549,7 +553,7 @@ export type AsyncRule = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common.d.ts:14:56
-2023-04-13 17:42:34.98310 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.0651 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -589,7 +593,7 @@ export type CompareRule = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common.d.ts:72:78
-2023-04-13 17:42:34.99010 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.0721 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -635,7 +639,7 @@ export type CustomRule = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common.d.ts:117:87
-2023-04-13 17:42:35.0300 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.1071 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -663,7 +667,7 @@ export type EmailRule = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common.d.ts:204:63
-2023-04-13 17:42:35.0410 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.1181 | Warn | TS Declarations Discovering
 "@type boolean" tag can be deleted.
 Generated value: boolean
 
@@ -672,7 +676,7 @@ defaultUseCurrencyAccountingStyle?: boolean;
 
 SyntaxKind: 162
 /Users/ksercs/dx/DevExtreme/js/common.d.ts:277:27
-2023-04-13 17:42:35.0440 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.1211 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -792,7 +796,7 @@ export type GlobalConfig = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common.d.ts:255:407
-2023-04-13 17:42:35.0601 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.1341 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -820,7 +824,7 @@ export type NumericRule = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common.d.ts:405:26
-2023-04-13 17:42:35.0681 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.1421 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -853,7 +857,7 @@ export type PatternRule = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common.d.ts:450:55
-2023-04-13 17:42:35.0771 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.1491 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -897,7 +901,7 @@ export type RangeRule = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common.d.ts:494:139
-2023-04-13 17:42:35.0781 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.1502 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -925,7 +929,7 @@ export type RequiredRule = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common.d.ts:537:2
-2023-04-13 17:42:35.1251 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.1822 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -969,7 +973,7 @@ export type StringLengthRule = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common.d.ts:654:52
-2023-04-13 17:42:35.2092 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.2603 | Warn | TS Declarations Discovering
 "@type boolean" tag can be deleted.
 Generated value: boolean
 
@@ -978,7 +982,7 @@ useCurrencyAccountingStyle?: boolean;
 
 SyntaxKind: 162
 /Users/ksercs/dx/DevExtreme/js/localization.d.ts:82:21
-2023-04-13 17:42:35.3123 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.3534 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -1000,7 +1004,7 @@ export type ScaleBreak = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common/charts.d.ts:124:52
-2023-04-13 17:42:35.3483 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.3734 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -1032,7 +1036,7 @@ export type VisualRange = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common/charts.d.ts:228:95
-2023-04-13 17:42:35.3654 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.3814 | Warn | TS Declarations Discovering
 "@type object" tag can be deleted.
 Generated value: object
 
@@ -1054,7 +1058,7 @@ export type ChartsColor = {
 
 SyntaxKind: 254
 /Users/ksercs/dx/DevExtreme/js/common/charts.d.ts:278:43
-2023-04-13 17:42:36.1401 | Warn | TS Declarations Discovering
+2023-05-15 11:19:05.9059 | Warn | TS Declarations Discovering
 "@type_function_param1 data:DisabledDate" tag can be deleted.
 Generated value: data:DisabledDate
 
@@ -1063,7 +1067,7 @@ disabledDates?: Array<Date> | ((data: DisabledDate) => boolean);
 
 SyntaxKind: 162
 /Users/ksercs/dx/DevExtreme/js/ui/calendar.d.ts:94:37
-2023-04-13 17:42:36.6597 | Warn | TS Declarations Discovering
+2023-05-15 11:19:06.3243 | Warn | TS Declarations Discovering
 "@param1 format:Enums.DiagramExportFormat" tag can be deleted.
 Generated value: format:Enums.DiagramExportFormat
 
@@ -1072,7 +1076,7 @@ exportTo(format: DiagramExportFormat, callback: Function): void;
 
 SyntaxKind: 165
 /Users/ksercs/dx/DevExtreme/js/ui/diagram.d.ts:1078:21
-2023-04-13 17:42:37.0350 | Warn | TS Declarations Discovering
+2023-05-15 11:19:06.5986 | Warn | TS Declarations Discovering
 "@type Enums.GanttPredefinedContextMenuItem|string" tag can be deleted.
 Generated value: Enums.GanttPredefinedContextMenuItem|string
 
@@ -1080,8 +1084,8 @@ Generated value: Enums.GanttPredefinedContextMenuItem|string
 name?: GanttPredefinedContextMenuItem | string;
 
 SyntaxKind: 162
-/Users/ksercs/dx/DevExtreme/js/ui/gantt.d.ts:1202:67
-2023-04-13 17:42:37.1061 | Warn | TS Declarations Discovering
+/Users/ksercs/dx/DevExtreme/js/ui/gantt.d.ts:1206:67
+2023-05-15 11:19:06.6507 | Warn | TS Declarations Discovering
 "@param1 formatName:Enums.HtmlEditorFormat|string" tag can be deleted.
 Generated value: formatName:Enums.HtmlEditorFormat|string
 
@@ -1090,7 +1094,7 @@ format(formatName: HtmlEditorFormat | string, formatValue: any): void;
 
 SyntaxKind: 165
 /Users/ksercs/dx/DevExtreme/js/ui/html_editor.d.ts:218:48
-2023-04-13 17:42:37.1071 | Warn | TS Declarations Discovering
+2023-05-15 11:19:06.6507 | Warn | TS Declarations Discovering
 "@param3 formatName:Enums.HtmlEditorFormat|string" tag can be deleted.
 Generated value: formatName:Enums.HtmlEditorFormat|string
 
@@ -1099,7 +1103,7 @@ formatLine(index: number, length: number, formatName: HtmlEditorFormat | string,
 
 SyntaxKind: 165
 /Users/ksercs/dx/DevExtreme/js/ui/html_editor.d.ts:225:74
-2023-04-13 17:42:37.1071 | Warn | TS Declarations Discovering
+2023-05-15 11:19:06.6507 | Warn | TS Declarations Discovering
 "@param3 formatName:Enums.HtmlEditorFormat|string" tag can be deleted.
 Generated value: formatName:Enums.HtmlEditorFormat|string
 
@@ -1108,7 +1112,7 @@ formatText(index: number, length: number, formatName: HtmlEditorFormat | string,
 
 SyntaxKind: 165
 /Users/ksercs/dx/DevExtreme/js/ui/html_editor.d.ts:239:66
-2023-04-13 17:42:37.1081 | Warn | TS Declarations Discovering
+2023-05-15 11:19:06.6517 | Warn | TS Declarations Discovering
 "@param3 formatName:Enums.HtmlEditorFormat|string" tag can be deleted.
 Generated value: formatName:Enums.HtmlEditorFormat|string
 
@@ -1117,7 +1121,7 @@ insertText(index: number, text: string, formatName: HtmlEditorFormat | string, f
 
 SyntaxKind: 165
 /Users/ksercs/dx/DevExtreme/js/ui/html_editor.d.ts:320:64
-2023-04-13 17:42:37.5626 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.0561 | Warn | TS Declarations Discovering
 "@type_function_param1_field model:any" tag can be deleted.
 Generated value: model:any
 
@@ -1126,7 +1130,7 @@ onCustomItemCreating?: ((e: EventInfo<TComponent> & CustomItemCreatingInfo) => v
 
 SyntaxKind: 162
 /Users/ksercs/dx/DevExtreme/js/ui/select_box.d.ts:123:109
-2023-04-13 17:42:37.9089 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.3443 | Warn | TS Declarations Discovering
 "@type_function_param1_field cancel:boolean" tag can be deleted.
 Generated value: cancel:boolean
 
@@ -1134,8 +1138,8 @@ Generated value: cancel:boolean
 onFocusedRowChanging?: ((e: FocusedRowChangingEvent<TRowData, TKey>) => void);
 
 SyntaxKind: 162
-/Users/ksercs/dx/DevExtreme/js/ui/tree_list.d.ts:669:80
-2023-04-13 17:42:37.9089 | Warn | TS Declarations Discovering
+/Users/ksercs/dx/DevExtreme/js/ui/tree_list.d.ts:675:80
+2023-05-15 11:19:07.3443 | Warn | TS Declarations Discovering
 "@type_function_param1_field element:DxElement" tag can be deleted.
 Generated value: element:DxElement
 
@@ -1143,8 +1147,8 @@ Generated value: element:DxElement
 onFocusedRowChanging?: ((e: FocusedRowChangingEvent<TRowData, TKey>) => void);
 
 SyntaxKind: 162
-/Users/ksercs/dx/DevExtreme/js/ui/tree_list.d.ts:669:80
-2023-04-13 17:42:37.9099 | Warn | TS Declarations Discovering
+/Users/ksercs/dx/DevExtreme/js/ui/tree_list.d.ts:675:80
+2023-05-15 11:19:07.3443 | Warn | TS Declarations Discovering
 "@type_function_param1_field model:any" tag can be deleted.
 Generated value: model:any
 
@@ -1152,8 +1156,8 @@ Generated value: model:any
 onFocusedRowChanging?: ((e: FocusedRowChangingEvent<TRowData, TKey>) => void);
 
 SyntaxKind: 162
-/Users/ksercs/dx/DevExtreme/js/ui/tree_list.d.ts:669:80
-2023-04-13 17:42:37.9099 | Warn | TS Declarations Discovering
+/Users/ksercs/dx/DevExtreme/js/ui/tree_list.d.ts:675:80
+2023-05-15 11:19:07.3443 | Warn | TS Declarations Discovering
 "@type_function_param1_field rowElement:DxElement" tag can be deleted.
 Generated value: rowElement:DxElement
 
@@ -1161,8 +1165,8 @@ Generated value: rowElement:DxElement
 onFocusedRowChanging?: ((e: FocusedRowChangingEvent<TRowData, TKey>) => void);
 
 SyntaxKind: 162
-/Users/ksercs/dx/DevExtreme/js/ui/tree_list.d.ts:669:80
-2023-04-13 17:42:37.9099 | Warn | TS Declarations Discovering
+/Users/ksercs/dx/DevExtreme/js/ui/tree_list.d.ts:675:80
+2023-05-15 11:19:07.3443 | Warn | TS Declarations Discovering
 "@type_function_param1_field prevRowIndex:number" tag can be deleted.
 Generated value: prevRowIndex:number
 
@@ -1170,8 +1174,8 @@ Generated value: prevRowIndex:number
 onFocusedRowChanging?: ((e: FocusedRowChangingEvent<TRowData, TKey>) => void);
 
 SyntaxKind: 162
-/Users/ksercs/dx/DevExtreme/js/ui/tree_list.d.ts:669:80
-2023-04-13 17:42:37.9099 | Warn | TS Declarations Discovering
+/Users/ksercs/dx/DevExtreme/js/ui/tree_list.d.ts:675:80
+2023-05-15 11:19:07.3453 | Warn | TS Declarations Discovering
 "@type_function_param1_field newRowIndex:number" tag can be deleted.
 Generated value: newRowIndex:number
 
@@ -1179,8 +1183,8 @@ Generated value: newRowIndex:number
 onFocusedRowChanging?: ((e: FocusedRowChangingEvent<TRowData, TKey>) => void);
 
 SyntaxKind: 162
-/Users/ksercs/dx/DevExtreme/js/ui/tree_list.d.ts:669:80
-2023-04-13 17:42:38.1732 | Warn | TS Declarations Discovering
+/Users/ksercs/dx/DevExtreme/js/ui/tree_list.d.ts:675:80
+2023-05-15 11:19:07.5586 | Warn | TS Declarations Discovering
 "@type Enums.SeriesType" tag can be deleted.
 Generated value: Enums.SeriesType
 
@@ -1188,8 +1192,8 @@ Generated value: Enums.SeriesType
 type?: SeriesType;
 
 SyntaxKind: 162
-/Users/ksercs/dx/DevExtreme/js/viz/chart.d.ts:2197:16
-2023-04-13 17:42:38.1882 | Warn | TS Declarations Discovering
+/Users/ksercs/dx/DevExtreme/js/viz/chart.d.ts:2251:16
+2023-05-15 11:19:07.5686 | Warn | TS Declarations Discovering
 "@type_function_param1_field element:DxElement" tag can be deleted.
 Generated value: element:DxElement
 
@@ -1198,7 +1202,7 @@ onLegendClick?: ((e: LegendClickEvent) => void) | string;
 
 SyntaxKind: 162
 /Users/ksercs/dx/DevExtreme/js/viz/chart.d.ts:966:73
-2023-04-13 17:42:38.1892 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.5686 | Warn | TS Declarations Discovering
 "@type_function_param1_field model:any" tag can be deleted.
 Generated value: model:any
 
@@ -1207,7 +1211,7 @@ onLegendClick?: ((e: LegendClickEvent) => void) | string;
 
 SyntaxKind: 162
 /Users/ksercs/dx/DevExtreme/js/viz/chart.d.ts:966:73
-2023-04-13 17:42:38.1892 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.5696 | Warn | TS Declarations Discovering
 "@type_function_param1_field element:DxElement" tag can be deleted.
 Generated value: element:DxElement
 
@@ -1216,7 +1220,7 @@ onSeriesClick?: ((e: SeriesClickEvent) => void) | string;
 
 SyntaxKind: 162
 /Users/ksercs/dx/DevExtreme/js/viz/chart.d.ts:980:61
-2023-04-13 17:42:38.1892 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.5696 | Warn | TS Declarations Discovering
 "@type_function_param1_field model:any" tag can be deleted.
 Generated value: model:any
 
@@ -1225,7 +1229,7 @@ onSeriesClick?: ((e: SeriesClickEvent) => void) | string;
 
 SyntaxKind: 162
 /Users/ksercs/dx/DevExtreme/js/viz/chart.d.ts:980:61
-2023-04-13 17:42:38.3714 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.7708 | Warn | TS Declarations Discovering
 "@type Enums.SeriesType" tag can be deleted.
 Generated value: Enums.SeriesType
 
@@ -1234,7 +1238,7 @@ type?: CommonSeriesType;
 
 SyntaxKind: 162
 /Users/ksercs/dx/DevExtreme/js/viz/common.d.ts:338:14
-2023-04-13 17:42:38.3804 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.7778 | Warn | TS Declarations Discovering
 "@param2_field format:Enums.ExportFormat" tag can be deleted.
 Generated value: format:Enums.ExportFormat:optional
 
@@ -1243,7 +1247,7 @@ export function exportWidgets(widgetInstances: VizWidget | Array<VizWidget> | Ar
 
 SyntaxKind: 251
 /Users/ksercs/dx/DevExtreme/js/viz/export.d.ts:28:276
-2023-04-13 17:42:38.3804 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.7778 | Warn | TS Declarations Discovering
 "@param2_field verticalAlignment:Enums.VerticalAlignment" tag can be deleted.
 Generated value: verticalAlignment:Enums.VerticalAlignment:optional
 
@@ -1252,7 +1256,7 @@ export function exportWidgets(widgetInstances: VizWidget | Array<VizWidget> | Ar
 
 SyntaxKind: 251
 /Users/ksercs/dx/DevExtreme/js/viz/export.d.ts:28:276
-2023-04-13 17:42:38.3804 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.7778 | Warn | TS Declarations Discovering
 "@param2_field horizontalAlignment:Enums.HorizontalAlignment" tag can be deleted.
 Generated value: horizontalAlignment:Enums.HorizontalAlignment:optional
 
@@ -1261,7 +1265,7 @@ export function exportWidgets(widgetInstances: VizWidget | Array<VizWidget> | Ar
 
 SyntaxKind: 251
 /Users/ksercs/dx/DevExtreme/js/viz/export.d.ts:28:276
-2023-04-13 17:42:38.4284 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.8248 | Warn | TS Declarations Discovering
 "@param1 palette:Enums.Palette|Array<string>" tag can be deleted.
 Generated value: palette:Enums.Palette|Array<string>
 
@@ -1270,7 +1274,7 @@ export function generateColors(palette: Palette | Array<string>, count: number, 
 
 SyntaxKind: 251
 /Users/ksercs/dx/DevExtreme/js/viz/palette.d.ts:26:58
-2023-04-13 17:42:38.4294 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.8248 | Warn | TS Declarations Discovering
 "@param3_field paletteExtensionMode:Enums.PaletteExtensionMode" tag can be deleted.
 Generated value: paletteExtensionMode:Enums.PaletteExtensionMode:optional
 
@@ -1279,7 +1283,7 @@ export function generateColors(palette: Palette | Array<string>, count: number, 
 
 SyntaxKind: 251
 /Users/ksercs/dx/DevExtreme/js/viz/palette.d.ts:26:58
-2023-04-13 17:42:38.4294 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.8258 | Warn | TS Declarations Discovering
 "@param1 palette:Enums.Palette|Array<string>" tag can be deleted.
 Generated value: palette:Enums.Palette|Array<string>
 
@@ -1288,7 +1292,7 @@ export function generateColors(palette: Palette | Array<string>, count: number, 
 
 SyntaxKind: 251
 /Users/ksercs/dx/DevExtreme/js/viz/palette.d.ts:26:58
-2023-04-13 17:42:38.4294 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.8258 | Warn | TS Declarations Discovering
 "@param3_field paletteExtensionMode:Enums.PaletteExtensionMode" tag can be deleted.
 Generated value: paletteExtensionMode:Enums.PaletteExtensionMode:optional
 
@@ -1297,7 +1301,7 @@ export function generateColors(palette: Palette | Array<string>, count: number, 
 
 SyntaxKind: 251
 /Users/ksercs/dx/DevExtreme/js/viz/palette.d.ts:26:58
-2023-04-13 17:42:38.5185 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.9079 | Warn | TS Declarations Discovering
 "@type_function_param1_field element:DxElement" tag can be deleted.
 Generated value: element:DxElement
 
@@ -1306,7 +1310,7 @@ onLegendClick?: ((e: LegendClickEvent) => void) | string;
 
 SyntaxKind: 162
 /Users/ksercs/dx/DevExtreme/js/viz/polar_chart.d.ts:320:165
-2023-04-13 17:42:38.5195 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.9079 | Warn | TS Declarations Discovering
 "@type_function_param1_field model:any" tag can be deleted.
 Generated value: model:any
 
@@ -1315,7 +1319,7 @@ onLegendClick?: ((e: LegendClickEvent) => void) | string;
 
 SyntaxKind: 162
 /Users/ksercs/dx/DevExtreme/js/viz/polar_chart.d.ts:320:165
-2023-04-13 17:42:38.5195 | Warn | TS Declarations Discovering
+2023-05-15 11:19:07.9089 | Warn | TS Declarations Discovering
 "@type_function_param1_field model:any" tag can be deleted.
 Generated value: model:any
 
@@ -1324,7 +1328,7 @@ onSeriesClick?: ((e: SeriesClickEvent) => void) | string;
 
 SyntaxKind: 162
 /Users/ksercs/dx/DevExtreme/js/viz/polar_chart.d.ts:334:61
-2023-04-13 17:42:38.7718 | Warn | TS Declarations Discovering
+2023-05-15 11:19:08.1011 | Warn | TS Declarations Discovering
 "@param1_field columnPath:Array<string, number, Date>" tag can be deleted.
 Generated value: columnPath:Array<string|number|Date>:optional
 
@@ -1332,8 +1336,8 @@ Generated value: columnPath:Array<string|number|Date>:optional
 createDrillDownDataSource(options: { columnPath?: Array<string | number | Date>; rowPath?: Array<string | number | Date>; dataIndex?: number; maxRowCount?: number; customColumns?: Array<string> }): DataSource;
 
 SyntaxKind: 165
-/Users/ksercs/dx/DevExtreme/js/ui/pivot_grid/data_source.d.ts:507:80
-2023-04-13 17:42:38.7718 | Warn | TS Declarations Discovering
+/Users/ksercs/dx/DevExtreme/js/ui/pivot_grid/data_source.d.ts:521:80
+2023-05-15 11:19:08.1011 | Warn | TS Declarations Discovering
 "@param1_field rowPath:Array<string, number, Date>" tag can be deleted.
 Generated value: rowPath:Array<string|number|Date>:optional
 
@@ -1341,10 +1345,10 @@ Generated value: rowPath:Array<string|number|Date>:optional
 createDrillDownDataSource(options: { columnPath?: Array<string | number | Date>; rowPath?: Array<string | number | Date>; dataIndex?: number; maxRowCount?: number; customColumns?: Array<string> }): DataSource;
 
 SyntaxKind: 165
-/Users/ksercs/dx/DevExtreme/js/ui/pivot_grid/data_source.d.ts:507:80
-2023-04-13 17:42:38.8859 | Info | TS Declarations Discovering
-5847 members descriptors discovered
-2023-04-13 17:42:39.0290 | Info | TS Declarations Discovering
+/Users/ksercs/dx/DevExtreme/js/ui/pivot_grid/data_source.d.ts:521:80
+2023-05-15 11:19:08.2012 | Info | TS Declarations Discovering
+6447 members descriptors discovered
+2023-05-15 11:19:08.3433 | Info | TS Declarations Discovering
 
 ================================================================
 
@@ -1352,8 +1356,8 @@ TS Declarations Discovering SUCCEEDED
 
 Warnings: 47
 Errors: 0
-Elapsed time: 6.528 sec
+Elapsed time: 5.56 sec
 
 
-2023-04-13 17:42:43.1361 | Info | TS Declarations Discovering
+2023-05-15 11:19:11.8809 | Info | TS Declarations Discovering
 Declarations.Discoverer OK

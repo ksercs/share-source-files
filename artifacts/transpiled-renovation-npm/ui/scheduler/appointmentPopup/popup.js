@@ -95,8 +95,9 @@ var AppointmentPopup = /*#__PURE__*/function () {
       onShowing: function onShowing(e) {
         return _this2._onShowing(e);
       },
-      copyRootClassesToWrapper: true,
-      _ignoreCopyRootClassesToWrapperDeprecation: true
+      wrapperAttr: {
+        class: APPOINTMENT_POPUP_CLASS
+      }
     });
   };
   _proto._onShowing = function _onShowing(e) {
@@ -259,9 +260,7 @@ var AppointmentPopup = /*#__PURE__*/function () {
       container: container,
       position: {
         of: container
-      },
-      copyRootClassesToWrapper: true,
-      _ignoreCopyRootClassesToWrapperDeprecation: true
+      }
     });
   };
   _proto._tryLockSaveChanges = function _tryLockSaveChanges() {

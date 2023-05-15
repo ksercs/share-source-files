@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/html_editor/modules/imageUpload.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -12,7 +12,7 @@ import eventsEngine from '../../../events/core/events_engine';
 import $ from '../../../core/renderer';
 import { isDefined } from '../../../core/utils/type';
 import { extend } from '../../../core/utils/extend';
-import { urlUpload, getFileUploaderBaseOptions, correctSlashesInUrl } from '../utils/image_uploader_helper';
+import { serverUpload, getFileUploaderBaseOptions } from '../utils/image_uploader_helper';
 import { addNamespace } from '../../../events/utils/index';
 import FileUploader from '../../file_uploader';
 var MODULE_NAMESPACE = 'dxHtmlEditorImageUpload';
@@ -64,11 +64,7 @@ if (Quill) {
       } = (_this$quill$getSelect = this.quill.getSelection()) !== null && _this$quill$getSelect !== void 0 ? _this$quill$getSelect : {
         index: this.quill.getLength()
       };
-      var imageUrl = correctSlashesInUrl(this.options.uploadDirectory) + data.file.name;
-      urlUpload(this.quill, pasteIndex, {
-        src: imageUrl
-      });
-      this.quill.setSelection(pasteIndex + 1, 0);
+      serverUpload(this.options.uploadDirectory, data.file.name, this.quill, pasteIndex);
     }
     _attachEvents() {
       eventsEngine.on(this.quill.root, addNamespace('drop', MODULE_NAMESPACE), this._dropHandler.bind(this));

@@ -72,7 +72,8 @@ var Editor = Widget.inherit({
         h: 0,
         v: 0
       },
-      validationTooltipOptions: {}
+      validationTooltipOptions: {},
+      _showValidationMessage: true
     });
   },
   _attachKeyboardEvents: function _attachKeyboardEvents() {
@@ -184,14 +185,13 @@ var Editor = Widget.inherit({
     var validationErrors = this._getValidationErrors();
     var $element = this.$element();
     this._toggleValidationClasses(!isValid);
-    if (!hasWindow()) {
+    if (!hasWindow() || this.option('_showValidationMessage') === false) {
       return;
     }
     this._disposeValidationMessage();
     if (!isValid && validationErrors) {
       var {
         validationMessageMode,
-        validationMessagePosition,
         validationMessageOffset,
         validationBoundary,
         rtlEnabled
@@ -205,13 +205,16 @@ var Editor = Widget.inherit({
         target: this._getValidationMessageTarget(),
         visualContainer: $element,
         mode: validationMessageMode,
-        positionSide: validationMessagePosition,
+        positionSide: this._getValidationMessagePosition(),
         offset: validationMessageOffset,
         boundary: validationBoundary,
         contentId: validationMessageContentId
       }, this._options.cache('validationTooltipOptions')));
       this._bindInnerWidgetOptions(this._validationMessage, 'validationTooltipOptions');
     }
+  },
+  _getValidationMessagePosition: function _getValidationMessagePosition() {
+    return this.option('validationMessagePosition');
   },
   _getValidationMessageTarget: function _getValidationMessageTarget() {
     return this.$element();
@@ -314,6 +317,8 @@ var Editor = Widget.inherit({
         break;
       case 'validationTooltipOptions':
         this._innerWidgetOptionChanged(this._validationMessage, args);
+        break;
+      case '_showValidationMessage':
         break;
       default:
         this.callBase(args);

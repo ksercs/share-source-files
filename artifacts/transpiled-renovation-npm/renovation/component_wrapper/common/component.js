@@ -13,6 +13,9 @@ var _element = require("../../../core/element");
 var _type = require("../../../core/utils/type");
 var _template_wrapper = require("./template_wrapper");
 var _update_props_immutable = require("../utils/update_props_immutable");
+require("../../../events/click");
+require("../../../events/core/emitter.feedback");
+require("../../../events/hover");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }

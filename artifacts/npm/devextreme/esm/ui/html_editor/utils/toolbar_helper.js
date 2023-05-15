@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/html_editor/utils/toolbar_helper.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -185,9 +185,21 @@ function getTargetTableNode(module, partName) {
 function getLinkRange(module, range) {
   var Quill = getQuill();
   var LinkBlot = Quill.import('formats/link');
-  var [link, offset] = module.quill.scroll.descendant(LinkBlot, range.index);
+  var link;
+  var linkOffset;
+  [link, linkOffset] = module.quill.scroll.descendant(LinkBlot, range.index);
+  if (!link && range.length === 0) {
+    // NOTE:
+    // See T1157840
+    // When a mouse pointer is placed on the link's right border, the quill.scroll.descendant method does not return information about the link.
+    // In this case, we receive a necessary information from the previous index.
+    [link, linkOffset] = module.quill.scroll.descendant(LinkBlot, range.index - 1);
+    if (link) {
+      linkOffset += 1;
+    }
+  }
   var result = !link ? null : {
-    index: range.index - offset,
+    index: range.index - linkOffset,
     length: link.length()
   };
   return result;

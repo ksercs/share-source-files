@@ -7,6 +7,7 @@ import { isDefined } from '../../core/utils/type';
 import { each } from '../../core/utils/iterator';
 import { extend } from '../../core/utils/extend';
 import { registerKeyboardAction } from './ui.grid_core.accessibility';
+import domAdapter from '../../core/dom_adapter';
 var CELL_CONTENT_CLASS = 'text-content';
 var HEADERS_CLASS = 'headers';
 var NOWRAP_CLASS = 'nowrap';
@@ -24,6 +25,7 @@ var SORT_INDEX_INDICATOR_CLASS = 'dx-sort-index-indicator';
 var HEADER_FILTER_CLASS_SELECTOR = '.dx-header-filter';
 var HEADER_FILTER_INDICATOR_CLASS = 'dx-header-filter-indicator';
 var MULTI_ROW_HEADER_CLASS = 'dx-header-multi-row';
+var LINK = 'dx-link';
 export var columnHeadersModule = {
   defaultOptions: function defaultOptions() {
     return {
@@ -74,14 +76,52 @@ export var columnHeadersModule = {
         _getDefaultTemplate: function _getDefaultTemplate(column) {
           var that = this;
           return function ($container, options) {
-            var $content = column.command ? $container : createCellContent(that, $container, options);
-            var caption = column.command !== 'expand' && column.caption;
-            if (caption) {
+            var {
+              caption
+            } = column;
+            var needCellContent = !column.command || caption && column.command !== 'expand';
+            if (column.command === 'empty') {
+              that._renderEmptyMessage($container, options);
+            } else if (needCellContent) {
+              var $content = createCellContent(that, $container, options);
               $content.text(caption);
             } else if (column.command) {
               $container.html('&nbsp;');
             }
           };
+        },
+        _renderEmptyMessage: function _renderEmptyMessage($container, options) {
+          var textEmpty = this._getEmptyHeaderText();
+          if (!textEmpty) {
+            $container.html('&nbsp;');
+            return;
+          }
+          var $cellContent = createCellContent(this, $container, options);
+          var needSplit = textEmpty.includes('{0}');
+          if (needSplit) {
+            var [leftPart, rightPart] = textEmpty.split('{0}');
+            var columnChooserTitle = messageLocalization.format('dxDataGrid-emptyHeaderColumnChooserText');
+            var columnChooserView = this.component.getView('columnChooserView');
+            var $link = $('<a>').text(columnChooserTitle).addClass(LINK);
+            eventsEngine.on($link, 'click', this.createAction(() => columnChooserView.showColumnChooser()));
+            $cellContent.append(domAdapter.createTextNode(leftPart)).append($link).append(domAdapter.createTextNode(rightPart));
+          } else {
+            $cellContent.text(textEmpty);
+          }
+        },
+        _getEmptyHeaderText: function _getEmptyHeaderText() {
+          var hasHiddenColumns = !!this.component.getView('columnChooserView').hasHiddenColumns();
+          var hasGroupedColumns = !!this.component.getView('headerPanel').hasGroupedColumns();
+          switch (true) {
+            case hasHiddenColumns && hasGroupedColumns:
+              return messageLocalization.format('dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText');
+            case hasGroupedColumns:
+              return messageLocalization.format('dxDataGrid-emptyHeaderWithGroupPanelText');
+            case hasHiddenColumns:
+              return messageLocalization.format('dxDataGrid-emptyHeaderWithColumnChooserText');
+            default:
+              return '';
+          }
         },
         _getHeaderTemplate: function _getHeaderTemplate(column) {
           return column.headerCellTemplate || {
@@ -194,11 +234,9 @@ export var columnHeadersModule = {
             that._hasRowElements = true;
           }
         },
-        _getRowVisibleColumns: function _getRowVisibleColumns(rowIndex) {
-          return this._columnsController.getVisibleColumns(rowIndex);
-        },
         _renderRow: function _renderRow($table, options) {
-          options.columns = this._getRowVisibleColumns(options.row.rowIndex);
+          var rowIndex = this.getRowCount() === 1 ? null : options.row.rowIndex;
+          options.columns = this.getColumns(rowIndex);
           this.callBase($table, options);
         },
         _createCell: function _createCell(options) {
@@ -322,32 +360,11 @@ export var columnHeadersModule = {
           }
           return this.callBase.apply(this, arguments);
         },
-        allowDragging: function allowDragging(column, sourceLocation, draggingPanels) {
-          var i;
-          var draggableColumnCount = 0;
+        allowDragging: function allowDragging(column) {
           var rowIndex = column && this._columnsController.getRowIndex(column.index);
-          var columns = this.getColumns(rowIndex === 0 ? 0 : null);
-          var canHideColumn = (column === null || column === void 0 ? void 0 : column.allowHiding) && columns.length > 1;
-          var allowDrag = function allowDrag(column) {
-            return column.allowReordering || column.allowGrouping || column.allowHiding;
-          };
-          for (i = 0; i < columns.length; i++) {
-            if (allowDrag(columns[i])) {
-              draggableColumnCount++;
-            }
-          }
-          if (draggableColumnCount <= 1 && !canHideColumn) {
-            return false;
-          } else if (!draggingPanels) {
-            return (this.option('allowColumnReordering') || this._columnsController.isColumnOptionUsed('allowReordering')) && column && column.allowReordering;
-          }
-          for (i = 0; i < draggingPanels.length; i++) {
-            var draggingPanel = draggingPanels[i];
-            if (draggingPanel && draggingPanel.allowDragging(column, sourceLocation)) {
-              return true;
-            }
-          }
-          return false;
+          var columns = this.getColumns(rowIndex);
+          var isReorderingEnabled = this.option('allowColumnReordering') || this._columnsController.isColumnOptionUsed('allowReordering');
+          return isReorderingEnabled && column.allowReordering && columns.length > 1;
         },
         getBoundingRect: function getBoundingRect() {
           var that = this;

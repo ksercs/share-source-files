@@ -65,17 +65,17 @@ var GanttSizeHelper = /*#__PURE__*/function () {
     if (!(0, _window.hasWindow)()) {
       return;
     }
-    if (!widths) {
-      // option changed
+    var takeWithFromOption = !widths;
+    if (takeWithFromOption) {
       widths = this._getPanelsWidthByOption();
-      this._gantt._splitter._setSplitterPositionLeft({
-        splitterPositionLeft: widths.leftPanelWidth
-      });
       this._setTreeListDimension('width', 0);
       this._setGanttViewDimension('width', 0);
     }
     this._setTreeListDimension('width', widths.leftPanelWidth);
     this._setGanttViewDimension('width', widths.rightPanelWidth);
+    if (takeWithFromOption) {
+      this._gantt._splitter._setSplitterPositionLeft();
+    }
   };
   _proto.updateGanttWidth = function updateGanttWidth() {
     this._gantt._splitter._dimensionChanged();

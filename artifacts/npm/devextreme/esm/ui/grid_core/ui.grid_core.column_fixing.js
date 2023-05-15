@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/grid_core/ui.grid_core.column_fixing.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -206,6 +206,10 @@ var baseFixedColumns = {
       $cell.addClass(FIXED_COL_CLASS);
     }
     return $cell;
+  },
+  _getContent: function _getContent(isFixedTableRendering) {
+    var _this$_fixedTableElem;
+    return isFixedTableRendering ? (_this$_fixedTableElem = this._fixedTableElement) === null || _this$_fixedTableElem === void 0 ? void 0 : _this$_fixedTableElem.parent() : this.callBase.apply(this, arguments);
   },
   _wrapTableInScrollContainer: function _wrapTableInScrollContainer($table, isFixedTableRendering) {
     var $scrollContainer = this.callBase.apply(this, arguments);
@@ -694,7 +698,9 @@ var RowsViewFixedColumnsExtender = extend({}, baseFixedColumns, {
     var isFixedColumns = this._isFixedColumns;
     this.element().toggleClass(FIXED_COLUMNS_CLASS, isFixedColumns);
     if (this.option('hoverStateEnabled') && isFixedColumns) {
-      this._attachHoverEvents();
+      deferred.done(() => {
+        this._attachHoverEvents();
+      });
     }
     return deferred;
   },

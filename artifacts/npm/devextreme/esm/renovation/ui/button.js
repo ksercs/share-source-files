@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/renovation/ui/button.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -221,9 +221,34 @@ export class Button extends InfernoWrapperComponent {
       icon,
       text
     } = this.props;
-    var label = (text !== null && text !== void 0 ? text : '') || messageLocalization.format(camelize(icon, true)) || icon;
-    if (!text && icon && getImageSourceType(icon) === 'image') {
-      label = !icon.includes('base64') ? icon.replace(/.+\/([^.]+)\..+$/, '$1') : 'Base64';
+    var label = text !== null && text !== void 0 ? text : '';
+    if (!text && icon) {
+      var iconSource = getImageSourceType(icon);
+      switch (iconSource) {
+        case 'image':
+          {
+            var notURLRegexp = /^(?!(?:https?:\/\/)|(?:ftp:\/\/)|(?:www\.))[^\s]+$/;
+            var isPathToImage = !icon.includes('base64') && notURLRegexp.test(icon);
+            label = isPathToImage ? icon.replace(/.+\/([^.]+)\..+$/, '$1') : '';
+            break;
+          }
+        case 'dxIcon':
+          label = messageLocalization.format(camelize(icon, true)) || icon;
+          break;
+        case 'fontIcon':
+          label = icon;
+          break;
+        case 'svg':
+          {
+            var _titleRegexp$exec$, _titleRegexp$exec;
+            var titleRegexp = /<title>(.*?)<\/title>/;
+            var title = (_titleRegexp$exec$ = (_titleRegexp$exec = titleRegexp.exec(icon)) === null || _titleRegexp$exec === void 0 ? void 0 : _titleRegexp$exec[1]) !== null && _titleRegexp$exec$ !== void 0 ? _titleRegexp$exec$ : '';
+            label = title;
+            break;
+          }
+        default:
+          break;
+      }
     }
     return _extends({
       role: 'button'

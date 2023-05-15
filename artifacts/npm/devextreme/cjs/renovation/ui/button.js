@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/renovation/ui/button.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -275,9 +275,34 @@ var Button = /*#__PURE__*/function (_InfernoWrapperCompon) {
       var _this$props3 = this.props,
         icon = _this$props3.icon,
         text = _this$props3.text;
-      var label = (text !== null && text !== void 0 ? text : '') || _message.default.format((0, _inflector.camelize)(icon, true)) || icon;
-      if (!text && icon && (0, _icon.getImageSourceType)(icon) === 'image') {
-        label = !icon.includes('base64') ? icon.replace(/.+\/([^.]+)\..+$/, '$1') : 'Base64';
+      var label = text !== null && text !== void 0 ? text : '';
+      if (!text && icon) {
+        var iconSource = (0, _icon.getImageSourceType)(icon);
+        switch (iconSource) {
+          case 'image':
+            {
+              var notURLRegexp = /^(?!(?:https?:\/\/)|(?:ftp:\/\/)|(?:www\.))[^\s]+$/;
+              var isPathToImage = !icon.includes('base64') && notURLRegexp.test(icon);
+              label = isPathToImage ? icon.replace(/.+\/([^.]+)\..+$/, '$1') : '';
+              break;
+            }
+          case 'dxIcon':
+            label = _message.default.format((0, _inflector.camelize)(icon, true)) || icon;
+            break;
+          case 'fontIcon':
+            label = icon;
+            break;
+          case 'svg':
+            {
+              var _titleRegexp$exec$, _titleRegexp$exec;
+              var titleRegexp = /<title>(.*?)<\/title>/;
+              var title = (_titleRegexp$exec$ = (_titleRegexp$exec = titleRegexp.exec(icon)) === null || _titleRegexp$exec === void 0 ? void 0 : _titleRegexp$exec[1]) !== null && _titleRegexp$exec$ !== void 0 ? _titleRegexp$exec$ : '';
+              label = title;
+              break;
+            }
+          default:
+            break;
+        }
       }
       return _extends({
         role: 'button'

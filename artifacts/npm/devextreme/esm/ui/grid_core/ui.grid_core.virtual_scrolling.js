@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/grid_core/ui.grid_core.virtual_scrolling.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -1247,11 +1247,14 @@ export var virtualScrollingModule = {
             if (virtualPaging || gridCoreUtils.isVirtualRowRendering(this)) {
               this._updateLoadViewportParams();
               var loadingItemsStarted = this._loadItems(checkLoading, !viewportIsNotFilled);
-              if (!loadingItemsStarted && !(this._isLoading && checkLoading) && !checkLoadedParamsOnly) {
+              var needToUpdateItems = !(loadingItemsStarted || this._isLoading && checkLoading || checkLoadedParamsOnly);
+              if (needToUpdateItems) {
+                var _this$getController2, _this$getController2$;
+                var noPendingChangesInEditing = !((_this$getController2 = this.getController('editing')) !== null && _this$getController2 !== void 0 && (_this$getController2$ = _this$getController2.getChanges()) !== null && _this$getController2$ !== void 0 && _this$getController2$.length);
                 this.updateItems({
                   repaintChangesOnly: true,
                   needUpdateDimensions: true,
-                  useProcessedItemsCache: true,
+                  useProcessedItemsCache: noPendingChangesInEditing,
                   cancelEmptyChanges: true
                 });
               }

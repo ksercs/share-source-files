@@ -14,11 +14,14 @@ var _default = {
     var visibleArea = this.getCanvasVisibleArea();
     var minValue = this.from(visibleArea.min + minBarSize);
     var canvasOptions = this._canvasOptions;
-    return Math.pow(canvasOptions.base, canvasOptions.rangeMinVisible + this.fromValue(this.from(visibleArea.min)) - this.fromValue(!(0, _type.isDefined)(minValue) ? this.from(visibleArea.max) : minValue));
+    var startValue = this.fromValue(this.from(visibleArea.min));
+    var endValue = this.fromValue(minValue !== null && minValue !== void 0 ? minValue : this.from(visibleArea.max));
+    var value = Math.abs(startValue - endValue);
+    return Math.pow(canvasOptions.base, value);
   },
   checkMinBarSize: function checkMinBarSize(initialValue, minShownValue, stackValue) {
     var canvasOptions = this._canvasOptions;
-    var prevValue = stackValue - initialValue;
+    var prevValue = stackValue ? stackValue - initialValue : 0;
     var baseMethod = this.constructor.prototype.checkMinBarSize;
     var minBarSize;
     var updateValue;

@@ -1,18 +1,16 @@
 /**
 * DevExtreme (cjs/__internal/grids/data_grid/module_not_extended/virtual_scrolling.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var ui_grid_core_virtual_scrolling_1 = require("../../../../ui/grid_core/ui.grid_core.virtual_scrolling");
-var module_core_1 = __importDefault(require("../module_core"));
-var module_data_source_adapter_1 = __importDefault(require("../module_data_source_adapter"));
-module_core_1.default.registerModule('virtualScrolling', ui_grid_core_virtual_scrolling_1.virtualScrollingModule);
-module_data_source_adapter_1.default.extend(ui_grid_core_virtual_scrolling_1.virtualScrollingModule.extenders.dataSourceAdapter);
+
+var _uiGrid_core = require("../../../../ui/grid_core/ui.grid_core.virtual_scrolling");
+var _module_core = _interopRequireDefault(require("../module_core"));
+var _module_data_source_adapter = _interopRequireDefault(require("../module_data_source_adapter"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+_module_core.default.registerModule('virtualScrolling', _uiGrid_core.virtualScrollingModule);
+_module_data_source_adapter.default.extend(_uiGrid_core.virtualScrollingModule.extenders.dataSourceAdapter);

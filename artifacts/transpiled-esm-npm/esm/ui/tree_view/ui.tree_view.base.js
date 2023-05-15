@@ -32,6 +32,7 @@ var IS_LEAF = "".concat(NODE_CLASS, "-is-leaf");
 var ITEM_CLASS = "".concat(WIDGET_CLASS, "-item");
 var ITEM_WITH_CHECKBOX_CLASS = "".concat(ITEM_CLASS, "-with-checkbox");
 var ITEM_WITH_CUSTOM_EXPANDER_ICON_CLASS = "".concat(ITEM_CLASS, "-with-custom-expander-icon");
+var CUSTOM_EXPANDER_ICON_ITEM_CONTAINER_CLASS = "".concat(WIDGET_CLASS, "-custom-expander-icon-item-container");
 var ITEM_WITHOUT_CHECKBOX_CLASS = "".concat(ITEM_CLASS, "-without-checkbox");
 var ITEM_DATA_KEY = "".concat(ITEM_CLASS, "-data");
 var TOGGLE_ITEM_VISIBILITY_CLASS = "".concat(WIDGET_CLASS, "-toggle-item-visibility");
@@ -461,6 +462,7 @@ var TreeViewBase = HierarchicalCollectionWidget.inherit({
     return accessors;
   },
   _getDataAdapterOptions: function _getDataAdapterOptions() {
+    var _this$_dataSource, _this$_dataSource$loa, _this$_dataSource$loa2;
     return {
       rootValue: this.option('rootValue'),
       multipleSelection: !this._isSingleSelection(),
@@ -468,7 +470,8 @@ var TreeViewBase = HierarchicalCollectionWidget.inherit({
       recursiveExpansion: this.option('expandNodesRecursive'),
       selectionRequired: this.option('selectionRequired'),
       dataType: this.option('dataStructure'),
-      sort: this._dataSource && this._dataSource.sort()
+      sort: this._dataSource && this._dataSource.sort(),
+      langParams: (_this$_dataSource = this._dataSource) === null || _this$_dataSource === void 0 ? void 0 : (_this$_dataSource$loa = _this$_dataSource.loadOptions) === null || _this$_dataSource$loa === void 0 ? void 0 : (_this$_dataSource$loa2 = _this$_dataSource$loa.call(_this$_dataSource)) === null || _this$_dataSource$loa2 === void 0 ? void 0 : _this$_dataSource$loa2.langParams
     };
   },
   _initMarkup: function _initMarkup() {
@@ -530,13 +533,18 @@ var TreeViewBase = HierarchicalCollectionWidget.inherit({
     return $container;
   },
   _createDOMElement: function _createDOMElement($nodeContainer, node) {
+    var _node$internalFields, _node$internalFields$;
     var $node = $('<li>').addClass(NODE_CLASS).attr(DATA_ITEM_ID, this._encodeString(node.internalFields.key)).prependTo($nodeContainer);
-    this.setAria({
+    var attrs = {
       'role': 'treeitem',
       'label': this._displayGetter(node.internalFields.item) || '',
-      'expanded': node.internalFields.expanded || false,
       'level': this._getLevel($nodeContainer)
-    }, $node);
+    };
+    var hasChildNodes = !!(node !== null && node !== void 0 && (_node$internalFields = node.internalFields) !== null && _node$internalFields !== void 0 && (_node$internalFields$ = _node$internalFields.childrenKeys) !== null && _node$internalFields$ !== void 0 && _node$internalFields$.length);
+    if (hasChildNodes) {
+      attrs.expanded = node.internalFields.expanded || false;
+    }
+    this.setAria(attrs, $node);
     return $node;
   },
   _getLevel: function _getLevel($nodeContainer) {
@@ -567,6 +575,7 @@ var TreeViewBase = HierarchicalCollectionWidget.inherit({
     $node.toggleClass(INVISIBLE_STATE_CLASS, nodeData.item.visible === false);
     if (this._hasCustomExpanderIcons()) {
       $node.addClass(ITEM_WITH_CUSTOM_EXPANDER_ICON_CLASS);
+      $nodeContainer.addClass(CUSTOM_EXPANDER_ICON_ITEM_CONTAINER_CLASS);
     }
     showCheckBox && this._renderCheckBox($node, node);
     this.setAria('selected', nodeData.selected, $node);
@@ -579,7 +588,7 @@ var TreeViewBase = HierarchicalCollectionWidget.inherit({
       this._renderChildren($node, node);
     }
   },
-  _setAriaSelected: function _setAriaSelected() {},
+  _setAriaSelectionAttribute: noop,
   _renderChildren: function _renderChildren($node, node) {
     if (!this._hasChildren(node)) {
       this._addLeafClass($node);
@@ -922,7 +931,9 @@ var TreeViewBase = HierarchicalCollectionWidget.inherit({
     var value = this._dataAdapter.isAllSelected();
     this._createComponent(this._$selectAllItem, CheckBox, {
       value: value,
-      tabIndex: 1,
+      elementAttr: {
+        'aria-label': 'Select All'
+      },
       text: this.option('selectAllText'),
       onValueChanged: this._onSelectAllCheckboxValueChanged.bind(this)
     });
@@ -944,6 +955,9 @@ var TreeViewBase = HierarchicalCollectionWidget.inherit({
       value: node.internalFields.selected,
       onValueChanged: this._changeCheckboxValue.bind(this),
       focusStateEnabled: false,
+      elementAttr: {
+        'aria-label': 'Check State'
+      },
       disabled: this._disabledGetter(node)
     });
   },
@@ -1156,6 +1170,13 @@ var TreeViewBase = HierarchicalCollectionWidget.inherit({
       this._updateItemSelection(true, $item.find('.' + ITEM_CLASS).get(0));
       itemIndex++;
     }
+  },
+  focus: function focus() {
+    if (this._selectAllEnabled()) {
+      eventsEngine.trigger(this._$selectAllItem, 'focus');
+      return;
+    }
+    this.callBase();
   },
   _focusInHandler: function _focusInHandler(e) {
     this._updateFocusState(e, true);

@@ -109,8 +109,10 @@ if (_globalize.default && _globalize.default.formatDate) {
     _getFormatStringByPath: function _getFormatStringByPath(path) {
       return _globalize.default.locale().main('dates/calendars/gregorian/' + path);
     },
-    getPeriodNames: function getPeriodNames() {
-      var json = _globalize.default.locale().main('dates/calendars/gregorian/dayPeriods/stand-alone/wide');
+    getPeriodNames: function getPeriodNames(format, type) {
+      format = format || 'wide';
+      type = type === 'format' ? type : 'stand-alone';
+      var json = _globalize.default.locale().main("dates/calendars/gregorian/dayPeriods/".concat(type, "/").concat(format));
       return [json['am'], json['pm']];
     },
     getMonthNames: function getMonthNames(format, type) {

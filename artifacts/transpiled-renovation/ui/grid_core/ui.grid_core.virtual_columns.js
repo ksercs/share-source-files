@@ -196,7 +196,7 @@ var ColumnsControllerExtender = function () {
       }
       if (rowCount > 1 && typeof rowIndex === 'number') {
         var columnsInfo = [];
-        for (var i = 0; i < rowCount; i++) {
+        for (var i = 0; i <= rowCount; i++) {
           columnsInfo.push(this.callBase(i));
         }
         beginFixedColumns = (0, _uiGrid_core.createColumnsInfo)(columnsInfo, 0, beginFixedColumns.length)[rowIndex] || [];

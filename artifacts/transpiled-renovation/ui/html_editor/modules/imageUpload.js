@@ -65,11 +65,7 @@ if (_devextremeQuill.default) {
           index: this.quill.getLength()
         },
         pasteIndex = _ref.index;
-      var imageUrl = (0, _image_uploader_helper.correctSlashesInUrl)(this.options.uploadDirectory) + data.file.name;
-      (0, _image_uploader_helper.urlUpload)(this.quill, pasteIndex, {
-        src: imageUrl
-      });
-      this.quill.setSelection(pasteIndex + 1, 0);
+      (0, _image_uploader_helper.serverUpload)(this.options.uploadDirectory, data.file.name, this.quill, pasteIndex);
     };
     _proto._attachEvents = function _attachEvents() {
       _events_engine.default.on(this.quill.root, (0, _index.addNamespace)('drop', MODULE_NAMESPACE), this._dropHandler.bind(this));

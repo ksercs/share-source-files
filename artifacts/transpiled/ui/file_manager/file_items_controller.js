@@ -140,7 +140,7 @@ var FileItemsController = /*#__PURE__*/function () {
     return this._setCurrentDirectoryByPathParts(pathParts);
   };
   _proto.setCurrentPathByKeys = function setCurrentPathByKeys(pathKeys) {
-    if ((0, _common.equalByValue)(this.getCurrentDirectory().fileItem.pathKeys, pathKeys, 0, true)) {
+    if ((0, _common.equalByValue)(this.getCurrentDirectory().fileItem.pathKeys, pathKeys)) {
       return new _deferred.Deferred().resolve().promise();
     }
     return this._setCurrentDirectoryByPathParts(pathKeys, true);

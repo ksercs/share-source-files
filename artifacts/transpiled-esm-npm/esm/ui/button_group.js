@@ -62,6 +62,9 @@ var ButtonCollection = CollectionWidget.inherit({
     args.container = $(args.container).parent();
     return this.callBase(args);
   },
+  _setAriaSelectionAttribute: function _setAriaSelectionAttribute($target, value) {
+    this.setAria('pressed', value, $target);
+  },
   _renderItemContentByNode: function _renderItemContentByNode(args, $node) {
     args.container = $(args.container.children().first());
     return this.callBase(args, $node);

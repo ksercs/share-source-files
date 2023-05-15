@@ -60,17 +60,16 @@ var HierarchicalCollectionWidget = _uiCollection_widget.default.inherit({
   _getDataAdapterOptions: _common.noop,
   _getItemExtraPropNames: _common.noop,
   _initDynamicTemplates: function _initDynamicTemplates() {
-    var that = this;
     var fields = ['text', 'html', 'items', 'icon'].concat(this._getItemExtraPropNames());
     this._templateManager.addDefaultTemplates({
-      item: new _bindable_template.BindableTemplate(function ($container, itemData) {
-        $container.html(itemData.html).append(this._getIconContainer(itemData)).append(this._getTextContainer(itemData)).append(this._getPopoutContainer(itemData));
-        that._addContentClasses(itemData, $container.parent());
-      }.bind(this), fields, this.option('integrationOptions.watchMethod'), {
+      item: new _bindable_template.BindableTemplate(this._addContent.bind(this), fields, this.option('integrationOptions.watchMethod'), {
         'text': this._displayGetter,
         'items': this._itemsGetter
       })
     });
+  },
+  _addContent: function _addContent($container, itemData) {
+    $container.html(itemData.html).append(this._getIconContainer(itemData)).append(this._getTextContainer(itemData));
   },
   _getIconContainer: function _getIconContainer(itemData) {
     return itemData.icon ? (0, _icon.getImageContainer)(itemData.icon) : undefined;
@@ -78,8 +77,6 @@ var HierarchicalCollectionWidget = _uiCollection_widget.default.inherit({
   _getTextContainer: function _getTextContainer(itemData) {
     return (0, _renderer.default)('<span>').text(itemData.text);
   },
-  _getPopoutContainer: _common.noop,
-  _addContentClasses: _common.noop,
   _initAccessors: function _initAccessors() {
     var that = this;
     (0, _iterator.each)(this._getAccessors(), function (_, accessor) {

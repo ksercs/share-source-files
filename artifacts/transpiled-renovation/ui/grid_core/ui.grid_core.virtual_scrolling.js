@@ -1265,11 +1265,14 @@ var virtualScrollingModule = {
             if (virtualPaging || _uiGrid_core2.default.isVirtualRowRendering(this)) {
               this._updateLoadViewportParams();
               var loadingItemsStarted = this._loadItems(checkLoading, !viewportIsNotFilled);
-              if (!loadingItemsStarted && !(this._isLoading && checkLoading) && !checkLoadedParamsOnly) {
+              var needToUpdateItems = !(loadingItemsStarted || this._isLoading && checkLoading || checkLoadedParamsOnly);
+              if (needToUpdateItems) {
+                var _this$getController2, _this$getController2$;
+                var noPendingChangesInEditing = !((_this$getController2 = this.getController('editing')) !== null && _this$getController2 !== void 0 && (_this$getController2$ = _this$getController2.getChanges()) !== null && _this$getController2$ !== void 0 && _this$getController2$.length);
                 this.updateItems({
                   repaintChangesOnly: true,
                   needUpdateDimensions: true,
-                  useProcessedItemsCache: true,
+                  useProcessedItemsCache: noPendingChangesInEditing,
                   cancelEmptyChanges: true
                 });
               }

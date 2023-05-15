@@ -17,6 +17,11 @@ export default class DropDownButton extends TextEditorButton {
       editor
     } = this;
     instance.option('onClick', e => {
+      var _editor$_shouldCallOp;
+      if ((_editor$_shouldCallOp = editor._shouldCallOpenHandler) !== null && _editor$_shouldCallOp !== void 0 && _editor$_shouldCallOp.call(editor)) {
+        editor._openHandler(e);
+        return;
+      }
       !editor.option('openOnFieldClick') && editor._openHandler(e);
     });
     eventsEngine.on(instance.$element(), 'mousedown', e => {

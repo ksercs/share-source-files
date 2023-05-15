@@ -1,14 +1,13 @@
 /**
 * DevExtreme (esm/ui/text_box/ui.text_editor.mask.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 import $ from '../../core/renderer';
 import caretUtils from './utils.caret';
-import { isInputEventsL2Supported } from './utils.support';
 import { each } from '../../core/utils/iterator';
 import { addNamespace, createEvent, isCommandKeyPressed, normalizeKeyName } from '../../events/utils/index';
 import eventsEngine from '../../events/core/events_engine';
@@ -21,8 +20,7 @@ import { isEmpty } from '../../core/utils/string';
 import { name as wheelEventName } from '../../events/core/wheel';
 import { EmptyMaskRule, StubMaskRule, MaskRule } from './ui.text_editor.mask.rule';
 import TextEditorBase from './ui.text_editor.base';
-import DefaultMaskStrategy from './ui.text_editor.mask.strategy.default';
-import InputEventsMaskStrategy from './ui.text_editor.mask.strategy.input_events';
+import MaskStrategy from './ui.text_editor.mask.strategy';
 var stubCaret = function stubCaret() {
   return {};
 };
@@ -75,7 +73,6 @@ var TextEditorMask = TextEditorBase.inherit({
   _supportedKeys: function _supportedKeys() {
     var that = this;
     var keyHandlerMap = {
-      backspace: that._maskStrategy.getHandler('backspace'),
       del: that._maskStrategy.getHandler('del'),
       enter: that._changeHandler
     };
@@ -97,9 +94,7 @@ var TextEditorMask = TextEditorBase.inherit({
     this._initMaskStrategy();
   },
   _initMaskStrategy: function _initMaskStrategy() {
-    this._maskStrategy = isInputEventsL2Supported() ? new InputEventsMaskStrategy(this) :
-    // FF, old Safari and desktop Chrome (https://bugs.chromium.org/p/chromium/issues/detail?id=947408)
-    new DefaultMaskStrategy(this);
+    this._maskStrategy = new MaskStrategy(this);
   },
   _initMarkup: function _initMarkup() {
     this._renderHiddenElement();
@@ -316,7 +311,7 @@ var TextEditorMask = TextEditorBase.inherit({
     var previousText = this._input().val();
     var raiseInputEvent = () => {
       if (previousText !== this._input().val()) {
-        this._maskStrategy.runWithoutEventProcessing(() => eventsEngine.trigger(this._input(), 'input'));
+        eventsEngine.trigger(this._input(), 'input');
       }
     };
     var handled = keyHandler();

@@ -1,7 +1,7 @@
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-exports.viewFunction = exports.PagesSmall = void 0;
+exports.viewFunction = exports.PagesSmall = exports.PagerSmallProps = void 0;
 var _inferno = require("inferno");
 var _inferno2 = require("@devextreme/runtime/inferno");
 var _page = require("./page");
@@ -11,7 +11,7 @@ var _message = _interopRequireDefault(require("../../../../localization/message"
 var _calculate_values_fitted_width = require("../utils/calculate_values_fitted_width");
 var _get_element_width = require("../utils/get_element_width");
 var _pager_props = require("../common/pager_props");
-var _excluded = ["pageCount", "pageIndex", "pageIndexChange", "pagesCountText"];
+var _excluded = ["inputAttr", "pageCount", "pageIndex", "pageIndexChange", "pagesCountText"];
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
@@ -30,7 +30,9 @@ var PAGER_PAGES_COUNT_CLASS = 'dx-pages-count';
 var viewFunction = function viewFunction(_ref) {
   var pageIndexRef = _ref.pageIndexRef,
     pagesCountText = _ref.pagesCountText,
-    pageCount = _ref.props.pageCount,
+    _ref$props = _ref.props,
+    inputAttr = _ref$props.inputAttr,
+    pageCount = _ref$props.pageCount,
     selectLastPageIndex = _ref.selectLastPageIndex,
     value = _ref.value,
     valueChange = _ref.valueChange,
@@ -41,7 +43,8 @@ var viewFunction = function viewFunction(_ref) {
     "max": pageCount,
     "width": width,
     "value": value,
-    "valueChange": valueChange
+    "valueChange": valueChange,
+    "inputAttr": inputAttr
   }), (0, _inferno.createVNode)(1, "span", PAGER_INFO_TEXT_CLASS, pagesCountText, 0), (0, _inferno.createComponentVNode)(2, _page.Page, {
     "className": PAGER_PAGES_COUNT_CLASS,
     "selected": false,
@@ -50,7 +53,13 @@ var viewFunction = function viewFunction(_ref) {
   })], 4, null, null, pageIndexRef);
 };
 exports.viewFunction = viewFunction;
-var PagerSmallProps = Object.defineProperties({}, {
+var PagerSmallProps = {
+  inputAttr: Object.freeze({
+    'aria-label': _message.default.format('dxPager-ariaPageNumber')
+  })
+};
+exports.PagerSmallProps = PagerSmallProps;
+var PagerSmallPropsType = Object.defineProperties({}, {
   pageIndex: {
     get: function get() {
       return _pager_props.InternalPagerProps.pageIndex;
@@ -61,6 +70,13 @@ var PagerSmallProps = Object.defineProperties({}, {
   pageCount: {
     get: function get() {
       return _pager_props.InternalPagerProps.pageCount;
+    },
+    configurable: true,
+    enumerable: true
+  },
+  inputAttr: {
+    get: function get() {
+      return PagerSmallProps.inputAttr;
     },
     configurable: true,
     enumerable: true
@@ -137,6 +153,7 @@ var PagesSmall = /*#__PURE__*/function (_InfernoComponent) {
     key: "restAttributes",
     get: function get() {
       var _this$props = this.props,
+        inputAttr = _this$props.inputAttr,
         pageCount = _this$props.pageCount,
         pageIndex = _this$props.pageIndex,
         pageIndexChange = _this$props.pageIndexChange,
@@ -148,4 +165,4 @@ var PagesSmall = /*#__PURE__*/function (_InfernoComponent) {
   return PagesSmall;
 }(_inferno2.InfernoComponent);
 exports.PagesSmall = PagesSmall;
-PagesSmall.defaultProps = PagerSmallProps;
+PagesSmall.defaultProps = PagerSmallPropsType;

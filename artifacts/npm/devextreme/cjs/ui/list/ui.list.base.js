@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/list/ui.list.base.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -39,6 +39,7 @@ var _bindable_template = require("../../core/templates/bindable_template");
 var _deferred = require("../../core/utils/deferred");
 var _grouped_data_converter_mixin = _interopRequireDefault(require("../shared/grouped_data_converter_mixin"));
 var _get_element_style = require("../../renovation/ui/scroll_view/utils/get_element_style");
+var _guid = _interopRequireDefault(require("../../core/guid"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var LIST_CLASS = 'dx-list';
 var LIST_ITEM_CLASS = 'dx-list-item';
@@ -155,9 +156,6 @@ var ListBase = _uiCollection_widget.default.inherit({
       activeStateEnabled: true,
       _itemAttributes: {
         'role': 'option'
-      },
-      _listAttributes: {
-        'role': 'listbox'
       },
       useInkRipple: false,
       wrapItemText: false,
@@ -536,7 +534,22 @@ var ListBase = _uiCollection_widget.default.inherit({
     this.$element().addClass(LIST_CLASS);
     this.callBase();
     this.option('useInkRipple') && this._renderInkRipple();
-    this.setAria('role', this.option('_listAttributes').role);
+    var elementAria = {
+      'role': 'group',
+      'roledescription': 'list'
+    };
+    this.setAria(elementAria, this.$element());
+    this.setAria('role', 'listbox');
+    this._setListAriaLabel();
+  },
+  _setListAriaLabel: function _setListAriaLabel() {
+    var _this$option = this.option(),
+      items = _this$option.items;
+    var label = items !== null && items !== void 0 && items.length ? 'Items' : this.option('noDataText');
+    this.setAria('label', label);
+  },
+  _focusTarget: function _focusTarget() {
+    return this._itemContainer();
   },
   _renderInkRipple: function _renderInkRipple() {
     this._inkRipple = (0, _utils.render)();
@@ -592,7 +605,13 @@ var ListBase = _uiCollection_widget.default.inherit({
   },
   _renderGroup: function _renderGroup(index, group) {
     var $groupElement = (0, _renderer.default)('<div>').addClass(LIST_GROUP_CLASS).appendTo(this._itemContainer());
-    var $groupHeaderElement = (0, _renderer.default)('<div>').addClass(LIST_GROUP_HEADER_CLASS).appendTo($groupElement);
+    var id = "dx-".concat(new _guid.default().toString());
+    var groupAria = {
+      role: 'group',
+      'labelledby': id
+    };
+    this.setAria(groupAria, $groupElement);
+    var $groupHeaderElement = (0, _renderer.default)('<div>').addClass(LIST_GROUP_HEADER_CLASS).attr('id', id).appendTo($groupElement);
     var groupTemplateName = this.option('groupTemplate');
     var groupTemplate = this._getTemplate(group.template || groupTemplateName, group, index, $groupHeaderElement);
     var renderArgs = {
@@ -772,7 +791,6 @@ var ListBase = _uiCollection_widget.default.inherit({
         break;
       case '_swipeEnabled':
         break;
-      case '_listAttributes':
       case 'selectByClick':
         break;
       default:

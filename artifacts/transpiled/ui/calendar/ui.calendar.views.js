@@ -65,7 +65,7 @@ var Views = {
         scope: 'col',
         abbr: 'WeekNumber',
         class: 'dx-week-number-header'
-      }).text('#');
+      });
       var rtlEnabled = this.option('rtlEnabled');
       if (rtlEnabled) {
         $headerRow.append($weekNumberHeaderCell);

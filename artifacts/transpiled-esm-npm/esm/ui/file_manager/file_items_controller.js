@@ -121,7 +121,7 @@ export class FileItemsController {
     return this._setCurrentDirectoryByPathParts(pathParts);
   }
   setCurrentPathByKeys(pathKeys) {
-    if (equalByValue(this.getCurrentDirectory().fileItem.pathKeys, pathKeys, 0, true)) {
+    if (equalByValue(this.getCurrentDirectory().fileItem.pathKeys, pathKeys)) {
       return new Deferred().resolve().promise();
     }
     return this._setCurrentDirectoryByPathParts(pathKeys, true);

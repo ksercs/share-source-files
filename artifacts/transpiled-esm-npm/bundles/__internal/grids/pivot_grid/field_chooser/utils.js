@@ -1,8 +1,11 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.reverseSortOrder = void 0;
-var const_1 = require("./const");
-var reverseSortOrder = function (sortOrder) { return (sortOrder === const_1.SORT_ORDER.descending
-    ? const_1.SORT_ORDER.ascending
-    : const_1.SORT_ORDER.descending); };
+var _const = require("./const");
+var reverseSortOrder = function reverseSortOrder(sortOrder) {
+  return sortOrder === _const.SORT_ORDER.descending ? _const.SORT_ORDER.ascending : _const.SORT_ORDER.descending;
+};
 exports.reverseSortOrder = reverseSortOrder;

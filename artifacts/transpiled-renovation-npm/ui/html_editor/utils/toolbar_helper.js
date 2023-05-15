@@ -186,12 +186,27 @@ function getTargetTableNode(module, partName) {
 function getLinkRange(module, range) {
   var Quill = (0, _quill_importer.getQuill)();
   var LinkBlot = Quill.import('formats/link');
-  var _module$quill$scroll$ = module.quill.scroll.descendant(LinkBlot, range.index),
-    _module$quill$scroll$2 = _slicedToArray(_module$quill$scroll$, 2),
-    link = _module$quill$scroll$2[0],
-    offset = _module$quill$scroll$2[1];
+  var link;
+  var linkOffset;
+  var _module$quill$scroll$ = module.quill.scroll.descendant(LinkBlot, range.index);
+  var _module$quill$scroll$2 = _slicedToArray(_module$quill$scroll$, 2);
+  link = _module$quill$scroll$2[0];
+  linkOffset = _module$quill$scroll$2[1];
+  if (!link && range.length === 0) {
+    // NOTE:
+    // See T1157840
+    // When a mouse pointer is placed on the link's right border, the quill.scroll.descendant method does not return information about the link.
+    // In this case, we receive a necessary information from the previous index.
+    var _module$quill$scroll$3 = module.quill.scroll.descendant(LinkBlot, range.index - 1);
+    var _module$quill$scroll$4 = _slicedToArray(_module$quill$scroll$3, 2);
+    link = _module$quill$scroll$4[0];
+    linkOffset = _module$quill$scroll$4[1];
+    if (link) {
+      linkOffset += 1;
+    }
+  }
   var result = !link ? null : {
-    index: range.index - offset,
+    index: range.index - linkOffset,
     length: link.length()
   };
   return result;

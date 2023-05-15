@@ -64,6 +64,7 @@ ui.dxCalendar = require('devextreme/ui/calendar');
 ui.dxCheckBox = require('devextreme/ui/check_box');
 ui.dxColorBox = require('devextreme/ui/color_box');
 ui.dxDateBox = require('devextreme/ui/date_box');
+ui.dxDateRangeBox = require('devextreme/ui/date_range_box');
 ui.dxDrawer = require('devextreme/ui/drawer');
 ui.dxDeferRendering = require('devextreme/ui/defer_rendering');
 ui.dxDropDownBox = require('devextreme/ui/drop_down_box');

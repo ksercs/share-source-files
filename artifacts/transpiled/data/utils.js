@@ -171,13 +171,17 @@ var keysEqual = function keysEqual(keyExpr, key1, key2) {
     var name;
     for (var i = 0; i < names.length; i++) {
       name = names[i];
-      if (!(0, _common.equalByValue)(key1[name], key2[name], 0, false)) {
+      if (!(0, _common.equalByValue)(key1[name], key2[name], {
+        strict: false
+      })) {
         return false;
       }
     }
     return true;
   }
-  return (0, _common.equalByValue)(key1, key2, 0, false);
+  return (0, _common.equalByValue)(key1, key2, {
+    strict: false
+  });
 };
 exports.keysEqual = keysEqual;
 var BASE64_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';

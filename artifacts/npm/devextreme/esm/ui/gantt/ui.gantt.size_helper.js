@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/gantt/ui.gantt.size_helper.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -69,17 +69,17 @@ export class GanttSizeHelper {
     if (!hasWindow()) {
       return;
     }
-    if (!widths) {
-      // option changed
+    var takeWithFromOption = !widths;
+    if (takeWithFromOption) {
       widths = this._getPanelsWidthByOption();
-      this._gantt._splitter._setSplitterPositionLeft({
-        splitterPositionLeft: widths.leftPanelWidth
-      });
       this._setTreeListDimension('width', 0);
       this._setGanttViewDimension('width', 0);
     }
     this._setTreeListDimension('width', widths.leftPanelWidth);
     this._setGanttViewDimension('width', widths.rightPanelWidth);
+    if (takeWithFromOption) {
+      this._gantt._splitter._setSplitterPositionLeft();
+    }
   }
   updateGanttWidth() {
     this._gantt._splitter._dimensionChanged();

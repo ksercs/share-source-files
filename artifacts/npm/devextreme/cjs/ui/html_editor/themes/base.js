@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/html_editor/themes/base.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -23,6 +23,7 @@ if (_devextremeQuill.default) {
       _this = _Theme.call(this, quill, options) || this;
       _this.quill.root.classList.add('dx-htmleditor-content');
       _this.quill.root.setAttribute('role', 'textbox');
+      _this.quill.root.setAttribute('aria-label', 'Editor content');
       return _this;
     }
     return BaseTheme;

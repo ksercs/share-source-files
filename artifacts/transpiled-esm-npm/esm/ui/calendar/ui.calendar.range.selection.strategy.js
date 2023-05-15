@@ -22,10 +22,26 @@ class CalendarRangeSelectionStrategy extends CalendarSelectionStrategy {
     this.skipNavigate();
     this._updateCurrentDate(selectedValue);
     this._currentDateChanged = true;
-    if (!startDate || endDate) {
-      this.dateValue([selectedValue, null], e);
+    if (this.calendar.option('_allowChangeSelectionOrder') === true) {
+      if (this.calendar.option('_currentSelection') === 'startDate') {
+        if (this.calendar._convertToDate(selectedValue) > this.calendar._convertToDate(endDate)) {
+          this.dateValue([selectedValue, null], e);
+        } else {
+          this.dateValue([selectedValue, endDate], e);
+        }
+      } else {
+        if (this.calendar._convertToDate(selectedValue) > this.calendar._convertToDate(startDate)) {
+          this.dateValue([startDate, selectedValue], e);
+        } else {
+          this.dateValue([null, selectedValue], e);
+        }
+      }
     } else {
-      this.dateValue(startDate < selectedValue ? [startDate, selectedValue] : [selectedValue, startDate], e);
+      if (!startDate || endDate) {
+        this.dateValue([selectedValue, null], e);
+      } else {
+        this.dateValue(startDate < selectedValue ? [startDate, selectedValue] : [selectedValue, startDate], e);
+      }
     }
   }
   updateAriaSelected(value, previousValue) {
@@ -73,8 +89,17 @@ class CalendarRangeSelectionStrategy extends CalendarSelectionStrategy {
   _cellHoverHandler(e) {
     var isMaxZoomLevel = this._isMaxZoomLevel();
     var [startDate, endDate] = this._getValues();
-    if (isMaxZoomLevel && startDate && !endDate) {
-      this._updateViewsOption('range', this._getDaysInRange(startDate, e.value));
+    var {
+      _allowChangeSelectionOrder,
+      _currentSelection
+    } = this.calendar.option();
+    var skipHoveredRange = _allowChangeSelectionOrder && _currentSelection === 'startDate';
+    if (isMaxZoomLevel && startDate && !endDate && !skipHoveredRange) {
+      if (startDate < e.value) {
+        this._updateViewsOption('range', this._getDaysInRange(startDate, e.value));
+      } else {
+        this._updateViewsOption('range', this._getDaysInRange(e.value, startDate));
+      }
     }
   }
 }

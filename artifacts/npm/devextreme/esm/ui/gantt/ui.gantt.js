@@ -1,7 +1,7 @@
 /**
 * DevExtreme (esm/ui/gantt/ui.gantt.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -30,6 +30,7 @@ import { GanttToolbar, GanttContextMenuBar } from './ui.gantt.bars';
 import { GanttTreeList } from './ui.gantt.treelist';
 import { GanttView } from './ui.gantt.view';
 import { GanttDataChangesProcessingHelper } from './ui.gantt.data_changes_processing_helper';
+import gridCoreUtils from '../grid_core/ui.grid_core.utils';
 var window = getWindow();
 
 // STYLE gantt
@@ -46,6 +47,7 @@ var GANTT_NEW_TASK_CACHE_KEY = 'gantt_new_task_key';
 class Gantt extends Widget {
   _init() {
     super._init();
+    gridCoreUtils.logHeaderFilterDeprecatedWarningIfNeed(this);
     this._initGantt();
     this._isGanttRendered = false;
     this._initHelpers();

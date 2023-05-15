@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/ui/grid_core/ui.grid_core.editing.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -468,7 +468,9 @@ var EditingController = _uiGrid_core.default.ViewController.inherit(function () 
           this._handleEditRowKeyChange(args);
         } else if (fullName === EDITING_CHANGES_OPTION_NAME) {
           // to prevent render on optionChanged called by two-way binding - T1128881
-          var isEqual = (0, _common.equalByValue)(args.value, this._changes, -1);
+          var isEqual = (0, _common.equalByValue)(args.value, this._changes, {
+            maxDepth: 4
+          });
           if (!isEqual) {
             this._changes = (0, _object.deepExtendArraySafe)([], args.value);
             this._handleChangesChange(args);

@@ -1,3 +1,4 @@
+import _extends from "@babel/runtime/helpers/esm/extends";
 import Class from '../core/class';
 var abstract = Class.abstract;
 import { EventsStrategy } from '../core/events_strategy';
@@ -9,8 +10,10 @@ import storeHelper from './store_helper';
 var queryByOptions = storeHelper.queryByOptions;
 import { Deferred, when } from '../core/utils/deferred';
 import { noop } from '../core/utils/common';
+import { isEmptyObject } from '../core/utils/type';
 var storeImpl = {};
 var Store = Class.inherit({
+  _langParams: {},
   ctor: function ctor(options) {
     var that = this;
     options = options || {};
@@ -51,6 +54,10 @@ var Store = Class.inherit({
     });
   },
   _loadImpl: function _loadImpl(options) {
+    if (!isEmptyObject(this._langParams)) {
+      options = options || {};
+      options._langParams = _extends({}, this._langParams, options._langParams);
+    }
     return queryByOptions(this.createQuery(options), options).enumerate();
   },
   _withLock: function _withLock(task) {

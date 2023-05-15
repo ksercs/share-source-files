@@ -9,12 +9,15 @@ var _extend2 = require("../../core/utils/extend");
 var _index = require("../../events/utils/index");
 var _pointer = _interopRequireDefault(require("../../events/pointer"));
 var _utils = require("../core/utils");
+var _renderer = _interopRequireDefault(require("../../core/renderer"));
 var _translator2d = require("../translators/translator2d");
 var _common = require("../../core/utils/common");
 var _tooltip = require("../core/tooltip");
 var _export = require("../core/export");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var DEFAULT_LINE_SPACING = 2;
+var TOOLTIP_TABLE_BORDER_SPACING = 0;
+var TOOLTIP_TABLE_KEY_VALUE_SPACE = 15;
 var EVENT_NS = 'sparkline-tooltip';
 var POINTER_ACTION = (0, _index.addNamespace)([_pointer.default.down, _pointer.default.move], EVENT_NS);
 var _extend = _extend2.extend;
@@ -37,33 +40,29 @@ function pointerHandler(_ref2) {
   that._enableOutHandler();
   that._showTooltip();
 }
-function generateDefaultCustomizeTooltipCallback(fontOptions, rtlEnabled) {
-  var lineSpacing = fontOptions.lineSpacing;
-  var lineHeight = (lineSpacing !== undefined && lineSpacing !== null ? lineSpacing : DEFAULT_LINE_SPACING) + fontOptions.size;
-  return function (customizeObject) {
-    var html = '';
-    var vt = customizeObject.valueText;
-    for (var i = 0; i < vt.length; i += 2) {
-      html += '<tr><td>' + vt[i] + '</td><td style=\'width: 15px\'></td><td style=\'text-align: ' + (rtlEnabled ? 'left' : 'right') + '\'>' + vt[i + 1] + '</td></tr>';
+function getDefaultTemplate(_ref3, textAlign) {
+  var lineSpacing = _ref3.lineSpacing,
+    size = _ref3.size;
+  var lineHeight = "".concat((lineSpacing !== null && lineSpacing !== void 0 ? lineSpacing : DEFAULT_LINE_SPACING) + size, "px");
+  return function (_ref4, container) {
+    var valueText = _ref4.valueText;
+    var table = (0, _renderer.default)('<table>').css({
+      borderSpacing: TOOLTIP_TABLE_BORDER_SPACING,
+      lineHeight: lineHeight
+    });
+    for (var i = 0; i < valueText.length; i += 2) {
+      var tr = (0, _renderer.default)('<tr>');
+      (0, _renderer.default)('<td>').text(valueText[i]).appendTo(tr);
+      (0, _renderer.default)('<td>').css({
+        width: TOOLTIP_TABLE_KEY_VALUE_SPACE
+      }).appendTo(tr);
+      (0, _renderer.default)('<td>').css({
+        textAlign: textAlign
+      }).text(valueText[i + 1]).appendTo(tr);
+      table.append(tr);
     }
-    return {
-      html: '<table style=\'border-spacing:0px; line-height: ' + lineHeight + 'px\'>' + html + '</table>'
-    };
+    container.append(table);
   };
-}
-function generateCustomizeTooltipCallback(customizeTooltip, fontOptions, rtlEnabled) {
-  var defaultCustomizeTooltip = generateDefaultCustomizeTooltipCallback(fontOptions, rtlEnabled);
-  if ((0, _type.isFunction)(customizeTooltip)) {
-    return function (customizeObject) {
-      var res = customizeTooltip.call(customizeObject, customizeObject);
-      if (!('html' in res) && !('text' in res)) {
-        _extend(res, defaultCustomizeTooltip.call(customizeObject, customizeObject));
-      }
-      return res;
-    };
-  } else {
-    return defaultCustomizeTooltip;
-  }
 }
 function createAxis(isHorizontal) {
   var translator = new _translator2d.Translator2D({}, {}, {
@@ -191,9 +190,9 @@ var BaseSparkline = _base_widget.default.inherit({
     if (that._outHandler) {
       return;
     }
-    var handler = function handler(_ref3) {
-      var pageX = _ref3.pageX,
-        pageY = _ref3.pageY;
+    var handler = function handler(_ref5) {
+      var pageX = _ref5.pageX,
+        pageY = _ref5.pageY;
       var _that$_renderer$getRo = that._renderer.getRootOffset(),
         left = _that$_renderer$getRo.left,
         top = _that$_renderer$getRo.top;
@@ -249,12 +248,29 @@ BaseSparkline.prototype._setTooltipRendererOptions = function () {
   }
 };
 BaseSparkline.prototype._setTooltipOptions = function () {
-  var tooltip = this._tooltip;
-  var options = tooltip && this._getOption('tooltip');
-  tooltip && tooltip.update(_extend({}, options, {
-    customizeTooltip: generateCustomizeTooltipCallback(options.customizeTooltip, options.font, this.option('rtlEnabled')),
-    enabled: options.enabled && this._isTooltipEnabled()
-  }));
+  if (this._tooltip) {
+    var options = this._getOption('tooltip');
+    var defaultContentTemplate = this._getDefaultTooltipTemplate(options);
+    var contentTemplateOptions = defaultContentTemplate ? {
+      contentTemplate: defaultContentTemplate
+    } : {};
+    var optionsToUpdate = _extend(contentTemplateOptions, options, {
+      enabled: options.enabled && this._isTooltipEnabled()
+    });
+    this._tooltip.update(optionsToUpdate);
+  }
+};
+BaseSparkline.prototype._getDefaultTooltipTemplate = function (options) {
+  var defaultTemplateNeeded = true;
+  var textAlign = this.option('rtlEnabled') ? 'left' : 'right';
+  if ((0, _type.isFunction)(options.customizeTooltip)) {
+    var _options$customizeToo;
+    this._tooltip.update(options);
+    var formatObject = this._getTooltipData();
+    var customizeResult = (_options$customizeToo = options.customizeTooltip.call(formatObject, formatObject)) !== null && _options$customizeToo !== void 0 ? _options$customizeToo : {};
+    defaultTemplateNeeded = !('html' in customizeResult) && !('text' in customizeResult);
+  }
+  return defaultTemplateNeeded && getDefaultTemplate(options.font, textAlign);
 };
 
 // PLUGINS_SECTION

@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.nl.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,10 @@
             "dxDateBox-simulatedDataPickerTitleDate": "Selecteer datum",
             "dxDateBox-simulatedDataPickerTitleDateTime": "Selecteer datum and tijd",
             "dxDateBox-validation-datetime": "Waarde moet een datum of tijd zijn",
+            "dxDateBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateBox-endDateOutOfRangeMessage": "End date is out of range",
             "dxFileUploader-selectFile": "Selecteer bestand",
             "dxFileUploader-dropFile": "of sleep bestand hier",
             "dxFileUploader-bytes": "bytes",
@@ -92,6 +96,10 @@
             "dxForm-requiredMessage": "{0} is verplicht",
             "dxNumberBox-invalidValueMessage": "Waarde moet een nummer zijn",
             "dxNumberBox-noDataText": "Geen gegevens",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "Use {0} to display columns",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "Drag a column from the group panel here",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Use {0} or drag a column from the group panel",
+            "dxDataGrid-emptyHeaderColumnChooserText": "column chooser",
             "dxDataGrid-columnChooserTitle": "Kolom Kiezer",
             "dxDataGrid-columnChooserEmptyText": "Sleep hier een kolomkop om hem te verbergen",
             "dxDataGrid-groupContinuesMessage": "Gaat verder op de volgende pagina",
@@ -124,6 +132,7 @@
             "dxDataGrid-filterRowOperationBetween": "Tussen",
             "dxDataGrid-filterRowOperationBetweenStartText": "Begin",
             "dxDataGrid-filterRowOperationBetweenEndText": "Einde",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "Filter toepassen",
             "dxDataGrid-trueText": "waar",
             "dxDataGrid-falseText": "niet waar",
@@ -180,11 +189,14 @@
             "dxTreeList-editingAddRowToNode": "Toevoegen",
             "dxPager-infoText": "Pagina {0} van {1} ({2} items)",
             "dxPager-pagesCountText": "van",
+            "dxPager-pageSize": "Items per page: {0}",
             "dxPager-pageSizesAllText": "Alle",
             "dxPager-page": "Page {0}",
             "dxPager-prevPage": "Previous Page",
             "dxPager-nextPage": "Next Page",
             "dxPager-ariaLabel": "Page Navigation",
+            "dxPager-ariaPageSize": "Page size",
+            "dxPager-ariaPageNumber": "Page number",
             "dxPivotGrid-grandTotal": "Eindtotaal",
             "dxPivotGrid-total": "{0} Totaal",
             "dxPivotGrid-fieldChooserTitle": "Veldenkiezer",
@@ -250,6 +262,7 @@
             "dxScheduler-moreAppointments": "Nog {0}",
             "dxCalendar-todayButtonText": "Vandaag",
             "dxCalendar-ariaWidgetName": "Kalender",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "Rood",
             "dxColorView-ariaGreen": "Groen",
             "dxColorView-ariaBlue": "Blauw",

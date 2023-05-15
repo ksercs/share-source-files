@@ -424,7 +424,9 @@ var EditingController = modules.ViewController.inherit(function () {
           this._handleEditRowKeyChange(args);
         } else if (fullName === EDITING_CHANGES_OPTION_NAME) {
           // to prevent render on optionChanged called by two-way binding - T1128881
-          var isEqual = equalByValue(args.value, this._changes, -1);
+          var isEqual = equalByValue(args.value, this._changes, {
+            maxDepth: 4
+          });
           if (!isEqual) {
             this._changes = deepExtendArraySafe([], args.value);
             this._handleChangesChange(args);

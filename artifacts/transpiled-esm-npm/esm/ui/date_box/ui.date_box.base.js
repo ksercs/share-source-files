@@ -74,7 +74,8 @@ var DateBox = DropDownEditor.inherit({
       applyButtonText: messageLocalization.format('OK'),
       adaptivityEnabled: false,
       calendarOptions: {},
-      useHiddenSubmitElement: true
+      useHiddenSubmitElement: true,
+      _showValidationIcon: true
     });
   },
   _defaultOptionsRules: function _defaultOptionsRules() {
@@ -224,7 +225,7 @@ var DateBox = DropDownEditor.inherit({
     var curWidth = parseFloat(window.getComputedStyle(inputElement).width) - clearButtonWidth;
     var shouldHideValidationIcon = longestElementDimensions.width > curWidth;
     var style = inputElement.style;
-    this.$element().toggleClass(DX_INVALID_BADGE_CLASS, !shouldHideValidationIcon);
+    this.$element().toggleClass(DX_INVALID_BADGE_CLASS, !shouldHideValidationIcon && this.option('_showValidationIcon'));
     if (shouldHideValidationIcon) {
       if (this._storedPadding === undefined) {
         this._storedPadding = isRtlEnabled ? longestElementDimensions.leftPadding : longestElementDimensions.rightPadding;
@@ -379,10 +380,7 @@ var DateBox = DropDownEditor.inherit({
     } = this.option();
     var currentValue = this.dateOption('value');
     if (text === this._getDisplayedText(currentValue)) {
-      if (!validationError || validationError.editorSpecific) {
-        this._applyInternalValidation(currentValue);
-        this._applyCustomValidation(currentValue);
-      }
+      this._recallInternalValidation(currentValue, validationError);
       return;
     }
     var parsedDate = this._getParsedDate(text);
@@ -396,6 +394,12 @@ var DateBox = DropDownEditor.inherit({
       } else {
         this.dateValue(newValue, e);
       }
+    }
+  },
+  _recallInternalValidation(value, validationError) {
+    if (!validationError || validationError.editorSpecific) {
+      this._applyInternalValidation(value);
+      this._applyCustomValidation(value);
     }
   },
   _getDateByDefault: function _getDateByDefault() {
@@ -418,6 +422,13 @@ var DateBox = DropDownEditor.inherit({
     } else if (!isDateInRange) {
       validationMessage = this.option('dateOutOfRangeMessage');
     }
+    this._updateInternalValidationState(isValid, validationMessage);
+    return {
+      isValid,
+      isDate
+    };
+  },
+  _updateInternalValidationState(isValid, validationMessage) {
     this.option({
       isValid: isValid,
       validationError: isValid ? null : {
@@ -425,10 +436,6 @@ var DateBox = DropDownEditor.inherit({
         message: validationMessage
       }
     });
-    return {
-      isValid,
-      isDate
-    };
   },
   _applyCustomValidation: function _applyCustomValidation(value) {
     this.validationRequest.fire({
@@ -569,6 +576,7 @@ var DateBox = DropDownEditor.inherit({
       case 'dateOutOfRangeMessage':
       case 'adaptivityEnabled':
       case 'showAnalogClock':
+      case '_showValidationIcon':
         break;
       default:
         this.callBase.apply(this, arguments);

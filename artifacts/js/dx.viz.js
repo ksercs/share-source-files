@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.viz.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -16,43 +16,32 @@
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
-// @ts-check
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var size_1 = __webpack_require__(58664);
-var renderer_1 = __importDefault(__webpack_require__(68374));
-var type_1 = __webpack_require__(35922);
-var deferred_1 = __webpack_require__(62754);
-var string_1 = __webpack_require__(68752);
-var iterator_1 = __webpack_require__(95479);
-var extend_1 = __webpack_require__(13306);
-var position_1 = __webpack_require__(37518);
-// @ts-expect-error
-var data_1 = __webpack_require__(47617);
-var common_1 = __webpack_require__(20576);
-// @ts-expect-error
-var utils_1 = __webpack_require__(16454);
-var format_helper_1 = __importDefault(__webpack_require__(30343));
-var window_1 = __webpack_require__(58201);
-var events_engine_1 = __importDefault(__webpack_require__(55994));
-var data_source_1 = __webpack_require__(85273);
-var utils_2 = __webpack_require__(9234);
-var variable_wrapper_1 = __importDefault(__webpack_require__(26974));
-var load_panel_1 = __importDefault(__webpack_require__(97218));
-var filtering_1 = __importDefault(__webpack_require__(18740));
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _size = __webpack_require__(58664);
+var _renderer = _interopRequireDefault(__webpack_require__(68374));
+var _type = __webpack_require__(35922);
+var _deferred = __webpack_require__(62754);
+var _string = __webpack_require__(68752);
+var _iterator = __webpack_require__(95479);
+var _extend = __webpack_require__(13306);
+var _position = __webpack_require__(37518);
+var _data = __webpack_require__(47617);
+var _common = __webpack_require__(20576);
+var _utils = __webpack_require__(16454);
+var _format_helper = _interopRequireDefault(__webpack_require__(30343));
+var _window = __webpack_require__(58201);
+var _events_engine = _interopRequireDefault(__webpack_require__(55994));
+var _data_source = __webpack_require__(85273);
+var _utils2 = __webpack_require__(9234);
+var _variable_wrapper = _interopRequireDefault(__webpack_require__(26974));
+var _load_panel = _interopRequireDefault(__webpack_require__(97218));
+var _filtering = _interopRequireDefault(__webpack_require__(18740));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 var DATAGRID_SELECTION_DISABLED_CLASS = 'dx-selection-disabled';
 var DATAGRID_GROUP_OPENED_CLASS = 'dx-datagrid-group-opened';
 var DATAGRID_GROUP_CLOSED_CLASS = 'dx-datagrid-group-closed';
@@ -64,559 +53,606 @@ var LEGACY_SCROLLING_MODE = 'scrolling.legacyMode';
 var SCROLLING_MODE_OPTION = 'scrolling.mode';
 var ROW_RENDERING_MODE_OPTION = 'scrolling.rowRenderingMode';
 var DATE_INTERVAL_SELECTORS = {
-    year: function (value) {
-        return value && value.getFullYear();
-    },
-    month: function (value) {
-        return value && (value.getMonth() + 1);
-    },
-    day: function (value) {
-        return value && value.getDate();
-    },
-    quarter: function (value) {
-        return value && (Math.floor(value.getMonth() / 3) + 1);
-    },
-    hour: function (value) {
-        return value && value.getHours();
-    },
-    minute: function (value) {
-        return value && value.getMinutes();
-    },
-    second: function (value) {
-        return value && value.getSeconds();
-    },
+  year: function year(value) {
+    return value && value.getFullYear();
+  },
+  month: function month(value) {
+    return value && value.getMonth() + 1;
+  },
+  day: function day(value) {
+    return value && value.getDate();
+  },
+  quarter: function quarter(value) {
+    return value && Math.floor(value.getMonth() / 3) + 1;
+  },
+  hour: function hour(value) {
+    return value && value.getHours();
+  },
+  minute: function minute(value) {
+    return value && value.getMinutes();
+  },
+  second: function second(value) {
+    return value && value.getSeconds();
+  }
 };
-var getIntervalSelector = function () {
-    var data = arguments[1];
-    var value = this.calculateCellValue(data);
-    if (!type_1.isDefined(value)) {
-        return null;
-    }
-    if (isDateType(this.dataType)) {
-        var nameIntervalSelector = arguments[0];
-        return DATE_INTERVAL_SELECTORS[nameIntervalSelector](value);
-    }
-    if (this.dataType === 'number') {
-        var groupInterval = arguments[0];
-        return Math.floor(Number(value) / groupInterval) * groupInterval;
-    }
+var getIntervalSelector = function getIntervalSelector() {
+  var data = arguments[1];
+  var value = this.calculateCellValue(data);
+  if (!(0, _type.isDefined)(value)) {
+    return null;
+  }
+  if (isDateType(this.dataType)) {
+    var nameIntervalSelector = arguments[0];
+    return DATE_INTERVAL_SELECTORS[nameIntervalSelector](value);
+  }
+  if (this.dataType === 'number') {
+    var groupInterval = arguments[0];
+    return Math.floor(Number(value) / groupInterval) * groupInterval;
+  }
 };
-var equalSelectors = function (selector1, selector2) {
-    if (type_1.isFunction(selector1) && type_1.isFunction(selector2)) {
-        if (selector1.originalCallback && selector2.originalCallback) {
-            return selector1.originalCallback === selector2.originalCallback && selector1.columnIndex === selector2.columnIndex;
-        }
+var equalSelectors = function equalSelectors(selector1, selector2) {
+  if ((0, _type.isFunction)(selector1) && (0, _type.isFunction)(selector2)) {
+    if (selector1.originalCallback && selector2.originalCallback) {
+      return selector1.originalCallback === selector2.originalCallback && selector1.columnIndex === selector2.columnIndex;
     }
-    return selector1 === selector2;
+  }
+  return selector1 === selector2;
 };
 function isDateType(dataType) {
-    return dataType === 'date' || dataType === 'datetime';
+  return dataType === 'date' || dataType === 'datetime';
 }
-var setEmptyText = function ($container) {
-    $container.get(0).textContent = '\u00A0';
+var setEmptyText = function setEmptyText($container) {
+  $container.get(0).textContent = "\xA0";
 };
-var normalizeSortingInfo = function (sort) {
-    sort = sort || [];
-    var result = utils_1.normalizeSortingInfo(sort);
-    for (var i = 0; i < sort.length; i++) {
-        if (sort && sort[i] && sort[i].isExpanded !== undefined) {
-            result[i].isExpanded = sort[i].isExpanded;
+var normalizeSortingInfo = function normalizeSortingInfo(sort) {
+  sort = sort || [];
+  var result = (0, _utils.normalizeSortingInfo)(sort);
+  for (var i = 0; i < sort.length; i++) {
+    if (sort && sort[i] && sort[i].isExpanded !== undefined) {
+      result[i].isExpanded = sort[i].isExpanded;
+    }
+    if (sort && sort[i] && sort[i].groupInterval !== undefined) {
+      result[i].groupInterval = sort[i].groupInterval;
+    }
+  }
+  return result;
+};
+var formatValue = function formatValue(value, options) {
+  var valueText = _format_helper.default.format(value, options.format) || value && value.toString() || '';
+  var formatObject = {
+    value: value,
+    valueText: options.getDisplayFormat ? options.getDisplayFormat(valueText) : valueText,
+    target: options.target || 'row',
+    groupInterval: options.groupInterval
+  };
+  return options.customizeText ? options.customizeText.call(options, formatObject) : formatObject.valueText;
+};
+var getSummaryText = function getSummaryText(summaryItem, summaryTexts) {
+  var displayFormat = summaryItem.displayFormat || summaryItem.columnCaption && summaryTexts["".concat(summaryItem.summaryType, "OtherColumn")] || summaryTexts[summaryItem.summaryType];
+  return formatValue(summaryItem.value, {
+    format: summaryItem.valueFormat,
+    getDisplayFormat: function getDisplayFormat(valueText) {
+      return displayFormat ? (0, _string.format)(displayFormat, valueText, summaryItem.columnCaption) : valueText;
+    },
+    customizeText: summaryItem.customizeText
+  });
+};
+var getWidgetInstance = function getWidgetInstance($element) {
+  var editorData = $element.data && $element.data();
+  var dxComponents = editorData && editorData.dxComponents;
+  var widgetName = dxComponents && dxComponents[0];
+  return widgetName && editorData[widgetName];
+};
+var equalFilterParameters = function equalFilterParameters(filter1, filter2) {
+  if (Array.isArray(filter1) && Array.isArray(filter2)) {
+    if (filter1.length !== filter2.length) {
+      return false;
+    }
+    for (var i = 0; i < filter1.length; i++) {
+      if (!equalFilterParameters(filter1[i], filter2[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  if ((0, _type.isFunction)(filter1) && filter1.columnIndex >= 0 && (0, _type.isFunction)(filter2) && filter2.columnIndex >= 0) {
+    return filter1.columnIndex === filter2.columnIndex && (0, _data.toComparable)(filter1.filterValue) === (0, _data.toComparable)(filter2.filterValue) && (0, _data.toComparable)(filter1.selectedFilterOperation) === (0, _data.toComparable)(filter2.selectedFilterOperation);
+  }
+  return (0, _data.toComparable)(filter1) == (0, _data.toComparable)(filter2); // eslint-disable-line eqeqeq
+};
+
+function normalizeGroupingLoadOptions(group) {
+  if (!Array.isArray(group)) {
+    group = [group];
+  }
+  return group.map(function (item, i) {
+    if ((0, _type.isString)(item)) {
+      return {
+        selector: item,
+        isExpanded: i < group.length - 1
+      };
+    }
+    return item;
+  });
+}
+var _default = {
+  renderNoDataText: function renderNoDataText($element) {
+    var that = this;
+    $element = $element || this.element();
+    if (!$element) {
+      return;
+    }
+    var noDataClass = that.addWidgetPrefix(NO_DATA_CLASS);
+    var noDataElement = $element.find(".".concat(noDataClass)).last();
+    var isVisible = this._dataController.isEmpty();
+    var isLoading = this._dataController.isLoading();
+    if (!noDataElement.length) {
+      noDataElement = (0, _renderer.default)('<span>').addClass(noDataClass).appendTo($element);
+    }
+    if (isVisible && !isLoading) {
+      noDataElement.removeClass('dx-hidden').text(that._getNoDataText());
+    } else {
+      noDataElement.addClass('dx-hidden');
+    }
+  },
+  renderLoadPanel: function renderLoadPanel($element, $container, isLocalStore) {
+    var that = this;
+    var loadPanelOptions;
+    that._loadPanel && that._loadPanel.$element().remove();
+    loadPanelOptions = that.option('loadPanel');
+    if (loadPanelOptions && (loadPanelOptions.enabled === 'auto' ? !isLocalStore : loadPanelOptions.enabled)) {
+      loadPanelOptions = (0, _extend.extend)({
+        shading: false,
+        message: loadPanelOptions.text,
+        container: $container
+      }, loadPanelOptions);
+      that._loadPanel = that._createComponent((0, _renderer.default)('<div>').appendTo($container), _load_panel.default, loadPanelOptions);
+    } else {
+      that._loadPanel = null;
+    }
+  },
+  calculateLoadPanelPosition: function calculateLoadPanelPosition($element) {
+    // @ts-expect-error
+    var $window = (0, _renderer.default)((0, _window.getWindow)());
+    if ((0, _size.getHeight)($element) > (0, _size.getHeight)($window)) {
+      return {
+        of: $window,
+        boundary: $element,
+        collision: 'fit'
+      };
+    }
+    return {
+      of: $element
+    };
+  },
+  getIndexByKey: function getIndexByKey(key, items, keyName) {
+    var index = -1;
+    if (key !== undefined && Array.isArray(items)) {
+      keyName = arguments.length <= 2 ? 'key' : keyName;
+      for (var i = 0; i < items.length; i++) {
+        var item = (0, _type.isDefined)(keyName) ? items[i][keyName] : items[i];
+        if ((0, _common.equalByValue)(key, item)) {
+          index = i;
+          break;
         }
-        if (sort && sort[i] && sort[i].groupInterval !== undefined) {
-            result[i].groupInterval = sort[i].groupInterval;
+      }
+    }
+    return index;
+  },
+  combineFilters: function combineFilters(filters, operation) {
+    var _a;
+    var resultFilter = [];
+    operation = operation || 'and';
+    for (var i = 0; i < filters.length; i++) {
+      if (!filters[i]) {
+        continue;
+      }
+      if (((_a = filters[i]) === null || _a === void 0 ? void 0 : _a.length) === 1 && filters[i][0] === '!') {
+        if (operation === 'and') {
+          return ['!'];
         }
+        if (operation === 'or') {
+          continue;
+        }
+      }
+      if (resultFilter.length) {
+        resultFilter.push(operation);
+      }
+      resultFilter.push(filters[i]);
+    }
+    if (resultFilter.length === 1) {
+      // eslint-disable-next-line prefer-destructuring
+      resultFilter = resultFilter[0];
+    }
+    if (resultFilter.length) {
+      return resultFilter;
+    }
+    return undefined;
+  },
+  checkChanges: function checkChanges(changes, changeNames) {
+    var changesWithChangeNamesCount = 0;
+    for (var i = 0; i < changeNames.length; i++) {
+      if (changes[changeNames[i]]) {
+        changesWithChangeNamesCount++;
+      }
+    }
+    return changes.length && changes.length === changesWithChangeNamesCount;
+  },
+  equalFilterParameters: equalFilterParameters,
+  proxyMethod: function proxyMethod(instance, methodName, defaultResult) {
+    if (!instance[methodName]) {
+      instance[methodName] = function () {
+        var dataSource = this._dataSource;
+        return dataSource ? dataSource[methodName].apply(dataSource, arguments) : defaultResult;
+      };
+    }
+  },
+  formatValue: formatValue,
+  getFormatOptionsByColumn: function getFormatOptionsByColumn(column, target) {
+    return {
+      format: column.format,
+      getDisplayFormat: column.getDisplayFormat,
+      customizeText: column.customizeText,
+      target: target,
+      trueText: column.trueText,
+      falseText: column.falseText
+    };
+  },
+  getDisplayValue: function getDisplayValue(column, value, data, rowType) {
+    if (column.displayValueMap && column.displayValueMap[value] !== undefined) {
+      return column.displayValueMap[value];
+    }
+    if (column.calculateDisplayValue && data && rowType !== 'group') {
+      return column.calculateDisplayValue(data);
+    }
+    if (column.lookup && !(rowType === 'group' && (column.calculateGroupValue || column.calculateDisplayValue))) {
+      return column.lookup.calculateCellValue(value);
+    }
+    return value;
+  },
+  getGroupRowSummaryText: function getGroupRowSummaryText(summaryItems, summaryTexts) {
+    var result = '(';
+    for (var i = 0; i < summaryItems.length; i++) {
+      var summaryItem = summaryItems[i];
+      result += (i > 0 ? ', ' : '') + getSummaryText(summaryItem, summaryTexts);
+    }
+    // eslint-disable-next-line no-return-assign
+    return result += ')';
+  },
+  getSummaryText: getSummaryText,
+  normalizeSortingInfo: normalizeSortingInfo,
+  getFormatByDataType: function getFormatByDataType(dataType) {
+    // eslint-disable-next-line default-case
+    switch (dataType) {
+      case 'date':
+        return 'shortDate';
+      case 'datetime':
+        return 'shortDateShortTime';
+      default:
+        return undefined;
+    }
+  },
+  getHeaderFilterGroupParameters: function getHeaderFilterGroupParameters(column, remoteGrouping) {
+    var result = [];
+    var dataField = column.dataField || column.name;
+    var groupInterval = _filtering.default.getGroupInterval(column);
+    if (groupInterval) {
+      (0, _iterator.each)(groupInterval, function (index, interval) {
+        result.push(remoteGrouping ? {
+          selector: dataField,
+          groupInterval: interval,
+          isExpanded: index < groupInterval.length - 1
+        } : getIntervalSelector.bind(column, interval));
+      });
+      return result;
+    }
+    if (remoteGrouping) {
+      result = [{
+        selector: dataField,
+        isExpanded: false
+      }];
+    } else {
+      result = function result(data) {
+        var result = column.calculateCellValue(data);
+        if (result === undefined || result === '') {
+          result = null;
+        }
+        return result;
+      };
+      if (column.sortingMethod) {
+        result = [{
+          selector: result,
+          compare: column.sortingMethod.bind(column)
+        }];
+      }
     }
     return result;
-};
-var formatValue = function (value, options) {
-    var valueText = format_helper_1.default.format(value, options.format) || (value && value.toString()) || '';
-    var formatObject = {
-        value: value,
-        valueText: options.getDisplayFormat ? options.getDisplayFormat(valueText) : valueText,
-        target: options.target || 'row',
-        groupInterval: options.groupInterval,
-    };
-    return options.customizeText ? options.customizeText.call(options, formatObject) : formatObject.valueText;
-};
-var getSummaryText = function (summaryItem, summaryTexts) {
-    var displayFormat = summaryItem.displayFormat || (summaryItem.columnCaption && summaryTexts[summaryItem.summaryType + "OtherColumn"]) || summaryTexts[summaryItem.summaryType];
-    return formatValue(summaryItem.value, {
-        format: summaryItem.valueFormat,
-        getDisplayFormat: function (valueText) {
-            return displayFormat ? string_1.format(displayFormat, valueText, summaryItem.columnCaption) : valueText;
-        },
-        customizeText: summaryItem.customizeText,
-    });
-};
-var getWidgetInstance = function ($element) {
-    var editorData = $element.data && $element.data();
-    var dxComponents = editorData && editorData.dxComponents;
-    var widgetName = dxComponents && dxComponents[0];
-    return widgetName && editorData[widgetName];
-};
-var equalFilterParameters = function (filter1, filter2) {
-    if (Array.isArray(filter1) && Array.isArray(filter2)) {
-        if (filter1.length !== filter2.length) {
-            return false;
-        }
-        for (var i = 0; i < filter1.length; i++) {
-            if (!equalFilterParameters(filter1[i], filter2[i])) {
-                return false;
-            }
-        }
-        return true;
-    }
-    if (type_1.isFunction(filter1) && filter1.columnIndex >= 0 && type_1.isFunction(filter2) && filter2.columnIndex >= 0) {
-        return filter1.columnIndex === filter2.columnIndex
-            && data_1.toComparable(filter1.filterValue) === data_1.toComparable(filter2.filterValue)
-            && data_1.toComparable(filter1.selectedFilterOperation) === data_1.toComparable(filter2.selectedFilterOperation);
-    }
-    return data_1.toComparable(filter1) == data_1.toComparable(filter2); // eslint-disable-line eqeqeq
-};
-function normalizeGroupingLoadOptions(group) {
-    if (!Array.isArray(group)) {
-        group = [group];
-    }
-    return group.map(function (item, i) {
-        if (type_1.isString(item)) {
-            return {
-                selector: item,
-                isExpanded: i < group.length - 1,
-            };
-        }
-        return item;
-    });
-}
-exports["default"] = {
-    renderNoDataText: function ($element) {
-        var that = this;
-        $element = $element || this.element();
-        if (!$element) {
-            return;
-        }
-        var noDataClass = that.addWidgetPrefix(NO_DATA_CLASS);
-        var noDataElement = $element.find("." + noDataClass).last();
-        var isVisible = this._dataController.isEmpty();
-        var isLoading = this._dataController.isLoading();
-        if (!noDataElement.length) {
-            noDataElement = renderer_1.default('<span>')
-                .addClass(noDataClass)
-                .appendTo($element);
-        }
-        if (isVisible && !isLoading) {
-            noDataElement
-                .removeClass('dx-hidden')
-                .text(that._getNoDataText());
-        }
-        else {
-            noDataElement
-                .addClass('dx-hidden');
-        }
-    },
-    renderLoadPanel: function ($element, $container, isLocalStore) {
-        var that = this;
-        var loadPanelOptions;
-        that._loadPanel && that._loadPanel.$element().remove();
-        loadPanelOptions = that.option('loadPanel');
-        if (loadPanelOptions && (loadPanelOptions.enabled === 'auto' ? !isLocalStore : loadPanelOptions.enabled)) {
-            loadPanelOptions = extend_1.extend({
-                shading: false,
-                message: loadPanelOptions.text,
-                container: $container,
-            }, loadPanelOptions);
-            that._loadPanel = that._createComponent(renderer_1.default('<div>').appendTo($container), load_panel_1.default, loadPanelOptions);
-        }
-        else {
-            that._loadPanel = null;
-        }
-    },
-    calculateLoadPanelPosition: function ($element) {
-        // @ts-expect-error
-        var $window = renderer_1.default(window_1.getWindow());
-        if (size_1.getHeight($element) > size_1.getHeight($window)) {
-            return {
-                of: $window,
-                boundary: $element,
-                collision: 'fit',
-            };
-        }
-        return { of: $element };
-    },
-    getIndexByKey: function (key, items, keyName) {
-        var index = -1;
-        if (key !== undefined && Array.isArray(items)) {
-            keyName = arguments.length <= 2 ? 'key' : keyName;
-            for (var i = 0; i < items.length; i++) {
-                var item = type_1.isDefined(keyName) ? items[i][keyName] : items[i];
-                if (common_1.equalByValue(key, item)) {
-                    index = i;
-                    break;
-                }
-            }
-        }
-        return index;
-    },
-    combineFilters: function (filters, operation) {
-        var _a;
-        var resultFilter = [];
-        operation = operation || 'and';
-        for (var i = 0; i < filters.length; i++) {
-            if (!filters[i]) {
-                continue;
-            }
-            if (((_a = filters[i]) === null || _a === void 0 ? void 0 : _a.length) === 1 && filters[i][0] === '!') {
-                if (operation === 'and') {
-                    return ['!'];
-                }
-                if (operation === 'or') {
-                    continue;
-                }
-            }
-            if (resultFilter.length) {
-                resultFilter.push(operation);
-            }
-            resultFilter.push(filters[i]);
-        }
-        if (resultFilter.length === 1) {
-            // eslint-disable-next-line prefer-destructuring
-            resultFilter = resultFilter[0];
-        }
-        if (resultFilter.length) {
-            return resultFilter;
-        }
-        return undefined;
-    },
-    checkChanges: function (changes, changeNames) {
-        var changesWithChangeNamesCount = 0;
-        for (var i = 0; i < changeNames.length; i++) {
-            if (changes[changeNames[i]]) {
-                changesWithChangeNamesCount++;
-            }
-        }
-        return changes.length && changes.length === changesWithChangeNamesCount;
-    },
-    equalFilterParameters: equalFilterParameters,
-    proxyMethod: function (instance, methodName, defaultResult) {
-        if (!instance[methodName]) {
-            instance[methodName] = function () {
-                var dataSource = this._dataSource;
-                return dataSource ? dataSource[methodName].apply(dataSource, arguments) : defaultResult;
-            };
-        }
-    },
-    formatValue: formatValue,
-    getFormatOptionsByColumn: function (column, target) {
-        return {
-            format: column.format,
-            getDisplayFormat: column.getDisplayFormat,
-            customizeText: column.customizeText,
-            target: target,
-            trueText: column.trueText,
-            falseText: column.falseText,
-        };
-    },
-    getDisplayValue: function (column, value, data, rowType) {
-        if (column.displayValueMap && column.displayValueMap[value] !== undefined) {
-            return column.displayValueMap[value];
-        }
-        if (column.calculateDisplayValue && data && rowType !== 'group') {
-            return column.calculateDisplayValue(data);
-        }
-        if (column.lookup && !(rowType === 'group' && (column.calculateGroupValue || column.calculateDisplayValue))) {
-            return column.lookup.calculateCellValue(value);
-        }
-        return value;
-    },
-    getGroupRowSummaryText: function (summaryItems, summaryTexts) {
-        var result = '(';
-        for (var i = 0; i < summaryItems.length; i++) {
-            var summaryItem = summaryItems[i];
-            result += (i > 0 ? ', ' : '') + getSummaryText(summaryItem, summaryTexts);
-        }
-        // eslint-disable-next-line no-return-assign
-        return result += ')';
-    },
-    getSummaryText: getSummaryText,
-    normalizeSortingInfo: normalizeSortingInfo,
-    getFormatByDataType: function (dataType) {
-        // eslint-disable-next-line default-case
-        switch (dataType) {
-            case 'date':
-                return 'shortDate';
-            case 'datetime':
-                return 'shortDateShortTime';
-            default:
-                return undefined;
-        }
-    },
-    getHeaderFilterGroupParameters: function (column, remoteGrouping) {
-        var result = [];
-        var dataField = column.dataField || column.name;
-        var groupInterval = filtering_1.default.getGroupInterval(column);
-        if (groupInterval) {
-            iterator_1.each(groupInterval, function (index, interval) {
-                result.push(remoteGrouping ? { selector: dataField, groupInterval: interval, isExpanded: index < groupInterval.length - 1 } : getIntervalSelector.bind(column, interval));
-            });
-            return result;
-        }
-        if (remoteGrouping) {
-            result = [{ selector: dataField, isExpanded: false }];
-        }
-        else {
-            result = function (data) {
-                var result = column.calculateCellValue(data);
-                if (result === undefined || result === '') {
-                    result = null;
-                }
-                return result;
-            };
-            if (column.sortingMethod) {
-                result = [{ selector: result, compare: column.sortingMethod.bind(column) }];
-            }
-        }
-        return result;
-    },
-    equalSortParameters: function (sortParameters1, sortParameters2, ignoreIsExpanded) {
-        sortParameters1 = normalizeSortingInfo(sortParameters1);
-        sortParameters2 = normalizeSortingInfo(sortParameters2);
-        if (Array.isArray(sortParameters1) && Array.isArray(sortParameters2)) {
-            if (sortParameters1.length !== sortParameters2.length) {
-                return false;
-            }
-            for (var i = 0; i < sortParameters1.length; i++) {
-                if (!equalSelectors(sortParameters1[i].selector, sortParameters2[i].selector) || sortParameters1[i].desc !== sortParameters2[i].desc || sortParameters1[i].groupInterval !== sortParameters2[i].groupInterval || (!ignoreIsExpanded && Boolean(sortParameters1[i].isExpanded) !== Boolean(sortParameters2[i].isExpanded))) {
-                    return false;
-                }
-            }
-            return true;
-        }
-        return (!sortParameters1 || !sortParameters1.length) === (!sortParameters2 || !sortParameters2.length);
-    },
-    getPointsByColumns: function (items, pointCreated, isVertical, startColumnIndex) {
-        var cellsLength = items.length;
-        var notCreatePoint = false;
-        var item;
-        var offset;
-        var columnIndex = startColumnIndex || 0;
-        var result = [];
-        var rtlEnabled;
-        for (var i = 0; i <= cellsLength; i++) {
-            if (i < cellsLength) {
-                item = items.eq(i);
-                offset = item.offset();
-                rtlEnabled = item.css('direction') === 'rtl';
-            }
-            var point = {
-                index: columnIndex,
-                // @ts-expect-error
-                x: offset ? offset.left + (!isVertical && (rtlEnabled ^ (i === cellsLength)) ? position_1.getBoundingRect(item[0]).width : 0) : 0,
-                y: offset ? offset.top + (isVertical && i === cellsLength ? position_1.getBoundingRect(item[0]).height : 0) : 0,
-                columnIndex: columnIndex,
-            };
-            if (!isVertical && i > 0) {
-                var prevItemOffset = items.eq(i - 1).offset();
-                if (prevItemOffset.top < point.y) {
-                    point.y = prevItemOffset.top;
-                }
-            }
-            if (pointCreated) {
-                notCreatePoint = pointCreated(point);
-            }
-            if (!notCreatePoint) {
-                result.push(point);
-            }
-            columnIndex++;
-        }
-        return result;
-    },
-    getExpandCellTemplate: function () {
-        return {
-            allowRenderToDetachedContainer: true,
-            render: function (container, options) {
-                var $container = renderer_1.default(container);
-                if (type_1.isDefined(options.value) && !(options.data && options.data.isContinuation) && !options.row.isNewRow) {
-                    var rowsView = options.component.getView('rowsView');
-                    $container
-                        .addClass(DATAGRID_EXPAND_CLASS)
-                        .addClass(DATAGRID_SELECTION_DISABLED_CLASS);
-                    renderer_1.default('<div>')
-                        .addClass(options.value ? DATAGRID_GROUP_OPENED_CLASS : DATAGRID_GROUP_CLOSED_CLASS)
-                        .appendTo($container);
-                    rowsView.setAria('label', options.value ? rowsView.localize('dxDataGrid-ariaCollapse') : rowsView.localize('dxDataGrid-ariaExpand'), $container);
-                }
-                else {
-                    setEmptyText($container);
-                }
-            },
-        };
-    },
-    setEmptyText: setEmptyText,
-    isDateType: isDateType,
-    getSelectionRange: function (focusedElement) {
-        try {
-            if (focusedElement) {
-                return {
-                    selectionStart: focusedElement.selectionStart,
-                    selectionEnd: focusedElement.selectionEnd,
-                };
-            }
-        }
-        catch (e) { /* empty */ }
-        return {};
-    },
-    setSelectionRange: function (focusedElement, selectionRange) {
-        try {
-            if (focusedElement && focusedElement.setSelectionRange) {
-                focusedElement.setSelectionRange(selectionRange.selectionStart, selectionRange.selectionEnd);
-            }
-        }
-        catch (e) { /* empty */ }
-    },
-    focusAndSelectElement: function (component, $element) {
-        var isFocused = $element.is(':focus');
-        // @ts-expect-error
-        events_engine_1.default.trigger($element, 'focus');
-        var isSelectTextOnEditingStart = component.option('editing.selectTextOnEditStart');
-        var element = $element.get(0);
-        if (!isFocused && isSelectTextOnEditingStart && $element.is('.dx-texteditor-input') && !$element.is('[readonly]')) {
-            var editor = getWidgetInstance($element.closest('.dx-texteditor'));
-            deferred_1.when(editor && editor._loadItemDeferred).done(function () {
-                element.select();
-            });
-        }
-    },
-    getWidgetInstance: getWidgetInstance,
-    getLastResizableColumnIndex: function (columns, resultWidths) {
-        var hasResizableColumns = columns.some(function (column) { return column && !column.command && !column.fixed && column.allowResizing !== false; });
-        var lastColumnIndex;
-        for (lastColumnIndex = columns.length - 1; columns[lastColumnIndex]; lastColumnIndex--) {
-            var column = columns[lastColumnIndex];
-            var width = resultWidths && resultWidths[lastColumnIndex];
-            var allowResizing = !hasResizableColumns || column.allowResizing !== false;
-            if (!column.command && !column.fixed && width !== 'adaptiveHidden' && allowResizing) {
-                break;
-            }
-        }
-        return lastColumnIndex;
-    },
-    isElementInCurrentGrid: function (controller, $element) {
-        if ($element && $element.length) {
-            var $grid = $element.closest("." + controller.getWidgetContainerClass()).parent();
-            return $grid.is(controller.component.$element());
-        }
+  },
+  equalSortParameters: function equalSortParameters(sortParameters1, sortParameters2, ignoreIsExpanded) {
+    sortParameters1 = normalizeSortingInfo(sortParameters1);
+    sortParameters2 = normalizeSortingInfo(sortParameters2);
+    if (Array.isArray(sortParameters1) && Array.isArray(sortParameters2)) {
+      if (sortParameters1.length !== sortParameters2.length) {
         return false;
-    },
-    isVirtualRowRendering: function (that) {
-        var rowRenderingMode = that.option(ROW_RENDERING_MODE_OPTION);
-        var isVirtualMode = that.option(SCROLLING_MODE_OPTION) === SCROLLING_MODE_VIRTUAL;
-        var isAppendMode = that.option(SCROLLING_MODE_OPTION) === SCROLLING_MODE_INFINITE;
-        if (that.option(LEGACY_SCROLLING_MODE) === false && (isVirtualMode || isAppendMode)) {
-            return true;
+      }
+      for (var i = 0; i < sortParameters1.length; i++) {
+        if (!equalSelectors(sortParameters1[i].selector, sortParameters2[i].selector) || sortParameters1[i].desc !== sortParameters2[i].desc || sortParameters1[i].groupInterval !== sortParameters2[i].groupInterval || !ignoreIsExpanded && Boolean(sortParameters1[i].isExpanded) !== Boolean(sortParameters2[i].isExpanded)) {
+          return false;
         }
-        return rowRenderingMode === SCROLLING_MODE_VIRTUAL;
-    },
-    getPixelRatio: function (window) {
-        return window.devicePixelRatio || 1;
-    },
-    /// #DEBUG
-    _setPixelRatioFn: function (value) {
-        this.getPixelRatio = value;
-    },
-    /// #ENDDEBUG
-    getContentHeightLimit: function (browser) {
-        if (browser.mozilla) {
-            return 8000000;
+      }
+      return true;
+    }
+    return (!sortParameters1 || !sortParameters1.length) === (!sortParameters2 || !sortParameters2.length);
+  },
+  getPointsByColumns: function getPointsByColumns(items, pointCreated, isVertical, startColumnIndex) {
+    var cellsLength = items.length;
+    var notCreatePoint = false;
+    var item;
+    var offset;
+    var columnIndex = startColumnIndex || 0;
+    var result = [];
+    var rtlEnabled;
+    for (var i = 0; i <= cellsLength; i++) {
+      if (i < cellsLength) {
+        item = items.eq(i);
+        offset = item.offset();
+        rtlEnabled = item.css('direction') === 'rtl';
+      }
+      var point = {
+        index: columnIndex,
+        // @ts-expect-error
+        x: offset ? offset.left + (!isVertical && rtlEnabled ^ i === cellsLength ? (0, _position.getBoundingRect)(item[0]).width : 0) : 0,
+        y: offset ? offset.top + (isVertical && i === cellsLength ? (0, _position.getBoundingRect)(item[0]).height : 0) : 0,
+        columnIndex: columnIndex
+      };
+      if (!isVertical && i > 0) {
+        var prevItemOffset = items.eq(i - 1).offset();
+        if (prevItemOffset.top < point.y) {
+          point.y = prevItemOffset.top;
         }
-        return 15000000 / this.getPixelRatio(window_1.getWindow());
-    },
-    normalizeLookupDataSource: function (lookup) {
-        var lookupDataSourceOptions;
-        if (lookup.items) {
-            lookupDataSourceOptions = lookup.items;
+      }
+      if (pointCreated) {
+        notCreatePoint = pointCreated(point);
+      }
+      if (!notCreatePoint) {
+        result.push(point);
+      }
+      columnIndex++;
+    }
+    return result;
+  },
+  getExpandCellTemplate: function getExpandCellTemplate() {
+    return {
+      allowRenderToDetachedContainer: true,
+      render: function render(container, options) {
+        var $container = (0, _renderer.default)(container);
+        if ((0, _type.isDefined)(options.value) && !(options.data && options.data.isContinuation) && !options.row.isNewRow) {
+          var rowsView = options.component.getView('rowsView');
+          $container.addClass(DATAGRID_EXPAND_CLASS).addClass(DATAGRID_SELECTION_DISABLED_CLASS);
+          (0, _renderer.default)('<div>').addClass(options.value ? DATAGRID_GROUP_OPENED_CLASS : DATAGRID_GROUP_CLOSED_CLASS).appendTo($container);
+          rowsView.setAria('label', options.value ? rowsView.localize('dxDataGrid-ariaCollapse') : rowsView.localize('dxDataGrid-ariaExpand'), $container);
+        } else {
+          setEmptyText($container);
         }
-        else {
-            lookupDataSourceOptions = lookup.dataSource;
-            if (type_1.isFunction(lookupDataSourceOptions) && !variable_wrapper_1.default.isWrapped(lookupDataSourceOptions)) {
-                lookupDataSourceOptions = lookupDataSourceOptions({});
-            }
-        }
-        return utils_2.normalizeDataSourceOptions(lookupDataSourceOptions);
-    },
-    getWrappedLookupDataSource: function (column, dataSource, filter) {
-        var _this = this;
-        if (!dataSource) {
-            return [];
-        }
-        var lookupDataSourceOptions = this.normalizeLookupDataSource(column.lookup);
-        if (column.calculateCellValue !== column.defaultCalculateCellValue) {
-            return lookupDataSourceOptions;
-        }
-        var hasGroupPaging = dataSource.remoteOperations().groupPaging;
-        var hasLookupOptimization = column.displayField && type_1.isString(column.displayField);
-        var cachedUniqueRelevantItems;
-        var previousTake;
-        var previousSkip;
-        var sliceItems = function (items, loadOptions) {
-            var _a;
-            var start = (_a = loadOptions.skip) !== null && _a !== void 0 ? _a : 0;
-            var end = loadOptions.take ? start + loadOptions.take : items.length;
-            return items.slice(start, end);
+      }
+    };
+  },
+  setEmptyText: setEmptyText,
+  isDateType: isDateType,
+  getSelectionRange: function getSelectionRange(focusedElement) {
+    try {
+      if (focusedElement) {
+        return {
+          selectionStart: focusedElement.selectionStart,
+          selectionEnd: focusedElement.selectionEnd
         };
-        var loadUniqueRelevantItems = function (loadOptions) {
-            var group = normalizeGroupingLoadOptions(hasLookupOptimization ? [column.dataField, column.displayField] : column.dataField);
-            // @ts-expect-error
-            var d = new deferred_1.Deferred();
-            var canUseCache = cachedUniqueRelevantItems && (!hasGroupPaging
-                || (loadOptions.skip === previousSkip && loadOptions.take === previousTake));
-            if (canUseCache) {
-                d.resolve(sliceItems(cachedUniqueRelevantItems, loadOptions));
-            }
-            else {
-                previousSkip = loadOptions.skip;
-                previousTake = loadOptions.take;
-                dataSource.load({
-                    filter: filter,
-                    group: group,
-                    take: hasGroupPaging ? loadOptions.take : undefined,
-                    skip: hasGroupPaging ? loadOptions.skip : undefined,
-                }).done(function (items) {
-                    cachedUniqueRelevantItems = items;
-                    d.resolve(hasGroupPaging ? items : sliceItems(items, loadOptions));
-                }).fail(d.fail);
-            }
-            return d;
-        };
-        var lookupDataSource = __assign(__assign({}, lookupDataSourceOptions), { __dataGridSourceFilter: filter, load: function (loadOptions) {
-                // @ts-expect-error
-                var d = new deferred_1.Deferred();
-                loadUniqueRelevantItems(loadOptions).done(function (items) {
-                    if (items.length === 0) {
-                        d.resolve([]);
-                        return;
-                    }
-                    var filter = _this.combineFilters(items.flatMap(function (data) { return data.key; }).map(function (key) { return [
-                        column.lookup.valueExpr, key,
-                    ]; }), 'or');
-                    var newDataSource = new data_source_1.DataSource(__assign(__assign(__assign({}, lookupDataSourceOptions), loadOptions), { filter: _this.combineFilters([filter, loadOptions.filter], 'and'), paginate: false }));
-                    newDataSource
-                        // @ts-expect-error
-                        .load()
-                        .done(d.resolve)
-                        .fail(d.fail);
-                }).fail(d.fail);
-                return d;
-            }, key: column.lookup.valueExpr, byKey: function (key) {
-                var d = deferred_1.Deferred();
-                this.load({
-                    filter: [column.lookup.valueExpr, '=', key],
-                }).done(function (arr) {
-                    d.resolve(arr[0]);
-                });
-                return d.promise();
-            } });
-        return lookupDataSource;
-    },
+      }
+    } catch (e) {/* empty */}
+    return {};
+  },
+  setSelectionRange: function setSelectionRange(focusedElement, selectionRange) {
+    try {
+      if (focusedElement && focusedElement.setSelectionRange) {
+        focusedElement.setSelectionRange(selectionRange.selectionStart, selectionRange.selectionEnd);
+      }
+    } catch (e) {/* empty */}
+  },
+  focusAndSelectElement: function focusAndSelectElement(component, $element) {
+    var isFocused = $element.is(':focus');
+    // @ts-expect-error
+    _events_engine.default.trigger($element, 'focus');
+    var isSelectTextOnEditingStart = component.option('editing.selectTextOnEditStart');
+    var element = $element.get(0);
+    if (!isFocused && isSelectTextOnEditingStart && $element.is('.dx-texteditor-input') && !$element.is('[readonly]')) {
+      var editor = getWidgetInstance($element.closest('.dx-texteditor'));
+      (0, _deferred.when)(editor && editor._loadItemDeferred).done(function () {
+        element.select();
+      });
+    }
+  },
+  getWidgetInstance: getWidgetInstance,
+  getLastResizableColumnIndex: function getLastResizableColumnIndex(columns, resultWidths) {
+    var hasResizableColumns = columns.some(function (column) {
+      return column && !column.command && !column.fixed && column.allowResizing !== false;
+    });
+    var lastColumnIndex;
+    for (lastColumnIndex = columns.length - 1; columns[lastColumnIndex]; lastColumnIndex--) {
+      var column = columns[lastColumnIndex];
+      var width = resultWidths && resultWidths[lastColumnIndex];
+      var allowResizing = !hasResizableColumns || column.allowResizing !== false;
+      if (!column.command && !column.fixed && width !== 'adaptiveHidden' && allowResizing) {
+        break;
+      }
+    }
+    return lastColumnIndex;
+  },
+  isElementInCurrentGrid: function isElementInCurrentGrid(controller, $element) {
+    if ($element && $element.length) {
+      var $grid = $element.closest(".".concat(controller.getWidgetContainerClass())).parent();
+      return $grid.is(controller.component.$element());
+    }
+    return false;
+  },
+  isVirtualRowRendering: function isVirtualRowRendering(that) {
+    var rowRenderingMode = that.option(ROW_RENDERING_MODE_OPTION);
+    var isVirtualMode = that.option(SCROLLING_MODE_OPTION) === SCROLLING_MODE_VIRTUAL;
+    var isAppendMode = that.option(SCROLLING_MODE_OPTION) === SCROLLING_MODE_INFINITE;
+    if (that.option(LEGACY_SCROLLING_MODE) === false && (isVirtualMode || isAppendMode)) {
+      return true;
+    }
+    return rowRenderingMode === SCROLLING_MODE_VIRTUAL;
+  },
+  getPixelRatio: function getPixelRatio(window) {
+    return window.devicePixelRatio || 1;
+  },
+  /// #DEBUG
+  _setPixelRatioFn: function _setPixelRatioFn(value) {
+    this.getPixelRatio = value;
+  },
+  /// #ENDDEBUG
+  getContentHeightLimit: function getContentHeightLimit(browser) {
+    if (browser.mozilla) {
+      return 8000000;
+    }
+    return 15000000 / this.getPixelRatio((0, _window.getWindow)());
+  },
+  normalizeLookupDataSource: function normalizeLookupDataSource(lookup) {
+    var lookupDataSourceOptions;
+    if (lookup.items) {
+      lookupDataSourceOptions = lookup.items;
+    } else {
+      lookupDataSourceOptions = lookup.dataSource;
+      if ((0, _type.isFunction)(lookupDataSourceOptions) && !_variable_wrapper.default.isWrapped(lookupDataSourceOptions)) {
+        lookupDataSourceOptions = lookupDataSourceOptions({});
+      }
+    }
+    return (0, _utils2.normalizeDataSourceOptions)(lookupDataSourceOptions);
+  },
+  getWrappedLookupDataSource: function getWrappedLookupDataSource(column, dataSource, filter) {
+    var _this = this;
+    if (!dataSource) {
+      return [];
+    }
+    var lookupDataSourceOptions = this.normalizeLookupDataSource(column.lookup);
+    if (column.calculateCellValue !== column.defaultCalculateCellValue) {
+      return lookupDataSourceOptions;
+    }
+    var hasGroupPaging = dataSource.remoteOperations().groupPaging;
+    var hasLookupOptimization = column.displayField && (0, _type.isString)(column.displayField);
+    var cachedUniqueRelevantItems;
+    var previousTake;
+    var previousSkip;
+    var sliceItems = function sliceItems(items, loadOptions) {
+      var _a;
+      var start = (_a = loadOptions.skip) !== null && _a !== void 0 ? _a : 0;
+      var end = loadOptions.take ? start + loadOptions.take : items.length;
+      return items.slice(start, end);
+    };
+    var loadUniqueRelevantItems = function loadUniqueRelevantItems(loadOptions) {
+      var group = normalizeGroupingLoadOptions(hasLookupOptimization ? [column.dataField, column.displayField] : column.dataField);
+      // @ts-expect-error
+      var d = new _deferred.Deferred();
+      var canUseCache = cachedUniqueRelevantItems && (!hasGroupPaging || loadOptions.skip === previousSkip && loadOptions.take === previousTake);
+      if (canUseCache) {
+        d.resolve(sliceItems(cachedUniqueRelevantItems, loadOptions));
+      } else {
+        previousSkip = loadOptions.skip;
+        previousTake = loadOptions.take;
+        dataSource.load({
+          filter: filter,
+          group: group,
+          take: hasGroupPaging ? loadOptions.take : undefined,
+          skip: hasGroupPaging ? loadOptions.skip : undefined
+        }).done(function (items) {
+          cachedUniqueRelevantItems = items;
+          d.resolve(hasGroupPaging ? items : sliceItems(items, loadOptions));
+        }).fail(d.fail);
+      }
+      return d;
+    };
+    var lookupDataSource = _extends(_extends({}, lookupDataSourceOptions), {
+      __dataGridSourceFilter: filter,
+      load: function load(loadOptions) {
+        // @ts-expect-error
+        var d = new _deferred.Deferred();
+        loadUniqueRelevantItems(loadOptions).done(function (items) {
+          if (items.length === 0) {
+            d.resolve([]);
+            return;
+          }
+          var filter = _this.combineFilters(items.flatMap(function (data) {
+            return data.key;
+          }).map(function (key) {
+            return [column.lookup.valueExpr, key];
+          }), 'or');
+          var newDataSource = new _data_source.DataSource(_extends(_extends(_extends({}, lookupDataSourceOptions), loadOptions), {
+            filter: _this.combineFilters([filter, loadOptions.filter], 'and'),
+            paginate: false
+          }));
+          newDataSource
+          // @ts-expect-error
+          .load().done(d.resolve).fail(d.fail);
+        }).fail(d.fail);
+        return d;
+      },
+      key: column.lookup.valueExpr,
+      byKey: function byKey(key) {
+        var d = (0, _deferred.Deferred)();
+        this.load({
+          filter: [column.lookup.valueExpr, '=', key]
+        }).done(function (arr) {
+          d.resolve(arr[0]);
+        });
+        return d.promise();
+      }
+    });
+    return lookupDataSource;
+  },
+  logHeaderFilterDeprecatedWarningIfNeed: function logHeaderFilterDeprecatedWarningIfNeed(component) {
+    var since = '23.1';
+    var logWarning = component._logDeprecatedOptionWarning.bind(component);
+    if ((0, _type.isDefined)(component.option('headerFilter.allowSearch'))) {
+      logWarning('headerFilter.allowSearch', {
+        since: since,
+        alias: 'headerFilter.search.enabled'
+      });
+    }
+    if ((0, _type.isDefined)(component.option('headerFilter.searchTimeout'))) {
+      logWarning('headerFilter.searchTimeout', {
+        since: since,
+        alias: 'headerFilter.search.timeout'
+      });
+    }
+    var specificName = component.NAME === 'dxPivotGrid' ? 'dataSource.fields' : 'columns';
+    var columns = component.option(specificName);
+    if (!Array.isArray(columns)) {
+      return;
+    }
+    var logSpecificDeprecatedWarningIfNeed = function logSpecificDeprecatedWarningIfNeed(columns) {
+      columns.forEach(function (column) {
+        var _a;
+        var headerFilter = column.headerFilter || {};
+        if ((0, _type.isDefined)(headerFilter.allowSearch)) {
+          logWarning("".concat(specificName, "[].headerFilter.allowSearch"), {
+            since: since,
+            alias: "".concat(specificName, "[].headerFilter.search.enabled")
+          });
+        }
+        if ((0, _type.isDefined)(headerFilter.searchMode)) {
+          logWarning("".concat(specificName, "[].headerFilter.searchMode"), {
+            since: since,
+            alias: "".concat(specificName, "[].headerFilter.search.mode")
+          });
+        }
+        if ((_a = column.columns) === null || _a === void 0 ? void 0 : _a.length) {
+          logSpecificDeprecatedWarningIfNeed(column.columns);
+        }
+      });
+    };
+    logSpecificDeprecatedWarningIfNeed(columns);
+  }
 };
+exports["default"] = _default;
 
 /***/ }),
 
@@ -4127,13 +4163,22 @@ var config = {
       optionsString = '{' + optionsString + '}';
     }
     try {
-      // eslint-disable-next-line no-new-func
-      return new Function('return ' + optionsString)();
+      return JSON.parse(optionsString);
     } catch (ex) {
-      throw _errors.default.Error('E3018', ex, optionsString);
+      try {
+        return JSON.parse(normalizeToJSONString(optionsString));
+      } catch (exNormalize) {
+        throw _errors.default.Error('E3018', ex, optionsString);
+      }
     }
   }
 };
+var normalizeToJSONString = function normalizeToJSONString(optionsString) {
+  return optionsString.replace(/'/g, '"') // replace all ' to "
+  .replace(/,\s*([\]}])/g, '$1') // remove trailing commas
+  .replace(/([{,])\s*([^":\s]+)\s*:/g, '$1"$2":'); // add quotes for unquoted keys
+};
+
 var deprecatedFields = ['decimalSeparator', 'thousandsSeparator'];
 var configMethod = function configMethod() {
   if (!arguments.length) {
@@ -7126,7 +7171,6 @@ var _renderer = _interopRequireDefault(__webpack_require__(68374));
 var _template_base = __webpack_require__(81033);
 var _dom = __webpack_require__(3532);
 var _template_engine_registry = __webpack_require__(72987);
-__webpack_require__(32468);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
@@ -7253,79 +7297,6 @@ function setTemplateEngine(templateEngine) {
 function getCurrentTemplateEngine() {
   return currentTemplateEngine;
 }
-
-/***/ }),
-
-/***/ 32468:
-/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
-
-
-
-var _dom = __webpack_require__(3532);
-var _template_engine_registry = __webpack_require__(72987);
-(0, _template_engine_registry.registerTemplateEngine)('jquery-tmpl', {
-  compile: function compile(element) {
-    return (0, _dom.extractTemplateMarkup)(element);
-  },
-  render: function render(template, data) {
-    /* global jQuery */
-    return jQuery.tmpl(template, data);
-  }
-});
-(0, _template_engine_registry.registerTemplateEngine)('jsrender', {
-  compile: function compile(element) {
-    /* global jsrender */
-    return (jQuery ? jQuery : jsrender).templates((0, _dom.extractTemplateMarkup)(element));
-  },
-  render: function render(template, data) {
-    return template.render(data);
-  }
-});
-(0, _template_engine_registry.registerTemplateEngine)('mustache', {
-  compile: function compile(element) {
-    /* global Mustache */
-    return (0, _dom.extractTemplateMarkup)(element);
-  },
-  render: function render(template, data) {
-    return Mustache.render(template, data);
-  }
-});
-(0, _template_engine_registry.registerTemplateEngine)('hogan', {
-  compile: function compile(element) {
-    /* global Hogan */
-    return Hogan.compile((0, _dom.extractTemplateMarkup)(element));
-  },
-  render: function render(template, data) {
-    return template.render(data);
-  }
-});
-(0, _template_engine_registry.registerTemplateEngine)('underscore', {
-  compile: function compile(element) {
-    /* global _ */
-    return _.template((0, _dom.extractTemplateMarkup)(element));
-  },
-  render: function render(template, data) {
-    return template(data);
-  }
-});
-(0, _template_engine_registry.registerTemplateEngine)('handlebars', {
-  compile: function compile(element) {
-    /* global Handlebars */
-    return Handlebars.compile((0, _dom.extractTemplateMarkup)(element));
-  },
-  render: function render(template, data) {
-    return template(data);
-  }
-});
-(0, _template_engine_registry.registerTemplateEngine)('doT', {
-  compile: function compile(element) {
-    /* global doT */
-    return doT.template((0, _dom.extractTemplateMarkup)(element));
-  },
-  render: function render(template, data) {
-    return template(data);
-  }
-});
 
 /***/ }),
 
@@ -8021,6 +7992,7 @@ var _data = __webpack_require__(47617);
 var _iterator = __webpack_require__(95479);
 var _type = __webpack_require__(35922);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 var ensureDefined = function ensureDefined(value, defaultValue) {
   return (0, _type.isDefined)(value) ? value : defaultValue;
 };
@@ -8252,48 +8224,55 @@ var grep = function grep(elements, checkFunction, invert) {
   return result;
 };
 exports.grep = grep;
-var arraysEqualByValue = function arraysEqualByValue(array1, array2, depth) {
+var compareArrays = function compareArrays(array1, array2, depth, options) {
   if (array1.length !== array2.length) {
     return false;
   }
-  for (var i = 0; i < array1.length; i++) {
-    if (!equalByValue(array1[i], array2[i], depth + 1)) {
-      return false;
-    }
-  }
-  return true;
+  return !array1.some(function (item, idx) {
+    return !compareByValue(item, array2[idx], depth + 1, _extends({}, options, {
+      strict: true
+    }));
+  });
 };
-var objectsEqualByValue = function objectsEqualByValue(object1, object2, depth, strict) {
-  for (var propertyName in object1) {
-    if (Object.prototype.hasOwnProperty.call(object1, propertyName) && !equalByValue(object1[propertyName], object2[propertyName], depth + 1, strict)) {
-      return false;
-    }
+var compareObjects = function compareObjects(object1, object2, depth, options) {
+  var keys1 = Object.keys(object1);
+  var keys2 = Object.keys(object2);
+  if (keys1.length !== keys2.length) {
+    return false;
   }
-  for (var _propertyName in object2) {
-    if (!(_propertyName in object1)) {
-      return false;
-    }
-  }
-  return true;
+  var keys2Set = new Set(keys2);
+  return !keys1.some(function (key) {
+    return !keys2Set.has(key) || !compareByValue(object1[key], object2[key], depth + 1, options);
+  });
 };
-var maxEqualityDepth = 3;
-var equalByValue = function equalByValue(object1, object2) {
-  var depth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-  var strict = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
-  object1 = (0, _data.toComparable)(object1, true);
-  object2 = (0, _data.toComparable)(object2, true);
-
+var DEFAULT_EQUAL_BY_VALUE_OPTS = {
+  maxDepth: 3,
+  strict: true
+};
+var compareByValue = function compareByValue(value1, value2, depth, options) {
+  var strict = options.strict,
+    maxDepth = options.maxDepth;
+  var comparable1 = (0, _data.toComparable)(value1, true);
+  var comparable2 = (0, _data.toComparable)(value2, true);
+  var comparisonResult = strict ? comparable1 === comparable2
   // eslint-disable-next-line eqeqeq
-  var comparisonResult = strict ? object1 === object2 : object1 == object2;
-  if (comparisonResult || depth >= maxEqualityDepth) {
-    return true;
+  : comparable1 == comparable2;
+  switch (true) {
+    case comparisonResult:
+    case depth >= maxDepth:
+      return true;
+    case (0, _type.isObject)(comparable1) && (0, _type.isObject)(comparable2):
+      return compareObjects(comparable1, comparable2, depth, options);
+    case Array.isArray(comparable1) && Array.isArray(comparable2):
+      return compareArrays(comparable1, comparable2, depth, options);
+    default:
+      return false;
   }
-  if ((0, _type.isObject)(object1) && (0, _type.isObject)(object2)) {
-    return objectsEqualByValue(object1, object2, depth, strict);
-  } else if (Array.isArray(object1) && Array.isArray(object2)) {
-    return arraysEqualByValue(object1, object2, depth);
-  }
-  return false;
+};
+var equalByValue = function equalByValue(value1, value2) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : DEFAULT_EQUAL_BY_VALUE_OPTS;
+  var compareOptions = _extends({}, DEFAULT_EQUAL_BY_VALUE_OPTS, options);
+  return compareByValue(value1, value2, 0, compareOptions);
 };
 exports.equalByValue = equalByValue;
 
@@ -8536,6 +8515,7 @@ var compileSetter = function compileSetter(expr) {
 };
 exports.compileSetter = compileSetter;
 var toComparable = function toComparable(value, caseSensitive) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   if (value instanceof Date) {
     return value.getTime();
   }
@@ -8543,7 +8523,12 @@ var toComparable = function toComparable(value, caseSensitive) {
     return value.valueOf();
   }
   if (!caseSensitive && typeof value === 'string') {
-    return value.toLowerCase();
+    var _options$collatorOpti;
+    if ((options === null || options === void 0 ? void 0 : (_options$collatorOpti = options.collatorOptions) === null || _options$collatorOpti === void 0 ? void 0 : _options$collatorOpti.sensitivity) === 'base') {
+      var REMOVE_DIACRITICAL_MARKS_REGEXP = /[\u0300-\u036f]/g;
+      value = value.normalize('NFD').replace(REMOVE_DIACRITICAL_MARKS_REGEXP, '');
+    }
+    return options !== null && options !== void 0 && options.locale ? value.toLocaleLowerCase(options.locale) : value.toLowerCase();
   }
   return value;
 };
@@ -12012,6 +11997,7 @@ var _data = __webpack_require__(47617);
 var _store_helper = _interopRequireDefault(__webpack_require__(99236));
 var _deferred = __webpack_require__(62754);
 var _common = __webpack_require__(20576);
+var _type = __webpack_require__(35922);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -12019,10 +12005,12 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 var abstract = _class.default.abstract;
 var queryByOptions = _store_helper.default.queryByOptions;
 var storeImpl = {};
 var Store = _class.default.inherit({
+  _langParams: {},
   ctor: function ctor(options) {
     var that = this;
     options = options || {};
@@ -12063,6 +12051,10 @@ var Store = _class.default.inherit({
     });
   },
   _loadImpl: function _loadImpl(options) {
+    if (!(0, _type.isEmptyObject)(this._langParams)) {
+      options = options || {};
+      options._langParams = _extends({}, this._langParams, options._langParams);
+    }
     return queryByOptions(this.createQuery(options), options).enumerate();
   },
   _withLock: function _withLock(task) {
@@ -12270,9 +12262,13 @@ var MapIterator = WrappedIterator.inherit({
     return hasNext;
   }
 });
-var defaultCompare = function defaultCompare(xValue, yValue) {
-  xValue = (0, _data.toComparable)(xValue);
-  yValue = (0, _data.toComparable)(yValue);
+var defaultCompare = function defaultCompare(xValue, yValue, options) {
+  if ((0, _type.isString)(xValue) && (0, _type.isString)(yValue) && (options !== null && options !== void 0 && options.locale || options !== null && options !== void 0 && options.collatorOptions)) {
+    /* eslint-disable-next-line no-undef */
+    return new Intl.Collator((options === null || options === void 0 ? void 0 : options.locale) || undefined, (options === null || options === void 0 ? void 0 : options.collatorOptions) || undefined).compare(xValue, yValue);
+  }
+  xValue = (0, _data.toComparable)(xValue, false, options);
+  yValue = (0, _data.toComparable)(yValue, false, options);
   if (xValue === null && yValue !== null) {
     return -1;
   }
@@ -12295,14 +12291,17 @@ var defaultCompare = function defaultCompare(xValue, yValue) {
 };
 var SortIterator = Iterator.inherit({
   ctor: function ctor(iter, getter, desc, compare) {
+    this.langParams = iter.langParams;
     if (!(iter instanceof MapIterator)) {
       iter = new MapIterator(iter, this._wrap);
+      iter.langParams = this.langParams;
     }
     this.iter = iter;
     this.rules = [{
       getter: getter,
       desc: desc,
-      compare: compare
+      compare: compare,
+      langParams: this.langParams
     }];
   },
   thenBy: function thenBy(getter, desc, compare) {
@@ -12353,6 +12352,11 @@ var SortIterator = Iterator.inherit({
   _unwrap: function _unwrap(wrappedItem) {
     return wrappedItem.value;
   },
+  _getDefaultCompare: function _getDefaultCompare(langParams) {
+    return function (xValue, yValue) {
+      return defaultCompare(xValue, yValue, langParams);
+    };
+  },
   _compare: function _compare(x, y) {
     var xIndex = x.index;
     var yIndex = y.index;
@@ -12365,7 +12369,7 @@ var SortIterator = Iterator.inherit({
       var rule = this.rules[i];
       var xValue = rule.getter(x);
       var yValue = rule.getter(y);
-      var compare = rule.compare || defaultCompare;
+      var compare = rule.compare || this._getDefaultCompare(rule.langParams);
       var compareResult = compare(xValue, yValue);
       if (compareResult) {
         return rule.desc ? -compareResult : compareResult;
@@ -12375,6 +12379,10 @@ var SortIterator = Iterator.inherit({
   }
 });
 var compileCriteria = function () {
+  var langParams = {};
+  var _toComparable = function _toComparable(value) {
+    return (0, _data.toComparable)(value, false, langParams);
+  };
   var compileGroup = function compileGroup(crit) {
     var ops = [];
     var isConjunctiveOperator = false;
@@ -12384,7 +12392,7 @@ var compileCriteria = function () {
         if (ops.length > 1 && isConjunctiveOperator !== isConjunctiveNextOperator) {
           throw new _errors.errors.Error('E4019');
         }
-        ops.push(compileCriteria(this));
+        ops.push(compileCriteria(this, langParams));
         isConjunctiveOperator = isConjunctiveNextOperator;
         isConjunctiveNextOperator = true;
       } else {
@@ -12403,16 +12411,17 @@ var compileCriteria = function () {
     };
   };
   var toString = function toString(value) {
-    return (0, _type.isDefined)(value) ? value.toString() : '';
+    var _langParams;
+    return (0, _type.isDefined)(value) ? (_langParams = langParams) !== null && _langParams !== void 0 && _langParams.locale ? value.toLocaleString(langParams.locale) : value.toString() : '';
   };
   var compileBinary = function compileBinary(crit) {
     crit = (0, _utils.normalizeBinaryCriterion)(crit);
     var getter = (0, _data.compileGetter)(crit[0]);
     var op = crit[1];
     var value = crit[2];
-    value = (0, _data.toComparable)(value);
+    value = _toComparable(value);
     var compare = function compare(obj, operatorFn) {
-      obj = (0, _data.toComparable)(getter(obj));
+      obj = _toComparable(getter(obj));
       return (value == null || obj == null) && value !== obj ? false : operatorFn(obj, value);
     };
     switch (op.toLowerCase()) {
@@ -12446,11 +12455,11 @@ var compileCriteria = function () {
         };
       case 'startswith':
         return function (obj) {
-          return (0, _data.toComparable)(toString(getter(obj))).indexOf(value) === 0;
+          return _toComparable(toString(getter(obj))).indexOf(value) === 0;
         };
       case 'endswith':
         return function (obj) {
-          var getterValue = (0, _data.toComparable)(toString(getter(obj)));
+          var getterValue = _toComparable(toString(getter(obj)));
           var searchValue = toString(value);
           if (getterValue.length < searchValue.length) {
             return false;
@@ -12460,18 +12469,18 @@ var compileCriteria = function () {
         };
       case 'contains':
         return function (obj) {
-          return (0, _data.toComparable)(toString(getter(obj))).indexOf(value) > -1;
+          return _toComparable(toString(getter(obj))).indexOf(value) > -1;
         };
       case 'notcontains':
         return function (obj) {
-          return (0, _data.toComparable)(toString(getter(obj))).indexOf(value) === -1;
+          return _toComparable(toString(getter(obj))).indexOf(value) === -1;
         };
     }
     throw _errors.errors.Error('E4003', op);
   };
   function compileEquals(getter, value, negate) {
     return function (obj) {
-      obj = (0, _data.toComparable)(getter(obj));
+      obj = _toComparable(getter(obj));
       // eslint-disable-next-line eqeqeq
       var result = useStrictComparison(value) ? obj === value : obj == value;
       if (negate) {
@@ -12485,7 +12494,7 @@ var compileCriteria = function () {
   }
   function compileUnary(crit) {
     var op = crit[0];
-    var criteria = compileCriteria(crit[1]);
+    var criteria = compileCriteria(crit[1], langParams);
     if (op === '!') {
       return function (obj) {
         return !criteria(obj);
@@ -12493,7 +12502,8 @@ var compileCriteria = function () {
     }
     throw _errors.errors.Error('E4003', op);
   }
-  return function (crit) {
+  return function (crit, options) {
+    langParams = options || {};
     if ((0, _type.isFunction)(crit)) {
       return crit;
     }
@@ -12509,7 +12519,8 @@ var compileCriteria = function () {
 var FilterIterator = WrappedIterator.inherit({
   ctor: function ctor(iter, criteria) {
     this.callBase(iter);
-    this.criteria = compileCriteria(criteria);
+    this.langParams = iter.langParams;
+    this.criteria = compileCriteria(criteria, this.langParams);
   },
   next: function next() {
     while (this.iter.next()) {
@@ -12617,6 +12628,9 @@ var arrayQueryImpl = function arrayQueryImpl(iter, queryOptions) {
   if (!(iter instanceof Iterator)) {
     iter = new ArrayIterator(iter);
   }
+  if (queryOptions.langParams) {
+    iter.langParams = queryOptions.langParams;
+  }
   var handleError = function handleError(error) {
     var handler = queryOptions.errorHandler;
     if (handler) {
@@ -12685,6 +12699,9 @@ var arrayQueryImpl = function arrayQueryImpl(iter, queryOptions) {
         d.reject(x);
       }
       return d.promise();
+    },
+    setLangParams: function setLangParams(options) {
+      iter.langParams = options;
     },
     sortBy: function sortBy(getter, desc, compare) {
       return chainQuery(new SortIterator(iter, getter, desc, compare));
@@ -13434,6 +13451,7 @@ var _deferred = __webpack_require__(62754);
 var _operation_manager = _interopRequireDefault(__webpack_require__(88665));
 var _utils2 = __webpack_require__(9234);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -13556,7 +13574,7 @@ var DataSource = _class.default.inherit({
   },
   _extractLoadOptions: function _extractLoadOptions(options) {
     var result = {};
-    var names = ['sort', 'filter', 'select', 'group', 'requireTotalCount'];
+    var names = ['sort', 'filter', 'langParams', 'select', 'group', 'requireTotalCount'];
     var customNames = this._store._customLoadOptions();
     if (customNames) {
       names = names.concat(customNames);
@@ -13841,6 +13859,9 @@ var DataSource = _class.default.inherit({
     var _this9 = this;
     var operationId = this._operationManager.add(deferred);
     var storeLoadOptions = this._createStoreLoadOptions();
+    if (this._store && !(0, _type.isEmptyObject)(storeLoadOptions === null || storeLoadOptions === void 0 ? void 0 : storeLoadOptions.langParams)) {
+      this._store._langParams = _extends({}, this._store._langParams, storeLoadOptions.langParams);
+    }
     deferred.always(function () {
       return _this9._operationManager.remove(operationId);
     });
@@ -15877,8 +15898,13 @@ function arrangeSortingInfo(groupInfo, sortInfo) {
   return filteredGroup.concat(sortInfo);
 }
 function queryByOptions(query, options, isCountQuery) {
+  var _options;
   options = options || {};
   var filter = options.filter;
+  if ((_options = options) !== null && _options !== void 0 && _options.langParams) {
+    var _query$setLangParams, _query;
+    (_query$setLangParams = (_query = query).setLangParams) === null || _query$setLangParams === void 0 ? void 0 : _query$setLangParams.call(_query, options.langParams);
+  }
   if (filter) {
     query = query.filter(filter);
   }
@@ -16087,13 +16113,17 @@ var keysEqual = function keysEqual(keyExpr, key1, key2) {
     var name;
     for (var i = 0; i < names.length; i++) {
       name = names[i];
-      if (!(0, _common.equalByValue)(key1[name], key2[name], 0, false)) {
+      if (!(0, _common.equalByValue)(key1[name], key2[name], {
+        strict: false
+      })) {
         return false;
       }
     }
     return true;
   }
-  return (0, _common.equalByValue)(key1, key2, 0, false);
+  return (0, _common.equalByValue)(key1, key2, {
+    strict: false
+  });
 };
 exports.keysEqual = keysEqual;
 var BASE64_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
@@ -23746,6 +23776,7 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+var COORDINATE_EPSILON = 0.001;
 function convertToCellsArray(rows) {
   return [].concat.apply([], rows.map(function (rowInfo) {
     return rowInfo.cells.filter(function (cell) {
@@ -23876,9 +23907,7 @@ function splitRectsByPages(rects, marginValue, coordinate, dimension, isFitToPag
       // Check cells that have 'coordinate' less than 'currentPageMaxRectCoordinate'
       var currentRectLeft = rect[coordinate];
       var currentRectRight = rect[coordinate] + rect[dimension];
-      if (currentRectLeft < currentPageMaxRectCoordinate && currentPageMaxRectCoordinate < currentRectRight) {
-        return true;
-      }
+      return currentPageMaxRectCoordinate - currentRectLeft > COORDINATE_EPSILON && currentRectRight - currentPageMaxRectCoordinate > COORDINATE_EPSILON;
     });
     rectsToSeparate.forEach(function (rect) {
       onSeparateCallback(rect, currentPageMaxRectCoordinate, currentPageRects, rectsToSplit);
@@ -35394,6 +35423,10 @@ var defaultMessages = {
     "dxDateBox-simulatedDataPickerTitleDate": "Select date",
     "dxDateBox-simulatedDataPickerTitleDateTime": "Select date and time",
     "dxDateBox-validation-datetime": "Value must be a date or time",
+    "dxDateBox-invalidStartDateMessage": "Start value must be a date",
+    "dxDateBox-invalidEndDateMessage": "End value must be a date",
+    "dxDateBox-startDateOutOfRangeMessage": "Start date is out of range",
+    "dxDateBox-endDateOutOfRangeMessage": "End date is out of range",
     "dxFileUploader-selectFile": "Select a file",
     "dxFileUploader-dropFile": "or Drop a file here",
     "dxFileUploader-bytes": "bytes",
@@ -35416,6 +35449,10 @@ var defaultMessages = {
     "dxForm-requiredMessage": "{0} is required",
     "dxNumberBox-invalidValueMessage": "Value must be a number",
     "dxNumberBox-noDataText": "No data",
+    "dxDataGrid-emptyHeaderWithColumnChooserText": "Use {0} to display columns",
+    "dxDataGrid-emptyHeaderWithGroupPanelText": "Drag a column from the group panel here",
+    "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Use {0} or drag a column from the group panel",
+    "dxDataGrid-emptyHeaderColumnChooserText": "column chooser",
     "dxDataGrid-columnChooserTitle": "Column Chooser",
     "dxDataGrid-columnChooserEmptyText": "Drag a column here to hide it",
     "dxDataGrid-groupContinuesMessage": "Continues on the next page",
@@ -35448,6 +35485,7 @@ var defaultMessages = {
     "dxDataGrid-filterRowOperationBetween": "Between",
     "dxDataGrid-filterRowOperationBetweenStartText": "Start",
     "dxDataGrid-filterRowOperationBetweenEndText": "End",
+    "dxDataGrid-ariaSearchBox": "Search box",
     "dxDataGrid-applyFilterText": "Apply filter",
     "dxDataGrid-trueText": "true",
     "dxDataGrid-falseText": "false",
@@ -35510,6 +35548,8 @@ var defaultMessages = {
     "dxPager-prevPage": "Previous Page",
     "dxPager-nextPage": "Next Page",
     "dxPager-ariaLabel": "Page Navigation",
+    "dxPager-ariaPageSize": "Page size",
+    "dxPager-ariaPageNumber": "Page number",
     "dxPivotGrid-grandTotal": "Grand Total",
     "dxPivotGrid-total": "{0} Total",
     "dxPivotGrid-fieldChooserTitle": "Field Chooser",
@@ -35575,6 +35615,7 @@ var defaultMessages = {
     "dxScheduler-moreAppointments": "{0} more",
     "dxCalendar-todayButtonText": "Today",
     "dxCalendar-ariaWidgetName": "Calendar",
+    "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
     "dxColorView-ariaRed": "Red",
     "dxColorView-ariaGreen": "Green",
     "dxColorView-ariaBlue": "Blue",
@@ -36188,8 +36229,10 @@ if (_globalize.default && _globalize.default.formatDate) {
     _getFormatStringByPath: function _getFormatStringByPath(path) {
       return _globalize.default.locale().main('dates/calendars/gregorian/' + path);
     },
-    getPeriodNames: function getPeriodNames() {
-      var json = _globalize.default.locale().main('dates/calendars/gregorian/dayPeriods/stand-alone/wide');
+    getPeriodNames: function getPeriodNames(format, type) {
+      format = format || 'wide';
+      type = type === 'format' ? type : 'stand-alone';
+      var json = _globalize.default.locale().main("dates/calendars/gregorian/dayPeriods/".concat(type, "/").concat(format));
       return [json['am'], json['pm']];
     },
     getMonthNames: function getMonthNames(format, type) {
@@ -38881,6 +38924,9 @@ var _element = __webpack_require__(6415);
 var _type = __webpack_require__(35922);
 var _template_wrapper = __webpack_require__(93407);
 var _update_props_immutable = __webpack_require__(36583);
+__webpack_require__(95429);
+__webpack_require__(91633);
+__webpack_require__(24028);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -40113,25 +40159,9 @@ var FOCUS_FIRST = 'first';
 var CollectionWidget = _ui.default.inherit({
   _activeStateUnit: '.' + ITEM_CLASS,
   _supportedKeys: function _supportedKeys() {
-    var enter = function enter(e) {
-      var $itemElement = (0, _renderer.default)(this.option('focusedElement'));
-      if (!$itemElement.length) {
-        return;
-      }
-      var itemData = this._getItemData($itemElement);
-      if (itemData !== null && itemData !== void 0 && itemData.onClick) {
-        this._itemEventHandlerByHandler($itemElement, itemData.onClick, {
-          event: e
-        });
-      }
-      this._itemClickHandler((0, _extend.extend)({}, e, {
-        target: $itemElement.get(0),
-        currentTarget: $itemElement.get(0)
-      }));
-    };
     var space = function space(e) {
       e.preventDefault();
-      enter.call(this, e);
+      this._enterKeyHandler(e);
     };
     var move = function move(location, e) {
       if (!(0, _index.isCommandKeyPressed)(e)) {
@@ -40142,7 +40172,7 @@ var CollectionWidget = _ui.default.inherit({
     };
     return (0, _extend.extend)(this.callBase(), {
       space: space,
-      enter: enter,
+      enter: this._enterKeyHandler,
       leftArrow: move.bind(this, FOCUS_LEFT),
       rightArrow: move.bind(this, FOCUS_RIGHT),
       upArrow: move.bind(this, FOCUS_UP),
@@ -40152,6 +40182,22 @@ var CollectionWidget = _ui.default.inherit({
       home: move.bind(this, FOCUS_FIRST),
       end: move.bind(this, FOCUS_LAST)
     });
+  },
+  _enterKeyHandler: function _enterKeyHandler(e) {
+    var $itemElement = (0, _renderer.default)(this.option('focusedElement'));
+    if (!$itemElement.length) {
+      return;
+    }
+    var itemData = this._getItemData($itemElement);
+    if (itemData !== null && itemData !== void 0 && itemData.onClick) {
+      this._itemEventHandlerByHandler($itemElement, itemData.onClick, {
+        event: e
+      });
+    }
+    this._itemClickHandler((0, _extend.extend)({}, e, {
+      target: $itemElement.get(0),
+      currentTarget: $itemElement.get(0)
+    }));
   },
   _getDefaultOptions: function _getDefaultOptions() {
     return (0, _extend.extend)(this.callBase(), {
@@ -40634,19 +40680,19 @@ var CollectionWidget = _ui.default.inherit({
   _attachClickEvent: function _attachClickEvent() {
     var itemSelector = this._itemSelector();
     var clickEventNamespace = (0, _index.addNamespace)(_click.name, this.NAME);
-    var pointerDownEventNamespace = (0, _index.addNamespace)(_pointer.default.down, this.NAME);
+    var pointerUpEventNamespace = (0, _index.addNamespace)(_pointer.default.up, this.NAME);
     var that = this;
-    var pointerDownAction = new _action.default(function (args) {
+    var pointerUpAction = new _action.default(function (args) {
       var event = args.event;
       that._itemPointerDownHandler(event);
     });
     _events_engine.default.off(this._itemContainer(), clickEventNamespace, itemSelector);
-    _events_engine.default.off(this._itemContainer(), pointerDownEventNamespace, itemSelector);
+    _events_engine.default.off(this._itemContainer(), pointerUpEventNamespace, itemSelector);
     _events_engine.default.on(this._itemContainer(), clickEventNamespace, itemSelector, function (e) {
       this._itemClickHandler(e);
     }.bind(this));
-    _events_engine.default.on(this._itemContainer(), pointerDownEventNamespace, itemSelector, function (e) {
-      pointerDownAction.execute({
+    _events_engine.default.on(this._itemContainer(), pointerUpEventNamespace, itemSelector, function (e) {
+      pointerUpAction.execute({
         element: (0, _renderer.default)(e.target),
         event: e
       });
@@ -41402,7 +41448,7 @@ var CollectionWidget = _uiCollection_widget.default.inherit({
   },
   _processSelectableItem: function _processSelectableItem($itemElement, isSelected) {
     $itemElement.toggleClass(this._selectedItemClass(), isSelected);
-    this._setAriaSelected($itemElement, String(isSelected));
+    this._setAriaSelectionAttribute($itemElement, String(isSelected));
   },
   _updateSelectedItems: function _updateSelectedItems(args) {
     var that = this;
@@ -41442,7 +41488,7 @@ var CollectionWidget = _uiCollection_widget.default.inherit({
     });
   },
   _updateSelection: _common.noop,
-  _setAriaSelected: function _setAriaSelected($target, value) {
+  _setAriaSelectionAttribute: function _setAriaSelectionAttribute($target, value) {
     this.setAria('selected', value, $target);
   },
   _removeSelection: function _removeSelection(normalizedIndex) {
@@ -42924,7 +42970,8 @@ var Editor = _ui.default.inherit({
         h: 0,
         v: 0
       },
-      validationTooltipOptions: {}
+      validationTooltipOptions: {},
+      _showValidationMessage: true
     });
   },
   _attachKeyboardEvents: function _attachKeyboardEvents() {
@@ -43041,14 +43088,13 @@ var Editor = _ui.default.inherit({
     var validationErrors = this._getValidationErrors();
     var $element = this.$element();
     this._toggleValidationClasses(!isValid);
-    if (!(0, _window.hasWindow)()) {
+    if (!(0, _window.hasWindow)() || this.option('_showValidationMessage') === false) {
       return;
     }
     this._disposeValidationMessage();
     if (!isValid && validationErrors) {
       var _this$option2 = this.option(),
         validationMessageMode = _this$option2.validationMessageMode,
-        validationMessagePosition = _this$option2.validationMessagePosition,
         validationMessageOffset = _this$option2.validationMessageOffset,
         validationBoundary = _this$option2.validationBoundary,
         rtlEnabled = _this$option2.rtlEnabled;
@@ -43061,13 +43107,16 @@ var Editor = _ui.default.inherit({
         target: this._getValidationMessageTarget(),
         visualContainer: $element,
         mode: validationMessageMode,
-        positionSide: validationMessagePosition,
+        positionSide: this._getValidationMessagePosition(),
         offset: validationMessageOffset,
         boundary: validationBoundary,
         contentId: validationMessageContentId
       }, this._options.cache('validationTooltipOptions')));
       this._bindInnerWidgetOptions(this._validationMessage, 'validationTooltipOptions');
     }
+  },
+  _getValidationMessagePosition: function _getValidationMessagePosition() {
+    return this.option('validationMessagePosition');
   },
   _getValidationMessageTarget: function _getValidationMessageTarget() {
     return this.$element();
@@ -43168,6 +43217,8 @@ var Editor = _ui.default.inherit({
         break;
       case 'validationTooltipOptions':
         this._innerWidgetOptionChanged(this._validationMessage, args);
+        break;
+      case '_showValidationMessage':
         break;
       default:
         this.callBase(args);
@@ -54754,7 +54805,6 @@ var Widget = _dom_component.default.inherit({
   },
   _toggleVisibility: function _toggleVisibility(visible) {
     this.$element().toggleClass('dx-state-invisible', !visible);
-    this.setAria('hidden', !visible || void 0);
   },
   _renderFocusState: function _renderFocusState() {
     this._attachKeyboardEvents();
@@ -73394,6 +73444,7 @@ function processHatchingAttrs(element, attrs) {
   } else if (element._hatching) {
     element.renderer.releaseDefsElements(element._hatching);
     element._hatching = null;
+    delete attrs.filter;
   } else if (attrs.filter) {
     attrs = extend({}, attrs);
     attrs.filter = element._filter = element.renderer.lockDefsElements({}, element._filter, 'filter');
@@ -73887,7 +73938,11 @@ function removeExtraAttrs(html) {
 function parseHTML(text) {
   var items = [];
   var div = _dom_adapter.default.createElement('div');
-  div.innerHTML = text.replace(/\r/g, '').replace(/\n/g, '<br/>');
+  div.innerHTML = text.replace(/\r/g, '').replace(/\n/g, '<br/>').replace(/style=/g, 'data-style=');
+  div.querySelectorAll('[data-style]').forEach(function (element) {
+    element.style = element.getAttribute('data-style');
+    element.removeAttribute('data-style');
+  });
   orderHtmlTree(items, 0, div, {}, '');
   adjustLineHeights(items);
   return items;
@@ -99285,12 +99340,15 @@ var _extend2 = __webpack_require__(13306);
 var _index = __webpack_require__(39611);
 var _pointer = _interopRequireDefault(__webpack_require__(93786));
 var _utils = __webpack_require__(19157);
+var _renderer = _interopRequireDefault(__webpack_require__(68374));
 var _translator2d = __webpack_require__(87276);
 var _common = __webpack_require__(20576);
 var _tooltip = __webpack_require__(14371);
 var _export = __webpack_require__(82454);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var DEFAULT_LINE_SPACING = 2;
+var TOOLTIP_TABLE_BORDER_SPACING = 0;
+var TOOLTIP_TABLE_KEY_VALUE_SPACE = 15;
 var EVENT_NS = 'sparkline-tooltip';
 var POINTER_ACTION = (0, _index.addNamespace)([_pointer.default.down, _pointer.default.move], EVENT_NS);
 var _extend = _extend2.extend;
@@ -99313,33 +99371,29 @@ function pointerHandler(_ref2) {
   that._enableOutHandler();
   that._showTooltip();
 }
-function generateDefaultCustomizeTooltipCallback(fontOptions, rtlEnabled) {
-  var lineSpacing = fontOptions.lineSpacing;
-  var lineHeight = (lineSpacing !== undefined && lineSpacing !== null ? lineSpacing : DEFAULT_LINE_SPACING) + fontOptions.size;
-  return function (customizeObject) {
-    var html = '';
-    var vt = customizeObject.valueText;
-    for (var i = 0; i < vt.length; i += 2) {
-      html += '<tr><td>' + vt[i] + '</td><td style=\'width: 15px\'></td><td style=\'text-align: ' + (rtlEnabled ? 'left' : 'right') + '\'>' + vt[i + 1] + '</td></tr>';
+function getDefaultTemplate(_ref3, textAlign) {
+  var lineSpacing = _ref3.lineSpacing,
+    size = _ref3.size;
+  var lineHeight = "".concat((lineSpacing !== null && lineSpacing !== void 0 ? lineSpacing : DEFAULT_LINE_SPACING) + size, "px");
+  return function (_ref4, container) {
+    var valueText = _ref4.valueText;
+    var table = (0, _renderer.default)('<table>').css({
+      borderSpacing: TOOLTIP_TABLE_BORDER_SPACING,
+      lineHeight: lineHeight
+    });
+    for (var i = 0; i < valueText.length; i += 2) {
+      var tr = (0, _renderer.default)('<tr>');
+      (0, _renderer.default)('<td>').text(valueText[i]).appendTo(tr);
+      (0, _renderer.default)('<td>').css({
+        width: TOOLTIP_TABLE_KEY_VALUE_SPACE
+      }).appendTo(tr);
+      (0, _renderer.default)('<td>').css({
+        textAlign: textAlign
+      }).text(valueText[i + 1]).appendTo(tr);
+      table.append(tr);
     }
-    return {
-      html: '<table style=\'border-spacing:0px; line-height: ' + lineHeight + 'px\'>' + html + '</table>'
-    };
+    container.append(table);
   };
-}
-function generateCustomizeTooltipCallback(customizeTooltip, fontOptions, rtlEnabled) {
-  var defaultCustomizeTooltip = generateDefaultCustomizeTooltipCallback(fontOptions, rtlEnabled);
-  if ((0, _type.isFunction)(customizeTooltip)) {
-    return function (customizeObject) {
-      var res = customizeTooltip.call(customizeObject, customizeObject);
-      if (!('html' in res) && !('text' in res)) {
-        _extend(res, defaultCustomizeTooltip.call(customizeObject, customizeObject));
-      }
-      return res;
-    };
-  } else {
-    return defaultCustomizeTooltip;
-  }
 }
 function createAxis(isHorizontal) {
   var translator = new _translator2d.Translator2D({}, {}, {
@@ -99467,9 +99521,9 @@ var BaseSparkline = _base_widget.default.inherit({
     if (that._outHandler) {
       return;
     }
-    var handler = function handler(_ref3) {
-      var pageX = _ref3.pageX,
-        pageY = _ref3.pageY;
+    var handler = function handler(_ref5) {
+      var pageX = _ref5.pageX,
+        pageY = _ref5.pageY;
       var _that$_renderer$getRo = that._renderer.getRootOffset(),
         left = _that$_renderer$getRo.left,
         top = _that$_renderer$getRo.top;
@@ -99525,12 +99579,29 @@ BaseSparkline.prototype._setTooltipRendererOptions = function () {
   }
 };
 BaseSparkline.prototype._setTooltipOptions = function () {
-  var tooltip = this._tooltip;
-  var options = tooltip && this._getOption('tooltip');
-  tooltip && tooltip.update(_extend({}, options, {
-    customizeTooltip: generateCustomizeTooltipCallback(options.customizeTooltip, options.font, this.option('rtlEnabled')),
-    enabled: options.enabled && this._isTooltipEnabled()
-  }));
+  if (this._tooltip) {
+    var options = this._getOption('tooltip');
+    var defaultContentTemplate = this._getDefaultTooltipTemplate(options);
+    var contentTemplateOptions = defaultContentTemplate ? {
+      contentTemplate: defaultContentTemplate
+    } : {};
+    var optionsToUpdate = _extend(contentTemplateOptions, options, {
+      enabled: options.enabled && this._isTooltipEnabled()
+    });
+    this._tooltip.update(optionsToUpdate);
+  }
+};
+BaseSparkline.prototype._getDefaultTooltipTemplate = function (options) {
+  var defaultTemplateNeeded = true;
+  var textAlign = this.option('rtlEnabled') ? 'left' : 'right';
+  if ((0, _type.isFunction)(options.customizeTooltip)) {
+    var _options$customizeToo;
+    this._tooltip.update(options);
+    var formatObject = this._getTooltipData();
+    var customizeResult = (_options$customizeToo = options.customizeTooltip.call(formatObject, formatObject)) !== null && _options$customizeToo !== void 0 ? _options$customizeToo : {};
+    defaultTemplateNeeded = !('html' in customizeResult) && !('text' in customizeResult);
+  }
+  return defaultTemplateNeeded && getDefaultTemplate(options.font, textAlign);
 };
 
 // PLUGINS_SECTION
@@ -100880,11 +100951,14 @@ var _default = {
     var visibleArea = this.getCanvasVisibleArea();
     var minValue = this.from(visibleArea.min + minBarSize);
     var canvasOptions = this._canvasOptions;
-    return Math.pow(canvasOptions.base, canvasOptions.rangeMinVisible + this.fromValue(this.from(visibleArea.min)) - this.fromValue(!(0, _type.isDefined)(minValue) ? this.from(visibleArea.max) : minValue));
+    var startValue = this.fromValue(this.from(visibleArea.min));
+    var endValue = this.fromValue(minValue !== null && minValue !== void 0 ? minValue : this.from(visibleArea.max));
+    var value = Math.abs(startValue - endValue);
+    return Math.pow(canvasOptions.base, value);
   },
   checkMinBarSize: function checkMinBarSize(initialValue, minShownValue, stackValue) {
     var canvasOptions = this._canvasOptions;
-    var prevValue = stackValue - initialValue;
+    var prevValue = stackValue ? stackValue - initialValue : 0;
     var baseMethod = this.constructor.prototype.checkMinBarSize;
     var minBarSize;
     var updateValue;
@@ -101485,7 +101559,7 @@ _Translator2d.prototype = {
     var minValue = this.from(visibleArea.min + minBarSize);
     return _abs(this.from(visibleArea.min) - (!(0, _type.isDefined)(minValue) ? this.from(visibleArea.max) : minValue));
   },
-  checkMinBarSize: function checkMinBarSize(value, minShownValue, stackValue) {
+  checkMinBarSize: function checkMinBarSize(value, minShownValue) {
     return _abs(value) < minShownValue ? value >= 0 ? minShownValue : -minShownValue : value;
   },
   translate: function translate(bp, direction) {

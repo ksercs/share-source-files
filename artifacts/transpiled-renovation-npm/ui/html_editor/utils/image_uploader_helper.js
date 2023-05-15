@@ -3,6 +3,7 @@
 exports.ImageUploader = void 0;
 exports.correctSlashesInUrl = correctSlashesInUrl;
 exports.getFileUploaderBaseOptions = getFileUploaderBaseOptions;
+exports.serverUpload = serverUpload;
 exports.urlUpload = urlUpload;
 var _renderer = _interopRequireDefault(require("../../../core/renderer"));
 var _message = _interopRequireDefault(require("../../../localization/message"));
@@ -456,23 +457,11 @@ var FileStrategy = /*#__PURE__*/function (_BaseStrategy2) {
   _proto8.isValid = function isValid() {
     return this.isValidInternal;
   };
-  _proto8.closeDialogPopup = function closeDialogPopup(data) {
-    this.editorInstance._formDialog.hide({
-      file: data.value ? data.value[0] : data.file
-    }, data.event);
-  };
-  _proto8.serverUpload = function serverUpload(data) {
-    if (!this.useBase64) {
-      var imageUrl = correctSlashesInUrl(this.config.uploadDirectory) + data.file.name;
-      urlUpload(this.quill, this.selection.index, {
-        src: imageUrl
-      });
-      this.closeDialogPopup(data);
-    }
+  _proto8.onUploaded = function onUploaded(data) {
+    serverUpload(this.config.uploadDirectory, data.file.name, this.quill, this.selection.index);
   };
   _proto8.base64Upload = function base64Upload(data) {
     this.quill.getModule('uploader').upload(this.selection, data.value, true);
-    this.closeDialogPopup(data);
   };
   _proto8.pasteImage = function pasteImage(formData, event) {
     if (this.useBase64) {
@@ -501,7 +490,7 @@ var FileStrategy = /*#__PURE__*/function (_BaseStrategy2) {
         _this11.onFileSelected();
       },
       onUploaded: function onUploaded(e) {
-        return _this11.serverUpload(e);
+        return _this11.onUploaded(e);
       }
     };
     return (0, _extend.extend)({}, getFileUploaderBaseOptions(), fileUploaderOptions, this.config.fileUploaderOptions);
@@ -555,4 +544,12 @@ function getFileUploaderBaseOptions() {
 function urlUpload(quill, index, attributes) {
   quill.insertEmbed(index, 'extendedImage', attributes, USER_ACTION);
   quill.setSelection(index + 1, 0, USER_ACTION);
+}
+function serverUpload(url, fileName, quill, pasteIndex) {
+  if (url) {
+    var imageUrl = correctSlashesInUrl(url) + fileName;
+    urlUpload(quill, pasteIndex, {
+      src: imageUrl
+    });
+  }
 }

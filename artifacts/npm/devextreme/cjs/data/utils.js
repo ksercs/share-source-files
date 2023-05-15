@@ -1,7 +1,7 @@
 /**
 * DevExtreme (cjs/data/utils.js)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -165,13 +165,17 @@ var keysEqual = function keysEqual(keyExpr, key1, key2) {
     var name;
     for (var i = 0; i < names.length; i++) {
       name = names[i];
-      if (!(0, _common.equalByValue)(key1[name], key2[name], 0, false)) {
+      if (!(0, _common.equalByValue)(key1[name], key2[name], {
+        strict: false
+      })) {
         return false;
       }
     }
     return true;
   }
-  return (0, _common.equalByValue)(key1, key2, 0, false);
+  return (0, _common.equalByValue)(key1, key2, {
+    strict: false
+  });
 };
 exports.keysEqual = keysEqual;
 var BASE64_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';

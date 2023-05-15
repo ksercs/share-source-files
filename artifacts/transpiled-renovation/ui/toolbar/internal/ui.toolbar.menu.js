@@ -131,7 +131,6 @@ var DropDownMenu = /*#__PURE__*/function (_Widget) {
   _proto._render = function _render() {
     _Widget.prototype._render.call(this);
     this.setAria({
-      'role': 'menubar',
       'haspopup': true,
       'expanded': this.option('opened')
     });
@@ -260,7 +259,6 @@ var DropDownMenu = /*#__PURE__*/function (_Widget) {
       focusStateEnabled: false,
       activeStateEnabled: true,
       onItemRendered: this.option('onItemRendered'),
-      _areaTarget: this.$element(),
       _itemAttributes: {
         role: 'menuitem'
       }

@@ -1,7 +1,7 @@
 /**
 * DevExtreme (viz/bullet.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -129,3 +129,71 @@ export type Properties = dxBulletOptions;
 
 /** @deprecated use Properties instead */
 export type Options = dxBulletOptions;
+
+type EventProps<T> = Extract<keyof T, `on${any}`>;
+type CheckedEvents<TProps, TEvents extends { [K in EventProps<TProps>]: (e: any) => void } & Record<Exclude<keyof TEvents, keyof TProps>, never>> = TEvents;
+
+type EventsIntegrityCheckingHelper = CheckedEvents<Properties, Required<Events>>;
+
+type Events = {
+/**
+ * @skip
+ * @docid dxBulletOptions.onDisposing
+ * @type_function_param1 e:{viz/bullet:DisposingEvent}
+ */
+onDisposing?: ((e: DisposingEvent) => void);
+/**
+ * @skip
+ * @docid dxBulletOptions.onDrawn
+ * @type_function_param1 e:{viz/bullet:DrawnEvent}
+ */
+onDrawn?: ((e: DrawnEvent) => void);
+/**
+ * @skip
+ * @docid dxBulletOptions.onExported
+ * @type_function_param1 e:{viz/bullet:ExportedEvent}
+ */
+onExported?: ((e: ExportedEvent) => void);
+/**
+ * @skip
+ * @docid dxBulletOptions.onExporting
+ * @type_function_param1 e:{viz/bullet:ExportingEvent}
+ */
+onExporting?: ((e: ExportingEvent) => void);
+/**
+ * @skip
+ * @docid dxBulletOptions.onFileSaving
+ * @type_function_param1 e:{viz/bullet:FileSavingEvent}
+ */
+onFileSaving?: ((e: FileSavingEvent) => void);
+/**
+ * @skip
+ * @docid dxBulletOptions.onIncidentOccurred
+ * @type_function_param1 e:{viz/bullet:IncidentOccurredEvent}
+ */
+onIncidentOccurred?: ((e: IncidentOccurredEvent) => void);
+/**
+ * @skip
+ * @docid dxBulletOptions.onInitialized
+ * @type_function_param1 e:{viz/bullet:InitializedEvent}
+ */
+onInitialized?: ((e: InitializedEvent) => void);
+/**
+ * @skip
+ * @docid dxBulletOptions.onOptionChanged
+ * @type_function_param1 e:{viz/bullet:OptionChangedEvent}
+ */
+onOptionChanged?: ((e: OptionChangedEvent) => void);
+/**
+ * @skip
+ * @docid dxBulletOptions.onTooltipHidden
+ * @type_function_param1 e:{viz/bullet:TooltipHiddenEvent}
+ */
+onTooltipHidden?: ((e: TooltipHiddenEvent) => void);
+/**
+ * @skip
+ * @docid dxBulletOptions.onTooltipShown
+ * @type_function_param1 e:{viz/bullet:TooltipShownEvent}
+ */
+onTooltipShown?: ((e: TooltipShownEvent) => void);
+};

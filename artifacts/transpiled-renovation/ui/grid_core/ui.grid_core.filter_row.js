@@ -64,6 +64,7 @@ var FILTER_RANGE_CONTENT_CLASS = 'dx-filter-range-content';
 var FILTER_MODIFIED_CLASS = 'dx-filter-modified';
 var EDITORS_INPUT_SELECTOR = 'input:not([type=\'hidden\'])';
 var BETWEEN_OPERATION_DATA_TYPES = ['date', 'datetime', 'number'];
+var ARIA_SEARCH_BOX = _message.default.format('dxDataGrid-ariaSearchBox');
 function isOnClickApplyFilterMode(that) {
   return that.option('filterRow.applyFilter') === 'onClick';
 }
@@ -216,15 +217,17 @@ var ColumnHeadersViewFilterRowExtender = function () {
       var that = this;
       var sharedData = {};
       var $editorContainer = $cell.find('.dx-editor-container');
-      var $overlay = (0, _renderer.default)('<div>').addClass(that.addWidgetPrefix(FILTER_RANGE_OVERLAY_CLASS)).appendTo($cell);
+      var filterRangeOverlayClass = that.addWidgetPrefix(FILTER_RANGE_OVERLAY_CLASS);
+      var $overlay = (0, _renderer.default)('<div>').addClass(filterRangeOverlayClass).appendTo($cell);
       return that._createComponent($overlay, _ui.default, {
         height: 'auto',
         shading: false,
         showTitle: false,
         focusStateEnabled: false,
         hideOnOutsideClick: true,
-        copyRootClassesToWrapper: true,
-        _ignoreCopyRootClassesToWrapperDeprecation: true,
+        wrapperAttr: {
+          class: filterRangeOverlayClass
+        },
         animation: false,
         position: {
           my: 'top',
@@ -467,6 +470,9 @@ var ColumnHeadersViewFilterRowExtender = function () {
         cssClass: that.getWidgetContainerClass() + ' ' + CELL_FOCUS_DISABLED_CLASS + ' ' + FILTER_MENU,
         showFirstSubmenuMode: 'onHover',
         hideSubmenuOnMouseLeave: true,
+        elementAttr: {
+          'aria-label': ARIA_SEARCH_BOX
+        },
         items: [{
           disabled: column.filterOperations && column.filterOperations.length ? false : true,
           icon: OPERATION_ICONS[getColumnSelectedFilterOperation(that, column) || 'default'],

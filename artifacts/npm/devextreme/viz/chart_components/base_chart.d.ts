@@ -1,7 +1,7 @@
 /**
 * DevExtreme (viz/chart_components/base_chart.d.ts)
 * Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Build date: Mon May 15 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -220,7 +220,10 @@ export interface BaseChartOptions<TComponent> extends BaseWidgetOptions<TCompone
      */
     tooltip?: BaseChartTooltip;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface BaseChartAdaptiveLayout {
     /**
      * @docid BaseChartOptions.adaptiveLayout.height
@@ -241,7 +244,10 @@ export interface BaseChartAdaptiveLayout {
      */
     width?: number;
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface BaseChartLegend extends BaseLegend {
     /**
      * @docid BaseChartOptions.legend.customizeItems
@@ -256,7 +262,10 @@ export interface BaseChartLegend extends BaseLegend {
      */
     markerTemplate?: template | ((legendItem: BaseChartLegendItem, element: SVGGElement) => string | UserDefinedElement<SVGElement>);
 }
-/** @namespace DevExpress.viz */
+/**
+ * @docid
+ * @namespace DevExpress.viz
+ */
 export interface BaseChartTooltip extends BaseWidgetTooltip {
     /**
      * @docid BaseChartOptions.tooltip.argumentFormat
