@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.zh-tw.js)
-* Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Version: 23.1.4
+* Build date: Fri Jul 28 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,12 @@
             "dxDateBox-simulatedDataPickerTitleDate": "選擇日期",
             "dxDateBox-simulatedDataPickerTitleDateTime": "選擇日期和時間",
             "dxDateBox-validation-datetime": "值必須是日期或時間",
+            "dxDateRangeBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateRangeBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateRangeBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateRangeBox-endDateOutOfRangeMessage": "End date is out of range",
+            "dxDateRangeBox-startDateLabel": "開始日期",
+            "dxDateRangeBox-endDateLabel": "結束日期",
             "dxFileUploader-selectFile": "選擇文件",
             "dxFileUploader-dropFile": "或者把文件放在此處",
             "dxFileUploader-bytes": "bytes",
@@ -92,6 +98,10 @@
             "dxForm-requiredMessage": "{0} 是必須的",
             "dxNumberBox-invalidValueMessage": "值必須是一個數字",
             "dxNumberBox-noDataText": "無資料",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "Use {0} to display columns",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "Drag a column from the group panel here",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Use {0} or drag a column from the group panel",
+            "dxDataGrid-emptyHeaderColumnChooserText": "column chooser",
             "dxDataGrid-columnChooserTitle": "欄選擇器",
             "dxDataGrid-columnChooserEmptyText": "在這裡拖動一列隱藏它",
             "dxDataGrid-groupContinuesMessage": "下一頁接續",
@@ -124,6 +134,7 @@
             "dxDataGrid-filterRowOperationBetween": "之間",
             "dxDataGrid-filterRowOperationBetweenStartText": "開始",
             "dxDataGrid-filterRowOperationBetweenEndText": "結束",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "應用過濾器",
             "dxDataGrid-trueText": "真",
             "dxDataGrid-falseText": "假",
@@ -180,11 +191,14 @@
             "dxTreeList-editingAddRowToNode": "添加",
             "dxPager-infoText": "第{0}頁,共{1}頁 ({2} 個項目)",
             "dxPager-pagesCountText": "到",
+            "dxPager-pageSize": "Items per page: {0}",
             "dxPager-pageSizesAllText": "全部",
             "dxPager-page": "Page {0}",
             "dxPager-prevPage": "Previous Page",
             "dxPager-nextPage": "Next Page",
             "dxPager-ariaLabel": "Page Navigation",
+            "dxPager-ariaPageSize": "Page size",
+            "dxPager-ariaPageNumber": "Page number",
             "dxPivotGrid-grandTotal": "合計",
             "dxPivotGrid-total": "{0} 總計",
             "dxPivotGrid-fieldChooserTitle": "欄位選擇器",
@@ -250,6 +264,7 @@
             "dxScheduler-moreAppointments": "{0} 更多",
             "dxCalendar-todayButtonText": "今天",
             "dxCalendar-ariaWidgetName": "日曆",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "紅色",
             "dxColorView-ariaGreen": "綠色",
             "dxColorView-ariaBlue": "藍色",

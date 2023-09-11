@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.cs.js)
-* Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Version: 23.1.4
+* Build date: Fri Jul 28 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,12 @@
             "dxDateBox-simulatedDataPickerTitleDate": "Vyberte datum",
             "dxDateBox-simulatedDataPickerTitleDateTime": "Vyberte datum a čas",
             "dxDateBox-validation-datetime": "Hodnota musí být datum nebo čas",
+            "dxDateRangeBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateRangeBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateRangeBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateRangeBox-endDateOutOfRangeMessage": "End date is out of range",
+            "dxDateRangeBox-startDateLabel": "Počáteční datum",
+            "dxDateRangeBox-endDateLabel": "Koncové datum",
             "dxFileUploader-selectFile": "Vyberte soubor",
             "dxFileUploader-dropFile": "nebo přeneste soubor sem",
             "dxFileUploader-bytes": "bytů",
@@ -92,6 +98,10 @@
             "dxForm-requiredMessage": "{0} je vyžadováno",
             "dxNumberBox-invalidValueMessage": "Hodnota musí být číslo",
             "dxNumberBox-noDataText": "Žádná data",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "Use {0} to display columns",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "Drag a column from the group panel here",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Use {0} or drag a column from the group panel",
+            "dxDataGrid-emptyHeaderColumnChooserText": "column chooser",
             "dxDataGrid-columnChooserTitle": "Výběr sloupců",
             "dxDataGrid-columnChooserEmptyText": "Přesuňte sloupec zde pro skytí",
             "dxDataGrid-groupContinuesMessage": "Pokračovat na další straně",
@@ -124,6 +134,7 @@
             "dxDataGrid-filterRowOperationBetween": "Mezi",
             "dxDataGrid-filterRowOperationBetweenStartText": "Začíná",
             "dxDataGrid-filterRowOperationBetweenEndText": "Končí",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "Použít filtr",
             "dxDataGrid-trueText": "Platí",
             "dxDataGrid-falseText": "Neplatí",
@@ -180,11 +191,14 @@
             "dxTreeList-editingAddRowToNode": "Přidat",
             "dxPager-infoText": "Strana {0} ze {1} ({2} položek)",
             "dxPager-pagesCountText": "ze",
+            "dxPager-pageSize": "Items per page: {0}",
             "dxPager-pageSizesAllText": "Vše",
             "dxPager-page": "Page {0}",
             "dxPager-prevPage": "Previous Page",
             "dxPager-nextPage": "Next Page",
             "dxPager-ariaLabel": "Page Navigation",
+            "dxPager-ariaPageSize": "Page size",
+            "dxPager-ariaPageNumber": "Page number",
             "dxPivotGrid-grandTotal": "Celkem",
             "dxPivotGrid-total": "{0} Celkem",
             "dxPivotGrid-fieldChooserTitle": "Výběr pole",
@@ -250,6 +264,7 @@
             "dxScheduler-moreAppointments": "{0} navíc",
             "dxCalendar-todayButtonText": "Dnes",
             "dxCalendar-ariaWidgetName": "Kalendář",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "Červená",
             "dxColorView-ariaGreen": "Zelená",
             "dxColorView-ariaBlue": "Modrá",

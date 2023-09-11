@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.ru.js)
-* Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Version: 23.1.4
+* Build date: Fri Jul 28 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,12 @@
             "dxDateBox-simulatedDataPickerTitleDate": "Выберите дату",
             "dxDateBox-simulatedDataPickerTitleDateTime": "Выберите дату и время",
             "dxDateBox-validation-datetime": "Значение должно быть датой/временем",
+            "dxDateRangeBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateRangeBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateRangeBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateRangeBox-endDateOutOfRangeMessage": "End date is out of range",
+            "dxDateRangeBox-startDateLabel": "Дата начала",
+            "dxDateRangeBox-endDateLabel": "Дата завершения",
             "dxFileUploader-selectFile": "Выберите файл",
             "dxFileUploader-dropFile": "или Перетащите файл сюда",
             "dxFileUploader-bytes": "байт",
@@ -92,6 +98,10 @@
             "dxForm-requiredMessage": " Поле {0} должно быть заполнено",
             "dxNumberBox-invalidValueMessage": "Значение должно быть числом",
             "dxNumberBox-noDataText": "Нет данных",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "Используйте {0} чтобы отобразить столбцы",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "Перетащите столбец из панели группировки",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Используйте {0} или перетащите столбец из панели группировки",
+            "dxDataGrid-emptyHeaderColumnChooserText": "панель выбора столбцов",
             "dxDataGrid-columnChooserTitle": "Выбор столбцов",
             "dxDataGrid-columnChooserEmptyText": "Перетащите столбец сюда, чтобы скрыть его",
             "dxDataGrid-groupContinuesMessage": "Продолжение на следующей странице",
@@ -124,6 +134,7 @@
             "dxDataGrid-filterRowOperationBetween": "В диапазоне",
             "dxDataGrid-filterRowOperationBetweenStartText": "Начало",
             "dxDataGrid-filterRowOperationBetweenEndText": "Конец",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "Применить фильтр",
             "dxDataGrid-trueText": "Да",
             "dxDataGrid-falseText": "Нет",
@@ -165,7 +176,7 @@
             "dxDataGrid-ariaFilterCell": "Фильтр",
             "dxDataGrid-ariaCollapse": "Свернуть",
             "dxDataGrid-ariaExpand": "Развернуть",
-            "dxDataGrid-ariaDataGrid": "Таблица данных",
+            "dxDataGrid-ariaDataGrid": "Таблица данных с {0} строками и {1} колонками",
             "dxDataGrid-ariaSearchInGrid": "Искать в таблице данных",
             "dxDataGrid-ariaSelectAll": "Выбрать всё",
             "dxDataGrid-ariaSelectRow": "Выбрать строку",
@@ -186,6 +197,8 @@
             "dxPager-prevPage": "Предыдущая страница",
             "dxPager-nextPage": "Следующая страница",
             "dxPager-ariaLabel": "Навигация по страницам",
+            "dxPager-ariaPageSize": "Размер страницы",
+            "dxPager-ariaPageNumber": "Номер страницы",
             "dxPivotGrid-grandTotal": "Итого",
             "dxPivotGrid-total": "{0} Всего",
             "dxPivotGrid-fieldChooserTitle": "Выбор полей",
@@ -251,6 +264,7 @@
             "dxScheduler-moreAppointments": "и еще {0}",
             "dxCalendar-todayButtonText": "Сегодня",
             "dxCalendar-ariaWidgetName": "Календарь",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "Красный",
             "dxColorView-ariaGreen": "Зеленый",
             "dxColorView-ariaBlue": "Синий",

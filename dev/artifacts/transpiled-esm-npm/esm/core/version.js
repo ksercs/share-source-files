@@ -1,1 +1,0 @@
-export var version = '23.1.1';

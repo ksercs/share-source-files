@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.ca.js)
-* Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Version: 23.1.4
+* Build date: Fri Jul 28 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,12 @@
             "dxDateBox-simulatedDataPickerTitleDate": "Seleccioneu Data",
             "dxDateBox-simulatedDataPickerTitleDateTime": "Seleccioneu la data i l'hora",
             "dxDateBox-validation-datetime": "El valor ha de ser una data o hora",
+            "dxDateRangeBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateRangeBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateRangeBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateRangeBox-endDateOutOfRangeMessage": "End date is out of range",
+            "dxDateRangeBox-startDateLabel": "Data d'inici",
+            "dxDateRangeBox-endDateLabel": "Data de finalització",
             "dxFileUploader-selectFile": "Seleccioneu un fitxer",
             "dxFileUploader-dropFile": "o deixar un fitxer aquí",
             "dxFileUploader-bytes": "bytes",
@@ -92,6 +98,10 @@
             "dxForm-requiredMessage": "{0} és obligatori",
             "dxNumberBox-invalidValueMessage": "El valor ha de ser un número",
             "dxNumberBox-noDataText": "No hi ha dades",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "Use {0} to display columns",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "Drag a column from the group panel here",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Use {0} or drag a column from the group panel",
+            "dxDataGrid-emptyHeaderColumnChooserText": "column chooser",
             "dxDataGrid-columnChooserTitle": "Escollidor de columnes",
             "dxDataGrid-columnChooserEmptyText": "Arrossegueu una columna aquí per amagar -la",
             "dxDataGrid-groupContinuesMessage": "Continua a la pàgina següent",
@@ -124,6 +134,7 @@
             "dxDataGrid-filterRowOperationBetween": "Entre",
             "dxDataGrid-filterRowOperationBetweenStartText": "Començar",
             "dxDataGrid-filterRowOperationBetweenEndText": "Final",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "Aplicar el filtre",
             "dxDataGrid-trueText": "lleial",
             "dxDataGrid-falseText": "fals",
@@ -180,11 +191,14 @@
             "dxTreeList-editingAddRowToNode": "Addiccionar",
             "dxPager-infoText": "Pàgina {0} de {1} ({2} ítems)",
             "dxPager-pagesCountText": "de",
+            "dxPager-pageSize": "Items per page: {0}",
             "dxPager-pageSizesAllText": "Tota",
             "dxPager-page": "Pàgina {0}",
             "dxPager-prevPage": "Pàgina anterior",
             "dxPager-nextPage": "Pàgina següent",
             "dxPager-ariaLabel": "Navegació de pàgina",
+            "dxPager-ariaPageSize": "Page size",
+            "dxPager-ariaPageNumber": "Page number",
             "dxPivotGrid-grandTotal": "Total Imal",
             "dxPivotGrid-total": "{0} total",
             "dxPivotGrid-fieldChooserTitle": "Escollit de camp",
@@ -250,6 +264,7 @@
             "dxScheduler-moreAppointments": "{0} Més",
             "dxCalendar-todayButtonText": "Avui",
             "dxCalendar-ariaWidgetName": "Calendari",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "Vermell",
             "dxColorView-ariaGreen": "Verd",
             "dxColorView-ariaBlue": "Blava",

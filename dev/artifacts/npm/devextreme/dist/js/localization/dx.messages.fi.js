@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.fi.js)
-* Version: 23.1.1
-* Build date: Thu Apr 13 2023
+* Version: 23.1.4
+* Build date: Fri Jul 28 2023
 *
 * Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -70,6 +70,12 @@
             "dxDateBox-simulatedDataPickerTitleDate": "Valitse päivämäärä",
             "dxDateBox-simulatedDataPickerTitleDateTime": "Valitse päivämäärä ja kellonaika",
             "dxDateBox-validation-datetime": "Arvon on oltava päiväys tai aika",
+            "dxDateRangeBox-invalidStartDateMessage": "Start value must be a date",
+            "dxDateRangeBox-invalidEndDateMessage": "End value must be a date",
+            "dxDateRangeBox-startDateOutOfRangeMessage": "Start date is out of range",
+            "dxDateRangeBox-endDateOutOfRangeMessage": "End date is out of range",
+            "dxDateRangeBox-startDateLabel": "Alkamispäivä",
+            "dxDateRangeBox-endDateLabel": "Päättymispäivä",
             "dxFileUploader-selectFile": "Valitse tiedosto",
             "dxFileUploader-dropFile": "tai vedä ja pudota tiedosto tähän",
             "dxFileUploader-bytes": "tavua",
@@ -92,6 +98,10 @@
             "dxForm-requiredMessage": "{0} on pakollinen",
             "dxNumberBox-invalidValueMessage": "Arvon on oltava numero",
             "dxNumberBox-noDataText": "Ei dataa",
+            "dxDataGrid-emptyHeaderWithColumnChooserText": "Use {0} to display columns",
+            "dxDataGrid-emptyHeaderWithGroupPanelText": "Drag a column from the group panel here",
+            "dxDataGrid-emptyHeaderWithColumnChooserAndGroupPanelText": "Use {0} or drag a column from the group panel",
+            "dxDataGrid-emptyHeaderColumnChooserText": "column chooser",
             "dxDataGrid-columnChooserTitle": "Sarakkeenvalitsin",
             "dxDataGrid-columnChooserEmptyText": "Vedä sarake täällä piilottaa sen",
             "dxDataGrid-groupContinuesMessage": "Jatkuu seuraavalla sivulla",
@@ -124,6 +134,7 @@
             "dxDataGrid-filterRowOperationBetween": "Välillä",
             "dxDataGrid-filterRowOperationBetweenStartText": "Alkaa",
             "dxDataGrid-filterRowOperationBetweenEndText": "Loppu",
+            "dxDataGrid-ariaSearchBox": "Search box",
             "dxDataGrid-applyFilterText": "Käytä suodatinta",
             "dxDataGrid-trueText": "tosi",
             "dxDataGrid-falseText": "epätosi",
@@ -180,11 +191,14 @@
             "dxTreeList-editingAddRowToNode": "Lisää",
             "dxPager-infoText": "Sivu {0}/{1} ({2} kohdetta)",
             "dxPager-pagesCountText": "/",
+            "dxPager-pageSize": "Items per page: {0}",
             "dxPager-pageSizesAllText": "Kaikki",
             "dxPager-page": "Page {0}",
             "dxPager-prevPage": "Previous Page",
             "dxPager-nextPage": "Next Page",
             "dxPager-ariaLabel": "Page Navigation",
+            "dxPager-ariaPageSize": "Page size",
+            "dxPager-ariaPageNumber": "Page number",
             "dxPivotGrid-grandTotal": "Loppusumma",
             "dxPivotGrid-total": "{0} Summa",
             "dxPivotGrid-fieldChooserTitle": "Kentän valitseminen",
@@ -250,6 +264,7 @@
             "dxScheduler-moreAppointments": "{0} lisää",
             "dxCalendar-todayButtonText": "Tänään",
             "dxCalendar-ariaWidgetName": "Kalenteri",
+            "dxCalendar-ariaHotKeysInfo": "To navigate between views, press Control, and then Left Arrow or Right Arrow. To zoom in on a view, press Control, and then Down Arrow. To zoom out, press Control, and then Up Arrow.",
             "dxColorView-ariaRed": "Punainen",
             "dxColorView-ariaGreen": "Vihreä",
             "dxColorView-ariaBlue": "Sininen",
