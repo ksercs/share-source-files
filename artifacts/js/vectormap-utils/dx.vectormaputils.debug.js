@@ -1,9 +1,9 @@
 /*!
 * DevExtreme (dx.vectormaputils.debug.js)
-* Version: 23.1.1
-* Build date: Mon May 15 2023
+* Version: 24.2.0
+* Build date: Mon Aug 26 2024
 *
-* Copyright (c) 2012 - 2023 Developer Express Inc. ALL RIGHTS RESERVED
+* Copyright (c) 2012 - 2024 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 "use strict";
