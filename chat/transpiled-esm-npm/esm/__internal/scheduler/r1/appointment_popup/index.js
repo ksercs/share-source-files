@@ -1,0 +1,1 @@
+export { defaultAnimation, getMaxWidth, getPopupSize, getPopupToolbarItems, isPopupFullScreenNeeded, POPUP_WIDTH } from './config';

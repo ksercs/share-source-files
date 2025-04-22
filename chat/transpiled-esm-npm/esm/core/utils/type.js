@@ -1,0 +1,2 @@
+// deprecated
+export { isBoolean, isDate, isDeferred, isDefined, isEmptyObject, isEvent, isExponential, isFunction, isNumeric, isObject, isPlainObject, isPrimitive, isPromise, isRenderer, isString, isWindow, type } from '../../__internal/core/utils/m_type';

@@ -1,0 +1,1 @@
+export { PublicTemplate } from './public_template';

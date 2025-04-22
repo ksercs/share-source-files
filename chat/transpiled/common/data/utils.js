@@ -1,0 +1,31 @@
+"use strict";
+
+var _exportNames = {
+  compileGetter: true,
+  compileSetter: true
+};
+Object.defineProperty(exports, "compileGetter", {
+  enumerable: true,
+  get: function () {
+    return _data.compileGetter;
+  }
+});
+Object.defineProperty(exports, "compileSetter", {
+  enumerable: true,
+  get: function () {
+    return _data.compileSetter;
+  }
+});
+var _data = require("../../core/utils/data");
+var _m_utils = require("../../__internal/data/m_utils");
+Object.keys(_m_utils).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _m_utils[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _m_utils[key];
+    }
+  });
+});

@@ -1,0 +1,73 @@
+/**
+* DevExtreme (cjs/__internal/ui/button/generated_wrapper.js)
+* Version: 25.1.0
+* Build date: Tue Apr 22 2025
+*
+* Copyright (c) 2012 - 2025 Developer Express Inc. ALL RIGHTS RESERVED
+* Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
+*/
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _component_registrator = _interopRequireDefault(require("../../../core/component_registrator"));
+var _button = require("./button");
+var _wrapper = _interopRequireDefault(require("./wrapper"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+/* eslint-disable prefer-rest-params */
+/* eslint-disable no-void */
+/* eslint-disable no-cond-assign */
+/* eslint-disable no-return-assign */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @stylistic/max-len */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/init-declarations */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
+class Button extends _wrapper.default {
+  getProps() {
+    const props = super.getProps();
+    // @ts-expect-error
+    props.onKeyDown = this._wrapKeyDownHandler(props.onKeyDown);
+    return props;
+  }
+  focus() {
+    let _this$viewRef;
+    return (_this$viewRef = this.viewRef) === null || _this$viewRef === void 0 ? void 0 : _this$viewRef.focus(...arguments);
+  }
+  activate() {
+    let _this$viewRef2;
+    return (_this$viewRef2 = this.viewRef) === null || _this$viewRef2 === void 0 ? void 0 : _this$viewRef2.activate(...arguments);
+  }
+  deactivate() {
+    let _this$viewRef3;
+    return (_this$viewRef3 = this.viewRef) === null || _this$viewRef3 === void 0 ? void 0 : _this$viewRef3.deactivate(...arguments);
+  }
+  _getActionConfigs() {
+    return {
+      onClick: {
+        excludeValidators: ['readOnly']
+      },
+      onSubmit: {}
+    };
+  }
+  get _propsInfo() {
+    return {
+      twoWay: [],
+      allowNull: [],
+      elements: ['onSubmit'],
+      templates: ['template', 'iconTemplate'],
+      props: ['activeStateEnabled', 'hoverStateEnabled', 'icon', 'iconPosition', 'onClick', 'onSubmit', 'pressed', 'stylingMode', 'template', 'iconTemplate', 'text', 'type', 'useInkRipple', 'useSubmitBehavior', 'templateData', 'className', 'accessKey', 'disabled', 'focusStateEnabled', 'height', 'hint', 'onKeyDown', 'rtlEnabled', 'tabIndex', 'visible', 'width']
+    };
+  }
+  // @ts-expect-error
+  get _viewComponent() {
+    return _button.Button;
+  }
+}
+exports.default = Button;
+(0, _component_registrator.default)('dxButton', Button);
+Button.defaultOptions = _button.defaultOptions;

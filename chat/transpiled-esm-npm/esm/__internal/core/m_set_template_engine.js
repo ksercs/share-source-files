@@ -1,0 +1,1 @@
+export { setTemplateEngine } from '../../core/templates/template_engine_registry';

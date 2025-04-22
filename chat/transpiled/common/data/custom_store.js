@@ -1,0 +1,28 @@
+"use strict";
+
+Object.defineProperty(exports, "CustomStore", {
+  enumerable: true,
+  get: function () {
+    return _m_custom_store.default;
+  }
+});
+exports.isGroupItemsArray = isGroupItemsArray;
+exports.isItemsArray = isItemsArray;
+exports.isLoadResultObject = isLoadResultObject;
+var _m_custom_store = _interopRequireDefault(require("../../__internal/data/m_custom_store"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+function isGroupItem(item) {
+  if (item === undefined || item === null || typeof item !== 'object') {
+    return false;
+  }
+  return 'key' in item && 'items' in item;
+}
+function isLoadResultObject(res) {
+  return !Array.isArray(res) && 'data' in res;
+}
+function isGroupItemsArray(res) {
+  return Array.isArray(res) && !!res.length && isGroupItem(res[0]);
+}
+function isItemsArray(res) {
+  return Array.isArray(res) && !isGroupItem(res[0]);
+}

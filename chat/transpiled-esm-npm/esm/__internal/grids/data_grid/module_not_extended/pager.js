@@ -1,0 +1,3 @@
+import { pagerModule } from '../../../grids/grid_core/pager/m_pager';
+import gridCore from '../m_core';
+gridCore.registerModule('pager', pagerModule);
