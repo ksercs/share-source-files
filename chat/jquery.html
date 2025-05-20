@@ -154,7 +154,7 @@ const messages = [
     id: 6,
     timestamp: getTimestamp(date, -7),
     author: currentUser,
-    text: "",
+    text: "a",
   },
   {
     id: 3,
@@ -216,13 +216,6 @@ const editingOptions = [
             .appendTo(element);
           return;
         }
-
-       if (message.id === 6) {
-          $("<div>")
-            .html('just a usual message')
-            .appendTo(element);
-          return;
-        }
         
         $("<div>")
           .addClass("dx-chat-messagebubble-text")
@@ -233,16 +226,19 @@ const editingOptions = [
           "dx-bubble-button-container"
         );
 
-        $("<div>")
-          .dxButton({
-            icon: "copy",
-            stylingMode: "text",
-            hint: "Copy",
-            onClick: ({ component }) => {
-              onCopyButtonClick(component, message.text);
-            }
-          })
+
+        if (message.id === 2) {
+          $("<div>")
+            .dxButton({
+              icon: "copy",
+              stylingMode: "text",
+              hint: "Copy",
+              onClick: ({ component }) => {
+                onCopyButtonClick(component, message.text);
+              }
+            })
           .appendTo($buttonContainer);
+        }
 
         $buttonContainer.appendTo(element);
       },
