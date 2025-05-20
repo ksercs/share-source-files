@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.pt.js)
 * Version: 25.1.2
-* Build date: Tue May 13 2025
+* Build date: Tue May 20 2025
 *
 * Copyright (c) 2012 - 2025 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -217,7 +217,6 @@
             "dxTreeList-ariaSearchInGrid": "Pesquisar na lista de árvores",
             "dxTreeList-ariaToolbar": "Barra de ferramentas da lista de árvores",
             "dxTreeList-editingAddRowToNode": "Adicionar",
-            "dxCardView-ariaSearchInGrid": "Search in the card view",
             "dxPager-infoText": "Página {0} de {1} ({2} itens)",
             "dxPager-pagesCountText": "de",
             "dxPager-pageSize": "Itens por página: {0}",
@@ -340,6 +339,12 @@
             "dxCalendar-selectedMultipleDateRange": "de {0} a {1}",
             "dxCalendar-selectedDateRangeCount": "Há {0} intervalos de datas selecionados",
             "dxCalendar-readOnlyLabel": "Calendário somente leitura",
+            "dxCardView-ariaSearchInGrid": "Search in the card view",
+            "dxCardView-ariaHeaderItemLabel": "Field name {0}",
+            "dxCardView-ariaHeaderItemSortingAscendingLabel": "Sorted in ascending order",
+            "dxCardView-ariaHeaderItemSortingDescendingLabel": "Sorted in descending order",
+            "dxCardView-ariaHeaderItemSortingIndexLabel": "Sort index {0}",
+            "dxCardView-ariaHeaderHasHeaderFilterLabel": "Header filter applied",
             "dxCardView-selectAll": "Select all",
             "dxCardView-clearSelection": "Clear selection",
             "dxCardView-cardNoImageAriaLabel": "No image",
@@ -513,9 +518,11 @@
             "dxHtmlEditor-aiInsertAbove": "Insert above",
             "dxHtmlEditor-aiInsertBelow": "Insert below",
             "dxHtmlEditor-aiCopy": "Copy",
-            "dxHtmlEditor-aiTryAgain": "Try again",
+            "dxHtmlEditor-aiRegenerate": "Regenerate",
             "dxHtmlEditor-aiGenerate": "Generate",
-            "dxHtmlEditor-aiStop": "Stop",
+            "dxHtmlEditor-aiCancel": "Cancel",
+            "dxHtmlEditor-aiToolbarItemAriaLabel": "AI Assistant toolbar item",
+            "dxHtmlEditor-aiResultTextAreaAriaLabel": "AI Assistant result",
             "dxHtmlEditor-aiAskPlaceholder": "Ask AI to modify text",
             "dxFileManager-newDirectoryName": "Diretório sem título",
             "dxFileManager-rootDirectoryName": "Arquivos",
