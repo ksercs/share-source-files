@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.messages.fr.js)
-* Version: 25.1.0
-* Build date: Tue Apr 22 2025
+* Version: 25.1.2
+* Build date: Tue May 13 2025
 *
 * Copyright (c) 2012 - 2025 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -210,11 +210,14 @@
             "dxDataGrid-filterPanelClearFilter": "Supprimer",
             "dxDataGrid-filterPanelFilterEnabledHint": "Activer le filtre",
             "dxDataGrid-masterDetail": "Cell with details",
+            "dxDataGrid-moveColumnToTheRight": "Move to the right",
+            "dxDataGrid-moveColumnToTheLeft": "Move to the left",
             "dxTreeList-ariaTreeList": "Tree list with {0} rows and {1} columns",
             "dxTreeList-ariaExpandableInstruction": "Press Ctrl + right arrow to expand the focused node and Ctrl + left arrow to collapse it",
             "dxTreeList-ariaSearchInGrid": "Rechercher dans l'arborescence",
             "dxTreeList-ariaToolbar": "Barre d'outils de la liste arborescente",
             "dxTreeList-editingAddRowToNode": "Ajouter",
+            "dxCardView-ariaSearchInGrid": "Search in the card view",
             "dxPager-infoText": "Page {0} sur {1} ({2} élements)",
             "dxPager-pagesCountText": "sur",
             "dxPager-pageSize": "Items per page: {0}",
@@ -282,6 +285,8 @@
             "dxScheduler-recurrenceEnd": "Jusqu'à",
             "dxScheduler-recurrenceAfter": "Après",
             "dxScheduler-recurrenceOn": "Le",
+            "dxScheduler-recurrenceUntilDateLabel": "Date when repeat ends",
+            "dxScheduler-recurrenceOccurrenceLabel": "Number of occurrences",
             "dxScheduler-recurrenceRepeatMinutely": "minute(s)",
             "dxScheduler-recurrenceRepeatHourly": "hour(s)",
             "dxScheduler-recurrenceRepeatDaily": "Jour(s)",
@@ -335,10 +340,18 @@
             "dxCalendar-selectedMultipleDateRange": "from {0} to {1}",
             "dxCalendar-selectedDateRangeCount": "There are {0} selected date ranges",
             "dxCalendar-readOnlyLabel": "Read-only calendar",
+            "dxCardView-selectAll": "Select all",
+            "dxCardView-clearSelection": "Clear selection",
+            "dxCardView-cardNoImageAriaLabel": "No image",
+            "dxCardView-headerItemDropZoneText": "Drop the header item here",
+            "dxCardView-emptyHeaderPanelText": "Use {0} to display columns",
+            "dxCardView-emptyHeaderPanelColumnChooserText": "column chooser",
             "dxAvatar-defaultImageAlt": "Avatar",
             "dxChat-elementAriaLabel": "Chat",
             "dxChat-textareaPlaceholder": "Type a message",
             "dxChat-sendButtonAriaLabel": "Send",
+            "dxChat-cancelEditingButtonAriaLabel": "Annuler",
+            "dxChat-editingMessageCaption": "Edit Message",
             "dxChat-defaultUserName": "Unknown User",
             "dxChat-messageListAriaLabel": "Message list",
             "dxChat-alertListAriaLabel": "Error list",
@@ -348,6 +361,12 @@
             "dxChat-typingMessageTwoUsers": "{0} and {1} are typing...",
             "dxChat-typingMessageThreeUsers": "{0}, {1} and {2} are typing...",
             "dxChat-typingMessageMultipleUsers": "{0} and others are typing...",
+            "dxChat-editedMessageText": "Edited",
+            "dxChat-editingEditMessage": "Editer",
+            "dxChat-editingDeleteMessage": "Supprimer",
+            "dxChat-editingDeleteConfirmText": "Are you sure you want to delete this message?",
+            "dxChat-deletedMessageText": "This message was deleted",
+            "dxChat-defaultImageAlt": "Image shared in chat",
             "dxColorView-ariaRed": "Rouge",
             "dxColorView-ariaGreen": "Vert",
             "dxColorView-ariaBlue": "Bleu",
@@ -489,6 +508,7 @@
             "dxHtmlEditor-borderStyleInset": "inset",
             "dxHtmlEditor-borderStyleOutset": "outset",
             "dxHtmlEditor-aiDialogTitle": "AI Assistant",
+            "dxHtmlEditor-aiDialogError": "Something went wrong. Please try again.",
             "dxHtmlEditor-aiReplace": "Replace",
             "dxHtmlEditor-aiInsertAbove": "Insert above",
             "dxHtmlEditor-aiInsertBelow": "Insert below",

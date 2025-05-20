@@ -1,7 +1,7 @@
 /*!
 * DevExtreme (dx.viz.js)
-* Version: 25.1.0
-* Build date: Tue Apr 22 2025
+* Version: 25.1.2
+* Build date: Tue May 13 2025
 *
 * Copyright (c) 2012 - 2025 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -4286,6 +4286,7 @@ var _default = exports["default"] = (0, _error.default)({
   E0110: 'Unknown validation group is detected',
   E0120: 'Adapter for a DevExpressValidator component cannot be configured',
   E0121: 'The \'customItem\' parameter of the \'onCustomItemCreating\' function is empty or contains invalid data. Assign a custom object or a Promise that is resolved after the item is created.',
+  E0122: 'AIIntegration: The sendRequest method is missing.',
   W0000: '\'{0}\' is deprecated in {1}. {2}',
   W0001: '{0} - \'{1}\' option is deprecated in {2}. {3}',
   W0002: '{0} - \'{1}\' method is deprecated in {2}. {3}',
@@ -4472,7 +4473,7 @@ var _index = __webpack_require__(6257);
 var _inferno = __webpack_require__(76231);
 var _infernoCreateElement = __webpack_require__(12887);
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable spellcheck/spell-checker */
 
 const remove = element => {
   const {
@@ -4519,6 +4520,13 @@ const infernoRenderer = exports.infernoRenderer = (0, _dependency_injector.defau
       }
     } else {
       (0, _inferno.render)((0, _infernoCreateElement.createElement)(component, props), container);
+    }
+  },
+  renderIntoContainer: (jsx, container, replace) => {
+    if (!replace) {
+      (0, _index.hydrate)(jsx, container);
+    } else {
+      (0, _inferno.render)(jsx, container);
     }
   }
 });
@@ -6482,7 +6490,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports.createContext = void 0;
 var _inferno = __webpack_require__(76231);
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); } /* eslint-disable @typescript-eslint/no-unsafe-return */ /* eslint-disable @typescript-eslint/explicit-function-return-type */ /* eslint-disable no-plusplus */ /* eslint-disable @typescript-eslint/no-explicit-any */
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); } /* eslint-disable @typescript-eslint/explicit-module-boundary-types */ /* eslint-disable func-names */ /* eslint-disable @typescript-eslint/no-unsafe-return */ /* eslint-disable @typescript-eslint/explicit-function-return-type */ /* eslint-disable no-plusplus */
 let contextId = 0;
 const createContext = function (defaultValue) {
   const id = contextId++;
@@ -10346,10 +10354,10 @@ exports.isTablePart = isTablePart;
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.getImageSourceType = exports.getImageContainer = void 0;
+exports.getImageSourceType = exports.getImageContainer = exports.ICON_CLASS = void 0;
 var _renderer = _interopRequireDefault(__webpack_require__(64553));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-const ICON_CLASS = 'dx-icon';
+const ICON_CLASS = exports.ICON_CLASS = 'dx-icon';
 const SVG_ICON_CLASS = 'dx-svg-icon';
 const getImageSourceType = source => {
   if (!source || typeof source !== 'string') {
@@ -13281,7 +13289,7 @@ var _default = exports["default"] = DOMComponent;
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports["default"] = exports.HOVER_STATE_CLASS = exports.FOCUSED_STATE_CLASS = void 0;
+exports["default"] = exports.WIDGET_CLASS = exports.HOVER_STATE_CLASS = exports.FOCUSED_STATE_CLASS = void 0;
 __webpack_require__(64044);
 __webpack_require__(69331);
 __webpack_require__(638);
@@ -13297,6 +13305,7 @@ var _version = __webpack_require__(20142);
 var _selectors = __webpack_require__(35944);
 var _dom_component = _interopRequireDefault(__webpack_require__(22331));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+const WIDGET_CLASS = exports.WIDGET_CLASS = 'dx-widget';
 const DISABLED_STATE_CLASS = 'dx-state-disabled';
 const FOCUSED_STATE_CLASS = exports.FOCUSED_STATE_CLASS = 'dx-state-focused';
 const HOVER_STATE_CLASS = exports.HOVER_STATE_CLASS = 'dx-state-hover';
@@ -13404,7 +13413,7 @@ class Widget extends _dom_component.default {
       disabled,
       visible
     } = this.option();
-    this.$element().addClass('dx-widget');
+    this.$element().addClass(WIDGET_CLASS);
     this._toggleDisabledState(disabled);
     this._toggleVisibility(visible);
     this._renderHint();
@@ -13868,7 +13877,7 @@ class Widget extends _dom_component.default {
   }
   registerKeyHandler(key, handler) {
     const currentKeys = this._supportedKeys();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @stylistic/max-len
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     this._supportedKeys = () => (0, _extend.extend)(currentKeys, {
       [key]: handler
     });
@@ -23516,7 +23525,6 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e
 const toMs = _date2.default.dateToMilliseconds;
 const MINUTES_IN_HOUR = 60;
 const MS_IN_MINUTE = 60000;
-const GET_TIMEZONES_BATCH_SIZE = 20;
 const GMT = 'GMT';
 const offsetFormatRegexp = /^GMT(?:[+-]\d{2}:\d{2})?$/;
 const createUTCDateWithLocalOffset = date => {
@@ -23759,28 +23767,31 @@ const addOffsetsWithoutDST = function (date) {
   const daylightSecondShift = getDaylightOffsetInMs(newDate, correctLocalDate);
   return !daylightSecondShift ? correctLocalDate : newDate;
 };
-const getTimeZoneLabelsAsyncBatch = function () {
-  let date = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Date();
-  return _index.macroTaskArray.map(_timezone_list.default.value, timezoneId => ({
-    id: timezoneId,
-    title: getTimezoneTitle(timezoneId, date)
-  }), GET_TIMEZONES_BATCH_SIZE);
-};
-const getTimeZoneLabel = function (timezoneId) {
-  let date = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new Date();
-  return {
-    id: timezoneId,
-    title: getTimezoneTitle(timezoneId, date)
-  };
-};
 const getTimeZones = function () {
   let date = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Date();
-  return _timezone_list.default.value.map(timezoneId => ({
+  let timeZones = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _timezone_list.default.value;
+  return timeZones.map(timezoneId => ({
     id: timezoneId,
     title: getTimezoneTitle(timezoneId, date),
     offset: calculateTimezoneByValue(timezoneId, date)
   }));
 };
+const GET_TIMEZONES_BATCH_SIZE = 10;
+let timeZoneDataCache = [];
+let timeZoneDataCachePromise;
+const cacheTimeZones = async function () {
+  let date = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Date();
+  if (timeZoneDataCachePromise) {
+    return timeZoneDataCachePromise;
+  }
+  timeZoneDataCachePromise = _index.macroTaskArray.map(_timezone_list.default.value, timezoneId => ({
+    id: timezoneId,
+    title: getTimezoneTitle(timezoneId, date)
+  }), GET_TIMEZONES_BATCH_SIZE);
+  timeZoneDataCache = await timeZoneDataCachePromise;
+  return timeZoneDataCache;
+};
+const getTimeZonesCache = () => timeZoneDataCache;
 const utils = {
   getDaylightOffset,
   getDaylightOffsetInMs,
@@ -23802,9 +23813,9 @@ const utils = {
   isEqualLocalTimeZoneByDeclaration,
   setOffsetsToDate,
   addOffsetsWithoutDST,
-  getTimeZoneLabelsAsyncBatch,
-  getTimeZoneLabel,
-  getTimeZones
+  getTimeZones,
+  getTimeZonesCache,
+  cacheTimeZones
 };
 var _default = exports["default"] = utils;
 
@@ -24480,8 +24491,14 @@ class Editor extends _widget.default {
       isDirty: false
     });
   }
+  _shouldAttachKeyboardEvents() {
+    const {
+      readOnly
+    } = this.option();
+    return !readOnly;
+  }
   _attachKeyboardEvents() {
-    if (!this.option('readOnly')) {
+    if (this._shouldAttachKeyboardEvents()) {
       super._attachKeyboardEvents();
     }
   }
@@ -24802,48 +24819,46 @@ var _default = exports["default"] = Editor;
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports["default"] = void 0;
+exports["default"] = exports.LOADINDICATOR_WRAPPER_CLASS = exports.LOADINDICATOR_SEGMENT_INNER_CLASS = exports.LOADINDICATOR_SEGMENT_CLASS = exports.LOADINDICATOR_IMAGE_CLASS = exports.LOADINDICATOR_ICON_CLASS = exports.LOADINDICATOR_CONTENT_CLASS = exports.LOADINDICATOR_CLASS = exports.AnimationType = exports.ANIMATION_TYPE_CLASSES = void 0;
 var _message = _interopRequireDefault(__webpack_require__(4671));
 var _component_registrator = _interopRequireDefault(__webpack_require__(92848));
-var _devices = _interopRequireDefault(__webpack_require__(65951));
 var _renderer = _interopRequireDefault(__webpack_require__(64553));
 var _size = __webpack_require__(57653);
-var _window = __webpack_require__(3104);
 var _themes = __webpack_require__(52071);
 var _widget = _interopRequireDefault(__webpack_require__(89275));
 var _m_support = _interopRequireDefault(__webpack_require__(85991));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-const navigator = (0, _window.getNavigator)();
-const LOADINDICATOR_CLASS = 'dx-loadindicator';
-const LOADINDICATOR_WRAPPER_CLASS = 'dx-loadindicator-wrapper';
-const LOADINDICATOR_CONTENT_CLASS = 'dx-loadindicator-content';
-const LOADINDICATOR_ICON_CLASS = 'dx-loadindicator-icon';
-const LOADINDICATOR_SEGMENT_CLASS = 'dx-loadindicator-segment';
-const LOADINDICATOR_SEGMENT_INNER_CLASS = 'dx-loadindicator-segment-inner';
-const LOADINDICATOR_IMAGE_CLASS = 'dx-loadindicator-image';
+const LOADINDICATOR_CLASS = exports.LOADINDICATOR_CLASS = 'dx-loadindicator';
+const LOADINDICATOR_WRAPPER_CLASS = exports.LOADINDICATOR_WRAPPER_CLASS = 'dx-loadindicator-wrapper';
+const LOADINDICATOR_CONTENT_CLASS = exports.LOADINDICATOR_CONTENT_CLASS = 'dx-loadindicator-content';
+const LOADINDICATOR_ICON_CLASS = exports.LOADINDICATOR_ICON_CLASS = 'dx-loadindicator-icon';
+const LOADINDICATOR_SEGMENT_CLASS = exports.LOADINDICATOR_SEGMENT_CLASS = 'dx-loadindicator-segment';
+const LOADINDICATOR_SEGMENT_INNER_CLASS = exports.LOADINDICATOR_SEGMENT_INNER_CLASS = 'dx-loadindicator-segment-inner';
+const LOADINDICATOR_IMAGE_CLASS = exports.LOADINDICATOR_IMAGE_CLASS = 'dx-loadindicator-image';
+var AnimationType;
+(function (AnimationType) {
+  AnimationType["Circle"] = "circle";
+  AnimationType["Sparkle"] = "sparkle";
+})(AnimationType || (exports.AnimationType = AnimationType = {}));
+const ANIMATION_TYPE_CLASSES = exports.ANIMATION_TYPE_CLASSES = {
+  [AnimationType.Circle]: 'dx-loadindicator-content-circle',
+  [AnimationType.Sparkle]: 'dx-loadindicator-content-sparkle'
+};
 class LoadIndicator extends _widget.default {
   _getDefaultOptions() {
     return _extends({}, super._getDefaultOptions(), {
-      indicatorSrc: '',
+      _animatingSegmentCount: 1,
+      _animatingSegmentInner: false,
+      _animationType: AnimationType.Circle,
       activeStateEnabled: false,
       hoverStateEnabled: false,
-      _animatingSegmentCount: 1,
-      _animatingSegmentInner: false
+      indicatorSrc: ''
     });
   }
   _defaultOptionsRules() {
     const themeName = (0, _themes.current)();
     return super._defaultOptionsRules().concat([{
-      device() {
-        const realDevice = _devices.default.real();
-        const obsoleteAndroid = realDevice.platform === 'android' && !/chrome/i.test(navigator.userAgent);
-        return obsoleteAndroid;
-      },
-      options: {
-        viaImage: true
-      }
-    }, {
       device() {
         return (0, _themes.isMaterialBased)(themeName);
       },
@@ -24884,48 +24899,76 @@ class LoadIndicator extends _widget.default {
     this._$wrapper = (0, _renderer.default)('<div>').addClass(LOADINDICATOR_WRAPPER_CLASS);
     this.$element().append(this._$wrapper);
   }
+  _getAnimationTypeContentClass() {
+    const {
+      _animationType: animationType
+    } = this.option();
+    return ANIMATION_TYPE_CLASSES[animationType];
+  }
   _renderIndicatorContent() {
-    this._$content = (0, _renderer.default)('<div>').addClass(LOADINDICATOR_CONTENT_CLASS);
+    const animationClass = this._getAnimationTypeContentClass() ?? '';
+    const contentClasses = [LOADINDICATOR_CONTENT_CLASS, animationClass].join(' ');
+    this._$content = (0, _renderer.default)('<div>').addClass(contentClasses);
     this._$wrapper.append(this._$content);
   }
   _renderMarkup() {
     const {
-      viaImage,
       indicatorSrc
     } = this.option();
-    if (_m_support.default.animation() && !viaImage && !indicatorSrc) {
-      // B236922
-      this._renderMarkupForAnimation();
-    } else {
-      this._renderMarkupForImage();
+    const isAnimationAvailable = _m_support.default.animation();
+    if (indicatorSrc) {
+      this._renderImageMarkup();
+    } else if (isAnimationAvailable) {
+      this._renderAnimationMarkup();
     }
   }
-  _renderMarkupForAnimation() {
-    const animatingSegmentInner = this.option('_animatingSegmentInner');
+  _getSegmentParams() {
+    const {
+      _animationType: animationType,
+      _animatingSegmentCount: animatingSegmentCount,
+      _animatingSegmentInner: animatingSegmentInner
+    } = this.option();
+    switch (animationType) {
+      case AnimationType.Sparkle:
+        return {
+          segmentCount: 2,
+          segmentInner: false
+        };
+      case AnimationType.Circle:
+      default:
+        return {
+          segmentCount: animatingSegmentCount ?? 0,
+          segmentInner: Boolean(animatingSegmentInner)
+        };
+    }
+  }
+  _renderAnimationMarkup() {
     this._$indicator = (0, _renderer.default)('<div>').addClass(LOADINDICATOR_ICON_CLASS);
     this._$content.append(this._$indicator);
-    // Indicator markup
-    // @ts-expect-error ts-error
-    for (let i = this.option('_animatingSegmentCount'); i >= 0; --i) {
-      const $segment = (0, _renderer.default)('<div>').addClass(LOADINDICATOR_SEGMENT_CLASS)
-      // eslint-disable-next-line @typescript-eslint/restrict-plus-operands, @typescript-eslint/no-base-to-string
-      .addClass(LOADINDICATOR_SEGMENT_CLASS + i);
-      if (animatingSegmentInner) {
-        $segment.append((0, _renderer.default)('<div>').addClass(LOADINDICATOR_SEGMENT_INNER_CLASS));
+    const params = this._getSegmentParams();
+    this._renderSegments(params);
+  }
+  _renderSegments(params) {
+    const {
+      segmentCount,
+      segmentInner
+    } = params;
+    for (let i = segmentCount; i >= 0; i -= 1) {
+      var _this$_$indicator;
+      const $segment = (0, _renderer.default)('<div>').addClass(LOADINDICATOR_SEGMENT_CLASS).addClass(`${LOADINDICATOR_SEGMENT_CLASS}${i}`);
+      if (segmentInner) {
+        const $segmentInner = (0, _renderer.default)('<div>').addClass(LOADINDICATOR_SEGMENT_INNER_CLASS);
+        $segment.append($segmentInner);
       }
-      this._$indicator.append($segment);
+      (_this$_$indicator = this._$indicator) === null || _this$_$indicator === void 0 || _this$_$indicator.append($segment);
     }
   }
-  _renderMarkupForImage() {
+  _renderImageMarkup() {
     const {
       indicatorSrc
     } = this.option();
-    if (indicatorSrc) {
-      this._$wrapper.addClass(LOADINDICATOR_IMAGE_CLASS);
-      this._$wrapper.css('backgroundImage', `url(${indicatorSrc})`);
-    } else if (_m_support.default.animation()) {
-      this._renderMarkupForAnimation();
-    }
+    this._$wrapper.addClass(LOADINDICATOR_IMAGE_CLASS);
+    this._$wrapper.css('backgroundImage', `url(${indicatorSrc})`);
   }
   _renderDimensions() {
     super._renderDimensions();
@@ -24935,8 +24978,10 @@ class LoadIndicator extends _widget.default {
     if (!this._$indicator) {
       return;
     }
-    let width = this.option('width');
-    let height = this.option('height');
+    let {
+      width,
+      height
+    } = this.option();
     if (width || height) {
       width = (0, _size.getWidth)(this.$element());
       height = (0, _size.getHeight)(this.$element());
@@ -24968,6 +25013,7 @@ class LoadIndicator extends _widget.default {
     switch (args.name) {
       case '_animatingSegmentCount':
       case '_animatingSegmentInner':
+      case '_animationType':
       case 'indicatorSrc':
         this._invalidate();
         break;
@@ -26259,7 +26305,7 @@ var _default = exports["default"] = ValidationMessage;
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports["default"] = void 0;
+exports["default"] = exports.OVERLAY_CONTENT_CLASS = void 0;
 var _animation = __webpack_require__(16826);
 var _hide_callback = __webpack_require__(83916);
 var _events_engine = _interopRequireDefault(__webpack_require__(92774));
@@ -26300,7 +26346,7 @@ const window = _m_window.default.getWindow();
 const viewPortChanged = _view_port.changeCallback;
 const OVERLAY_CLASS = 'dx-overlay';
 const OVERLAY_WRAPPER_CLASS = 'dx-overlay-wrapper';
-const OVERLAY_CONTENT_CLASS = 'dx-overlay-content';
+const OVERLAY_CONTENT_CLASS = exports.OVERLAY_CONTENT_CLASS = 'dx-overlay-content';
 const OVERLAY_SHADER_CLASS = 'dx-overlay-shader';
 const INNER_OVERLAY_CLASS = 'dx-inner-overlay';
 const INVISIBLE_STATE_CLASS = 'dx-state-invisible';
@@ -27221,7 +27267,7 @@ class Overlay extends _widget.default {
     return this._$content;
   }
   _attachKeyboardEvents() {
-    this._keyboardListenerId = _short.keyboard.on(this._$content, null, opts => this._keyboardHandler(opts));
+    this._keyboardListenerId = _short.keyboard.on(this._$content, null, options => this._keyboardHandler(options));
   }
   // @ts-expect-error ts-error
   _keyboardHandler(options) {
@@ -53234,11 +53280,14 @@ const defaultMessages = exports.defaultMessages = {
     "dxDataGrid-filterPanelClearFilter": "Clear",
     "dxDataGrid-filterPanelFilterEnabledHint": "Enable the filter",
     "dxDataGrid-masterDetail": "Cell with details",
+    "dxDataGrid-moveColumnToTheRight": "Move to the right",
+    "dxDataGrid-moveColumnToTheLeft": "Move to the left",
     "dxTreeList-ariaTreeList": "Tree list with {0} rows and {1} columns",
     "dxTreeList-ariaExpandableInstruction": "Press Ctrl + right arrow to expand the focused node and Ctrl + left arrow to collapse it",
     "dxTreeList-ariaSearchInGrid": "Search in the tree list",
     "dxTreeList-ariaToolbar": "Tree list toolbar",
     "dxTreeList-editingAddRowToNode": "Add",
+    "dxCardView-ariaSearchInGrid": "Search in the card view",
     "dxPager-infoText": "Page {0} of {1} ({2} items)",
     "dxPager-pagesCountText": "of",
     "dxPager-pageSize": "Items per page: {0}",
@@ -53306,6 +53355,8 @@ const defaultMessages = exports.defaultMessages = {
     "dxScheduler-recurrenceEnd": "End repeat",
     "dxScheduler-recurrenceAfter": "After",
     "dxScheduler-recurrenceOn": "On",
+    "dxScheduler-recurrenceUntilDateLabel": "Date when repeat ends",
+    "dxScheduler-recurrenceOccurrenceLabel": "Number of occurrences",
     "dxScheduler-recurrenceRepeatMinutely": "minute(s)",
     "dxScheduler-recurrenceRepeatHourly": "hour(s)",
     "dxScheduler-recurrenceRepeatDaily": "day(s)",
@@ -53359,10 +53410,18 @@ const defaultMessages = exports.defaultMessages = {
     "dxCalendar-selectedMultipleDateRange": "from {0} to {1}",
     "dxCalendar-selectedDateRangeCount": "There are {0} selected date ranges",
     "dxCalendar-readOnlyLabel": "Read-only calendar",
+    "dxCardView-selectAll": "Select all",
+    "dxCardView-clearSelection": "Clear selection",
+    "dxCardView-cardNoImageAriaLabel": "No image",
+    "dxCardView-headerItemDropZoneText": "Drop the header item here",
+    "dxCardView-emptyHeaderPanelText": "Use {0} to display columns",
+    "dxCardView-emptyHeaderPanelColumnChooserText": "column chooser",
     "dxAvatar-defaultImageAlt": "Avatar",
     "dxChat-elementAriaLabel": "Chat",
     "dxChat-textareaPlaceholder": "Type a message",
     "dxChat-sendButtonAriaLabel": "Send",
+    "dxChat-cancelEditingButtonAriaLabel": "Cancel",
+    "dxChat-editingMessageCaption": "Edit Message",
     "dxChat-defaultUserName": "Unknown User",
     "dxChat-messageListAriaLabel": "Message list",
     "dxChat-alertListAriaLabel": "Error list",
@@ -53372,8 +53431,12 @@ const defaultMessages = exports.defaultMessages = {
     "dxChat-typingMessageTwoUsers": "{0} and {1} are typing...",
     "dxChat-typingMessageThreeUsers": "{0}, {1} and {2} are typing...",
     "dxChat-typingMessageMultipleUsers": "{0} and others are typing...",
+    "dxChat-editedMessageText": "Edited",
     "dxChat-editingEditMessage": "Edit",
     "dxChat-editingDeleteMessage": "Delete",
+    "dxChat-editingDeleteConfirmText": "Are you sure you want to delete this message?",
+    "dxChat-deletedMessageText": "This message was deleted",
+    "dxChat-defaultImageAlt": "Image shared in chat",
     "dxColorView-ariaRed": "Red",
     "dxColorView-ariaGreen": "Green",
     "dxColorView-ariaBlue": "Blue",
@@ -53515,6 +53578,7 @@ const defaultMessages = exports.defaultMessages = {
     "dxHtmlEditor-borderStyleInset": "inset",
     "dxHtmlEditor-borderStyleOutset": "outset",
     "dxHtmlEditor-aiDialogTitle": "AI Assistant",
+    "dxHtmlEditor-aiDialogError": "Something went wrong. Please try again.",
     "dxHtmlEditor-aiReplace": "Replace",
     "dxHtmlEditor-aiInsertAbove": "Insert above",
     "dxHtmlEditor-aiInsertBelow": "Insert below",
@@ -57564,6 +57628,9 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e
     * @name ErrorsCore.E0121
     */
 /**
+    * @name ErrorsCore.E0122
+    */
+/**
     * @name ErrorsCore.W0000
     */
 /**
@@ -59530,8 +59597,8 @@ var _m_window = __webpack_require__(14470);
 
 
 exports.version = exports.fullVersion = void 0;
-const version = exports.version = '25.1.0';
-const fullVersion = exports.fullVersion = '25.1.0';
+const version = exports.version = '25.1.2';
+const fullVersion = exports.fullVersion = '25.1.2';
 
 /***/ }),
 
@@ -66305,11 +66372,15 @@ const getGroupInterval = function (column) {
     return Array.isArray(groupInterval) ? groupInterval : [groupInterval];
   }
 };
+const getNormalizedCalculateDisplayValue = function (column) {
+  var _column$calculateDisp;
+  return (_column$calculateDisp = column.calculateDisplayValue) !== null && _column$calculateDisp !== void 0 && _column$calculateDisp.context ? column.calculateDisplayValue : null;
+};
 var _default = exports["default"] = function () {
   const getFilterSelector = function (column, target) {
     let selector = column.dataField || column.selector;
     if (target === 'search') {
-      selector = column.displayField || column.calculateDisplayValue || selector;
+      selector = column.displayField || getNormalizedCalculateDisplayValue(column) || selector;
     }
     return selector;
   };
@@ -66482,6 +66553,7 @@ var _ready_callbacks = _interopRequireDefault(__webpack_require__(3122));
 var _view_port = __webpack_require__(55355);
 var _window = __webpack_require__(3104);
 var _themes_callback = __webpack_require__(88737);
+var _m_common = __webpack_require__(39315);
 var _ui = _interopRequireDefault(__webpack_require__(35185));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 const window = (0, _window.getWindow)();
@@ -66695,7 +66767,7 @@ function getCssClasses(themeName) {
   return result;
 }
 let themeClasses;
-function attachCssClasses(element, themeName) {
+function _attachCssClasses(element, themeName) {
   themeClasses = getCssClasses(themeName).join(' ');
   (0, _renderer.default)(element).addClass(themeClasses);
   const activateHairlines = function () {
@@ -66714,8 +66786,15 @@ function attachCssClasses(element, themeName) {
   };
   activateHairlines();
 }
+function attachCssClasses(element, themeName) {
+  (0, _deferred.when)(_m_common.uiLayerInitialized).done(() => {
+    _attachCssClasses(element, themeName);
+  });
+}
 function detachCssClasses(element) {
-  (0, _renderer.default)(element).removeClass(themeClasses);
+  (0, _deferred.when)(_m_common.uiLayerInitialized).done(() => {
+    (0, _renderer.default)(element).removeClass(themeClasses);
+  });
 }
 function themeReady(callback) {
   _themes_callback.themeReadyCallback.add(callback);
@@ -67271,7 +67350,15 @@ var _default = exports["default"] = (0, _error.default)(_errors.default.ERROR_ME
   /**
    * @name ErrorsUIWidgets.W1025
    */
-  W1025: '\'scrolling.mode\' is set to \'virtual\' or \'infinite\'. Specify the height of the component.'
+  W1025: '\'scrolling.mode\' is set to \'virtual\' or \'infinite\'. Specify the height of the component.',
+  /**
+   * @name ErrorsUIWidgets.W1026
+   */
+  W1026: 'The \'ai\' toolbar item is defined, but aiIntegration is missing.',
+  /**
+   * @name ErrorsUIWidgets.W1027
+   */
+  W1027: 'A prompt should be specified for a custom command.'
 });
 module.exports = exports.default;
 module.exports["default"] = exports.default;
@@ -76553,17 +76640,20 @@ function sortData(data, groupsData, options, uniqueArgumentFields) {
   }
   return dataByArguments;
 }
-function checkItemExistence(collection, item) {
-  return collection.map(function (collectionItem) {
-    return collectionItem.valueOf();
-  }).indexOf(item.valueOf()) === -1;
-}
 function getCategories(data, uniqueArgumentFields, userCategories) {
   const categories = userCategories ? userCategories.slice() : [];
+  const existingValues = new Set(categories.map(item => item.valueOf()));
   uniqueArgumentFields.forEach(function (field) {
     data.forEach(function (item) {
       const dataItem = item[field];
-      (0, _type.isDefined)(dataItem) && checkItemExistence(categories, dataItem) && categories.push(dataItem);
+      if (!(0, _type.isDefined)(dataItem)) {
+        return;
+      }
+      const dataItemValue = dataItem.valueOf();
+      if (!existingValues.has(dataItemValue)) {
+        categories.push(dataItem);
+        existingValues.add(dataItemValue);
+      }
     });
   });
   return categories;
